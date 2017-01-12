@@ -1,0 +1,6 @@
+/Plasma/bin/*
+/.metadata/*
+/Plasma/.settings/*
+/Plasma/.classpath
+/Plasma/.project
+
