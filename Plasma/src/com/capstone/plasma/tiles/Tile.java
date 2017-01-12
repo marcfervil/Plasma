@@ -1,8 +1,10 @@
 package com.capstone.plasma.tiles;
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 import com.capstone.plasma.*;
+import com.capstone.plasma.player.Player;
 
 public class Tile {
 	public static int size=30;
@@ -47,6 +49,7 @@ public class Tile {
 				if(j<=13){
 					tiles.add(new Wall(i*Tile.size,j*Tile.size));
 					if(randInt(0,100)>95){
+					//	ParticleHandler.createParticleStream(Player.x, Player.y,Color.yellow,90,100);
 						tiles.add(new longtile(i*Tile.size,j*Tile.size));
 					}
 				}else{

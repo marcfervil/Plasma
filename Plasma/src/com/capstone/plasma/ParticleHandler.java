@@ -9,26 +9,49 @@ public class ParticleHandler {
 
 	public static ArrayList<Particle> particles = new ArrayList <Particle>();
 	
-	public static void createParticleStream(int x,int y,int duration,Color color){
-		
+	public static ParticleStream createParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed){
+		ParticleStream p= new ParticleStream(x,y,color,minSpeed,maxSpeed);
+		p.start();
+		return p;
+	}
 	
-		new Thread( new Runnable() {
-		    public void run() {
-		    	int dCount=0;
-		    	while(true){
+	public void createParticle(int x,int y,Color color){
+		particles.add(new Particle(x,y,color));
+	}
+	
+	public static class ParticleStream extends Thread{
+		public int x,y,duration,minSpeed,maxSpeed;
+		public Color color;
+		boolean running=true;
+		boolean rendering=true;
+		public ParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed){
+			this.x=x;
+			this.y=y;
+			this.color=color;
+			this.minSpeed=minSpeed;
+			this.maxSpeed=maxSpeed;
+		}
+		public void run() {
+		    	while(running){
 		    		try {
-		    			Thread.sleep(Tile.randInt(50, 500));
+		    			Thread.sleep(Tile.randInt(minSpeed, maxSpeed));
 		    		} catch (InterruptedException e) {
 		    			e.printStackTrace();
 		    		}
-		    		particles.add(new Particle(x,y,color));
-		    		dCount++;
-		    		if(dCount==duration){
-		    			return;
-		    		}
+		    		if(rendering)particles.add(new Particle(x,y,color));
+		
 		    	}
 		    }
-		}).start();
+		public void endStream(){
+			running=false;
+		}
+		public void toggleStream(){
+			if(rendering){
+				rendering=false;
+			}else{
+				rendering=true;
+			}
+		}
 	}
 
 	

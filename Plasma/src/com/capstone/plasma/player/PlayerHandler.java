@@ -6,16 +6,19 @@ import com.capstone.plasma.ParticleHandler;
 
 public class PlayerHandler extends Thread{
 	
+	public static ParticleHandler.ParticleStream playerTrail;
+	
 	public void run(){
 
+		playerTrail= ParticleHandler.createParticleStream(Player.x, Player.y,Color.RED,10,20);
 		try {
 			while(true){
 				//it slept 10
 				Thread.sleep(20);
 				Player.tick();
+				playerTrail.x=Player.x;
+				playerTrail.y=Player.y;
 				
-				//for fun lol, this is not efficent tho
-				ParticleHandler.createParticleStream(Player.x, Player.y, 1,Color.CYAN);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

@@ -1,11 +1,11 @@
 package com.capstone.plasma;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 
 import com.capstone.plasma.player.Player;
+import com.capstone.plasma.player.PlayerHandler;
 
 public class UserInput {
 
@@ -18,8 +18,7 @@ public class UserInput {
 			if(Keyboard.getEventKeyState()){
 				if(!keysDown.contains(Keyboard.getEventKey()))keysDown.add(Keyboard.getEventKey());
 				if(Keyboard.getEventKey()==Keyboard.KEY_G){
-					//ParticleHandler.createParticleStream(Player.x, Player.y, 5,Color.CYAN);
-					ParticleHandler.createParticleStream(Player.x, Player.y, 5,Color.CYAN);
+					PlayerHandler.playerTrail.toggleStream();
 				}
 			}else{
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
