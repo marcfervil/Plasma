@@ -10,10 +10,9 @@ public class PlayerHandler extends Thread{
 	
 	public void run(){
 
-		playerTrail= ParticleHandler.createParticleStream(Player.x, Player.y,Color.RED,5,10);
+		playerTrail= ParticleHandler.createParticleStream(Player.x, Player.y,Color.RED,5,10,false);
 		try {
 			while(true){
-				//it slept 10
 				Thread.sleep(20);
 				Player.tick();
 				playerTrail.x=Player.x;

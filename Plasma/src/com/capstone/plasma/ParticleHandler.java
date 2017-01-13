@@ -9,8 +9,8 @@ public class ParticleHandler {
 
 	public static ArrayList<Particle> particles = new ArrayList <Particle>();
 	
-	public static ParticleStream createParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed){
-		ParticleStream p= new ParticleStream(x,y,color,minSpeed,maxSpeed);
+	public static ParticleStream createParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed,boolean running){
+		ParticleStream p= new ParticleStream(x,y,color,minSpeed,maxSpeed,running);
 		p.start();
 		return p;
 	}
@@ -24,12 +24,13 @@ public class ParticleHandler {
 		public Color color;
 		boolean running=true;
 		boolean rendering=true;
-		public ParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed){
+		public ParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed,boolean running){
 			this.x=x;
 			this.y=y;
 			this.color=color;
 			this.minSpeed=minSpeed;
 			this.maxSpeed=maxSpeed;
+			this.rendering=running;
 		}
 		public void run() {
 		    	while(running){
