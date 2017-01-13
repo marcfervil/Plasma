@@ -28,7 +28,7 @@ public class ParticleHandler {
 			this.x=x;
 			this.y=y;
 			this.color=color;
-			this.minSpeed=minSpeed;
+			this.minSpeed=minSpeed; 
 			this.maxSpeed=maxSpeed;
 			this.rendering=running;
 		}

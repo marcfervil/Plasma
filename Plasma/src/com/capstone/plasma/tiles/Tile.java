@@ -1,11 +1,12 @@
 package com.capstone.plasma.tiles;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import com.capstone.plasma.*;
 
-public class Tile {
+public class Tile implements Serializable{
 	public static int size=30;
 	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
 	
