@@ -35,7 +35,7 @@ public class MapMaker {
 	public static ArrayList<Tile> tiles = new ArrayList<Tile> ();
 	public static boolean mouse = true;
 	public static int PlaceMode = 2; //1 is the default
-	ArrayList<Integer> PastActions = new ArrayList<Integer>();
+	ArrayList<ArrayList<Integer>> PastActions = new ArrayList<ArrayList<Integer>>();
 	
 	 public static void initDisplay(){
 	        try {
@@ -90,9 +90,10 @@ public class MapMaker {
     		return;
     	}
     	if(!(Mouse.isButtonDown(0)))mouse = true;
+    	
+    	if(Mouse.isButtonDown(1)) undo();
 
     }
-    
     
     //decides what to do next.
     public static void action(int mode,int mouseX,int mouseY){
@@ -103,7 +104,7 @@ public class MapMaker {
     			tileArrangement(mouseX,mouseY,1,"right");
     			break;
     		case 2 : mode = 2;//place a row of blocks horizontally
-    			System.out.println ("how many blocks?:");
+    			System.out.println ("how many blocks?:"); //this is crude but it was quick, do you have a better idea?
     			int blocks = Integer.parseInt(s.nextLine());
     			tileArrangement(mouseX,mouseY,blocks,"right");
     			break;
@@ -111,17 +112,39 @@ public class MapMaker {
     	}
     } 
     
-
     public static void tileArrangement(int mouseX, int mouseY, int numBlocks, String direction){
+    	ArrayList<Integer[]> set = new ArrayList<Integer[]>();
     	for(int i =0; i<numBlocks; i++){
-    		if(direction == "up" ) tiles.add(new Floor(mouseX,(mouseY)+(i*Tile.size)));
-    		if(direction == "down" ) tiles.add(new Floor(mouseX,(mouseY)-(i*Tile.size)));
+    		if(direction == "up" ){
+    			tiles.add(new Floor(mouseX,(mouseY)+(i*Tile.size)));
+    		//	set.add(mouseX+(mouseY)+(i*Tile.size));
+    		}
+    		if(direction == "down" ){
+    			tiles.add(new Floor(mouseX,(mouseY)-(i*Tile.size)));
+    			//record(mouseX,(mouseY)-(i*Tile.size));
+    		}
     		
-    		if(direction == "right" ) tiles.add(new Floor(mouseX+(i*Tile.size),(mouseY)));
-    		if(direction == "left" ) tiles.add(new Floor(mouseX-(i*Tile.size),(mouseY)));
+    		if(direction == "right" ){
+    			tiles.add(new Floor(mouseX+(i*Tile.size),(mouseY)));
+    		//	record(mouseX+(i*Tile.size),(mouseY));
+    		}
+    		if(direction == "left" ){
+    			tiles.add(new Floor(mouseX-(i*Tile.size),(mouseY)));
+    		//	record(mouseX-(i*Tile.size),(mouseY));
+    		}
     		
     		
     	}
+    }
+    
+    
+    public static void record(){
+    	
+    }
+    
+    //right click to undo
+    public static void undo(){
+    	
     }
     
     

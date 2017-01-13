@@ -14,11 +14,13 @@ public class Tile implements Serializable{
 	public int y;
 	public int texture; 
 	public boolean collide=true;
+	public int id;
 	
 	public Tile(int texture,int x,int y){
 		this.x=x;
 		this.y=y;
 		this.texture=texture;
+		this.id = this.x+this.y;
 	}
 	
 
