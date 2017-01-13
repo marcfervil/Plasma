@@ -36,7 +36,8 @@ public class GameScreen{
     public static void initGL(){
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0, 900, 500, 0, 1, -1);
+        //comment wat dis do exactaly
+        glOrtho(0, 900, 600, 0, 1, -1);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
