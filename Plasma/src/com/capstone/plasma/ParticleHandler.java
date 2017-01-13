@@ -63,16 +63,23 @@ public class ParticleHandler {
 		try{
 			for(int i=0;i<particles.size();i++){
 				Particle p=particles.get(i);
-				if(p.alpha>-1){
-					GraphicsHandler.drawRect(p.x+GameScreen.xCam, p.y+GameScreen.yCam, 10, 10, 0, getColorAlpha(p.color,p.alpha));
+				
+				if((!(p==null)) ){
+					if(p.alpha>-1 && p.x+GameScreen.xCam<900 && p.x+GameScreen.xCam>-60){
+						GraphicsHandler.drawRect(p.x+GameScreen.xCam, p.y+GameScreen.yCam, 10, 10, 0, getColorAlpha(p.color,p.alpha));
+					}
+					p.check();
+				}else{
+					//continue;
 				}
-				p.check();
 				
 			}
 			for(int i=0;i<particles.size();i++){
 				Particle p=particles.get(i);
-				if(p.remove){
-					particles.remove(i);
+				if(!(p==null)){
+					if(p.remove){
+						particles.remove(i);
+					}
 				}
 			}
 		}catch(Exception e){

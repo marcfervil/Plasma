@@ -28,7 +28,9 @@ public class Tile {
 	}
 	
 	public void paint(){
-		GraphicsHandler.drawImage(texture,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+		if(this.x+GameScreen.xCam<900 && this.x+GameScreen.xCam>-60){
+			GraphicsHandler.drawImage(texture,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+		}
 	}
 	
 
@@ -48,8 +50,12 @@ public class Tile {
 			for(int j=0;j<20;j++){
 				if(j<=13){
 					tiles.add(new Wall(i*Tile.size,j*Tile.size));
-					if(randInt(0,100)>95){
-					//	ParticleHandler.createParticleStream(Player.x, Player.y,Color.yellow,90,100);
+					if(randInt(0,100)>95 && j>5){
+						
+						if(randInt(0,100)>80){
+							ParticleHandler.createParticleStream(i*Tile.size, j*Tile.size,Color.yellow,100,200);
+						}
+							
 						tiles.add(new longtile(i*Tile.size,j*Tile.size));
 					}
 				}else{
