@@ -80,8 +80,7 @@ public class MapMaker {
     
     public static void getMouseEvents(){
 //    	System.out.println(Mouse.getX());
-    
-    
+
     	if(Mouse.isButtonDown(0) && mouse){
     		mouse = false;
     		System.out.println("one tile");
@@ -89,8 +88,9 @@ public class MapMaker {
     		//tiles.add(new Floor(100,30));
     		return;
     	}
+    	if(!(Mouse.isButtonDown(0)))mouse = true;
+    	
     //	if(Mouse.isButto)
-    	}
     }
     
     
