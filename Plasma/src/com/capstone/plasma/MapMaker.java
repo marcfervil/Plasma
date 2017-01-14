@@ -12,6 +12,7 @@ import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import org.lwjgl.LWJGLException;
@@ -84,6 +85,17 @@ public class MapMaker {
         	for(Tile t:tiles){
     			t.paint();
     		}
+        	
+        	int crosshairX = Mouse.getX()-(Tile.size/2);
+        	int crosshairY = Mouse.getY()+(Tile.size/2);
+    		
+        	
+    		//this locks it to grid
+    		crosshairX=round(crosshairX,Tile.size);
+    		crosshairY=round(crosshairY,Tile.size);
+    		
+    		
+        	 GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
 
         	getMouseEvents();    	
         }
@@ -105,15 +117,24 @@ public class MapMaker {
     	}).start();
     }
     
+    public static int round(int val,int round){
+    	return ((val+round)/round)*round;
+    }
+    
     //will pass on the mouse chords and what mouse was clicked to actions.
     public static void getMouseEvents(){
     	
     	int totalDistance = 0;
     	if(Mouse.isButtonDown(0) && released){
     		released = false;
-    		mouseX = Mouse.getX();
-    		mouseY = Mouse.getY();
-    		tiles.add(getTileFromId(Mouse.getX(), Mouse.getY(),selectedTile));
+    		mouseX = Mouse.getX()-(Tile.size/2);
+    		mouseY = Mouse.getY()+(Tile.size/2);
+    		
+    		//this locks it to grid
+    		mouseX=round(mouseX,Tile.size);
+    		mouseY=round(mouseY,Tile.size);
+    		
+    		tiles.add(getTileFromId(mouseX, mouseY,selectedTile));
     		return;
     	}
     	if(Mouse.isButtonDown(0) && !released){
@@ -129,8 +150,19 @@ public class MapMaker {
     		totalDistance= mouseX-Mouse.getX();
     		System.out.println("mousex: "+mouseX+" getMouse: "+Mouse.getX());
     		System.out.println("totaldistance: "+totalDistance);
-    		for(int i =1; i<=(totalDistance/30); i++){
-    			tiles.add(getTileFromId(mouseX-(30*i), mouseY,selectedTile));
+    		
+    		if(totalDistance>0){
+	    		for(int i =1; i<=(totalDistance/30); i++){
+	    			tiles.add(getTileFromId(mouseX-(30*i), mouseY,selectedTile));
+	    		}
+    		}
+    		//I (Marc) wrote everything in this else statement, going right didn't work w/o it
+    		else if(totalDistance<0){
+    			System.out.println("right");
+    			for(int i =Math.abs(totalDistance/30); i>=1; i--){
+    				int v=i*-1;
+	    			tiles.add(getTileFromId(mouseX-(30*v), mouseY,selectedTile));
+	    		}
     		}
     		line =false;
     	}

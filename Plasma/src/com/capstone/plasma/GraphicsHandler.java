@@ -82,6 +82,38 @@ public class GraphicsHandler {
        glPopMatrix();
     //   glColor4f(1f, 0f, 1f, 1f);
     }
+    
+    
+    public static void drawEmptyRect(float x, float y, float width, float height, float rot,Color color){
+    	glDisable(GL_TEXTURE_2D);
+    	glEnable( GL_BLEND );
+    	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+    	glPushMatrix();
+        {
+          glTranslatef(x, y, 0); // Shifts the position
+          glRotatef(rot, 0, 0, 1);
+          
+          
+          byte red = (byte)(color.getRed()-128);
+          byte green = (byte)(color.getGreen()-128);
+          byte blue = (byte)(color.getBlue()-128);
+          byte alpha = (byte)(color.getAlpha()-128);
+          glColor4b(red, green, blue, alpha);
+          
+          glBegin(GL_LINE_STRIP);
+          {
+             glVertex2f(0, 0);
+             glVertex2f(0, height);
+             glVertex2f(width, height);
+             glVertex2f(width, 0);
+             glVertex2f(0, 0);
+          }
+          glEnd();
+       }
+       glPopMatrix();
+    //   glColor4f(1f, 0f, 1f, 1f);
+    }
+
 
 
 	public static int loadTexture(String imagePath){
