@@ -7,8 +7,10 @@ import java.util.Random;
 import com.capstone.plasma.*;
 
 public class Tile implements Serializable{
+	
 	public static int size=30;
 	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
+	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new longtile(0,0),};
 	
 	public int x;
 	public int y;

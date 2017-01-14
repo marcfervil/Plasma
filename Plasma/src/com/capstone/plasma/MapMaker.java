@@ -36,6 +36,7 @@ public class MapMaker {
 	public static boolean mouse = true;
 	public static int PlaceMode = 2; //1 is the default
 	ArrayList<ArrayList<Integer>> PastActions = new ArrayList<ArrayList<Integer>>();
+	public static int selectedTile=0;
 	
 	 public static void initDisplay(){
 	        try {
@@ -82,11 +83,15 @@ public class MapMaker {
         System.exit(0);
     }   
     
-    //will pass on the mouse coords and what mouse was clicked to actions.
+    //will pass on the mouse chords and what mouse was clicked to actions.
     public static void getMouseEvents(){
     	if(Mouse.isButtonDown(0) && mouse){
     		mouse = false;
-    		action(PlaceMode,Mouse.getX(),600-Mouse.getY());
+    		Tile t=Tile.tileIds[selectedTile];
+    		t.x=Mouse.getX();
+    		t.y=600-Mouse.getY();
+    		tiles.add(t);
+    		//action(PlaceMode,Mouse.getX(),600-Mouse.getY());
     		return;
     	}
     	if(!(Mouse.isButtonDown(0)))mouse = true;
@@ -94,6 +99,20 @@ public class MapMaker {
     	if(Mouse.isButtonDown(1)) undo();
 
     }
+    
+    public static void getInput(){
+    	new Thread( new Runnable() {
+    	    public void run() {
+    	    	while(true){
+    	    		System.out.println("What tile would you like to select? ");
+    	    		Scanner s = new Scanner(System.in);
+    	    		String tileCode=s.next();
+    	    		selectedTile=Integer.parseInt(tileCode);
+    	    	}
+    	    }
+    	}).start();
+    }
+    
     
     //decides what to do next.
     public static void action(int mode,int mouseX,int mouseY){
@@ -152,6 +171,8 @@ public class MapMaker {
     public static void main(String[] args){
     	initDisplay();
     	initGL();
+    	getInput();
     	run();
+    	
     }
 }
