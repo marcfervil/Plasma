@@ -39,7 +39,7 @@ public class MapMaker {
 	public static ArrayList<Tile> tiles = new ArrayList<Tile> ();
 	public static boolean released = true;
 	public static int PlaceMode = 2; //1 is the default
-	ArrayList<ArrayList<Integer>> PastActions = new ArrayList<ArrayList<Integer>>();
+	//ArrayList<ArrayList<Integer>> PastActions = new ArrayList<ArrayList<Integer>>();
 	public static int selectedTile=0;
 	public static final int width = 900;
 	public static final int height = 600;
@@ -124,7 +124,8 @@ public class MapMaker {
     //will pass on the mouse chords and what mouse was clicked to actions.
     public static void getMouseEvents(){
     	
-    	int totalDistance = 0;
+    	int totalDistanceX = 0;
+    	int totalDistanceY = 0;
     	if(Mouse.isButtonDown(0) && released){
     		released = false;
     		mouseX = Mouse.getX()-(Tile.size/2);
@@ -137,33 +138,39 @@ public class MapMaker {
     		tiles.add(getTileFromId(mouseX, mouseY,selectedTile));
     		return;
     	}
+    	
     	if(Mouse.isButtonDown(0) && !released){
     		line = true;
-    		if(mouseX-Mouse.getX()<=((Tile.size)*-1)){
-        		      		
-        //		tiles.add(getTileFromId(Mouse.getX(), mouseY, selectedTile));
-        		
-    			//mouseX=Mouse.getX();
-    		}
-    	}
-    	if(!Mouse.isButtonDown(0) && released &&line){
-    		totalDistance= mouseX-Mouse.getX();
-    		System.out.println("mousex: "+mouseX+" getMouse: "+Mouse.getX());
-    		System.out.println("totaldistance: "+totalDistance);
-    		
-    		if(totalDistance>0){
-	    		for(int i =1; i<=(totalDistance/30); i++){
+    	}else if(!Mouse.isButtonDown(0) && released &&line){
+    		totalDistanceY= mouseY-Mouse.getY();
+    		totalDistanceX= mouseX-Mouse.getX();
+    		if(Math.abs(totalDistanceX)>=Math.abs(totalDistanceY)){//this is for horizontal
+    		if(totalDistanceX>0){
+	    		for(int i =1; i<=(totalDistanceX/30); i++){
 	    			tiles.add(getTileFromId(mouseX-(30*i), mouseY,selectedTile));
 	    		}
     		}
     		//I (Marc) wrote everything in this else statement, going right didn't work w/o it
-    		else if(totalDistance<0){
-    			System.out.println("right");
-    			for(int i =Math.abs(totalDistance/30); i>=1; i--){
+    		else if(totalDistanceX<0){
+    			for(int i =Math.abs(totalDistanceX/30); i>=1; i--){
     				int v=i*-1;
 	    			tiles.add(getTileFromId(mouseX-(30*v), mouseY,selectedTile));
 	    		}
     		}
+    	}else{//this is for verticle
+    		if(totalDistanceY>0){
+	    		for(int i =1; i<=(totalDistanceY/30); i++){
+	    			tiles.add(getTileFromId(mouseX, mouseY-(30*i),selectedTile));
+	    		}
+    		}
+    		
+    		else if(totalDistanceY<0){
+    			for(int i =Math.abs(totalDistanceY/30); i>=1; i--){
+    				int v=i*-1;
+	    			tiles.add(getTileFromId(mouseX, mouseY-(30*v),selectedTile));
+	    		}
+    		}
+    	}
     		line =false;
     	}
     	
