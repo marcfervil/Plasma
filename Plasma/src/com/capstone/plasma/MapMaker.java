@@ -24,6 +24,9 @@ import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.Tile;
+import com.capstone.plasma.tiles.Wall;
+//import com.sun.java.util.jar.pack.Package.Class.Field;
+import com.capstone.plasma.tiles.longtile;
 
 import java.util.Scanner;
 
@@ -33,14 +36,18 @@ public class MapMaker {
 	public static int backCam=0;
 	public static int yCam=0;
 	public static ArrayList<Tile> tiles = new ArrayList<Tile> ();
-	public static boolean mouse = true;
+	public static boolean released = true;
 	public static int PlaceMode = 2; //1 is the default
 	ArrayList<ArrayList<Integer>> PastActions = new ArrayList<ArrayList<Integer>>();
 	public static int selectedTile=0;
+	public static final int width = 900;
+	public static final int height = 600;
+	public static int mouseX = 0;
+	public static int mouseY = 0;
 	
 	 public static void initDisplay(){
 	        try {
-	            Display.setDisplayMode(new DisplayMode(900,600));
+	            Display.setDisplayMode(new DisplayMode(width,height));
 	            Display.setTitle("Plasma Map Maker");
 	            Display.create();
 	        }catch (LWJGLException e){
@@ -54,7 +61,7 @@ public class MapMaker {
     public static void initGL(){
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0, 900, 600, 0, 1, -1);
+        glOrtho(0, width, height, 0, 1, -1);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
@@ -83,22 +90,6 @@ public class MapMaker {
         System.exit(0);
     }   
     
-    //will pass on the mouse chords and what mouse was clicked to actions.
-    public static void getMouseEvents(){
-    	if(Mouse.isButtonDown(0) && mouse){
-    		mouse = false;
-    		Tile t=Tile.tileIds[selectedTile];
-    		t.x=Mouse.getX();
-    		t.y=600-Mouse.getY();
-    		tiles.add(t);
-    		//action(PlaceMode,Mouse.getX(),600-Mouse.getY());
-    		return;
-    	}
-    	if(!(Mouse.isButtonDown(0)))mouse = true;
-    	
-    	if(Mouse.isButtonDown(1)) undo();
-
-    }
     
     public static void getInput(){
     	new Thread( new Runnable() {
@@ -113,6 +104,45 @@ public class MapMaker {
     	}).start();
     }
     
+    //will pass on the mouse chords and what mouse was clicked to actions.
+    public static void getMouseEvents(){
+
+    	if(Mouse.isButtonDown(0) && released){
+    		released = false;
+    		mouseX = Mouse.getX();
+    		mouseY = Mouse.getY();
+    		tiles.add(getTileFromId(Mouse.getX(), Mouse.getY(),selectedTile));
+    		return;
+    	}
+    	if(Mouse.isButtonDown(0) && !released){
+    		int i = 0;
+    		if(mouseX-Mouse.getX()<(Tile.size*-1)){
+        		System.out.println("mousex: "+mouseX+" getMouse: "+Mouse.getX());
+    			tiles.add(getTileFromId(Mouse.getX(), mouseY, selectedTile));
+    			i++;
+    			mouseX=Mouse.getX();
+
+    		}
+    	}
+    		
+    	if(!(Mouse.isButtonDown(0)))released = true;
+    	
+    	if(Mouse.isButtonDown(1)) undo();
+    }
+    
+    public static Tile getTileFromId(int x, int y, int Id){
+    	switch(Id){
+    	case 0:
+    		return new Floor(x,height-y);
+    	case 1:
+    		return new Wall(x,height-y);
+    	case 2:
+    		return new longtile(x,height-y);
+    	default:
+    		return null;
+    		
+    	}
+    }
     
     //decides what to do next.
     public static void action(int mode,int mouseX,int mouseY){
