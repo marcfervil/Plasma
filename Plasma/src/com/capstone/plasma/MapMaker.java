@@ -44,6 +44,7 @@ public class MapMaker {
 	public static final int height = 600;
 	public static int mouseX = 0;
 	public static int mouseY = 0;
+	public static boolean line = false;
 	
 	 public static void initDisplay(){
 	        try {
@@ -106,7 +107,8 @@ public class MapMaker {
     
     //will pass on the mouse chords and what mouse was clicked to actions.
     public static void getMouseEvents(){
-
+    	
+    	int totalDistance = 0;
     	if(Mouse.isButtonDown(0) && released){
     		released = false;
     		mouseX = Mouse.getX();
@@ -115,15 +117,24 @@ public class MapMaker {
     		return;
     	}
     	if(Mouse.isButtonDown(0) && !released){
-    		int i = 0;
-    		if(mouseX-Mouse.getX()<(Tile.size*-1)){
-        		System.out.println("mousex: "+mouseX+" getMouse: "+Mouse.getX());
-    			tiles.add(getTileFromId(Mouse.getX(), mouseY, selectedTile));
-    			i++;
-    			mouseX=Mouse.getX();
-
+    		line = true;
+    		if(mouseX-Mouse.getX()<=((Tile.size)*-1)){
+        		      		
+        //		tiles.add(getTileFromId(Mouse.getX(), mouseY, selectedTile));
+        		
+    			//mouseX=Mouse.getX();
     		}
     	}
+    	if(!Mouse.isButtonDown(0) && released &&line){
+    		totalDistance= mouseX-Mouse.getX();
+    		System.out.println("mousex: "+mouseX+" getMouse: "+Mouse.getX());
+    		System.out.println("totaldistance: "+totalDistance);
+    		for(int i =1; i<=(totalDistance/30); i++){
+    			tiles.add(getTileFromId(mouseX-(30*i), mouseY,selectedTile));
+    		}
+    		line =false;
+    	}
+    	
     		
     	if(!(Mouse.isButtonDown(0)))released = true;
     	
