@@ -91,8 +91,8 @@ public class MapMaker {
     		
         	
     		//this locks it to grid
-    		crosshairX=round(crosshairX,Tile.size);
-    		crosshairY=round(crosshairY,Tile.size);
+    		crosshairX=round2(crosshairX,Tile.size);
+    		crosshairY=round2(crosshairY,Tile.size);
     		
     		
         	 GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
@@ -117,8 +117,14 @@ public class MapMaker {
     	}).start();
     }
     
-    public static int round(int val,int round){
+    public static int round2(int val,int round){
     	return ((val+round)/round)*round;
+    }
+    
+    public static int round(int val, int round){
+    
+    	    return (val+ round-1) / round * round;
+    	
     }
     
     //will pass on the mouse chords and what mouse was clicked to actions.
@@ -158,13 +164,16 @@ public class MapMaker {
 	    		}
     		}
     	}else{//this is for verticle
-    		if(totalDistanceY>0){
+    		System.out.println(totalDistanceY);
+    		if(totalDistanceY>60){
+    			System.out.println("dis");
 	    		for(int i =1; i<=(totalDistanceY/30); i++){
 	    			tiles.add(getTileFromId(mouseX, mouseY-(30*i),selectedTile));
 	    		}
     		}
     		
-    		else if(totalDistanceY<0){
+    		else if(totalDistanceY<30){
+    			System.out.println("dis2");
     			for(int i =Math.abs(totalDistanceY/30); i>=1; i--){
     				int v=i*-1;
 	    			tiles.add(getTileFromId(mouseX, mouseY-(30*v),selectedTile));

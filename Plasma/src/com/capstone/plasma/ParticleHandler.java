@@ -69,6 +69,7 @@ public class ParticleHandler {
 					if(p.alpha>-1 && p.x+GameScreen.xCam<900 && p.x+GameScreen.xCam>-60){
 						GraphicsHandler.drawRect(p.x+GameScreen.xCam, p.y+GameScreen.yCam, 10, 10, 0, getColorAlpha(p.color,p.alpha));
 					}
+					//maybe make seperate thread for this
 					p.check();
 				}else{
 					//continue;
