@@ -56,7 +56,11 @@ public class GameScreen{
         while(!Display.isCloseRequested()) {
         	Display.update();
         	glClear(GL_COLOR_BUFFER_BIT);
-
+        	
+        	for(Tile t:Tile.backgroundTiles){
+    			t.paint();
+    		}
+        	
         	for(Tile t:Tile.tiles){
     			t.paint();
     		}

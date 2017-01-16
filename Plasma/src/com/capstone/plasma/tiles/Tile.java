@@ -9,6 +9,7 @@ import com.capstone.plasma.*;
 public class Tile implements Serializable{
 	
 	public static int size=30;
+	public static ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
 	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new longtile(0,0),};
 	
@@ -53,7 +54,7 @@ public class Tile implements Serializable{
 		for(int i=0;i<500;i++){
 			for(int j=0;j<20;j++){
 				if(j<=13){
-					tiles.add(new Wall(i*Tile.size,j*Tile.size));
+					backgroundTiles.add(new Wall(i*Tile.size,j*Tile.size));
 					if(randInt(0,100)>95 && j>5){
 						
 						if(randInt(0,100)>80){
