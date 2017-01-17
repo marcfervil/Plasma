@@ -1,4 +1,4 @@
-package com.capstone.plasma;
+package mapMaker;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_LINE_SMOOTH_HINT;
@@ -21,6 +21,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.tiles.Floor;
@@ -199,11 +200,10 @@ public class MapMaker {
     		line =false;
     	}
     	
-    		
     	if(!(Mouse.isButtonDown(0)))released = true;
-    	
-    	if(Mouse.isButtonDown(1)) undo();
+    	//if(!(Mouse.isButtonDown(0)))released = true;
     }
+    	
     
     public static Tile getTileFromId(int x, int y, int Id){
     	switch(Id){
@@ -219,22 +219,7 @@ public class MapMaker {
     	}
     }
     
-    //decides what to do next.
-    public static void action(int mode,int mouseX,int mouseY){
-    	Scanner s = new Scanner(System.in);
-    	switch (mode){
-    		case 1: mode = 1;//place a single block
-    			//tiles.add(new Floor(Mouse.getX(),600-Mouse.getY()));
-    			tileArrangement(mouseX,mouseY,1,"right");
-    			break;
-    		case 2 : mode = 2;//place a row of blocks horizontally
-    			System.out.println ("how many blocks?:"); //this is crude but it was quick, do you have a better idea?
-    			int blocks = Integer.parseInt(s.nextLine());
-    			tileArrangement(mouseX,mouseY,blocks,"right");
-    			break;
-	
-    	}
-    } 
+
     
     public static void tileArrangement(int mouseX, int mouseY, int numBlocks, String direction){
     	ArrayList<Integer[]> set = new ArrayList<Integer[]>();
@@ -260,17 +245,7 @@ public class MapMaker {
     		
     	}
     }
-    
-    
-    public static void record(){
-    	
-    }
-    
-    //right click to undo
-    public static void undo(){
-    	
-    }
-    
+        
     
     
     public static void main(String[] args){
