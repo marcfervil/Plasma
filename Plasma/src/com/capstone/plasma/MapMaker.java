@@ -46,6 +46,8 @@ public class MapMaker {
 	public static int mouseX = 0;
 	public static int mouseY = 0;
 	public static boolean line = false;
+	public static int crosshairX = Mouse.getX()-(Tile.size/2);
+	public static int crosshairY = Mouse.getY()+(Tile.size/2);
 	
 	 public static void initDisplay(){
 	        try {
@@ -86,8 +88,8 @@ public class MapMaker {
     			t.paint();
     		}
         	
-        	int crosshairX = Mouse.getX()-(Tile.size/2);
-        	int crosshairY = Mouse.getY()+(Tile.size/2);
+        	crosshairX = Mouse.getX()-(Tile.size/2);
+        	crosshairY = Mouse.getY()+(Tile.size/2);
     		
         	
     		//this locks it to grid
@@ -129,6 +131,20 @@ public class MapMaker {
     
     //will pass on the mouse chords and what mouse was clicked to actions.
     public static void getMouseEvents(){
+    	
+    	
+    	//delete thing
+    	if(Mouse.isButtonDown(1)){
+
+    		for(int i =0; i<tiles.size(); i++){
+    			System.out.println("tile x: "+round(tiles.get(i).x, Tile.size)+" mouse x "+round(Mouse.getX(),Tile.size));
+    			//if(tiles.get(i).x+Tile.size ==round(mouseX, Tile.size) &&tiles.get(i).y+Tile.size ==height-round(mouseY, Tile.size)){
+    			if(tiles.get(i).x == crosshairX &&tiles.get(i).y == height-crosshairY){
+    				tiles.remove(i);
+    				System.out.println("it removed");
+    			}
+    		}
+    	}
     	
     	int totalDistanceX = 0;
     	int totalDistanceY = 0;
