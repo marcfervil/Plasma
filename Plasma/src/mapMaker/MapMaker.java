@@ -77,6 +77,7 @@ public class MapMaker {
         GraphicsHandler.loadTextures();
         Tile.mapGen();
        
+       
   //      UserInput.startKeyManager();
     }
     
@@ -105,7 +106,7 @@ public class MapMaker {
         	getMouseEvents();   
         	//MapInput m = new MapInput();
         	//m.startKeyManager();
-        	
+        	//here
         	MapInput.startKeyManager();
         	MapInput.get();  
         }
