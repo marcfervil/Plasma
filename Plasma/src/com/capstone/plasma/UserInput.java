@@ -83,7 +83,8 @@ public class UserInput {
 							}
 							break;
 						case Keyboard.KEY_W:
-							
+							Player.jumpTick++;
+							System.out.println(Player.jumpTick);
 							if(Player.onGround){
 								Player.jump=true;
 							}

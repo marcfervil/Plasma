@@ -104,10 +104,7 @@ public class MapMaker {
         	 GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
 
         	getMouseEvents();   
-        	//MapInput m = new MapInput();
-        	//m.startKeyManager();
-        	//here
-        	MapInput.startKeyManager();
+        	
         	MapInput.get();  
         }
         Display.destroy();
@@ -266,6 +263,7 @@ public class MapMaker {
     	m.startKeyManager();
     	m.get();   
     	*/
+    	MapInput.startKeyManager();
     	run(); 	
     }
 }
