@@ -139,7 +139,6 @@ public class MapMaker {
     //will pass on the mouse chords and what mouse was clicked to actions.
     public static void getMouseEvents(){
     	
-    	
     	//delete thing
     	if(Mouse.isButtonDown(1)){
 
@@ -164,7 +163,7 @@ public class MapMaker {
     		mouseX=round(mouseX,Tile.size);
     		mouseY=round(mouseY,Tile.size);
     		
-    		tiles.add(getTileFromId(mouseX+GameScreen.xCam, mouseY+GameScreen.yCam,selectedTile));
+    		tiles.add(getTileFromId(mouseX-GameScreen.xCam, mouseY+GameScreen.yCam,selectedTile));
     		return;
     	}
     	
@@ -176,14 +175,14 @@ public class MapMaker {
     		if(Math.abs(totalDistanceX)>=Math.abs(totalDistanceY)){//this is for horizontal
     		if(totalDistanceX>0){
 	    		for(int i =1; i<=(totalDistanceX/30); i++){
-	    			tiles.add(getTileFromId(mouseX-(30*i), mouseY,selectedTile));
+	    			tiles.add(getTileFromId(mouseX-GameScreen.xCam-(30*i), mouseY+GameScreen.yCam,selectedTile));
 	    		}
     		}
     		//I (Marc) wrote everything in this else statement, going right didn't work w/o it
     		else if(totalDistanceX<0){
     			for(int i =Math.abs(totalDistanceX/30); i>=1; i--){
     				int v=i*-1;
-	    			tiles.add(getTileFromId(mouseX-(30*v), mouseY,selectedTile));
+	    			tiles.add(getTileFromId(mouseX-GameScreen.xCam-(30*v), mouseY+GameScreen.yCam,selectedTile));
 	    		}
     		}
     	}else{//this is for verticle
@@ -191,7 +190,7 @@ public class MapMaker {
     		if(totalDistanceY>60){
     			System.out.println("dis");
 	    		for(int i =1; i<=(totalDistanceY/30); i++){
-	    			tiles.add(getTileFromId(mouseX, mouseY-(30*i),selectedTile));
+	    			tiles.add(getTileFromId(mouseX-GameScreen.xCam, mouseY+GameScreen.yCam-(30*i),selectedTile));
 	    		}
     		}
     		
@@ -199,7 +198,7 @@ public class MapMaker {
     			System.out.println("dis2");
     			for(int i =Math.abs(totalDistanceY/30); i>=1; i--){
     				int v=i*-1;
-	    			tiles.add(getTileFromId(mouseX, mouseY-(30*v),selectedTile));
+	    			tiles.add(getTileFromId(mouseX-GameScreen.xCam, mouseY+GameScreen.yCam-(30*v),selectedTile));
 	    		}
     		}
     	}
@@ -231,20 +230,20 @@ public class MapMaker {
     	ArrayList<Integer[]> set = new ArrayList<Integer[]>();
     	for(int i =0; i<numBlocks; i++){
     		if(direction == "up" ){
-    			tiles.add(new Floor(mouseX,(mouseY)+(i*Tile.size)));
+    			tiles.add(new Floor(mouseX-GameScreen.xCam,(mouseY+GameScreen.yCam)+(i*Tile.size)));
     		//	set.add(mouseX+(mouseY)+(i*Tile.size));
     		}
     		if(direction == "down" ){
-    			tiles.add(new Floor(mouseX,(mouseY)-(i*Tile.size)));
+    			tiles.add(new Floor(mouseX-GameScreen.xCam,(mouseY+GameScreen.yCam)-(i*Tile.size)));
     			//record(mouseX,(mouseY)-(i*Tile.size));
     		}
     		
     		if(direction == "right" ){
-    			tiles.add(new Floor(mouseX+(i*Tile.size),(mouseY)));
+    			tiles.add(new Floor(mouseX-GameScreen.xCam+(i*Tile.size),(mouseY+GameScreen.yCam)));
     		//	record(mouseX+(i*Tile.size),(mouseY));
     		}
     		if(direction == "left" ){
-    			tiles.add(new Floor(mouseX-(i*Tile.size),(mouseY)));
+    			tiles.add(new Floor(mouseX-GameScreen.xCam-(i*Tile.size),(mouseY+GameScreen.yCam)));
     		//	record(mouseX-(i*Tile.size),(mouseY));
     		}
     		
