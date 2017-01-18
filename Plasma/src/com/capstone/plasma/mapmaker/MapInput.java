@@ -1,4 +1,4 @@
-package mapMaker;
+package com.capstone.plasma.mapmaker;
 
 import java.util.ArrayList;
 

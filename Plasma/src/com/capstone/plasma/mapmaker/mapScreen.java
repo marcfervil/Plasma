@@ -1,4 +1,4 @@
-package mapMaker;
+package com.capstone.plasma.mapmaker;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
