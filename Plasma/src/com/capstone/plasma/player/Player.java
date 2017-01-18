@@ -13,7 +13,7 @@ public class Player {
 
 	public static int gravityStrength = 1;
 	public static int yVelocity = 0;
-	public static int jumpHeight = 10; //was 20
+	public static int jumpHeight = 20; //was 20
 	public static boolean jump=false;
 	public static int gravCount = 0;
 	public static int jumpTick = 0;
@@ -58,6 +58,7 @@ public class Player {
 		
 		if (jump && onGround){
 			yVelocity-=jumpHeight;
+			//yVelocity -=jumpTick;
 			jump=false;
 		}
 		Tile t;
