@@ -58,7 +58,7 @@ public class Player {
 		
 		if (jump && onGround){
 			yVelocity-=jumpHeight;
-			//yVelocity -=jumpTick;
+		//	yVelocity -=jumpTick;
 			jump=false;
 		}
 		Tile t;

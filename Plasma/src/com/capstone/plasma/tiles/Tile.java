@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import com.capstone.plasma.*;
+import com.capstone.plasma.particle.ParticleHandler;
 
 public class Tile implements Serializable{
 	

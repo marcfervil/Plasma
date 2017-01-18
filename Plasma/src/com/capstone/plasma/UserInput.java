@@ -38,6 +38,9 @@ public class UserInput {
 				} catch (InterruptedException e) {
 				}
 				//for(int key:keysDown){
+				if(keysDown.size()==0){
+					Player.jumpTick = 0;
+				}
 				for(int i=0;i<keysDown.size();i++){
 					int key=keysDown.get(i);
 			//		System.out.println(Player.x);
@@ -83,12 +86,13 @@ public class UserInput {
 							}
 							break;
 						case Keyboard.KEY_W:
-							System.out.println(Player.jumpTick);
+					//		System.out.println(Player.jumpTick);
 							Player.jumpTick++;
 							if(Player.onGround){
 								Player.jump=true;
 							}
 							break;
+						
 						
 					}
 				}
