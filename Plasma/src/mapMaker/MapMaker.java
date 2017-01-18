@@ -22,6 +22,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.UserInput;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.tiles.Floor;
@@ -71,6 +72,7 @@ public class MapMaker {
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
         Keyboard.enableRepeatEvents(true);
+    
         
         GraphicsHandler.loadTextures();
         Tile.mapGen();
@@ -100,7 +102,12 @@ public class MapMaker {
     		
         	 GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
 
-        	getMouseEvents();    	
+        	getMouseEvents();   
+        	//MapInput m = new MapInput();
+        	//m.startKeyManager();
+        	
+        	MapInput.startKeyManager();
+        	MapInput.get();  
         }
         Display.destroy();
         System.exit(0);
@@ -251,8 +258,13 @@ public class MapMaker {
     public static void main(String[] args){
     	initDisplay();
     	initGL();
-    	getInput();
-    	run();
+    	getInput();/*
+    	MapInput m = new MapInput();
+    	m.startKeyManager();
     	
+    	m.startKeyManager();
+    	m.get();   
+    	*/
+    	run(); 	
     }
 }
