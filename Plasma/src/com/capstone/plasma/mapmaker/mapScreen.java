@@ -6,6 +6,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import com.capstone.plasma.player.PlayerHandler;
+import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Tile;
 
@@ -25,12 +26,15 @@ public class mapScreen {
 		xCam = 0;
 		yCam = 0;
 		*/
-		
+		GameScreen.xCam = totalXCam;
+		GameScreen.yCam = totalYCam;
+		/*
 		for(int i =0; i<MapMaker.tiles.size(); i++){
 			//System.out.println("this is another tes");
 			MapMaker.tiles.get(i).x+=x;
 			MapMaker.tiles.get(i).y+=y;
 		}
+		*/
 		totalXCam +=x;
 		totalYCam +=y;
 		/*

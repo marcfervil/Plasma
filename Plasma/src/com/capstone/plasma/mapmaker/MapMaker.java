@@ -30,6 +30,7 @@ import com.capstone.plasma.tiles.Tile;
 import com.capstone.plasma.tiles.Wall;
 //import com.sun.java.util.jar.pack.Package.Class.Field;
 import com.capstone.plasma.tiles.longtile;
+import com.capstone.plasma.GameScreen;
 
 import java.util.Scanner;
 
@@ -163,7 +164,7 @@ public class MapMaker {
     		mouseX=round(mouseX,Tile.size);
     		mouseY=round(mouseY,Tile.size);
     		
-    		tiles.add(getTileFromId(mouseX, mouseY,selectedTile));
+    		tiles.add(getTileFromId(mouseX+GameScreen.xCam, mouseY+GameScreen.yCam,selectedTile));
     		return;
     	}
     	
@@ -250,7 +251,11 @@ public class MapMaker {
     		
     	}
     }
-        
+    
+    
+    
+    
+    
     
     
     public static void main(String[] args){
