@@ -26,8 +26,8 @@ public class mapScreen {
 		xCam = 0;
 		yCam = 0;
 		*/
-		GameScreen.xCam = totalXCam;
-		GameScreen.yCam = totalYCam;
+		GameScreen.xCam = -totalXCam;
+		GameScreen.yCam = -totalYCam;
 		/*
 		for(int i =0; i<MapMaker.tiles.size(); i++){
 			//System.out.println("this is another tes");
