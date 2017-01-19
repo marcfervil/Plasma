@@ -2,7 +2,7 @@ package com.capstone.plasma.player;
 
 import java.awt.Color;
 
-import com.capstone.plasma.ParticleHandler;
+import com.capstone.plasma.particle.ParticleHandler;
 
 public class PlayerHandler extends Thread{
 	

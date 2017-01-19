@@ -6,6 +6,9 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import com.capstone.plasma.player.PlayerHandler;
+import com.capstone.plasma.inventory.Inventory;
+import com.capstone.plasma.inventory.PlasmaPistol;
+import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Tile;
 
@@ -18,10 +21,12 @@ public class GameScreen{
 	public static int xCam=0;
 	public static int backCam=0;
 	public static int yCam=0;
+	public static final int width = 900;
+	public static final int height = 600;
 	
-	 public static void initDisplay(){
+	public static void initDisplay(){
 	        try {
-	            Display.setDisplayMode(new DisplayMode(900,600));
+	        	Display.setDisplayMode(new DisplayMode(width,height));
 	            Display.setTitle("Plasma Demo");
 	            Display.create();
 	        }catch (LWJGLException e){
@@ -36,7 +41,7 @@ public class GameScreen{
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         //comment wat dis do exactaly
-        glOrtho(0, 900, 600, 0, 1, -1);
+        glOrtho(0, width, height, 0, 1, -1);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
@@ -48,6 +53,8 @@ public class GameScreen{
         ph.start();
         
         UserInput.startKeyManager();
+        Inventory.items.add(new PlasmaPistol());
+        Inventory.items.add(new PlasmaPistol());
     }
     
     
@@ -66,6 +73,7 @@ public class GameScreen{
     		}
         	Player.paint();
         	ParticleHandler.paint();
+        	Inventory.paint();
         	UserInput.get();     	
         }
         Display.destroy();

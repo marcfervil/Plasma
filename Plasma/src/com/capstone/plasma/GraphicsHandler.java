@@ -18,11 +18,13 @@ public class GraphicsHandler {
 	public static int wall;
 	public static int floor;
 	public static int longtile;
+	public static int itemHolder;
 	
 	public static void loadTextures(){
 		wall=GraphicsHandler.loadTexture("images/wall.jpg");
 		floor=GraphicsHandler.loadTexture("images/floor.jpg");
 		longtile=GraphicsHandler.loadTexture("images/longtile.jpg");
+		itemHolder=GraphicsHandler.loadTexture("images/itemHolder.png");
 	}
 	
 	public static void drawImage(int texture,float x, float y, float width, float height){
