@@ -143,9 +143,9 @@ public class MapMaker {
     	if(Mouse.isButtonDown(1)){
 
     		for(int i =0; i<tiles.size(); i++){
-    			System.out.println("tile x: "+round(tiles.get(i).x, Tile.size)+" mouse x "+round(Mouse.getX(),Tile.size));
+    			//System.out.println("tile x: "+round(tiles.get(i).x, Tile.size)+" mouse x "+round(Mouse.getX(),Tile.size));
     			//if(tiles.get(i).x+Tile.size ==round(mouseX, Tile.size) &&tiles.get(i).y+Tile.size ==height-round(mouseY, Tile.size)){
-    			if(tiles.get(i).x == crosshairX &&tiles.get(i).y == height-crosshairY){
+    			if(tiles.get(i).x == crosshairX-GameScreen.xCam &&tiles.get(i).y == height-crosshairY+GameScreen.yCam){
     				tiles.remove(i);
     				System.out.println("it removed");
     			}
