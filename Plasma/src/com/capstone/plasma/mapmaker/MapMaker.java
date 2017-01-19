@@ -91,15 +91,23 @@ public class MapMaker {
 
         	for(Tile t:tiles){
     			t.paint();
+    			
+    			
     		}
+        	
+        	//System.out.println(round(,Tile.size));
         	
         	crosshairX = Mouse.getX()-(Tile.size/2);
         	crosshairY = Mouse.getY()+(Tile.size/2);
     		
         	
     		//this locks it to grid
-    		crosshairX=round2(crosshairX,Tile.size);
-    		crosshairY=round2(crosshairY,Tile.size);
+    		crosshairX=round(crosshairX,Tile.size);
+    		crosshairY=round(crosshairY,Tile.size);
+    		
+    		crosshairX = crosshairX - round(GameScreen.xCam,Tile.size)%30;
+    		crosshairY = crosshairY + round(GameScreen.yCam,Tile.size)%30;
+    		
     		
     		
         	 GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
@@ -126,9 +134,6 @@ public class MapMaker {
     	}).start();
     }
     
-    public static int round2(int val,int round){
-    	return ((val+round)/round)*round;
-    }
     
     public static int round(int val, int round){
     
