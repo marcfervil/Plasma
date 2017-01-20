@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import com.capstone.plasma.GameScreen;
-import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.tiles.Tile;
 
 public class ParticleHandler {
@@ -17,7 +16,7 @@ public class ParticleHandler {
 		return p;
 	}
 	
-	public void createParticle(int x,int y,Color color){
+	public static void createParticle(int x,int y,Color color){
 		particles.add(new Particle(x,y,color));
 	}
 	
@@ -69,10 +68,10 @@ public class ParticleHandler {
 				
 				if((!(p==null)) ){
 					if(p.alpha>-1 && p.x+GameScreen.xCam<900 && p.x+GameScreen.xCam>-60){
-						GraphicsHandler.drawRect(p.x+GameScreen.xCam, p.y+GameScreen.yCam, 10, 10, 0, getColorAlpha(p.color,p.alpha));
+						p.paint();
 					}
 					//maybe make seperate thread for this
-					p.check();
+					p.tick();
 				}else{
 					//continue;
 				}
@@ -115,7 +114,9 @@ public class ParticleHandler {
 			}
 		}
 	}
-	
+
+
+
 	
 	
 }

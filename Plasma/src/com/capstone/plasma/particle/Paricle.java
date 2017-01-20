@@ -2,6 +2,8 @@ package com.capstone.plasma.particle;
 
 import java.awt.Color;
 
+import com.capstone.plasma.GameScreen;
+import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.tiles.Tile;
 
 class Particle{
@@ -24,7 +26,12 @@ class Particle{
 		
 		change=30;
 	}
-	public void check(){
+	
+	public void paint(){
+		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 10, 10, 0, ParticleHandler.getColorAlpha(color,alpha));
+	}
+	
+	public void tick(){
 		y--;
 		
 		if(goingRight){

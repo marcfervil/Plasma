@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import com.capstone.plasma.*;
+import com.capstone.plasma.inventory.PlasmaPistol;
+import com.capstone.plasma.particle.Dropable;
 import com.capstone.plasma.particle.ParticleHandler;
 
 public class Tile implements Serializable{
@@ -60,6 +62,10 @@ public class Tile implements Serializable{
 						
 						if(randInt(0,100)>80){
 							ParticleHandler.createParticleStream(i*Tile.size, j*Tile.size,Color.yellow,100,200,true);
+						}
+						if(randInt(0,100)>95){
+							//ParticleHandler.createParticle(i*Tile.size, (j*Tile.size)-Tile.size, color);
+							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-Tile.size,new PlasmaPistol()));
 						}
 							
 						tiles.add(new longtile(i*Tile.size,j*Tile.size));

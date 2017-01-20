@@ -5,7 +5,7 @@ import com.capstone.plasma.GraphicsHandler;
 public class PlasmaPistol extends Item{
 
 	public PlasmaPistol() {
-		super(GraphicsHandler.wall);
+		super(GraphicsHandler.plasmaPistol);
 	}
 
 }

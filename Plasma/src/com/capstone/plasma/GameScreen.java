@@ -25,14 +25,14 @@ public class GameScreen{
 	public static final int height = 600;
 	
 	public static void initDisplay(){
-	        try {
-	        	Display.setDisplayMode(new DisplayMode(width,height));
-	            Display.setTitle("Plasma Demo");
-	            Display.create();
-	        }catch (LWJGLException e){
-	            e.printStackTrace();
-	        }
-	        Display.update();
+		try {
+	        Display.setDisplayMode(new DisplayMode(width,height));
+	        Display.setTitle("Plasma Demo");
+	        Display.create();
+	    }catch (LWJGLException e){
+	    	e.printStackTrace();
+	    }
+	    Display.update();
 	 }
 	 
 
@@ -56,18 +56,15 @@ public class GameScreen{
         Inventory.items.add(new PlasmaPistol());
         Inventory.items.add(new PlasmaPistol());
     }
+   
     
-    
-    public static void run() {
-    	
+    public static void run(){
         while(!Display.isCloseRequested()) {
         	Display.update();
         	glClear(GL_COLOR_BUFFER_BIT);
-        	
         	for(Tile t:Tile.backgroundTiles){
     			t.paint();
     		}
-        	
         	for(Tile t:Tile.tiles){
     			t.paint();
     		}
@@ -80,9 +77,7 @@ public class GameScreen{
         System.exit(0);
     }   
     
-    
-    
-    
+
     public static void main(String[] args){
     	initDisplay();
     	initGL();
