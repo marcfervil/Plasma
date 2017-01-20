@@ -2,9 +2,14 @@ package com.capstone.plasma.particle;
 
 
 
+import java.awt.Rectangle;
+
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.inventory.Item;
+import com.capstone.plasma.player.Player;
+import com.capstone.plasma.tiles.Tile;
 
 public class Dropable extends Particle{
 
@@ -20,24 +25,24 @@ public class Dropable extends Particle{
 	}
 	
 	public void paint(){
-		//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 10, 10, 0, ParticleHandler.getColorAlpha(color,alpha));
-		GraphicsHandler.drawImage(item.texture, x+GameScreen.xCam, y+GameScreen.yCam+up, 30, 30);
+		GraphicsHandler.drawImage(item.texture, x+GameScreen.xCam, y+GameScreen.yCam+up, Tile.size, Tile.size);
 	}
 	
 	public void tick(){
 		if(rise){
 			up++;
 			if(up==20){
-			
 				rise=false;
-				return;
 			}
 		}else{
 			up--;
 			if(up==0){
 				rise=true;
-				return;
 			}
+		}
+		if(new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam+up, Tile.size, Tile.size).intersects(Player.getBounds(0, 0))){
+			remove=true;
+			Inventory.items.add(item);
 		}
 	}
 
