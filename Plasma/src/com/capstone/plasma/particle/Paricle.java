@@ -16,10 +16,15 @@ class Particle{
 	boolean remove=false;
 	int change;
 	int cCount;
+	
+	int tickCount=0;
+	int onTick=1;
+			
 	public Particle(int x, int y,Color color){
 		this.x=x+Tile.randInt(-30, 30);
 		this.y=y;
 		
+		//randomize basic particle color?
 //		int darkTint=Tile.randInt(0, 1);
 		this.color=color;
 	//	this.color=new Color(this.color.getRed()+1,this.color.getGreen()+1,this.color.getBlue()+1,color.getAlpha());

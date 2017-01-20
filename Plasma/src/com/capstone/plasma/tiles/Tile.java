@@ -65,7 +65,7 @@ public class Tile implements Serializable{
 						}
 						if(randInt(0,100)>95){
 							//ParticleHandler.createParticle(i*Tile.size, (j*Tile.size)-Tile.size, color);
-							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-Tile.size,new PlasmaPistol()));
+							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-(Tile.size+20),new PlasmaPistol()));
 						}
 							
 						tiles.add(new longtile(i*Tile.size,j*Tile.size));

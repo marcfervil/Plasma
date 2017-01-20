@@ -20,6 +20,47 @@ public class ParticleHandler {
 		particles.add(new Particle(x,y,color));
 	}
 	
+	public static class ParticleTick extends Thread{ 
+		public void run(){
+			while(true){
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				for(int i=0;i<particles.size();i++){
+					Particle p=particles.get(i);
+					
+					if((!(p==null)) ){
+						
+						if(p.tickCount==p.onTick){
+							p.tick();
+							p.tickCount=0;
+						}
+							
+						p.tickCount++;
+						
+						
+					}
+					
+					
+				}
+				for(int i=0;i<particles.size();i++){
+					Particle p=particles.get(i);
+					if(!(p==null)){
+						if(p.remove){
+					//		System.out.println("rem");
+							particles.remove(i);
+						}
+					}
+				}
+				
+				
+			}
+		}
+	}
+	
 	public static class ParticleStream extends Thread{
 		public int x,y,duration,minSpeed,maxSpeed;
 		public Color color;
@@ -61,6 +102,7 @@ public class ParticleHandler {
 		return new Color(c.getRed(),c.getGreen(),c.getBlue(),alpha);
 	}
 	
+	/*
 	public static void paint(){
 		try{
 			for(int i=0;i<particles.size();i++){
@@ -91,8 +133,27 @@ public class ParticleHandler {
 			e.printStackTrace();
 		}
 	}
+	*/
 	
-	
+	public static void paint(){
+		try{
+			for(int i=0;i<particles.size();i++){
+				Particle p=particles.get(i);
+				
+				if((!(p==null)) ){
+					if(p.alpha>-1 && p.x+GameScreen.xCam<900 && p.x+GameScreen.xCam>-60){
+						p.paint();
+					}
+				}
+				
+			}
+		
+		}catch(Exception e){
+		//	System.out.println("particle error");
+			//return;
+			e.printStackTrace();
+		}
+	}
 	
 	
 	static class EarthParticle extends Particle{

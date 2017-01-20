@@ -9,31 +9,33 @@ import com.capstone.plasma.inventory.Item;
 public class Dropable extends Particle{
 
 	Item item;
-	int size=30;
-	boolean shrink=true;
+	boolean rise=true;
+	int up = 0;
 	
 	
 	public Dropable(int x, int y, Item item){
 		super(x, y, null);
 		this.item=item;
+		onTick=5;
 	}
 	
 	public void paint(){
 		//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 10, 10, 0, ParticleHandler.getColorAlpha(color,alpha));
-		GraphicsHandler.drawImage(item.texture, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
+		GraphicsHandler.drawImage(item.texture, x+GameScreen.xCam, y+GameScreen.yCam+up, 30, 30);
 	}
 	
 	public void tick(){
-		if(shrink){
-			size--;
-			if(size==5){
-				shrink=false;
+		if(rise){
+			up++;
+			if(up==20){
+			
+				rise=false;
 				return;
 			}
 		}else{
-			size++;
-			if(size==30){
-				shrink=true;
+			up--;
+			if(up==0){
+				rise=true;
 				return;
 			}
 		}
