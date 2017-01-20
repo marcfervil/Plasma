@@ -33,14 +33,13 @@ public class ParticleHandler {
 					Particle p=particles.get(i);
 					
 					if((!(p==null)) ){
-						
-						if(p.tickCount==p.onTick){
-							p.tick();
-							p.tickCount=0;
+						if(p.alpha>-1 && p.x+GameScreen.xCam<900 && p.x+GameScreen.xCam>-60){
+							if(p.tickCount==p.onTick){
+								p.tick();
+								p.tickCount=0;
+							}	
+							p.tickCount++;
 						}
-							
-						p.tickCount++;
-						
 						
 					}
 					
@@ -81,7 +80,9 @@ public class ParticleHandler {
 		    		} catch (InterruptedException e) {
 		    			e.printStackTrace();
 		    		}
-		    		if(rendering)particles.add(new Particle(x,y,color));
+		    		if(x+GameScreen.xCam<900 && x+GameScreen.xCam>-60){
+		    			if(rendering)particles.add(new Particle(x,y,color));
+		    		}
 		
 		    	}
 		    }

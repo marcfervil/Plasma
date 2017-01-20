@@ -57,8 +57,8 @@ public class GameScreen{
         ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
         pt.start();
         
-        Inventory.items.add(new PlasmaPistol());
-        Inventory.items.add(new PlasmaPistol());
+      //  Inventory.items.add(new PlasmaPistol());
+       // Inventory.items.add(new PlasmaPistol());
     }
    
     
