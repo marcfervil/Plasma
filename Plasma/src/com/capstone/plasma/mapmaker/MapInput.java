@@ -9,7 +9,7 @@ import com.capstone.plasma.player.PlayerHandler;
 import org.lwjgl.input.Keyboard;
 
 public class MapInput {
-	public static int scrollSpeed = 3;
+	public static int scrollSpeed = 5;
 
 	
 	static ArrayList<Integer> keysDown = new ArrayList<Integer>();
@@ -39,7 +39,7 @@ public class MapInput {
 				//mapScreen.moveCam();
 				
 				try {
-					Thread.sleep(10);
+					Thread.sleep(20);
 				} catch (InterruptedException e) {
 				}
 				//for(int key:keysDown){
@@ -77,6 +77,15 @@ public class MapInput {
 							mapScreen.moveCam(0, -scrollSpeed);
 							//mapScreen.yCam-=1;
 							break;
+						case Keyboard.KEY_EQUALS:
+							scrollSpeed++;
+							break;
+						case Keyboard.KEY_MINUS:
+							if(scrollSpeed>1){
+								scrollSpeed--;
+							}
+							break;
+							
 						
 					}
 				}
