@@ -92,9 +92,7 @@ public class MapMaker {
         	for(Tile t:tiles){
     			t.paint();
     			
-    			
     		}
-        	
         	//System.out.println(round(,Tile.size));
         	
         	crosshairX = Mouse.getX()-(Tile.size/2);
@@ -105,10 +103,8 @@ public class MapMaker {
     		crosshairX=round(crosshairX,Tile.size);
     		crosshairY=round(crosshairY,Tile.size);
     		
-    		crosshairX = crosshairX - round(GameScreen.xCam,Tile.size)%30;
-    		crosshairY = crosshairY + round(GameScreen.yCam,Tile.size)%30;
-    		
-    		
+    		crosshairX = crosshairX + GameScreen.xCam%Tile.size;
+    		crosshairY = crosshairY - GameScreen.yCam%Tile.size;
     		
         	 GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
 
@@ -168,7 +164,7 @@ public class MapMaker {
     		mouseX=round(mouseX,Tile.size);
     		mouseY=round(mouseY,Tile.size);
     		
-    		tiles.add(getTileFromId(mouseX-GameScreen.xCam, mouseY+GameScreen.yCam,selectedTile));
+    		tiles.add(getTileFromId(mouseX, mouseY,selectedTile));
     		return;
     	}
     	
@@ -180,14 +176,14 @@ public class MapMaker {
     		if(Math.abs(totalDistanceX)>=Math.abs(totalDistanceY)){//this is for horizontal
     		if(totalDistanceX>0){
 	    		for(int i =1; i<=(totalDistanceX/30); i++){
-	    			tiles.add(getTileFromId(mouseX-GameScreen.xCam-(30*i), mouseY+GameScreen.yCam,selectedTile));
+	    			tiles.add(getTileFromId(mouseX-(30*i), mouseY,selectedTile));
 	    		}
     		}
     		//I (Marc) wrote everything in this else statement, going right didn't work w/o it
     		else if(totalDistanceX<0){
     			for(int i =Math.abs(totalDistanceX/30); i>=1; i--){
     				int v=i*-1;
-	    			tiles.add(getTileFromId(mouseX-GameScreen.xCam-(30*v), mouseY+GameScreen.yCam,selectedTile));
+	    			tiles.add(getTileFromId(mouseX-(30*v), mouseY,selectedTile));
 	    		}
     		}
     	}else{//this is for verticle
@@ -195,7 +191,7 @@ public class MapMaker {
     		if(totalDistanceY>60){
     			System.out.println("dis");
 	    		for(int i =1; i<=(totalDistanceY/30); i++){
-	    			tiles.add(getTileFromId(mouseX-GameScreen.xCam, mouseY+GameScreen.yCam-(30*i),selectedTile));
+	    			tiles.add(getTileFromId(mouseX, mouseY-(30*i),selectedTile));
 	    		}
     		}
     		
@@ -203,7 +199,7 @@ public class MapMaker {
     			System.out.println("dis2");
     			for(int i =Math.abs(totalDistanceY/30); i>=1; i--){
     				int v=i*-1;
-	    			tiles.add(getTileFromId(mouseX-GameScreen.xCam, mouseY+GameScreen.yCam-(30*v),selectedTile));
+	    			tiles.add(getTileFromId(mouseX, mouseY-(30*v),selectedTile));
 	    		}
     		}
     	}
@@ -216,6 +212,8 @@ public class MapMaker {
     	
     
     public static Tile getTileFromId(int x, int y, int Id){
+    	x = x-GameScreen.xCam+(GameScreen.xCam%Tile.size);
+    	y = y+GameScreen.yCam-(GameScreen.yCam%Tile.size);
     	switch(Id){
     	case 0:
     		return new Floor(x,height-y);
@@ -230,36 +228,7 @@ public class MapMaker {
     }
     
 
-    
-    public static void tileArrangement(int mouseX, int mouseY, int numBlocks, String direction){
-    	ArrayList<Integer[]> set = new ArrayList<Integer[]>();
-    	for(int i =0; i<numBlocks; i++){
-    		if(direction == "up" ){
-    			tiles.add(new Floor(mouseX-GameScreen.xCam,(mouseY+GameScreen.yCam)+(i*Tile.size)));
-    		//	set.add(mouseX+(mouseY)+(i*Tile.size));
-    		}
-    		if(direction == "down" ){
-    			tiles.add(new Floor(mouseX-GameScreen.xCam,(mouseY+GameScreen.yCam)-(i*Tile.size)));
-    			//record(mouseX,(mouseY)-(i*Tile.size));
-    		}
-    		
-    		if(direction == "right" ){
-    			tiles.add(new Floor(mouseX-GameScreen.xCam+(i*Tile.size),(mouseY+GameScreen.yCam)));
-    		//	record(mouseX+(i*Tile.size),(mouseY));
-    		}
-    		if(direction == "left" ){
-    			tiles.add(new Floor(mouseX-GameScreen.xCam-(i*Tile.size),(mouseY+GameScreen.yCam)));
-    		//	record(mouseX-(i*Tile.size),(mouseY));
-    		}
-    		
-    		
-    	}
-    }
-    
-    
-    
-    
-    
+        
     
     
     public static void main(String[] args){
