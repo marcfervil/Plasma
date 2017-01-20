@@ -146,7 +146,7 @@ public class MapMaker {
     		for(int i =0; i<tiles.size(); i++){
     			//System.out.println("tile x: "+round(tiles.get(i).x, Tile.size)+" mouse x "+round(Mouse.getX(),Tile.size));
     			//if(tiles.get(i).x+Tile.size ==round(mouseX, Tile.size) &&tiles.get(i).y+Tile.size ==height-round(mouseY, Tile.size)){
-    			if(tiles.get(i).x == crosshairX-GameScreen.xCam &&tiles.get(i).y == height-crosshairY+GameScreen.yCam){
+    			if(tiles.get(i).x == crosshairX-GameScreen.xCam+(GameScreen.xCam%Tile.size) &&tiles.get(i).y == height-crosshairY+GameScreen.yCam-(GameScreen.yCam%Tile.size)){
     				tiles.remove(i);
     				System.out.println("it removed");
     			}
