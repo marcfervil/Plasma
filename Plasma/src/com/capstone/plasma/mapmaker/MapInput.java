@@ -10,6 +10,9 @@ import org.lwjgl.input.Keyboard;
 
 public class MapInput {
 	public static int scrollSpeed = 5;
+	public static boolean save = true;
+	public static boolean load = true;
+	public static boolean r = true;
 
 	
 	static ArrayList<Integer> keysDown = new ArrayList<Integer>();
@@ -20,9 +23,19 @@ public class MapInput {
 		while(Keyboard.next()){
 			if(Keyboard.getEventKeyState()){
 				if(!keysDown.contains(Keyboard.getEventKey()))keysDown.add(Keyboard.getEventKey());
+				if(Keyboard.getEventKey() == Keyboard.KEY_R){
+					if(MapMaker.color =="red"){
+						MapMaker.layer(true);
+						MapMaker.color = "blue";
+					}else{
+						MapMaker.color = "red";
+						MapMaker.layer(false);
+					}
+				}
 			}else{
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
 		    }
+			
 		}
 	}
 	
@@ -85,7 +98,40 @@ public class MapInput {
 								scrollSpeed--;
 							}
 							break;
-							
+						case Keyboard.KEY_K:
+							if(save){
+								save = false;
+								MapMaker.save();
+								System.out.println("saved");
+							}
+							break;
+						case Keyboard.KEY_L:
+							if(load){
+								load = false;
+								MapMaker.load();
+								System.out.println("loaded");
+							}
+							break;
+							/*
+						case Keyboard.KEY_R://this is to place multiple blocks
+							if(r){
+								System.out.println("r");
+								r = false;
+								if(MapMaker.color =="red"){
+									MapMaker.layer(true);
+									MapMaker.color = "blue";
+								}else{
+									MapMaker.color = "red";
+									MapMaker.layer(false);
+								}
+								
+							}
+							break;
+							*/
+						default:
+							save = true;
+							load = true;
+							r = true;
 						
 					}
 				}

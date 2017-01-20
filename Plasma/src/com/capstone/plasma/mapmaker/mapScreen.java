@@ -17,6 +17,7 @@ public class mapScreen {
 	public static int yCam = 0;
 	public static int totalXCam = 0;
 	public static int totalYCam = 0;
+	public static int totalBackCam = 0;
 	
 	
 	public static void moveCam(int x, int y){
@@ -28,6 +29,7 @@ public class mapScreen {
 		*/
 		GameScreen.xCam = -totalXCam;
 		GameScreen.yCam = -totalYCam;
+		GameScreen.backCam = -totalBackCam;
 		/*
 		for(int i =0; i<MapMaker.tiles.size(); i++){
 			//System.out.println("this is another tes");
@@ -37,6 +39,11 @@ public class mapScreen {
 		*/
 		totalXCam +=x;
 		totalYCam +=y;
+		if(x<0){
+			totalBackCam +=(x+1);
+		}else{
+			totalBackCam +=(x-1);
+		}
 		/*
 		newX = 0;
 		newY = 0;

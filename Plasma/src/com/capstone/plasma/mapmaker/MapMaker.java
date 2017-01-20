@@ -13,6 +13,11 @@ import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
 
 import java.awt.Color;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import org.lwjgl.LWJGLException;
@@ -51,6 +56,9 @@ public class MapMaker {
 	public static boolean line = false;
 	public static int crosshairX = Mouse.getX()-(Tile.size/2);
 	public static int crosshairY = Mouse.getY()+(Tile.size/2);
+	public static String color = "red";
+	public static int layerX=0;
+	public static int layerY=0;
 	
 	 public static void initDisplay(){
 	        try {
@@ -105,8 +113,11 @@ public class MapMaker {
     		
     		crosshairX = crosshairX + GameScreen.xCam%Tile.size;
     		crosshairY = crosshairY - GameScreen.yCam%Tile.size;
-    		
-        	 GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
+    		if(color =="red"){
+    			GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
+    		}else{
+    			GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size, Tile.size, 0, Color.CYAN);
+    		}
 
         	getMouseEvents();   
         	
@@ -129,8 +140,7 @@ public class MapMaker {
     	    }
     	}).start();
     }
-    
-    
+     
     public static int round(int val, int round){
     
     	    return (val+ round-1) / round * round;
@@ -156,7 +166,7 @@ public class MapMaker {
     	int totalDistanceY = 0;
     	if(Mouse.isButtonDown(0) && released){
     		released = false;
-    		mouseX = Mouse.getX()-(Tile.size/2);
+    		mouseX = Mouse.getX()-(Tile.size/2); //centers the mouse on the red cross
     		mouseY = Mouse.getY()+(Tile.size/2);
     		
     		//this locks it to grid
@@ -209,6 +219,22 @@ public class MapMaker {
     	//if(!(Mouse.isButtonDown(0)))released = true;
     }
     	
+    public static void layer(boolean first){
+    	if(first){
+    		System.out.println("first");
+    		layerX=mouseX;    		
+    		layerY=mouseY;
+    	}else{
+    		System.out.println("second");
+    		for(int i = 0; i<(Math.abs(layerX-mouseX));i+=Tile.size){
+    			for(int j = 0; j<(Math.abs(layerY-mouseY)); j+=Tile.size){
+    				tiles.add(getTileFromId(layerX+i, layerY+j,selectedTile));
+    			}
+    		}
+    	}
+    	
+    }
+    
     
     public static Tile getTileFromId(int x, int y, int Id){
     	//x = x-GameScreen.xCam;
@@ -227,11 +253,37 @@ public class MapMaker {
     	}
     }
     
+    public static void save(){
+    	try{
+		  FileOutputStream fileOut =new FileOutputStream("map1.ser");
+		  ObjectOutputStream out = new ObjectOutputStream(fileOut);
+		 // String s = "test";
+		  out.writeObject(tiles);
+		  out.close();
+		  fileOut.close();
+    	}catch (Exception e){
+			  
+		  }
 
-        
+    }
+    
+    public static void load(){
+    	try{
+        FileInputStream fis = new FileInputStream("map1.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+       //world = (ArrayList) ois.readObject();
+        tiles = (ArrayList) ois.readObject();
+        ois.close();
+        fis.close();
+    	}catch (Exception e){
+    		
+    	}
+    }
     
     
     public static void main(String[] args){
+    	//save();
+    	//load();
     	initDisplay();
     	initGL();
     	getInput();/*
