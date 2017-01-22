@@ -20,6 +20,7 @@ public class GraphicsHandler {
 	public static int longtile;
 	public static int itemHolder;
 	public static int plasmaPistol;
+	public static int InventoryBackground;
 	
 	public static void loadTextures(){
 		wall=GraphicsHandler.loadTexture("images/wall.jpg");
@@ -27,6 +28,7 @@ public class GraphicsHandler {
 		longtile=GraphicsHandler.loadTexture("images/longtile.jpg");
 		itemHolder=GraphicsHandler.loadTexture("images/itemHolder.png");
 		plasmaPistol=GraphicsHandler.loadTexture("images/PlasmaPistol.png");
+		InventoryBackground=GraphicsHandler.loadTexture("images/InventoryBackground.png");
 	}
 	
 	public static void drawImage(int texture,float x, float y, float width, float height){

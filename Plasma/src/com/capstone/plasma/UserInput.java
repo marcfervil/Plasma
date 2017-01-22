@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 
+import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
 
@@ -19,6 +20,9 @@ public class UserInput {
 				if(!keysDown.contains(Keyboard.getEventKey()))keysDown.add(Keyboard.getEventKey());
 				if(Keyboard.getEventKey()==Keyboard.KEY_G){
 					PlayerHandler.playerTrail.toggleStream();
+				}
+				if(Keyboard.getEventKey()==Keyboard.KEY_I){
+					Inventory.toggleExpand();
 				}
 			}else{
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
@@ -92,8 +96,7 @@ public class UserInput {
 								Player.jump=true;
 							}
 							break;
-						
-						
+				
 					}
 				}
 			}

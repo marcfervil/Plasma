@@ -14,6 +14,10 @@ import com.capstone.plasma.tiles.Tile;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 
 
 public class GameScreen{
@@ -21,8 +25,8 @@ public class GameScreen{
 	public static int xCam=0;
 	public static int backCam=0;
 	public static int yCam=0;
-	public static final int width = 900;
-	public static final int height = 600;
+	public static int width = 900;
+	public static int height = 600;
 	
 	public static void initDisplay(){
 		try {
@@ -57,7 +61,7 @@ public class GameScreen{
         ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
         pt.start();
         
-      //  Inventory.items.add(new PlasmaPistol());
+      //  for(int i=0;i<15;i++)Inventory.items.add(new PlasmaPistol());
        // Inventory.items.add(new PlasmaPistol());
     }
    
@@ -75,14 +79,25 @@ public class GameScreen{
         	Player.paint();
         	ParticleHandler.paint();
         	Inventory.paint();
+        	
+        	//GraphicsHandler.drawRect(50, 50, width-100, height-100, 0, Color.RED);
+        	
         	UserInput.get();     	
         }
-        Display.destroy();
+        try{
+        	Display.destroy();
+        }catch(Exception e){
+        	System.out.println("error thing");
+        }
         System.exit(0);
     }   
     
 
     public static void main(String[] args){
+ //   	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+ //   	width = (int) screenSize.getWidth();
+//		height = (int) screenSize.getHeight();
+		
     	initDisplay();
     	initGL();
     	run();
