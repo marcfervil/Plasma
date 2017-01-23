@@ -14,4 +14,8 @@ public class Item {
 		GraphicsHandler.drawImage(texture, x, y, 30, 30);
 	}
 	
+	public void action(){
+		
+	}
+	
 }

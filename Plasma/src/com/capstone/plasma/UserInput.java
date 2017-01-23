@@ -24,6 +24,9 @@ public class UserInput {
 				if(Keyboard.getEventKey()==Keyboard.KEY_I){
 					Inventory.toggleExpand();
 				}
+				if(Keyboard.getEventKey()==Keyboard.KEY_J){
+					Inventory.activeItems[0].action();
+				}
 			}else{
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
 		    }

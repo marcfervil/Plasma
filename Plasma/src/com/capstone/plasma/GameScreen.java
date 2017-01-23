@@ -39,7 +39,6 @@ public class GameScreen{
 	    Display.update();
 	 }
 	 
-
 	
     public static void initGL(){
         glMatrixMode(GL_PROJECTION);

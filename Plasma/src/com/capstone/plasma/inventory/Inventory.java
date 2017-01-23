@@ -16,11 +16,11 @@ public class Inventory {
 	public static boolean isInventoryExpanded=false;
 	
 	//activeItems 0 is weapon
-	//activeItems 1 is armor
+	//activeItems 1 is armorac
 	//activeItems 2 is quick weapon
 	
 	public static void paint(){
-		for(int i=0;i<3;i++){
+		for(int i=0;i<activeItems.length;i++){
 			Item item= activeItems[i];
 			int holderX=30+(i*(60+Tile.size/2));
 			int holderY=GameScreen.height-90;
