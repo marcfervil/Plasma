@@ -4,6 +4,7 @@ import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.particle.Projectile;
 import com.capstone.plasma.player.Player;
+import com.capstone.plasma.tiles.Tile;
 
 public class PlasmaPistol extends Weapon{
 
@@ -12,7 +13,7 @@ public class PlasmaPistol extends Weapon{
 	}
 
 	public void action(){
-		ParticleHandler.particles.add(new Projectile(Player.x,Player.y));
+		ParticleHandler.particles.add(new Projectile(Player.x+Tile.size,Player.y));
 	}
 	
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.lwjgl.input.Keyboard;
 
 import com.capstone.plasma.inventory.Inventory;
+import com.capstone.plasma.inventory.PlasmaPistol;
+import com.capstone.plasma.particle.Projectile;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
 
@@ -25,7 +27,10 @@ public class UserInput {
 					Inventory.toggleExpand();
 				}
 				if(Keyboard.getEventKey()==Keyboard.KEY_J){
-					Inventory.activeItems[0].action();
+					Inventory.activeItems[0] = new PlasmaPistol();
+					if(Inventory.activeItems[0] !=null){
+						Inventory.activeItems[0].action();
+					}
 				}
 			}else{
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
