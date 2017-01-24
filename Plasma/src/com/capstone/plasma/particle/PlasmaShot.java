@@ -10,10 +10,11 @@ public class PlasmaShot extends Projectile{
 	public int maxRange = 500;
 	public int initX = 0;
 	public int speed = 1;
+	public int damage = 100;
 	
 	
 	public PlasmaShot(int x, int y, int damage) {
-		super(x, y);
+		super(x, y,damage);
 		onTick=3;
 		initX=x;
 	}
