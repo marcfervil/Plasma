@@ -1,5 +1,7 @@
 package com.capstone.plasma.inventory;
 
+import java.util.concurrent.TimeUnit;
+
 import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.UserInput;
 import com.capstone.plasma.particle.ParticleHandler;
@@ -16,6 +18,14 @@ public class PlasmaPistol extends Weapon{
 	}
 
 	public void action(){
+		/*
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 		if(UserInput.lastKey =="d"){
 			ParticleHandler.particles.add(new PlasmaShot(Player.x+Tile.size,Player.y,damage));
 		}else{

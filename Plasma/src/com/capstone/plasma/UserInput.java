@@ -27,12 +27,14 @@ public class UserInput {
 				if(Keyboard.getEventKey()==Keyboard.KEY_I){
 					Inventory.toggleExpand();
 				}
+				
 				if(Keyboard.getEventKey()==Keyboard.KEY_J){
 					Inventory.activeItems[0] = new PlasmaPistol();
 					if(Inventory.activeItems[0] !=null){
 						Inventory.activeItems[0].action();
 					}
 				}
+				
 				//lastKey=Keyboard.getEventKey();
 			}else{
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
@@ -109,6 +111,20 @@ public class UserInput {
 								Player.jump=true;
 							}
 							break;
+							/*
+						case Keyboard.KEY_J:
+							Inventory.activeItems[0] = new PlasmaPistol();
+							if(Inventory.activeItems[0] !=null){
+								Inventory.activeItems[0].action();
+							}
+						try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+							break;
+							*/
 				
 					}
 				}
