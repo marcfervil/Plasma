@@ -74,6 +74,14 @@ public class Tile implements Serializable{
 		return (new Random()).nextInt((max - min) + 1) + min;
 	}
 	
+	public static void sortMap(){
+		ArrayList<Tile> sorted = new ArrayList<Tile>();
+		//sorted.
+		for(int i =1; i<tiles.size(); i++){
+			//tiles.get(i).x
+		}
+	}
+	
 	public static void mapGen(){
 		
 		for(int i=0;i<500;i++){

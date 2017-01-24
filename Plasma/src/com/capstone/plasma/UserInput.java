@@ -12,7 +12,8 @@ import com.capstone.plasma.player.PlayerHandler;
 
 public class UserInput {
 	public static String lastKey;
-
+	public static int shotTick = 0;
+	public static int shotTickSpeed = 10;
 	
 	static ArrayList<Integer> keysDown = new ArrayList<Integer>();
 	
@@ -27,13 +28,14 @@ public class UserInput {
 				if(Keyboard.getEventKey()==Keyboard.KEY_I){
 					Inventory.toggleExpand();
 				}
-				
+				/*
 				if(Keyboard.getEventKey()==Keyboard.KEY_J){
 					Inventory.activeItems[0] = new PlasmaPistol();
 					if(Inventory.activeItems[0] !=null){
 						Inventory.activeItems[0].action();
 					}
 				}
+				*/
 				
 				//lastKey=Keyboard.getEventKey();
 			}else{
@@ -111,20 +113,24 @@ public class UserInput {
 								Player.jump=true;
 							}
 							break;
-							/*
+							
 						case Keyboard.KEY_J:
 							Inventory.activeItems[0] = new PlasmaPistol();
-							if(Inventory.activeItems[0] !=null){
+							if(Inventory.activeItems[0] !=null &&shotTick>shotTickSpeed){
+								shotTick = 0;
 								Inventory.activeItems[0].action();
+							}else{
+								shotTick++;
 							}
-						try {
+						/*
+							try {
 							Thread.sleep(100);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}
+						}*/
 							break;
-							*/
+							
 				
 					}
 				}
