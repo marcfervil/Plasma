@@ -20,16 +20,26 @@ public class Tile implements Serializable{
 	public int y;
 	public int texture; 
 	public boolean collide=true;
-	public int id;
+	public boolean breakable=false;
+	public int hp=1000;
 	
 	public Tile(int texture,int x,int y){
 		this.x=x;
 		this.y=y;
 		this.texture=texture;
-		this.id = this.x+this.y;
 	}
 	
-
+	public void damage(int damage){
+		hp-=damage;
+		if(hp<1){
+			tiles.remove(tiles.indexOf(this));
+			deathAnimation();
+		}
+	}
+	
+	public void deathAnimation(){
+		
+	}
 	
 	public Rectangle getBounds(){
 		return new Rectangle(x+GameScreen.xCam,y+GameScreen.yCam,size,size);
@@ -38,6 +48,16 @@ public class Tile implements Serializable{
 	public void paint(){
 		if(this.x+GameScreen.xCam<900 && this.x+GameScreen.xCam>-60){
 			GraphicsHandler.drawImage(texture,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+			if(breakable){
+				if(hp<333){
+					GraphicsHandler.drawImage(GraphicsHandler.crack3,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+				}else if(hp<666){
+					GraphicsHandler.drawImage(GraphicsHandler.crack2,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+				}else if(hp<1000){
+					GraphicsHandler.drawImage(GraphicsHandler.crack1,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+				}
+			}
+			
 		}
 	}
 	
@@ -68,8 +88,8 @@ public class Tile implements Serializable{
 							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-(Tile.size+20),new PlasmaPistol()));
 						}
 							
-						//tiles.add(new longtile(i*Tile.size,j*Tile.size)); I changed this
-						tiles.add(new breakable(i*Tile.size,j*Tile.size));
+						tiles.add(new longtile(i*Tile.size,j*Tile.size));
+			//			tiles.add(new breakable(i*Tile.size,j*Tile.size));
 					}
 				}else{
 					tiles.add(new Floor(i*Tile.size,j*Tile.size));

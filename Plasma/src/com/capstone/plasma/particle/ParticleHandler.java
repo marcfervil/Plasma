@@ -16,6 +16,12 @@ public class ParticleHandler {
 		return p;
 	}
 	
+	public static ParticleStream createParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed,boolean running,int duration){
+		ParticleStream p= new ParticleStream(x,y,color,minSpeed,maxSpeed,running,duration);
+		p.start();
+		return p;
+	}
+	
 	public static void createParticle(int x,int y,Color color){
 		particles.add(new Particle(x,y,color));
 	}
@@ -61,7 +67,8 @@ public class ParticleHandler {
 	}
 	
 	public static class ParticleStream extends Thread{
-		public int x,y,duration,minSpeed,maxSpeed;
+		public int x,y,durationCount,minSpeed,maxSpeed;
+		public int duration = -1;
 		public Color color;
 		boolean running=true;
 		boolean rendering=true;
@@ -73,6 +80,15 @@ public class ParticleHandler {
 			this.maxSpeed=maxSpeed;
 			this.rendering=running;
 		}
+		public ParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed,boolean running,int duration){
+			this.x=x;
+			this.y=y;
+			this.color=color;
+			this.minSpeed=minSpeed; 
+			this.maxSpeed=maxSpeed;
+			this.rendering=running;
+			this.duration=duration;
+		}
 		public void run() {
 		    	while(running){
 		    		try {
@@ -82,6 +98,13 @@ public class ParticleHandler {
 		    		}
 		    		if(x+GameScreen.xCam<900 && x+GameScreen.xCam>-60){
 		    			if(rendering)particles.add(new Particle(x,y,color));
+		    			if(duration!=-1){
+		    				durationCount++;
+		    				if(durationCount==duration){
+		    					endStream();
+		    					return;
+		    				}
+		    			}
 		    		}
 		
 		    	}

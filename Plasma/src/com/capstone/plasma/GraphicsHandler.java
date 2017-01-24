@@ -23,6 +23,10 @@ public class GraphicsHandler {
 	public static int plasmaPistol;
 	public static int InventoryBackground;
 	
+	public static int crack1;
+	public static int crack2;
+	public static int crack3;
+	
 	public static void loadTextures(){
 		wall=GraphicsHandler.loadTexture("images/wall.jpg");
 		floor=GraphicsHandler.loadTexture("images/floor.jpg");
@@ -31,6 +35,10 @@ public class GraphicsHandler {
 		itemHolder=GraphicsHandler.loadTexture("images/itemHolder.png");
 		plasmaPistol=GraphicsHandler.loadTexture("images/PlasmaPistol.png");
 		InventoryBackground=GraphicsHandler.loadTexture("images/InventoryBackground.png");
+		
+		crack1=GraphicsHandler.loadTexture("images/crack1.png");
+		crack2=GraphicsHandler.loadTexture("images/crack2.png");
+		crack3=GraphicsHandler.loadTexture("images/crack3.png");
 	}
 	
 	public static void drawImage(int texture,float x, float y, float width, float height){
