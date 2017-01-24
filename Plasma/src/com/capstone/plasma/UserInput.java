@@ -12,8 +12,8 @@ import com.capstone.plasma.player.PlayerHandler;
 
 public class UserInput {
 	public static String lastKey;
-	public static int shotTick = 0;
 	public static int shotTickSpeed = 10;
+	public static int shotTick = shotTickSpeed;
 	
 	static ArrayList<Integer> keysDown = new ArrayList<Integer>();
 	
@@ -116,7 +116,7 @@ public class UserInput {
 							
 						case Keyboard.KEY_J:
 							Inventory.activeItems[0] = new PlasmaPistol();
-							if(Inventory.activeItems[0] !=null &&shotTick>shotTickSpeed){
+							if(Inventory.activeItems[0] !=null &&shotTick>=shotTickSpeed){
 								shotTick = 0;
 								Inventory.activeItems[0].action();
 							}else{
@@ -130,6 +130,9 @@ public class UserInput {
 							e.printStackTrace();
 						}*/
 							break;
+						
+						default:
+							shotTick =shotTickSpeed;
 							
 				
 					}

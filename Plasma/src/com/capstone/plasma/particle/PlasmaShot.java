@@ -43,7 +43,7 @@ public class PlasmaShot extends Projectile{
 		}else{
 			remove=true;
 		}
-		
+		//looping
 		for(int i=0;i<Tile.tiles.size();i++){
 			Tile t=Tile.tiles.get(i);
 			if(t.breakable && new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10).intersects(t.getBounds())){

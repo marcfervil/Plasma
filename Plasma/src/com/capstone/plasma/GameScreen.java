@@ -64,8 +64,6 @@ public class GameScreen{
         Mob.MobTickManager mm = new Mob.MobTickManager();
         mm.start();
         
-      //  for(int i=0;i<15;i++)Inventory.items.add(new PlasmaPistol());
-       // Inventory.items.add(new PlasmaPistol());
     }
    
     
@@ -73,6 +71,7 @@ public class GameScreen{
         while(!Display.isCloseRequested()) {
         	Display.update();
         	glClear(GL_COLOR_BUFFER_BIT);
+        	//looping
         	for(Tile t:Tile.backgroundTiles){
     			t.paint();
     		}

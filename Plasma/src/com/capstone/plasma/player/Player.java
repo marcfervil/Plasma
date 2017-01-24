@@ -30,9 +30,10 @@ public class Player {
 		return new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
 	}
 	
-	
+	//looping
 	public static boolean touchBounds(int xn,int yn){
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
+		//looping
 		for(Tile s:Tile.tiles){
 			if(r.intersects(s.getBounds())  && (s.collide)){
 				return true;
@@ -41,9 +42,10 @@ public class Player {
 		return false;
 	}
 
-	
+	//dwaing
 	public static Tile touchBoundsTile(int xn,int yn){
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
+		//looping
 		for(Tile s:Tile.tiles){
 			if((s.collide) && r.intersects(s.getBounds())){
 				return s;

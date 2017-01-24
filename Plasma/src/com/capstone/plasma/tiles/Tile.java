@@ -66,6 +66,7 @@ public class Tile implements Serializable{
 	
 
 	public static void paintMap(){
+		//looping but this is prolly acceptable
 		for(Tile t:tiles){
 			t.paint();
 		}
