@@ -3,13 +3,9 @@ package com.capstone.plasma.particle;
 import java.awt.Color;
 import java.awt.Rectangle;
 
-import org.lwjgl.input.Keyboard;
-
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
-import com.capstone.plasma.UserInput;
 import com.capstone.plasma.tiles.Tile;
-import com.capstone.plasma.tiles.breakable;
 
 public class PlasmaShot extends Projectile{
 
@@ -36,6 +32,7 @@ public class PlasmaShot extends Projectile{
 	
 	
 	public void tick(){
+		//Tile.backgroundTiles
 		if(Math.abs(x-initX)<maxRange){
 			if(right){
 				x+=speed;
@@ -47,7 +44,7 @@ public class PlasmaShot extends Projectile{
 			remove=true;
 		}
 		
-		for(int i =0; i<Tile.tiles.size(); i++){
+		for(int i=0;i<Tile.tiles.size();i++){
 			Tile t=Tile.tiles.get(i);
 			if(t.breakable && new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10).intersects(t.getBounds())){
 				Tile.tiles.get(i).damage(damage);

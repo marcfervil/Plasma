@@ -8,6 +8,7 @@ import org.lwjgl.opengl.DisplayMode;
 import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.inventory.PlasmaPistol;
+import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Tile;
@@ -60,6 +61,9 @@ public class GameScreen{
         ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
         pt.start();
         
+        Mob.MobTickManager mm = new Mob.MobTickManager();
+        mm.start();
+        
       //  for(int i=0;i<15;i++)Inventory.items.add(new PlasmaPistol());
        // Inventory.items.add(new PlasmaPistol());
     }
@@ -77,6 +81,7 @@ public class GameScreen{
     		}
         	Player.paint();
         	ParticleHandler.paint();
+        	Mob.paintMobs();
         	Inventory.paint();
         	
         	//GraphicsHandler.drawRect(50, 50, width-100, height-100, 0, Color.RED);
