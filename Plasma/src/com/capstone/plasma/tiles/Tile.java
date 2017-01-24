@@ -68,7 +68,8 @@ public class Tile implements Serializable{
 							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-(Tile.size+20),new PlasmaPistol()));
 						}
 							
-						tiles.add(new longtile(i*Tile.size,j*Tile.size));
+						//tiles.add(new longtile(i*Tile.size,j*Tile.size)); I changed this
+						tiles.add(new breakable(i*Tile.size,j*Tile.size));
 					}
 				}else{
 					tiles.add(new Floor(i*Tile.size,j*Tile.size));

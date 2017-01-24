@@ -33,6 +33,7 @@ import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.Tile;
 import com.capstone.plasma.tiles.Wall;
+import com.capstone.plasma.tiles.breakable;
 //import com.sun.java.util.jar.pack.Package.Class.Field;
 import com.capstone.plasma.tiles.longtile;
 import com.capstone.plasma.GameScreen;
@@ -144,7 +145,6 @@ public class MapMaker {
     public static int round(int val, int round){
     
     	    return (val+ round-1) / round * round;
-    	
     }
     
     //will pass on the mouse chords and what mouse was clicked to actions.
@@ -247,6 +247,8 @@ public class MapMaker {
     		return new Wall(x,height-y);
     	case 2:
     		return new longtile(x,height-y);
+    	case 3:
+    		return new breakable(x,height-y);
     	default:
     		return null;
     		

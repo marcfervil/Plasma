@@ -33,6 +33,8 @@ public class Projectile extends Particle{
 		}else{
 			remove=true;
 		}
+		
+		
 	}
 
 }

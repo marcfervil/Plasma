@@ -18,6 +18,7 @@ public class GraphicsHandler {
 	public static int wall;
 	public static int floor;
 	public static int longtile;
+	public static int breakable;
 	public static int itemHolder;
 	public static int plasmaPistol;
 	public static int InventoryBackground;
@@ -26,6 +27,7 @@ public class GraphicsHandler {
 		wall=GraphicsHandler.loadTexture("images/wall.jpg");
 		floor=GraphicsHandler.loadTexture("images/floor.jpg");
 		longtile=GraphicsHandler.loadTexture("images/longtile.jpg");
+		breakable=GraphicsHandler.loadTexture("images/breakable.png");
 		itemHolder=GraphicsHandler.loadTexture("images/itemHolder.png");
 		plasmaPistol=GraphicsHandler.loadTexture("images/PlasmaPistol.png");
 		InventoryBackground=GraphicsHandler.loadTexture("images/InventoryBackground.png");
