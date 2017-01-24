@@ -22,7 +22,8 @@ public class Tile implements Serializable{
 	public int texture; 
 	public boolean collide=true;
 	public boolean breakable=false;
-	public int hp=1000;
+	public int maxHp = 300;
+	public int hp=maxHp;
 	
 	public Tile(int texture,int x,int y){
 		this.x=x;
@@ -51,11 +52,11 @@ public class Tile implements Serializable{
 			GraphicsHandler.drawImage(texture,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
 			
 			if(breakableSkins&&breakable){
-				if(hp<333){
+				if(hp<(maxHp/3)){
 					GraphicsHandler.drawImage(GraphicsHandler.crack3,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
-				}else if(hp<666){
+				}else if(hp<(maxHp/3)*2){
 					GraphicsHandler.drawImage(GraphicsHandler.crack2,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
-				}else if(hp<1000){
+				}else if(hp<maxHp){
 					GraphicsHandler.drawImage(GraphicsHandler.crack1,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
 				}
 			}
