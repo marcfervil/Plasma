@@ -2,18 +2,20 @@ package com.capstone.plasma.inventory;
 
 import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.particle.ParticleHandler;
-import com.capstone.plasma.particle.Projectile;
+import com.capstone.plasma.particle.PlasmaShot;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Tile;
 
 public class PlasmaPistol extends Weapon{
-
+	
+	public int damage=100;
+	
 	public PlasmaPistol(){
 		super(GraphicsHandler.plasmaPistol);
 	}
 
 	public void action(){
-		ParticleHandler.particles.add(new Projectile(Player.x+Tile.size,Player.y));
+		ParticleHandler.particles.add(new PlasmaShot(Player.x+Tile.size,Player.y,damage));
 	}
 	
 }
