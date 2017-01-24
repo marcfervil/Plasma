@@ -12,7 +12,7 @@ public class longtile extends Tile{
 	}
 
 	public void deathAnimation(){
-		ParticleHandler.createParticleStream(x, y, Color.RED, 30, 40, true,20);
+		ParticleHandler.createParticleStream(x, y, Color.YELLOW, 30, 40, true,20);
 	}
 	
 }

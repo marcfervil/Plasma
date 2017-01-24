@@ -15,6 +15,7 @@ public class Tile implements Serializable{
 	public static ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
 	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new longtile(0,0),};
+	public static boolean breakableSkins=true;
 	
 	public int x;
 	public int y;
@@ -48,7 +49,8 @@ public class Tile implements Serializable{
 	public void paint(){
 		if(this.x+GameScreen.xCam<900 && this.x+GameScreen.xCam>-60){
 			GraphicsHandler.drawImage(texture,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
-			if(breakable){
+			
+			if(breakableSkins&&breakable){
 				if(hp<333){
 					GraphicsHandler.drawImage(GraphicsHandler.crack3,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
 				}else if(hp<666){

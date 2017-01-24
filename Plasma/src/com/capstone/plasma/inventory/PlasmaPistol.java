@@ -1,6 +1,7 @@
 package com.capstone.plasma.inventory;
 
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.UserInput;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.particle.PlasmaShot;
 import com.capstone.plasma.player.Player;
@@ -15,7 +16,11 @@ public class PlasmaPistol extends Weapon{
 	}
 
 	public void action(){
-		ParticleHandler.particles.add(new PlasmaShot(Player.x+Tile.size,Player.y,damage));
+		if(UserInput.lastKey =="d"){
+			ParticleHandler.particles.add(new PlasmaShot(Player.x+Tile.size,Player.y,damage));
+		}else{
+			ParticleHandler.particles.add(new PlasmaShot(Player.x-Tile.size,Player.y,damage));
+		}
 	}
 	
 }

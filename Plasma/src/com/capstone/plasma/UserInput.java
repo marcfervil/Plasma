@@ -11,6 +11,7 @@ import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
 
 public class UserInput {
+	public static String lastKey;
 
 	
 	static ArrayList<Integer> keysDown = new ArrayList<Integer>();
@@ -32,6 +33,7 @@ public class UserInput {
 						Inventory.activeItems[0].action();
 					}
 				}
+				//lastKey=Keyboard.getEventKey();
 			}else{
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
 		    }
@@ -78,6 +80,7 @@ public class UserInput {
 							}
 							break;
 						case Keyboard.KEY_D:
+							lastKey = "d";
 							if(!Player.touchBounds(3, -1)){
 								Player.x+=3;
 								if(Player.x+GameScreen.xCam>=400){
@@ -89,11 +92,13 @@ public class UserInput {
 							}
 							break;
 						case Keyboard.KEY_A:
+							lastKey = "a";
 							if(!Player.touchBounds(-3, -1)){
 								Player.x-=3;
 								if(Player.x+GameScreen.xCam<=100){
 									GameScreen.xCam+=3;
 									GameScreen.backCam+=2;
+									
 								}
 							}
 							break;
