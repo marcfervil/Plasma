@@ -261,6 +261,7 @@ public class MapMaker {
 		  ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		 // String s = "test";
 		  out.writeObject(tiles);
+		//a  out.writeObject()
 		  out.close();
 		  fileOut.close();
     	}catch (Exception e){

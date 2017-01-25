@@ -1,6 +1,8 @@
 package com.capstone.plasma.tiles;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -83,6 +85,19 @@ public class Tile implements Serializable{
 			//tiles.get(i).x
 		}
 	}
+	
+    public static void load(){
+    	try{
+        FileInputStream fis = new FileInputStream("map1.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+       //world = (ArrayList) ois.readObject();
+        tiles = (ArrayList) ois.readObject();
+        ois.close();
+        fis.close();
+    	}catch (Exception e){
+    		
+    	}
+    }
 	
 	public static void mapGen(){
 		
