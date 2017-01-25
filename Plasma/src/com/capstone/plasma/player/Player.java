@@ -34,7 +34,8 @@ public class Player {
 	public static boolean touchBounds(int xn,int yn){
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
 		//looping
-		for(Tile s:Tile.tiles){
+		for(int i=0;i<Tile.tiles.size();i++){
+			Tile s = Tile.tiles.get(i);
 			if(r.intersects(s.getBounds())  && (s.collide)){
 				return true;
 			}

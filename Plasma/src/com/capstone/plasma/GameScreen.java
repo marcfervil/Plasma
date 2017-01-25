@@ -51,8 +51,8 @@ public class GameScreen{
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
-        //Tile.mapGen();
-       Tile.load();
+        Tile.mapGen();
+       //Tile.load();
         PlayerHandler ph = new PlayerHandler();
         ph.start();
         
@@ -72,12 +72,25 @@ public class GameScreen{
         	Display.update();
         	glClear(GL_COLOR_BUFFER_BIT);
         	//looping
+        	
         	for(Tile t:Tile.backgroundTiles){
     			t.paint();
     		}
         	for(Tile t:Tile.tiles){
     			t.paint();
     		}
+        	
+        	/*
+        	for(int i=0;i< Tile.backgroundTiles.size();i++){
+        		Tile b = Tile.backgroundTiles.get(i);
+        		b.paint();
+        	}
+        	
+        	for(int i=0;i<Tile.tiles.size();i++){
+        		Tile b = Tile.tiles.get(i);
+        		b.paint();
+        	}*/
+        	
         	Player.paint();
         	ParticleHandler.paint();
         	Mob.paintMobs();
