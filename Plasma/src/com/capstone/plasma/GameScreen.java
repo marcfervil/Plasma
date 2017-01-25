@@ -73,14 +73,15 @@ public class GameScreen{
         	glClear(GL_COLOR_BUFFER_BIT);
         	//looping
         	
+        	/*
         	for(Tile t:Tile.backgroundTiles){
     			t.paint();
     		}
         	for(Tile t:Tile.tiles){
     			t.paint();
-    		}
+    		}*/
         	
-        	/*
+        	
         	for(int i=0;i< Tile.backgroundTiles.size();i++){
         		Tile b = Tile.backgroundTiles.get(i);
         		b.paint();
@@ -89,7 +90,7 @@ public class GameScreen{
         	for(int i=0;i<Tile.tiles.size();i++){
         		Tile b = Tile.tiles.get(i);
         		b.paint();
-        	}*/
+        	}
         	
         	Player.paint();
         	ParticleHandler.paint();
