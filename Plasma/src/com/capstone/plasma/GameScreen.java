@@ -46,8 +46,8 @@ public class GameScreen{
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
-        Tile.mapGen();
-       //Tile.load();
+        //Tile.mapGen();
+       Tile.load();
         PlayerHandler ph = new PlayerHandler();
         ph.start();
         
