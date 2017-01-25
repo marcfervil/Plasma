@@ -7,17 +7,12 @@ import org.lwjgl.opengl.DisplayMode;
 
 import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.inventory.Inventory;
-import com.capstone.plasma.inventory.PlasmaPistol;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Tile;
 
 import static org.lwjgl.opengl.GL11.*;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 
 
 

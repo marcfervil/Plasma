@@ -12,7 +12,7 @@ import com.capstone.plasma.player.PlayerHandler;
 
 public class UserInput {
 	public static String lastKey;
-	public static int shotTickSpeed = 10;
+	public static int shotTickSpeed = 20;
 	public static int shotTick = shotTickSpeed;
 	
 	static ArrayList<Integer> keysDown = new ArrayList<Integer>();
@@ -132,6 +132,7 @@ public class UserInput {
 							break;
 						
 						default:
+							
 							shotTick =shotTickSpeed;
 							
 				
