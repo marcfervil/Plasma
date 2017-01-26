@@ -91,7 +91,6 @@ public class GameScreen{
         	ParticleHandler.paint();
         	Mob.paintMobs();
         	Inventory.paint();
-        	
         	//GraphicsHandler.drawRect(50, 50, width-100, height-100, 0, Color.RED);
         	
         	UserInput.get();     	
