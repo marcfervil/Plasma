@@ -79,11 +79,27 @@ public class Tile implements Serializable{
 	}
 	
 	public static void sortMap(){
+		int j = 1;
+		boolean isSorted = false;
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
 		//sorted.
+		sorted.add(tiles.get(0));
 		for(int i =1; i<tiles.size(); i++){
-			//tiles.get(i).x
+			isSorted = false;
+			j = 1;
+			while(!isSorted){
+			if(sorted.get(i-j).x <tiles.get(i).x){	
+				sorted.add(tiles.get(i));
+				isSorted = true;
+			}else{
+				j--;
+			}
+			}
 		}
+	}
+	
+	public static void findSpot(Tile t1, Tile t2){
+		
 	}
 	
     public static void load(){
