@@ -86,16 +86,24 @@ public class Tile implements Serializable{
 		sorted.add(tiles.get(0));
 		for(int i =1; i<tiles.size(); i++){
 			isSorted = false;
-			j = 1;
+			j = i;
+			//System.out.println(i-j);
 			while(!isSorted){
-			if(sorted.get(i-j).x <tiles.get(i).x){	
-				sorted.add(tiles.get(i));
-				isSorted = true;
-			}else{
-				j--;
-			}
+				if(j>0){
+					if(sorted.get(i-j).x >tiles.get(i).x){	
+						sorted.add(i,tiles.get(i));
+						isSorted = true;
+					}else{
+						j--;
+				
+					}
+				}else{
+					sorted.add(0,tiles.get(i));
+				}
 			}
 		}
+		
+		tiles = sorted;
 	}
 	
 	public static void findSpot(Tile t1, Tile t2){
@@ -113,6 +121,11 @@ public class Tile implements Serializable{
     	}catch (Exception e){
     		
     	}
+    	
+    	//System.out.println(tiles);
+    	sortMap();
+    	System.out.println("done");
+    	//System.out.println("\n"+tiles);
     }
 	
 	public static void mapGen(){
@@ -139,6 +152,8 @@ public class Tile implements Serializable{
 				}
 			}
 		}
+		sortMap();
+		
 	
 	}
 	
