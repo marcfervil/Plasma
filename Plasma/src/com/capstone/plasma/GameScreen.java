@@ -47,7 +47,7 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         //Tile.mapGen();
-       Tile.load();
+        Tile.load();
         PlayerHandler ph = new PlayerHandler();
         ph.start();
         
