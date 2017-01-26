@@ -28,7 +28,10 @@ public class GameScreen{
 		try {
 	        Display.setDisplayMode(new DisplayMode(width,height));
 	        Display.setTitle("Plasma Demo");
+	        Display.setVSyncEnabled(true);
+	       // Display.setSwapInterval(1);
 	        Display.create();
+
 	    }catch (LWJGLException e){
 	    	e.printStackTrace();
 	    }
@@ -46,8 +49,8 @@ public class GameScreen{
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
-        //Tile.mapGen();
-       Tile.load();
+        Tile.mapGen();
+       //Tile.load();
         PlayerHandler ph = new PlayerHandler();
         ph.start();
         
@@ -64,6 +67,7 @@ public class GameScreen{
     
     public static void run(){
         while(!Display.isCloseRequested()) {
+        	Display.sync(60);
         	Display.update();
         	glClear(GL_COLOR_BUFFER_BIT);
         	//looping
@@ -93,7 +97,8 @@ public class GameScreen{
         	Inventory.paint();
         	//GraphicsHandler.drawRect(50, 50, width-100, height-100, 0, Color.RED);
         	
-        	UserInput.get();     	
+        	UserInput.get();  
+        	
         }
         try{
         	Display.destroy();
