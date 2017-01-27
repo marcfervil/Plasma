@@ -27,6 +27,8 @@ public class GraphicsHandler {
 	public static int crack2;
 	public static int crack3;
 	
+	public static int robotRight;
+	
 	public static void loadTextures(){
 		wall=GraphicsHandler.loadTexture("images/wall.jpg");
 		floor=GraphicsHandler.loadTexture("images/floor.jpg");
@@ -39,6 +41,8 @@ public class GraphicsHandler {
 		crack1=GraphicsHandler.loadTexture("images/crack1.png");
 		crack2=GraphicsHandler.loadTexture("images/crack2.png");
 		crack3=GraphicsHandler.loadTexture("images/crack3.png");
+		
+		robotRight=GraphicsHandler.loadTexture("images/robocalm2.png");
 	}
 	
 	public static void drawImage(int texture,float x, float y, float width, float height){
@@ -146,8 +150,9 @@ public class GraphicsHandler {
 	
 	          ByteBuffer buffer = BufferUtils.createByteBuffer(image.getWidth() * image.getHeight() * BYTES_PER_PIXEL); //4 for RGBA, 3 for RGB
 	          
+	          for(int x = 0; x < image.getWidth(); x++){
 	          for(int y = 0; y < image.getHeight(); y++){
-	              for(int x = 0; x < image.getWidth(); x++){
+	             
 	                  int pixel = pixels[y * image.getWidth() + x];
 	                  buffer.put((byte) ((pixel >> 16) & 0xFF));     // Red component
 	                  buffer.put((byte) ((pixel >> 8) & 0xFF));      // Green component

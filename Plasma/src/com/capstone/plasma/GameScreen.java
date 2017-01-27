@@ -30,6 +30,7 @@ public class GameScreen{
 	        Display.setTitle("Plasma Demo");
 	        Display.setVSyncEnabled(true);
 	       // Display.setSwapInterval(1);
+	        Display.setResizable(true);
 	        Display.create();
 
 	    }catch (LWJGLException e){
