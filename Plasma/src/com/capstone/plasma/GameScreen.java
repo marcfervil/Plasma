@@ -28,7 +28,7 @@ public class GameScreen{
 		try {
 	        Display.setDisplayMode(new DisplayMode(width,height));
 	        Display.setTitle("Plasma Demo");
-	        Display.setVSyncEnabled(true);
+	        //Display.setVSyncEnabled(true);
 	       // Display.setSwapInterval(1);
 	        Display.create();
 
@@ -49,13 +49,10 @@ public class GameScreen{
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
-<<<<<<< HEAD
-        //Tile.mapGen();
+
         Tile.load();
-=======
-        Tile.mapGen();
-       //Tile.load();
->>>>>>> b57b85337b6d2b3b8a6be31e37ed5cca8fcd4b87
+        //Tile.mapGen();
+
         PlayerHandler ph = new PlayerHandler();
         ph.start();
         

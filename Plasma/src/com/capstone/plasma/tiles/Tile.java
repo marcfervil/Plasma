@@ -99,6 +99,7 @@ public class Tile implements Serializable{
 					}
 				}else{
 					sorted.add(0,tiles.get(i));
+					isSorted = true;
 				}
 			}
 		}
@@ -121,11 +122,17 @@ public class Tile implements Serializable{
     	}catch (Exception e){
     		
     	}
-    	
-    	//System.out.println(tiles);
+    	printAllX();
     	sortMap();
+    	System.out.println("");
     	System.out.println("done");
-    	//System.out.println("\n"+tiles);
+    	printAllX();
+
+    }
+    public static void printAllX(){
+    	for(int i =0; i<tiles.size();i++){
+    		System.out.print(tiles.get(i).x+" ");
+    	}
     }
 	
 	public static void mapGen(){
@@ -152,8 +159,12 @@ public class Tile implements Serializable{
 				}
 			}
 		}
-		sortMap();
-		
+
+    	printAllX();
+    	sortMap();
+    	System.out.println("");
+    	System.out.println("done");
+    	printAllX();
 	
 	}
 	
