@@ -88,6 +88,7 @@ public class ParticleHandler {
 			this.maxSpeed=maxSpeed;
 			this.rendering=running;
 			this.duration=duration;
+			this.setName("Particle Stream");
 		}
 		public void run() {
 		    	while(running){

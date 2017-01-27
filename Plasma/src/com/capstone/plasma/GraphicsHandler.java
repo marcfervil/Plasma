@@ -67,7 +67,8 @@ public class GraphicsHandler {
 		}
 		glEnd();
 		glPopMatrix();
-
+		//gluBuild2DMipmaps(GL_TEXTURE_2D);
+	
 	}
 	
     public static void drawRect(float x, float y, float width, float height, float rot,Color color){
