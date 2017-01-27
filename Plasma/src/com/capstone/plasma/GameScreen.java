@@ -28,7 +28,7 @@ public class GameScreen{
 		try {
 	        Display.setDisplayMode(new DisplayMode(width,height));
 	        Display.setTitle("Plasma Demo");
-	        //Display.setVSyncEnabled(true);
+	        Display.setVSyncEnabled(true);
 	       // Display.setSwapInterval(1);
 	        Display.create();
 
