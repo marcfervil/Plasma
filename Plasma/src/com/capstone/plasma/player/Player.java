@@ -12,6 +12,7 @@ public class Player {
 	public static int y=40;
 
 	public static int gravityStrength = 1;
+	public static int maxGrav = 100;
 	public static int yVelocity = 0;
 	public static int jumpHeight = 20; //was 20
 	public static boolean jump=false;
@@ -65,12 +66,18 @@ public class Player {
 	public static void tick(){
 		
 		if (jump && onGround){
-			yVelocity-=jumpHeight;
+			//if(yVelocity>maxGrav){
+				yVelocity-=jumpHeight;
+			//}
+			
 		//	yVelocity -=jumpTick;
 			jump=false;
 		}
 		Tile t;
 		if(( t = touchBoundsTile(0,yVelocity))!=null){
+			//y+=yVelocity/3;
+			//System.out.println(yVelocity);
+			
 			if(yVelocity>0){
 			onGround=true;
 			}
@@ -80,14 +87,18 @@ public class Player {
 			yVelocity = 0;
 		}else{
 			//if(!onGround)gravCount++;
+			
 			gravCount++;
 		//	if(gravCount+4>3){
-			yVelocity +=gravityStrength;
+			if(yVelocity<maxGrav){
+			yVelocity +=gravityStrength;}
 			onGround=false;
 			gravCount=0;
 		//	}
 		}
-		y+=yVelocity;
+		//if(yVelocity<maxGrav){
+			y+=yVelocity;
+		//}
 	}
 
 }

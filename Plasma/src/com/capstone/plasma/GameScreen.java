@@ -4,6 +4,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
 
 import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.inventory.Inventory;
@@ -50,9 +51,10 @@ public class GameScreen{
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
-
-        Tile.load();
-        //Tile.mapGen();
+        GL11.glDisable(GL11.GL_LIGHTING);
+        
+        //Tile.load();
+        Tile.mapGen();
 
         PlayerHandler ph = new PlayerHandler();
         ph.start();
@@ -69,21 +71,15 @@ public class GameScreen{
    
     
     public static void run(){
+    	GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         while(!Display.isCloseRequested()) {
-        	Display.sync(60);
-        	Display.update();
-        	glClear(GL_COLOR_BUFFER_BIT);
-        	//looping
+        
+        //	glClear(GL_COLOR_BUFFER_BIT);
+        	  
         	
-        	/*
-        	for(Tile t:Tile.backgroundTiles){
-    			t.paint();
-    		}
-        	for(Tile t:Tile.tiles){
-    			t.paint();
-    		}*/
-        	
-        	
+        	if (Display.wasResized()){
+        		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
+        	}
         	for(int i=0;i< Tile.backgroundTiles.size();i++){
         		Tile b = Tile.backgroundTiles.get(i);
         		b.paint();
@@ -102,6 +98,9 @@ public class GameScreen{
         	
         	UserInput.get();  
         	
+        	Display.update();
+        	Display.sync(60);
+        	GL11.glEnd();
         }
         try{
         	Display.destroy();
