@@ -30,7 +30,7 @@ public class GameScreen{
 	        Display.setDisplayMode(new DisplayMode(width,height));
 	        Display.setTitle("Plasma Demo");
 	        Display.setVSyncEnabled(true);
-	       // Display.setSwapInterval(1);
+	        Display.setSwapInterval(1);
 	        Display.setResizable(true);
 	        Display.create();
 
@@ -44,7 +44,7 @@ public class GameScreen{
     public static void initGL(){
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        //comment wat dis do exactaly
+       
         glOrtho(0, width, height, 0, 1, -1);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -52,7 +52,7 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-        
+   //     glEnable(GL_DEPTH_TEST);
         //Tile.load();
         Tile.mapGen();
 
@@ -71,36 +71,33 @@ public class GameScreen{
    
     
     public static void run(){
-    	GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+
         while(!Display.isCloseRequested()) {
-        
-        //	glClear(GL_COLOR_BUFFER_BIT);
-        	  
-        	
+        	glClear(GL_COLOR_BUFFER_BIT );
         	if (Display.wasResized()){
         		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
+        		width=Display.getWidth();
+        		height=Display.getHeight();
         	}
         	for(int i=0;i< Tile.backgroundTiles.size();i++){
         		Tile b = Tile.backgroundTiles.get(i);
         		b.paint();
+        		
         	}
-        	
         	for(int i=0;i<Tile.tiles.size();i++){
         		Tile b = Tile.tiles.get(i);
         		b.paint();
-        	}
-        	
+        	}   	
         	Player.paint();
         	ParticleHandler.paint();
         	Mob.paintMobs();
         	Inventory.paint();
-        	//GraphicsHandler.drawRect(50, 50, width-100, height-100, 0, Color.RED);
-        	
+    
         	UserInput.get();  
         	
         	Display.update();
         	Display.sync(60);
-        	GL11.glEnd();
+	
         }
         try{
         	Display.destroy();
@@ -112,10 +109,6 @@ public class GameScreen{
     
 
     public static void main(String[] args){
- //   	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
- //   	width = (int) screenSize.getWidth();
-//		height = (int) screenSize.getHeight();
-		
     	initDisplay();
     	initGL();
     	run();

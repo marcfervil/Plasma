@@ -28,14 +28,7 @@ public class UserInput {
 				if(Keyboard.getEventKey()==Keyboard.KEY_I){
 					Inventory.toggleExpand();
 				}
-				/*
-				if(Keyboard.getEventKey()==Keyboard.KEY_J){
-					Inventory.activeItems[0] = new PlasmaPistol();
-					if(Inventory.activeItems[0] !=null){
-						Inventory.activeItems[0].action();
-					}
-				}
-				*/
+		
 				
 				//lastKey=Keyboard.getEventKey();
 			}else{
@@ -122,13 +115,6 @@ public class UserInput {
 							}else{
 								shotTick++;
 							}
-						/*
-							try {
-							Thread.sleep(100);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}*/
 							break;
 						
 						default:

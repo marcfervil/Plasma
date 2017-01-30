@@ -43,6 +43,7 @@ public class GraphicsHandler {
 		crack3=GraphicsHandler.loadTexture("images/crack3.png");
 		
 		robotRight=GraphicsHandler.loadTexture("images/robocalm2.png");
+
 	}
 	
 	public static void drawImage(int texture,float x, float y, float width, float height){

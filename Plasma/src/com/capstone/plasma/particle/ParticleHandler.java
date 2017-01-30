@@ -127,39 +127,7 @@ public class ParticleHandler {
 		return new Color(c.getRed(),c.getGreen(),c.getBlue(),alpha);
 	}
 	
-	/*
-	public static void paint(){
-		try{
-			for(int i=0;i<particles.size();i++){
-				Particle p=particles.get(i);
-				
-				if((!(p==null)) ){
-					if(p.alpha>-1 && p.x+GameScreen.xCam<900 && p.x+GameScreen.xCam>-60){
-						p.paint();
-					}
-					//maybe make seperate thread for this
-					p.tick();
-				}else{
-					//continue;
-				}
-				
-			}
-			for(int i=0;i<particles.size();i++){
-				Particle p=particles.get(i);
-				if(!(p==null)){
-					if(p.remove){
-						particles.remove(i);
-					}
-				}
-			}
-		}catch(Exception e){
-		//	System.out.println("particle error");
-			//return;
-			e.printStackTrace();
-		}
-	}
-	*/
-	
+  
 	public static void paint(){
 		try{
 			for(int i=0;i<particles.size();i++){
