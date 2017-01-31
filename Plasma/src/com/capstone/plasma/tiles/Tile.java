@@ -77,7 +77,7 @@ public class Tile implements Serializable{
 	public static int randInt(int min, int max) {
 		return (new Random()).nextInt((max - min) + 1) + min;
 	}
-	
+	/*
 	public static void sortMap(){
 		int j = 1;
 		boolean isSorted = false;
@@ -86,11 +86,11 @@ public class Tile implements Serializable{
 		sorted.add(tiles.get(0));
 		for(int i =1; i<tiles.size(); i++){
 			isSorted = false;
-			j = i;
+			j = i-1;
 			//System.out.println(i-j);
 			while(!isSorted){
-				if(j>0){
-					if(sorted.get(i-j).x >tiles.get(i).x){	
+				if(j>=0){
+					if(sorted.get(j).x >tiles.get(i).x){	
 						sorted.add(i,tiles.get(i));
 						isSorted = true;
 					}else{
@@ -104,6 +104,29 @@ public class Tile implements Serializable{
 			}
 		}
 		
+		tiles = sorted;
+	}
+	*/
+	public static void sortMap(){
+		ArrayList<Tile> sorted = new ArrayList<Tile>();
+		sorted.add(0,tiles.get(0));
+		//boolean isSorted;
+		int j;
+		System.out.println(" ");
+		for(int i =1; i<tiles.size(); i++){
+			j=i-1;
+			System.out.println(sorted.get(j).x+" "+tiles.get(i).x);
+			while(sorted.get(j).x<tiles.get(i).x){
+				System.out.println(sorted.get(j).x+" "+tiles.get(i).x);
+				if(j!=0){
+					j--;
+				}else{
+					break;
+				}
+			}
+			sorted.add(j,tiles.get(i));
+			
+		}
 		tiles = sorted;
 	}
 	
