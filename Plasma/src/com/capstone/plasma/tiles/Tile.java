@@ -79,35 +79,6 @@ public class Tile implements Serializable{
 	}
 	/*
 	public static void sortMap(){
-		int j = 1;
-		boolean isSorted = false;
-		ArrayList<Tile> sorted = new ArrayList<Tile>();
-		//sorted.
-		sorted.add(tiles.get(0));
-		for(int i =1; i<tiles.size(); i++){
-			isSorted = false;
-			j = i-1;
-			//System.out.println(i-j);
-			while(!isSorted){
-				if(j>=0){
-					if(sorted.get(j).x >tiles.get(i).x){	
-						sorted.add(i,tiles.get(i));
-						isSorted = true;
-					}else{
-						j--;
-				
-					}
-				}else{
-					sorted.add(0,tiles.get(i));
-					isSorted = true;
-				}
-			}
-		}
-		
-		tiles = sorted;
-	}
-	*/
-	public static void sortMap(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
 		sorted.add(0,tiles.get(0));
 		//boolean isSorted;
@@ -129,6 +100,28 @@ public class Tile implements Serializable{
 		}
 		tiles = sorted;
 	}
+	*/
+	
+	
+	public static void sortMap(){
+		ArrayList<Tile> sorted = new ArrayList<Tile>();
+		sorted.add(0,tiles.get(0));
+		//System.out.println("FIRST "+tiles.get(0).x);
+		for(int i=1;i<tiles.size();i++){
+			Tile ct=tiles.get(i);
+			for(int j=0;j<sorted.size();j++){
+				if(ct.x >= sorted.get(j).x){
+					//System.out.println(ct.x);
+					sorted.add(j,ct);
+					break;
+				}
+			}
+		
+		}
+		
+		tiles = sorted;
+	}
+	
 	
 	public static void findSpot(Tile t1, Tile t2){
 		

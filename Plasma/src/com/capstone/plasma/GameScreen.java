@@ -79,6 +79,7 @@ public class GameScreen{
         		width=Display.getWidth();
         		height=Display.getHeight();
         	}
+        	//loop
         	for(int i=0;i< Tile.backgroundTiles.size();i++){
         		Tile b = Tile.backgroundTiles.get(i);
         		b.paint();

@@ -9,6 +9,7 @@ import com.capstone.plasma.inventory.PlasmaPistol;
 import com.capstone.plasma.particle.Projectile;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
+import com.capstone.plasma.tiles.Tile;
 
 public class UserInput {
 	public static String lastKey;
@@ -78,6 +79,7 @@ public class UserInput {
 							break;
 						case Keyboard.KEY_D:
 							lastKey = "d";
+							//Player.findX(Player.x, Tile.tiles);
 							if(!Player.touchBounds(3, -1)){
 								Player.x+=3;
 								if(Player.x+GameScreen.xCam>=400){

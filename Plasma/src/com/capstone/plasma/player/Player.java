@@ -1,6 +1,7 @@
 package com.capstone.plasma.player;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import com.capstone.plasma.*;
 import com.capstone.plasma.tiles.Tile;
@@ -46,6 +47,21 @@ public class Player {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public static void findX(int playerX,ArrayList<Tile> s){
+		int numTiles = s.size();
+		if(numTiles>1){
+			if(s.get(numTiles/2).x>playerX){
+				findX(playerX, (ArrayList<Tile>)(s.subList(0,(numTiles/2) )));
+			}else{
+				findX(playerX, (ArrayList<Tile>)(s.subList((numTiles/2),numTiles )));
+			}
+		}else{
+			System.out.println("that worked");
+			//return s.get(0);
+		}
+		//return null;
 	}
 
 	//dwaing
