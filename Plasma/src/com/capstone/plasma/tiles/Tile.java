@@ -16,6 +16,7 @@ public class Tile implements Serializable{
 	public static int size=30;
 	public static ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
+	public static ArrayList<Tile> paintTiles = new ArrayList<Tile>();
 	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new longtile(0,0),};
 	public static boolean breakableSkins=true;
 	
@@ -67,8 +68,8 @@ public class Tile implements Serializable{
 	}
 	
 
-	public static void paintMap(){
 		//looping but this is prolly acceptable
+	public static void paintMap(){
 		for(Tile t:tiles){
 			t.paint();
 		}
@@ -120,6 +121,15 @@ public class Tile implements Serializable{
 		}
 		
 		tiles = sorted;
+	}
+	
+	
+	public static void sortPaint(){
+		ArrayList<Tile> sorted = new ArrayList<Tile>();
+		for(int i =0; i<paintTiles.size(); i++){
+			//if(paintTiles.get(i) instanceof longtile)
+			
+		}
 	}
 	
 	
@@ -175,12 +185,15 @@ public class Tile implements Serializable{
 				}
 			}
 		}
-
-    	printAllX();
-    	sortMap();
+		
+		
+		
+    	//printAllX();
+    	//sortMap();
     	System.out.println("");
-    	System.out.println("done");
-    	printAllX();
+    	//System.out.println("done");
+    	//printAllX();
+    	
 	
 	}
 	

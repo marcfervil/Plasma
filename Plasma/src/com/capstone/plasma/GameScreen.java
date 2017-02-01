@@ -53,8 +53,8 @@ public class GameScreen{
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
    //     glEnable(GL_DEPTH_TEST);
-        Tile.load();
-        //Tile.mapGen();
+        //Tile.load();
+        Tile.mapGen();
 
         PlayerHandler ph = new PlayerHandler();
         ph.start();

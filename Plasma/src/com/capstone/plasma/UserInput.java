@@ -119,12 +119,18 @@ public class UserInput {
 							}
 							break;
 						
+							/*
 						default:
-							
-							shotTick =shotTickSpeed;
+							//shotTick =shotTickSpeed;
+						*/
 							
 				
 					}
+				}
+				//System.out.println(keysDown.size());
+				if(keysDown.size()==0 && shotTick !=shotTickSpeed){
+					//System.out.println("ran");
+					shotTick = shotTickSpeed;
 				}
 			}
 		}

@@ -1,5 +1,1 @@
-<<<<<<< Updated upstream
-[[{"location":"/usr/lib/jvm/java-8-oracle","type":"JRE","hints":{}},"jre:jre:1.8.0"],[{"location":"/home/diamondrubix/Documents/Plasma/Plasma","type":"PROJECT","hints":{"PROJECT_NAME":"Plasma"}},"ABSENT"]]
-=======
-[[{"location":"/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"]]
->>>>>>> Stashed changes
+[[{"location":"/usr/lib/jvm/java-8-oracle","type":"JRE","hints":{}},"jre:jre:1.8.0"]]
