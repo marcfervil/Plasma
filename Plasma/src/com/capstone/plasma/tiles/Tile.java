@@ -16,6 +16,7 @@ public class Tile implements Serializable{
 	public static int size=30;
 	public static ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
+	public static ArrayList<ArrayList> collideTiles = new ArrayList<ArrayList>();
 	public static ArrayList<Tile> paintTiles = new ArrayList<Tile>();
 	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new longtile(0,0),};
 	public static boolean breakableSkins=true;
@@ -86,42 +87,17 @@ public class Tile implements Serializable{
 	}
 	
 
-		//looping but this is prolly acceptable
+	/*	//looping but this is prolly acceptable
 	public static void paintMap(){
 		for(Tile t:tiles){
 			t.paint();
 		}
 	}
-	
+	*/
 	public static int randInt(int min, int max) {
 		return (new Random()).nextInt((max - min) + 1) + min;
 	}
-	/*
-	public static void sortMap(){
-		ArrayList<Tile> sorted = new ArrayList<Tile>();
-		sorted.add(0,tiles.get(0));
-		//boolean isSorted;
-		int j;
-		System.out.println(" ");
-		for(int i =1; i<tiles.size(); i++){
-			j=i-1;
-			System.out.println(sorted.get(j).x+" "+tiles.get(i).x);
-			while(sorted.get(j).x<tiles.get(i).x){
-				System.out.println(sorted.get(j).x+" "+tiles.get(i).x);
-				if(j!=0){
-					j--;
-				}else{
-					break;
-				}
-			}
-			sorted.add(j,tiles.get(i));
-			
-		}
-		tiles = sorted;
-	}
-	*/
-	
-	
+
 	public static void sortMap(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
 		sorted.add(0,tiles.get(0));
@@ -141,6 +117,11 @@ public class Tile implements Serializable{
 		tiles = sorted;
 	}
 	
+	public static void CollitionArray(int gridX, int gridY){
+		for(int i =0; i<tiles.size(); i++){ 
+			
+		}
+	}
 	
 	public static void sortTextures(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
@@ -202,7 +183,7 @@ public class Tile implements Serializable{
 							//ParticleHandler.createParticle(i*Tile.size, (j*Tile.size)-Tile.size, color);
 							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-(Tile.size+20),new PlasmaPistol()));
 						}
-							
+						
 						tiles.add(new longtile(i*Tile.size,j*Tile.size));
 			//			tiles.add(new breakable(i*Tile.size,j*Tile.size));
 					}
