@@ -67,6 +67,24 @@ public class Tile implements Serializable{
 		}
 	}
 	
+	
+	public void paintOp(){
+		if(this.x+GameScreen.xCam<900 && this.x+GameScreen.xCam>-60){
+			GraphicsHandler.drawImageOp(this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+			
+			if(breakableSkins&&breakable){
+				if(hp<(maxHp/3)){
+					GraphicsHandler.drawImage(GraphicsHandler.crack3,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+				}else if(hp<(maxHp/3)*2){
+					GraphicsHandler.drawImage(GraphicsHandler.crack2,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+				}else if(hp<maxHp){
+					GraphicsHandler.drawImage(GraphicsHandler.crack1,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
+				}
+			}
+			
+		}
+	}
+	
 
 		//looping but this is prolly acceptable
 	public static void paintMap(){
@@ -124,12 +142,19 @@ public class Tile implements Serializable{
 	}
 	
 	
-	public static void sortPaint(){
+	public static void sortTextures(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
-		for(int i =0; i<paintTiles.size(); i++){
-			//if(paintTiles.get(i) instanceof longtile)
-			
+		sorted.add(0,tiles.get(0));
+		for(int i=1;i<tiles.size();i++){
+			Tile ct=tiles.get(i);
+			for(int j=0;j<sorted.size();j++){
+				if(ct.texture >= sorted.get(j).texture){
+					sorted.add(j,ct);
+					break;
+				}
+			}
 		}
+		tiles = sorted;
 	}
 	
 	
@@ -142,23 +167,24 @@ public class Tile implements Serializable{
         FileInputStream fis = new FileInputStream("map1.ser");
         ObjectInputStream ois = new ObjectInputStream(fis);
        //world = (ArrayList) ois.readObject();
-        tiles = (ArrayList) ois.readObject();
+        tiles = (ArrayList<Tile>) ois.readObject();
         ois.close();
         fis.close();
     	}catch (Exception e){
     		
     	}
-    	printAllX();
+   // 	printAllX();
     	sortMap();
     	System.out.println("");
     	System.out.println("done");
-    	printAllX();
+    //	printAllX();
 
     }
-    public static void printAllX(){
+    public static void printAllTexture(){
     	for(int i =0; i<tiles.size();i++){
-    		System.out.print(tiles.get(i).x+" ");
+    		System.out.print(tiles.get(i).texture);
     	}
+    	System.out.println();
     }
 	
 	public static void mapGen(){

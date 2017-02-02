@@ -3,8 +3,11 @@
 /Plasma/.settings/*
 /Plasma/.classpath
 /Plasma/.project
+/Plasma/.recommenders/*
 
 
 *.log
 
 *.fdt
+
+*.tii

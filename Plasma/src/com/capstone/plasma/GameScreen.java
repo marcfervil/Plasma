@@ -54,8 +54,13 @@ public class GameScreen{
         GL11.glDisable(GL11.GL_LIGHTING);
    //     glEnable(GL_DEPTH_TEST);
         //Tile.load();
+        
         Tile.mapGen();
-
+        
+        Tile.sortTextures();
+        
+        
+        
         PlayerHandler ph = new PlayerHandler();
         ph.start();
         
@@ -85,10 +90,26 @@ public class GameScreen{
         		b.paint();
         		
         	}
-        	for(int i=0;i<Tile.tiles.size();i++){
+        	
+        	
+        	for(int i=0;i< Tile.tiles.size();i++){
         		Tile b = Tile.tiles.get(i);
         		b.paint();
-        	}   	
+        		
+        	}
+        	
+        	/*
+        	int currentTexture=Tile.tiles.get(0).texture;
+        	for(int i=0;i<Tile.tiles.size();i++){
+        		Tile b = Tile.tiles.get(i);
+        		if(b.texture!=currentTexture){
+        			currentTexture=b.texture;
+        			GraphicsHandler.setTexture(b.texture);
+        		}
+        		b.paintOp();
+        	}   */	
+        	
+        	
         	Player.paint();
         	ParticleHandler.paint();
         	Mob.paintMobs();

@@ -73,8 +73,41 @@ public class GraphicsHandler {
 		glEnd();
 		glPopMatrix();
 		//gluBuild2DMipmaps(GL_TEXTURE_2D);
-	
 	}
+	
+	public static void setTexture(int texture){
+		glBindTexture(GL_TEXTURE_2D, texture);
+	}
+	
+	public static void drawImageOp(float x, float y, float width, float height){
+
+		//KEEP HERE TO SET COLOR TO WHITE SO RECTANGLE DOES NOT TINT TEXTURE
+		glColor4f(1f, 1f, 1f, 1f);
+		glEnable(GL_BLEND);
+		glEnable(GL_TEXTURE_2D); 
+		glPushMatrix();
+		glTranslatef(x, y, 0); 
+		
+		glBegin(GL_QUADS);
+		{
+			
+          glTexCoord2f(0, 0);
+          glVertex2f(0, 0);
+          
+          glTexCoord2f(1, 0);
+          glVertex2f(0, height);
+          
+          glTexCoord2f(1, 1);
+          glVertex2f(width, height);
+          
+          glTexCoord2f(0, 1);
+          glVertex2f(width, 0);
+		}
+		glEnd();
+		glPopMatrix();
+		//gluBuild2DMipmaps(GL_TEXTURE_2D);
+	}
+	
 	
     public static void drawRect(float x, float y, float width, float height, float rot,Color color){
     	glDisable(GL_TEXTURE_2D);
