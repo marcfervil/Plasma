@@ -91,15 +91,15 @@ public class GameScreen{
         		
         	}
         	
-        	
+        	/*
         	for(int i=0;i< Tile.tiles.size();i++){
         		Tile b = Tile.tiles.get(i);
         		b.paint();
         		
         	}
+        	*/
         	
-        	/*
-        	int currentTexture=Tile.tiles.get(0).texture;
+        	int currentTexture=0;
         	for(int i=0;i<Tile.tiles.size();i++){
         		Tile b = Tile.tiles.get(i);
         		if(b.texture!=currentTexture){
@@ -107,7 +107,7 @@ public class GameScreen{
         			GraphicsHandler.setTexture(b.texture);
         		}
         		b.paintOp();
-        	}   */	
+        	}   
         	
         	
         	Player.paint();
