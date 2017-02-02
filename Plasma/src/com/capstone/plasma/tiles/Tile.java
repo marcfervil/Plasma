@@ -71,9 +71,11 @@ public class Tile implements Serializable{
 	
 	public void paintOp(){
 		if(this.x+GameScreen.xCam<900 && this.x+GameScreen.xCam>-60){
+			
 			GraphicsHandler.drawImageOp(this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
 			
 			if(breakableSkins&&breakable){
+			//	int ogTexture=texture;
 				if(hp<(maxHp/3)){
 					GraphicsHandler.drawImage(GraphicsHandler.crack3,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
 				}else if(hp<(maxHp/3)*2){

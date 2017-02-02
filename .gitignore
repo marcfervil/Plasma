@@ -4,10 +4,16 @@
 /Plasma/.classpath
 /Plasma/.project
 /Plasma/.recommenders/*
-
+.recommenders/*
+.recommenders/index/
+/.recommenders/*
 
 *.log
 
 *.fdt
 
 *.tii
+
+
+
+.recommenders/index/http___download_eclipse_org_recommenders_models_neon_/segments.gen
