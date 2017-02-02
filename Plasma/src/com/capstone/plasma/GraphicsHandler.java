@@ -29,6 +29,8 @@ public class GraphicsHandler {
 	
 	public static int robotRight;
 	
+	public static int lastTexture=0;
+	
 	public static void loadTextures(){
 		wall=GraphicsHandler.loadTexture("images/wall.jpg");
 		floor=GraphicsHandler.loadTexture("images/floor.jpg");
@@ -54,7 +56,8 @@ public class GraphicsHandler {
 		glEnable(GL_TEXTURE_2D); 
 		glPushMatrix();
 		glTranslatef(x, y, 0); 
-		glBindTexture(GL_TEXTURE_2D, texture);
+		//glBindTexture(GL_TEXTURE_2D, texture);
+		setTexture(texture);
 		glBegin(GL_QUADS);
 		{
 			
@@ -76,6 +79,8 @@ public class GraphicsHandler {
 	}
 	
 	public static void setTexture(int texture){
+		if(lastTexture == texture)return;
+		lastTexture=texture; 
 		glBindTexture(GL_TEXTURE_2D, texture);
 	}
 	
