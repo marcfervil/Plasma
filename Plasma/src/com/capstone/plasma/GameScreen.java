@@ -52,14 +52,16 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-   //     glEnable(GL_DEPTH_TEST);
-        //Tile.load();
-        
+
         Tile.mapGen();
         
         Tile.sortTextures();
-        
-        
+
+        try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
         
         PlayerHandler ph = new PlayerHandler();
         ph.start();
@@ -91,14 +93,15 @@ public class GameScreen{
         		
         	}
         	
-        	/*
+        	
         	for(int i=0;i< Tile.tiles.size();i++){
         		Tile b = Tile.tiles.get(i);
         		b.paint();
         		
         	}
-        	*/
         	
+        	
+        	/*
         	int currentTexture=0;
         	for(int i=0;i<Tile.tiles.size();i++){
         		Tile b = Tile.tiles.get(i);
@@ -108,7 +111,7 @@ public class GameScreen{
         		}
         		b.paintOp();
         	}   
-        	
+        	*/
         	
         	Player.paint();
         	ParticleHandler.paint();
@@ -119,6 +122,7 @@ public class GameScreen{
         	
         	Display.update();
         	Display.sync(60);
+  
 	
         }
         try{

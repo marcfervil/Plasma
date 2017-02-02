@@ -4,10 +4,14 @@
 /Plasma/.classpath
 /Plasma/.project
 /Plasma/.recommenders/*
-
+.recommenders/*
+.recommenders/index/
+/.recommenders/*
 
 *.log
 
 *.fdt
 
 *.tii
+
+
