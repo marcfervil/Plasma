@@ -14,12 +14,12 @@ import com.capstone.plasma.particle.ParticleHandler;
 public class Tile implements Serializable{
 	
 	public static int size=30;
-	public static int chunckSize = 10;
-	public static int yChuncks;
-	public static int xChuncks;
+	public static int chunkSize = 10;
+	public static int ychunks;
+	public static int xchunks;
 	public static ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
-	public static ArrayList<ArrayList> collideTiles = new ArrayList<ArrayList>();
+	public static ArrayList<ArrayList> chunks = new ArrayList<ArrayList>();
 	public static ArrayList<Tile> paintTiles = new ArrayList<Tile>();
 	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new longtile(0,0),};
 	public static boolean breakableSkins=true;
@@ -102,6 +102,25 @@ public class Tile implements Serializable{
 	public static int randInt(int min, int max) {
 		return (new Random()).nextInt((max - min) + 1) + min;
 	}
+	
+	
+	public static ArrayList<Tile> sortY(ArrayList<Tile> t){
+		ArrayList<Tile> sorted = new ArrayList<Tile>();
+		sorted.add(0,tiles.get(0));
+		//System.out.println("FIRST "+tiles.get(0).x);
+		for(int i=1;i<tiles.size();i++){
+			Tile ct=tiles.get(i);
+			for(int j=0;j<sorted.size();j++){
+				if(ct.x >= sorted.get(j).x){
+					//System.out.println(ct.x);
+					sorted.add(j,ct);
+					break;
+				}
+			}
+		
+		}
+		return sorted;
+	}
 
 	public static void sortMap(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
@@ -125,6 +144,7 @@ public class Tile implements Serializable{
 	public static void CollisionArray(){
 		int maxY = 0;
 		int minY = 0;
+		sortMap();
 		int maxX = tiles.get(tiles.size()).x;
 		for(int i =0; i<tiles.size(); i++){
 			if(tiles.get(i).y >maxY){
@@ -133,14 +153,31 @@ public class Tile implements Serializable{
 			if(tiles.get(i).y<minY){
 				minY = tiles.get(i).y;
 			}
-		} 
-		
-		yChuncks = ((maxY-minY)/size)/chunckSize;
-		xChuncks = (maxX/size)/chunckSize;
-		int j =0;
+		} //finds miny maxY and maxX
+		int yHeight = Math.abs(maxY)-Math.abs(minY);
+		//ychunks = ((maxY-minY)/size)/chunkSize;
+		//xchunks = (maxX/size)/chunkSize;
+		int j =1;
+		ArrayList<ArrayList> tempChunks = new ArrayList<ArrayList>();
 		for(int i =0; i<tiles.size(); i++){
-			if(tiles.get(i).x<((maxX/xChuncks)*(i+1))){
-				
+			ArrayList<Tile> c = new ArrayList<Tile>();
+			if(tiles.get(i).x<((chunkSize*size)*(j)) ){  // maxX/10 *j+1 
+				c.add(tiles.get(i));
+			}else{
+				j++;
+				tempChunks.add(c);
+				c.clear();
+			}
+		}
+		//above for loop has to work for this to work.
+		int yChunks = (int) Math.ceil((double)yHeight/(double)(size*chunkSize));
+		for(int i =0; i<tempChunks.size(); i++){
+			ArrayList<Tile> t = new ArrayList<Tile>();
+			t = sortY(tempChunks.get(i));
+			for(int dex =0; i<tempChunks.get(i).size(); dex++){
+				if(tempChunks.get(i).get(dex).y < minY+(yHeight/yChunks)){
+					
+				}
 			}
 		}
 		

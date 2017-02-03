@@ -55,7 +55,7 @@ public class GameScreen{
 
         Tile.mapGen();
         
-        Tile.sortTextures();
+        //Tile.sortTextures();
 
         try {
 			Thread.sleep(100);
@@ -101,18 +101,7 @@ public class GameScreen{
         	}
         	
         	
-        	/*
-        	int currentTexture=0;
-        	for(int i=0;i<Tile.tiles.size();i++){
-        		Tile b = Tile.tiles.get(i);
-        		if(b.texture!=currentTexture){
-        			currentTexture=b.texture;
-        			GraphicsHandler.setTexture(b.texture);
-        		}
-        		b.paintOp();
-        	}   
-        	*/
-        	
+        
         	Player.paint();
         	ParticleHandler.paint();
         	Mob.paintMobs();
