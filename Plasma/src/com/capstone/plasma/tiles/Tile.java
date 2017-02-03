@@ -14,6 +14,9 @@ import com.capstone.plasma.particle.ParticleHandler;
 public class Tile implements Serializable{
 	
 	public static int size=30;
+	public static int chunckSize = 10;
+	public static int yChuncks;
+	public static int xChuncks;
 	public static ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
 	public static ArrayList<ArrayList> collideTiles = new ArrayList<ArrayList>();
@@ -119,10 +122,28 @@ public class Tile implements Serializable{
 		tiles = sorted;
 	}
 	
-	public static void CollitionArray(int gridX, int gridY){
-		for(int i =0; i<tiles.size(); i++){ 
-			
+	public static void CollisionArray(){
+		int maxY = 0;
+		int minY = 0;
+		int maxX = tiles.get(tiles.size()).x;
+		for(int i =0; i<tiles.size(); i++){
+			if(tiles.get(i).y >maxY){
+				maxY = tiles.get(i).y;
+			}
+			if(tiles.get(i).y<minY){
+				minY = tiles.get(i).y;
+			}
+		} 
+		
+		yChuncks = ((maxY-minY)/size)/chunckSize;
+		xChuncks = (maxX/size)/chunckSize;
+		int j =0;
+		for(int i =0; i<tiles.size(); i++){
+			if(tiles.get(i).x<((maxX/xChuncks)*(i+1))){
+				
+			}
 		}
+		
 	}
 	
 	public static void sortTextures(){
