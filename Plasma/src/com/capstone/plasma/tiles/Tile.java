@@ -141,46 +141,42 @@ public class Tile implements Serializable{
 		tiles = sorted;
 	}
 	
-	public static void CollisionArray(){
-		int maxY = 0;
-		int minY = 0;
-		sortMap();
-		int maxX = tiles.get(tiles.size()).x;
-		for(int i =0; i<tiles.size(); i++){
-			if(tiles.get(i).y >maxY){
-				maxY = tiles.get(i).y;
+	
+	public static void createChunks(){		
+		//Gained 300ish tiles somewhere????		
+		//reading 3,541 tiles worst case
+		//{0,300,0,300}
+		//{300,600,0,300}		
+		int worldWidth=0;
+		int worldHeight=0;
+		for(int i=0;i<tiles.size();i++){
+			if(tiles.get(i).x>worldWidth){
+				worldWidth=tiles.get(i).x;
 			}
-			if(tiles.get(i).y<minY){
-				minY = tiles.get(i).y;
-			}
-		} //finds miny maxY and maxX
-		int yHeight = Math.abs(maxY)-Math.abs(minY);
-		//ychunks = ((maxY-minY)/size)/chunkSize;
-		//xchunks = (maxX/size)/chunkSize;
-		int j =1;
-		ArrayList<ArrayList> tempChunks = new ArrayList<ArrayList>();
-		for(int i =0; i<tiles.size(); i++){
-			ArrayList<Tile> c = new ArrayList<Tile>();
-			if(tiles.get(i).x<((chunkSize*size)*(j)) ){  // maxX/10 *j+1 
-				c.add(tiles.get(i));
-			}else{
-				j++;
-				tempChunks.add(c);
-				c.clear();
+			if(tiles.get(i).y>worldHeight){
+				worldHeight=tiles.get(i).y;
 			}
 		}
-		//above for loop has to work for this to work.
-		int yChunks = (int) Math.ceil((double)yHeight/(double)(size*chunkSize));
-		for(int i =0; i<tempChunks.size(); i++){
-			ArrayList<Tile> t = new ArrayList<Tile>();
-			t = sortY(tempChunks.get(i));
-			for(int dex =0; i<tempChunks.get(i).size(); dex++){
-				if(tempChunks.get(i).get(dex).y < minY+(yHeight/yChunks)){
-					
+		int c=0;
+		System.out.println(worldWidth+","+worldHeight);
+		for(int x=0;x<worldWidth;x+=Tile.size*chunkSize){	
+			for(int y=0;y<worldWidth;y+=Tile.size*chunkSize){
+				
+				Chunk s=new Chunk(x,x+(Tile.size*chunkSize),y,y+(Tile.size*chunkSize));	
+				//System.out.println(s);
+				for(int i=0;i<tiles.size();i++){
+					Tile t=tiles.get(i);
+					if(s.inChunk(t.x, t.y)){
+						s.addTile(t);
+					}
+				}
+				if(!(s.tiles.size()==0)){
+					Chunk.chunks.add(s);
 				}
 			}
 		}
 		
+	//	System.out.println(Chunk.chunks.size());
 	}
 	
 	public static void sortTextures(){
@@ -257,7 +253,7 @@ public class Tile implements Serializable{
 		
     	//printAllX();
     	//sortMap();
-    	System.out.println("");
+    //	System.out.println("");
     	//System.out.println("done");
     	//printAllX();
     	
