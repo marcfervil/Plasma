@@ -80,7 +80,7 @@ public class GameScreen{
         
         //benchmarking
         
-/*        
+     
         Player.x=950;
         Player.y=400;
         for(int j=0;j<10;j++){
@@ -112,7 +112,7 @@ public class GameScreen{
 	        System.out.println("shaved "+(avg2-avg1)+" miliseconds");
 	        System.out.println("");
         }
-        */
+        
     }
    
     
