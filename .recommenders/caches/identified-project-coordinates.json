@@ -1,5 +1,1 @@
-<<<<<<< Updated upstream
-[[{"location":"/home/diamondrubix/Documents/Plasma/Plasma","type":"PROJECT","hints":{"PROJECT_NAME":"Plasma"}},"ABSENT"],[{"location":"/usr/lib/jvm/java-8-oracle","type":"JRE","hints":{}},"jre:jre:1.8.0"]]
-=======
-{}
->>>>>>> Stashed changes
+[[{"location":"/usr/lib/jvm/java-8-oracle","type":"JRE","hints":{}},"jre:jre:1.8.0"]]

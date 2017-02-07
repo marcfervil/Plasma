@@ -59,7 +59,7 @@ public class GameScreen{
 
         
         Tile.mapGen();
-        Tile.createChunks();
+        //Tile.createChunks();
         
         try {
 			Thread.sleep(100);
@@ -80,7 +80,7 @@ public class GameScreen{
         
         //benchmarking
         
-     
+     /*
         Player.x=950;
         Player.y=400;
         for(int j=0;j<10;j++){
@@ -89,8 +89,9 @@ public class GameScreen{
 	        long duration=0;
 	    
 	        int avg1=0;
-	        for(int i=0;i<100000;i++){
+	        for(int i=0;i<10;i++){
 		        startTime = System.nanoTime();
+		        //System.out.println(startTime);
 		        Player.touchBounds(0, 10);
 		        endTime = System.nanoTime();
 		        duration = (endTime - startTime);
@@ -111,7 +112,7 @@ public class GameScreen{
 	        System.out.println("touchBounds OLD "+avg2);
 	        System.out.println("shaved "+(avg2-avg1)+" miliseconds");
 	        System.out.println("");
-        }
+        }*/
         
     }
    

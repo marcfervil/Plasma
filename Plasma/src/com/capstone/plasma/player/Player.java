@@ -36,7 +36,7 @@ public class Player {
 	//looping
 	
 	
-	public static boolean touchBoundsOG(int xn,int yn){
+	public static boolean touchBounds(int xn,int yn){
 		try{
 			Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
 			//looping
@@ -53,7 +53,7 @@ public class Player {
 	}
 	
 	
-	
+	/*
 	public static boolean touchBounds(int xn,int yn){
 		try{
 
@@ -73,9 +73,9 @@ public class Player {
 			e.printStackTrace();
 		}
 		return false;
-	}
+	}*/
 	
-	
+	/*
 	public static int touchBoundsNum(int xn,int yn){
 		try{
 
@@ -96,8 +96,8 @@ public class Player {
 		}
 		return -1;
 	}
+	*/
 	
-	/*
 	public static Tile touchBoundsTile(int xn,int yn){
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
 		//looping
@@ -108,8 +108,8 @@ public class Player {
 			}
 		}
 		return null;
-	}*/
-
+	}
+/*
 	public static Tile touchBoundsTile(int xn,int yn){
 		try{
 
@@ -129,7 +129,7 @@ public class Player {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 	
 	public static void findX(int playerX,ArrayList<Tile> s){
 		int numTiles = s.size();
