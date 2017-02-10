@@ -2,6 +2,13 @@ package com.capstone.plasma.mob;
 
 import java.util.ArrayList;
 
+import com.capstone.plasma.GameScreen;
+import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.tiles.Tile;
+import com.sun.prism.paint.Color;
+//import java.awt.Color;
+import java.awt.Rectangle;
+
 public class Mob {
 
 	public static ArrayList<Mob> mobs = new ArrayList<Mob>();
@@ -45,7 +52,7 @@ public class Mob {
 	}
 	
 	public void paint(){
-		
+		GraphicsHandler.drawRect(280, 40, Tile.size, Tile.size, 0, Color.BLUE);	
 	}
 	
 	
