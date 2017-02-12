@@ -56,6 +56,10 @@ public class Tile implements Serializable{
 		return new Rectangle(x+GameScreen.xCam,y+GameScreen.yCam,size,size);
 	}
 	
+	public Rectangle getBoundsMob(){
+		return new Rectangle(x,y,size,size);
+	}
+	
 	public void paint(){
 		if(this.x+GameScreen.xCam<900 && this.x+GameScreen.xCam>-60){
 			GraphicsHandler.drawImage(texture,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);

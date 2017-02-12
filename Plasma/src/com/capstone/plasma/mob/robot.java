@@ -20,6 +20,7 @@ public class robot extends Mob {
 	public boolean seeking = false;
 	public int viewRange = 200;
 	public int action = 30;
+	public boolean onGround = false;
 	//public int x;
 	//public int y;
 	
@@ -53,6 +54,7 @@ public class robot extends Mob {
 			if(!(seeking) && Math.abs(startTime-endTime)>900000000){ //1000000000 is 1 second
 				action = (int)(Math.random()*100);
 				startTime = System.nanoTime();
+				y-=1;
 			}
 			if(action<60){
 				move();
@@ -115,12 +117,16 @@ public class robot extends Mob {
 	}
 	//left of with jumping
 	public void move(){
-		if(touchBounds(x,y)){
-			yVelocity-=jumpHeight;
-		}
 		x+=speed;
+		if(checkSide(x,y)){
+			jump();
+		}
 	}
 	
+	public void jump(){
+		yVelocity-=jumpHeight;
+		System.out.println("jump!");
+	}
 	
 	public void gravity(){
 		if(!(touchBounds(x, y))){
@@ -129,6 +135,9 @@ public class robot extends Mob {
 		}else{
 			yVelocity = 0;
 		}
+		
+		
+		
 		y+=yVelocity;
 	}
 	

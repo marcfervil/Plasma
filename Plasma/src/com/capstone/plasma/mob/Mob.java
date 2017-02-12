@@ -72,9 +72,28 @@ public class Mob {
 		}
 		return false;
 	}
-
+	
+	public static boolean checkSide(int xn, int yn){
+		for(int i =0; i<Tile.tiles.size(); i++){
+			if(Tile.tiles.get(i).x>xn && Tile.tiles.get(i).x<xn+Tile.size &&Tile.tiles.get(i).y>yn && Tile.tiles.get(i).y<(yn+Tile.size)){
+				return true;				
+			}
+		}
+		
+		return false;
+	}
+	
+	/*
+	public static boolean checkCollide(int xn, int yn){
+		for(int i = 0; i<Tile.tiles.size(); i++){
+			if()
+		}
+		
+		return false;
+	}
+*/
 	public void tick(){
-
+		
 	}
 	
 	public void seek(){
