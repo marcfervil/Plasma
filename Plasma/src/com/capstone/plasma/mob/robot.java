@@ -9,7 +9,9 @@ import com.capstone.plasma.tiles.Tile;
 
 public class robot extends Mob {
 	
-	public static int speed = 2;
+	public static int lowSpeed = 2;
+	public static int highSpeed = 3;
+	public static int speed = lowSpeed;
 	public static int gravityStrength = 1;
 	public static int maxGrav = 100;
 	public static int yVelocity = 0;
@@ -35,9 +37,14 @@ public class robot extends Mob {
 	public void tick(){
 		if(faceRight){
 			speed = Math.abs(speed);
+			lowSpeed = Math.abs(lowSpeed);
+			highSpeed = Math.abs(highSpeed);
 		}else{
 			speed = (-1)*Math.abs(speed);
+			lowSpeed = (-1)*Math.abs(lowSpeed);
+			highSpeed = (-1)*Math.abs(highSpeed);
 		}
+		
 		
 		gravity();
 		action();
@@ -51,10 +58,13 @@ public class robot extends Mob {
 		//System.out.println(action);
 		seek();
 		if(!(seeking)){
+			speed = lowSpeed;
+			
 			if(!(seeking) && Math.abs(startTime-endTime)>900000000){ //1000000000 is 1 second
 				action = (int)(Math.random()*100);
 				startTime = System.nanoTime();
-				y-=1;
+				y-=4;
+				System.out.println("action!");
 			}
 			if(action<60){
 				move();
@@ -64,6 +74,7 @@ public class robot extends Mob {
 				action = (int)(Math.random()*100);
 			}
 		}else{
+			speed = highSpeed;
 			move();
 		}
 	}
