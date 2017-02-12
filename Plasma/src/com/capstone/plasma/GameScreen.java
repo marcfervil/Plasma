@@ -143,6 +143,7 @@ public class GameScreen{
         	
         
         	Player.paint();
+        	Mob.paintMobs();
         	ParticleHandler.paint();
         	Mob.paintMobs();
         	Inventory.paint();

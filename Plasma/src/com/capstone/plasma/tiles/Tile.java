@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import com.capstone.plasma.*;
 import com.capstone.plasma.inventory.PlasmaPistol;
+import com.capstone.plasma.mob.Mob;
+import com.capstone.plasma.mob.robot;
 import com.capstone.plasma.particle.Dropable;
 import com.capstone.plasma.particle.ParticleHandler;
 
@@ -225,6 +227,9 @@ public class Tile implements Serializable{
     }
 	
 	public static void mapGen(){
+		robot m = new robot(350,40);
+		Mob.mobs.add(m);
+
 		
 		for(int i=0;i<500;i++){
 			for(int j=0;j<20;j++){
