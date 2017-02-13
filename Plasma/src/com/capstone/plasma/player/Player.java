@@ -26,7 +26,7 @@ public class Player {
 	
 	public static void paint(){
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);		
-		//GraphicsHandler.drawRect(getBounds(0,yVelocity).x, getBounds(0,yVelocity).y, getBounds(0,yVelocity).width, getBounds(0,(yVelocity)).height, 0, Color.BLUE);
+		//GraphicsHandler.drawRect(getBounds(0,yVelocity).x, getBounds(0,yVeloc
 	}
 	
 	public static Rectangle getBounds(int xn,int yn){
@@ -141,9 +141,7 @@ public class Player {
 			}
 		}else{
 			System.out.println("that worked");
-			//return s.get(0);
 		}
-		//return null;
 	}
 
 
@@ -176,12 +174,10 @@ public class Player {
 		}else{
 			//if(!onGround)gravCount++;
 			
-			gravCount++;
 		//	if(gravCount+4>3){
 			if(yVelocity<maxGrav){
 			yVelocity +=gravityStrength;}
 			onGround=false;
-			gravCount=0;
 		//	}
 		}
 		//if(yVelocity<maxGrav){

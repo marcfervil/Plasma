@@ -5,6 +5,7 @@ import java.awt.Color;
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.player.Player;
+import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Tile;
 
 public class robot extends Mob {
@@ -23,6 +24,7 @@ public class robot extends Mob {
 	public int viewRange = 200;
 	public int action = 30;
 	public boolean onGround = false;
+	public int hp = 300;
 	//public int x;
 	//public int y;
 	
@@ -49,6 +51,10 @@ public class robot extends Mob {
 		gravity();
 		action();
 		//startTime = System.nanoTime();
+	}
+	
+	public void damage(int dm){
+		hp-=dm;
 	}
 	
 	public void action(){
@@ -138,7 +144,38 @@ public class robot extends Mob {
 		yVelocity-=jumpHeight;
 		System.out.println("jump!");
 	}
+	public void gravity(){
+		if (jump && onGround){
+			//if(yVelocity>maxGrav){
+				yVelocity-=jumpHeight;
+			//}
+			
+		//	yVelocity -=jumpTick;
+			jump=false;
+		}
+		
+		Tile t;
+		if((t = Utilities.touchBoundsTile(x,y,0, yVelocity)) !=null){
+			//y+=yVelocity/3;
+			//System.out.println(yVelocity);
+			//System.out.println(touchBoundsNum(0,yVelocity));
+				
+			if(yVelocity>0){
+			onGround=true;
+			}
+			if(yVelocity<0){
+			y-=(y-t.y-Tile.size);
+			}
+			yVelocity = 0;
+		}else{
+			if(yVelocity<maxGrav){
+			yVelocity +=gravityStrength;}
+			onGround=false;
+		}
+			y+=yVelocity;
+	}
 	
+	/*old grav
 	public void gravity(){
 		if(!(touchBounds(x, y))){
 			//y+=yVelocity;
@@ -150,6 +187,6 @@ public class robot extends Mob {
 		
 		
 		y+=yVelocity;
-	}
+	}*/
 	
 }
