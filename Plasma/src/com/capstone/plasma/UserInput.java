@@ -80,11 +80,11 @@ public class UserInput {
 						case Keyboard.KEY_D:
 							lastKey = "d";
 							//Player.findX(Player.x, Tile.tiles);
-							if(!Player.touchBounds(3, -1)){
-								Player.x+=3;
+							if(!Player.touchBounds(Player.PlayerSpeed, -1)){
+								Player.x+=Player.PlayerSpeed;
 								if(Player.x+GameScreen.xCam>=400){
-									GameScreen.xCam-=3;
-									GameScreen.backCam-=2;
+									GameScreen.xCam-=Player.PlayerSpeed;
+									GameScreen.backCam-=Player.PlayerSpeed-(Player.PlayerSpeed/3);
 								}
 							}else{
 								//ParticleHandler.createParticleStream(Player.x, Player.y, 5,Color.CYAN);
@@ -92,11 +92,11 @@ public class UserInput {
 							break;
 						case Keyboard.KEY_A:
 							lastKey = "a";
-							if(!Player.touchBounds(-3, -1)){
-								Player.x-=3;
-								if(Player.x+GameScreen.xCam<=100){
-									GameScreen.xCam+=3;
-									GameScreen.backCam+=2;
+							if(!Player.touchBounds(-Player.PlayerSpeed, -1)){
+								Player.x-=Player.PlayerSpeed;
+								if(Player.x+GameScreen.xCam<=300){ //was 100 i think?
+									GameScreen.xCam+=Player.PlayerSpeed;
+									GameScreen.backCam+=Player.PlayerSpeed-(Player.PlayerSpeed/3);
 									
 								}
 							}
@@ -119,10 +119,10 @@ public class UserInput {
 							}
 							break;
 						
-							/*
+							
 						default:
-							//shotTick =shotTickSpeed;
-						*/
+							shotTick =shotTickSpeed;
+						
 							
 				
 					}

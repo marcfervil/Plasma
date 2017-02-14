@@ -70,12 +70,12 @@ public class robot extends Mob {
 				action = (int)(Math.random()*100);
 				startTime = System.nanoTime();
 				y-=4;
-				System.out.println("action!");
+				
 			}
 			if(action<60){
 				move();
 			}else if(action>85){
-				System.out.println("switched direction");
+				
 				faceRight ^= true;
 				action = (int)(Math.random()*100);
 			}
@@ -142,7 +142,7 @@ public class robot extends Mob {
 	
 	public void jump(){
 		yVelocity-=jumpHeight;
-		System.out.println("jump!");
+		//System.out.println("jump!");
 	}
 	public void gravity(){
 		if (jump && onGround){

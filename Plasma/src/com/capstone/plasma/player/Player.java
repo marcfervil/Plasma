@@ -20,7 +20,7 @@ public class Player {
 	public static boolean jump=false;
 	public static int gravCount = 0;
 	public static int jumpTick = 0;
-	
+	public static int PlayerSpeed = 3;
 	public static boolean onGround = false;
 	
 	

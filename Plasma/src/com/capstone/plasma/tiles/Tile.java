@@ -61,7 +61,7 @@ public class Tile implements Serializable{
 	}
 	
 	public void paint(){
-		if(this.x+GameScreen.xCam<900 && this.x+GameScreen.xCam>-60){
+		if(this.x+GameScreen.xCam<900 && this.x+GameScreen.xCam>-90){//was -60
 			GraphicsHandler.drawImage(texture,this.x+GameScreen.xCam,this.y+GameScreen.yCam,size,size);
 			
 			if(breakableSkins&&breakable){
@@ -98,13 +98,13 @@ public class Tile implements Serializable{
 	}
 	
 
-	/*	//looping but this is prolly acceptable
+		//looping but this is prolly acceptable
 	public static void paintMap(){
 		for(Tile t:tiles){
 			t.paint();
 		}
 	}
-	*/
+	
 	public static int randInt(int min, int max) {
 		return (new Random()).nextInt((max - min) + 1) + min;
 	}
@@ -253,7 +253,7 @@ public class Tile implements Serializable{
 			//			tiles.add(new breakable(i*Tile.size,j*Tile.size));
 					}
 				}else{
-					tiles.add(new Floor(i*Tile.size,j*Tile.size));
+					tiles.add(new Floor(i*Tile.size,j*Tile.size));//used to be floor
 				}
 			}
 		}

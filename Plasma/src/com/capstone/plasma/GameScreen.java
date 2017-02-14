@@ -33,7 +33,7 @@ public class GameScreen{
 		try {
 	        Display.setDisplayMode(new DisplayMode(width,height));
 	        Display.setTitle("Plasma Demo");
-	        Display.setVSyncEnabled(true);
+	        Display.setVSyncEnabled(false);
 	        Display.setSwapInterval(1);
 	        Display.setResizable(true);
 	        Display.create();
@@ -59,6 +59,7 @@ public class GameScreen{
 
         
         Tile.mapGen();
+        //Tile.load();
         //Tile.createChunks();
         
         try {
@@ -127,6 +128,7 @@ public class GameScreen{
         		height=Display.getHeight();
         	}
         	//loop
+        	
         	for(int i=0;i< Tile.backgroundTiles.size();i++){
         		Tile b = Tile.backgroundTiles.get(i);
         		b.paint();
@@ -140,6 +142,7 @@ public class GameScreen{
         		
         	}
         	
+        	//Tile.paintMap();
         	
         
         	Player.paint();
