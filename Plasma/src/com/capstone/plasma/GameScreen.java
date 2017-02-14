@@ -128,20 +128,34 @@ public class GameScreen{
         		height=Display.getHeight();
         	}
         	//loop
-        	
+        	/*
         	for(int i=0;i< Tile.backgroundTiles.size();i++){
         		Tile b = Tile.backgroundTiles.get(i);
         		b.paint();
         		
         	}
-        	
-        	
+        	*/
+        	/*
+        	if(UserInput.lastKey == "a"){
         	for(int i=0;i< Tile.tiles.size();i++){
         		Tile b = Tile.tiles.get(i);
         		b.paint();
         		
         	}
+        	}else{
+            	for(int i=0;i< Tile.revtiles.size();i++){
+            		Tile b = Tile.revtiles.get(i);
+            		b.paint();
+            		
+            	}
+        	}
+        	*/
         	
+        	if(UserInput.lastKey == "a"){
+        		Tile.paintMap();
+        	}else{
+        		Tile.paintMap2();
+        	}
         	//Tile.paintMap();
         	
         

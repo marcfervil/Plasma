@@ -21,6 +21,7 @@ public class Tile implements Serializable{
 	public static int xchunks;
 	public static ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
+	public static ArrayList<Tile> revtiles = new ArrayList<Tile>();
 	public static ArrayList<ArrayList> chunks = new ArrayList<ArrayList>();
 	public static ArrayList<Tile> paintTiles = new ArrayList<Tile>();
 	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new longtile(0,0),};
@@ -102,6 +103,12 @@ public class Tile implements Serializable{
 	public static void paintMap(){
 		for(Tile t:tiles){
 			t.paint();
+		}
+	}
+	
+	public static void paintMap2(){
+		for(int i =Tile.tiles.size()-1; i>0; i--){
+			Tile.tiles.get(i).paint();
 		}
 	}
 	
@@ -261,7 +268,8 @@ public class Tile implements Serializable{
 		
 		
     	//printAllX();
-    	//sortMap();
+		revtiles.addAll(tiles);
+    	sortMap();
     //	System.out.println("");
     	//System.out.println("done");
     	//printAllX();
