@@ -12,7 +12,7 @@ import com.capstone.plasma.tiles.Tile;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class mapScreen {
+public class MapScreen {
 	public static int xCam = 0;
 	public static int yCam = 0;
 	public static int totalXCam = 0;

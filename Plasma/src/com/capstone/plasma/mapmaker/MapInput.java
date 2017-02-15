@@ -63,31 +63,31 @@ public class MapInput {
 						
 						case Keyboard.KEY_RIGHT:
 							//mapScreen.xCam+=1;
-							mapScreen.moveCam(scrollSpeed, 0);
+							MapScreen.moveCam(scrollSpeed, 0);
 							break;
 						case Keyboard.KEY_LEFT:
-							mapScreen.moveCam(-scrollSpeed, 0);
+							MapScreen.moveCam(-scrollSpeed, 0);
 							//mapScreen.xCam+=1;
 								//mapScreen.backCam+=2
 							break;
 						case Keyboard.KEY_UP:
-							mapScreen.moveCam(0, scrollSpeed);
+							MapScreen.moveCam(0, scrollSpeed);
 							//mapScreen.yCam+=1;
 							break;
 						case Keyboard.KEY_D:
 							//mapScreen.xCam+=1;
-							mapScreen.moveCam(scrollSpeed, 0);
+							MapScreen.moveCam(scrollSpeed, 0);
 							break;
 						case Keyboard.KEY_A:
-							mapScreen.moveCam(-scrollSpeed, 0);
+							MapScreen.moveCam(-scrollSpeed, 0);
 							//mapScreen.xCam-=1;
 							break;
 						case Keyboard.KEY_S:
-							mapScreen.moveCam(0, scrollSpeed);
+							MapScreen.moveCam(0, scrollSpeed);
 							//mapScreen.yCam+=1;
 							break;
 						case Keyboard.KEY_W:
-							mapScreen.moveCam(0, -scrollSpeed);
+							MapScreen.moveCam(0, -scrollSpeed);
 							//mapScreen.yCam-=1;
 							break;
 						case Keyboard.KEY_EQUALS:

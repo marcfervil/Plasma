@@ -2,11 +2,9 @@ package com.capstone.plasma.mob;
 
 import java.util.ArrayList;
 
-import org.lwjgl.input.Keyboard;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
-import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Tile;
 //import com.sun.prism.paint.Color;
 import java.awt.Color;
@@ -22,7 +20,7 @@ public class Mob {
 	public boolean faceRight = true;
 	public int viewRange = 300;
 	public int speed;
-	
+	public int size=Tile.size;
 	
 	//public Mob(int texture for texture
 	public Mob(int x, int y){
@@ -49,6 +47,9 @@ public class Mob {
 		}
 	}
 	
+	public Rectangle getBounds(){
+		return new Rectangle(x+GameScreen.xCam,y+GameScreen.yCam,Tile.size,Tile.size);
+	}
 	
 	public static void paintMobs(){
 		for(int i=0;i<mobs.size();i++){

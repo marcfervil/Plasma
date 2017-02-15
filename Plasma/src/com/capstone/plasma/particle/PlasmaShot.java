@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.tiles.Tile;
 
 public class PlasmaShot extends Projectile{
@@ -47,6 +48,15 @@ public class PlasmaShot extends Projectile{
 		for(int i=0;i<Tile.tiles.size();i++){
 			Tile t=Tile.tiles.get(i);
 			if(t.breakable && new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10).intersects(t.getBounds())){
+				Tile.tiles.get(i).damage(damage);
+				remove=true;
+			}
+			
+		}
+		
+		for(int i=0;i<Mob.mobs.size();i++){
+			Mob t=Mob.mobs.get(i);
+			if(new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10).intersects(t.getBounds())){
 				Tile.tiles.get(i).damage(damage);
 				remove=true;
 			}

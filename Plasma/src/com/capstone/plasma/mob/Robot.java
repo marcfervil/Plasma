@@ -8,7 +8,7 @@ import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Tile;
 
-public class robot extends Mob {
+public class Robot extends Mob {
 	
 	public static int lowSpeed = 2;
 	public static int highSpeed = 3;
@@ -28,8 +28,8 @@ public class robot extends Mob {
 	//public int x;
 	//public int y;
 	
-	public robot(int x1, int y1) {
-		super(x1, y1);
+	public Robot(int x, int y) {
+		super(x, y);
 		//this.x=x1;
 		//this.y=y1;
 		// TODO Auto-generated constructor stub
@@ -90,15 +90,15 @@ public class robot extends Mob {
 	public void paint(){
 		if(seeking){
 			//seeking
-			GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.pink);
+			GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.pink);
 		}else{
-		if(faceRight){
-			//facing right
-			GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.BLUE);
-		}else{
-			// facing left
-			GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.GREEN);
-		}
+			if(faceRight){
+				//facing right
+				GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.BLUE);
+			}else{
+				// facing left
+				GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.GREEN);
+			}
 		}
 	}
 	
@@ -120,6 +120,7 @@ public class robot extends Mob {
 		}else{
 		
 		// i know this is not effecient. I'll fix it.
+			
 		if(faceRight && ((Player.x-x))<viewRange &&Player.x>x){
 			//x+=speed;
 			//move();
