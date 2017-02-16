@@ -76,8 +76,11 @@ public class GameScreen{
         ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
         pt.start();
         
-        Mob.MobTickManager mm = new Mob.MobTickManager();
-        mm.start();
+        //Mob.MobTickManager mm = new Mob.MobTickManager();
+        //mm.start();
+        for(int i =0; i<Mob.mobs.size();i ++){
+        	Mob.mobs.get(i).run();
+        }
         
         //benchmarking
         

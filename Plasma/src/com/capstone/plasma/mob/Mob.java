@@ -30,6 +30,17 @@ public class Mob {
 		//this.speed = speed;
 		//this.texture=texture;
 	}
+	public void run(){
+		   Thread t1 = new Thread(new Runnable() {
+		         public void run() {
+		        	 while(true){
+		              tick();
+		        	 }
+		         }
+		   });
+		   t1.start();
+	}
+	
 
 
 	public static class MobTickManager extends Thread{
@@ -43,6 +54,7 @@ public class Mob {
 				for(int i=0;i<mobs.size();i++){
 					Mob mob= mobs.get(i);
 					mob.tick();
+				
 				}
 			}
 		}
