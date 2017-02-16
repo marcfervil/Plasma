@@ -21,6 +21,7 @@ public class Mob {
 	public int viewRange = 300;
 	public int speed;
 	public int size=Tile.size;
+	public int hp;
 	
 	//public Mob(int texture for texture
 	public Mob(int x, int y){
@@ -56,6 +57,11 @@ public class Mob {
 			Mob mob= mobs.get(i);
 			mob.paint();
 		}
+	}
+	
+	public void damage(int dm){
+		hp-=dm;
+		System.out.println(hp);
 	}
 	
 	public static boolean touchBounds(int xn,int yn){

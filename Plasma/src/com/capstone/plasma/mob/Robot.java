@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Tile;
@@ -21,10 +22,11 @@ public class Robot extends Mob {
 	public long startTime = 10;
 	public long endTime;
 	public boolean seeking = false;
-	public int viewRange = 200;
+	public int viewRange = 360;
 	public int action = 30;
 	public boolean onGround = false;
 	public int hp = 300;
+	public int size = Tile.size+10;
 	//public int x;
 	//public int y;
 	
@@ -37,6 +39,11 @@ public class Robot extends Mob {
 	
 	
 	public void tick(){
+		if(hp<=0){
+			Mob.mobs.remove(mobs.indexOf(this));
+			ParticleHandler.createParticleStream(x, y, Color.BLACK, 10, 10, true,10);
+			//deathAnimation();
+		}
 		if(faceRight){
 			speed = Math.abs(speed);
 			lowSpeed = Math.abs(lowSpeed);
@@ -69,7 +76,7 @@ public class Robot extends Mob {
 			if(!(seeking) && Math.abs(startTime-endTime)>900000000){ //1000000000 is 1 second
 				action = (int)(Math.random()*100);
 				startTime = System.nanoTime();
-				y-=4;
+				
 				
 			}
 			if(action<60){
@@ -90,8 +97,12 @@ public class Robot extends Mob {
 	public void paint(){
 		if(seeking){
 			//seeking
-			GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.pink);
-			//GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
+			//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.pink);
+			if(faceRight){
+				GraphicsHandler.drawImage(GraphicsHandler.angryRobotRight, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
+			}else{
+				GraphicsHandler.drawImage(GraphicsHandler.angryRobotLeft, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
+			}
 		}else{
 			if(faceRight){
 				//facing right
@@ -99,7 +110,8 @@ public class Robot extends Mob {
 				
 			}else{
 				// facing left
-				GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.GREEN);
+				//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.GREEN);
+				GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
 			}
 		}
 	}
@@ -137,14 +149,22 @@ public class Robot extends Mob {
 	}
 	//left of with jumping
 	public void move(){
-		x+=speed;
+		if(!(Utilities.touchBounds(x, y, speed, -1,size))){
+			x+=speed;
+		}else{
+			jump();
+		}
+		/*
 		if(checkSide(x,y)){
 			jump();
 		}
+		*/
 	}
 	
 	public void jump(){
-		yVelocity-=jumpHeight;
+		if(onGround){
+			yVelocity-=jumpHeight;
+		}
 		//System.out.println("jump!");
 	}
 	public void gravity(){
@@ -153,12 +173,12 @@ public class Robot extends Mob {
 				yVelocity-=jumpHeight;
 			//}
 			
-		//	yVelocity -=jumpTick;
+		//	yVelocity -=jumpTick;g
 			jump=false;
 		}
 		
 		Tile t;
-		if((t = Utilities.touchBoundsTile(x,y,0, yVelocity)) !=null){
+		if((t = Utilities.touchBoundsTile(x,y,0, yVelocity,size)) !=null){
 			//y+=yVelocity/3;
 			//System.out.println(yVelocity);
 			//System.out.println(touchBoundsNum(0,yVelocity));

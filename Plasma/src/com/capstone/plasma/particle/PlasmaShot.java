@@ -57,8 +57,10 @@ public class PlasmaShot extends Projectile{
 		for(int i=0;i<Mob.mobs.size();i++){
 			Mob t=Mob.mobs.get(i);
 			if(new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10).intersects(t.getBounds())){
-				Tile.tiles.get(i).damage(damage);
+				//Tile.tiles.get(i).damage(damage);
+				t.damage(damage);
 				remove=true;
+				
 			}
 			
 		}

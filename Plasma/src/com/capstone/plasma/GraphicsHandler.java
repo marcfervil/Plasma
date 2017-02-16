@@ -28,6 +28,8 @@ public class GraphicsHandler {
 	public static int crack3;
 	
 	public static int robotRight;
+	public static int angryRobotRight;
+	public static int angryRobotLeft;
 	
 	public static int lastTexture=0;
 	
@@ -40,7 +42,9 @@ public class GraphicsHandler {
 		plasmaPistol=GraphicsHandler.loadTexture("images/PlasmaPistol.png");
 		InventoryBackground=GraphicsHandler.loadTexture("images/InventoryBackground.png");
 		
-		robotRight = GraphicsHandler.loadTexture("images/robocalm2.png");
+		robotRight = GraphicsHandler.loadTexture("images/robocalm.png");
+		angryRobotRight = GraphicsHandler.loadTexture("images/roboangry2.png");
+		angryRobotLeft = GraphicsHandler.loadTexture("images/roboangry1.png");
 		
 		crack1=GraphicsHandler.loadTexture("images/crack1.png");
 		crack2=GraphicsHandler.loadTexture("images/crack2.png");
