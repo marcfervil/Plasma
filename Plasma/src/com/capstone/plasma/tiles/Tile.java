@@ -110,6 +110,18 @@ public class Tile implements Serializable{
 		for(int i =Tile.tiles.size()-1; i>0; i--){
 			Tile.tiles.get(i).paint();
 		}
+	}//i noticed i am in the tile class so i don't need to do Tile.tiles but I am 2 lazy to change
+	
+	public static void paintBackground(){
+		for(Tile t: Tile.backgroundTiles){
+			t.paint();
+		}
+	}
+	
+	public static void paintbackground2(){
+		for(int i = Tile.backgroundTiles.size()-1;i>0;i--){
+			Tile.backgroundTiles.get(i).paint();
+		}
 	}
 	
 	public static int randInt(int min, int max) {
