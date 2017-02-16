@@ -48,7 +48,7 @@ public class Mob {
 	}
 	
 	public Rectangle getBounds(){
-		return new Rectangle(x+GameScreen.xCam,y+GameScreen.yCam,Tile.size,Tile.size);
+		return new Rectangle(x+GameScreen.xCam,y+GameScreen.yCam,size,size);
 	}
 	
 	public static void paintMobs(){

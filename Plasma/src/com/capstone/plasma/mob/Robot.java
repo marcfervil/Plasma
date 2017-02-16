@@ -91,10 +91,12 @@ public class Robot extends Mob {
 		if(seeking){
 			//seeking
 			GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.pink);
+			//GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
 		}else{
 			if(faceRight){
 				//facing right
-				GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.BLUE);
+				GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
+				
 			}else{
 				// facing left
 				GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.GREEN);

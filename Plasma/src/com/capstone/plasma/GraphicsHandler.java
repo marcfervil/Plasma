@@ -39,13 +39,14 @@ public class GraphicsHandler {
 		itemHolder=GraphicsHandler.loadTexture("images/itemHolder.png");
 		plasmaPistol=GraphicsHandler.loadTexture("images/PlasmaPistol.png");
 		InventoryBackground=GraphicsHandler.loadTexture("images/InventoryBackground.png");
-		robotRight = GraphicsHandler.loadTexture("images/robot.png");
+		
+		robotRight = GraphicsHandler.loadTexture("images/robocalm2.png");
 		
 		crack1=GraphicsHandler.loadTexture("images/crack1.png");
 		crack2=GraphicsHandler.loadTexture("images/crack2.png");
 		crack3=GraphicsHandler.loadTexture("images/crack3.png");
 		
-		robotRight=GraphicsHandler.loadTexture("images/robocalm2.png");
+
 
 	}
 	
