@@ -3,6 +3,7 @@ package com.capstone.plasma.player;
 import java.awt.Rectangle;
 
 import com.capstone.plasma.GameScreen;
+import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.tiles.Tile;
 
 public class Utilities {
@@ -20,6 +21,21 @@ public class Utilities {
 		return null;
 	}
 	
+	public static boolean touchMobs(int x, int y,int xn,int yn,int size){
+		try{
+			Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,size,size);
+			//looping
+			for(int i=0;i<Mob.mobs.size();i++){
+				Tile s = Tile.tiles.get(i);
+				if(r.intersects(s.getBounds())  && (s.collide)){
+					return true;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	public static boolean touchBounds(int x, int y,int xn,int yn,int size){
 		try{

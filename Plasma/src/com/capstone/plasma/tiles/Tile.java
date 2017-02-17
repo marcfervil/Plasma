@@ -250,7 +250,7 @@ public class Tile implements Serializable{
     }
 	
 	public static void mapGen(){
-		for(int i =0; i<5; i++){
+		for(int i =0; i<20; i++){
 			Mob.mobs.add(new Robot(350+i*(120),40));
 			//Mob.mobs.add(m);
 		}

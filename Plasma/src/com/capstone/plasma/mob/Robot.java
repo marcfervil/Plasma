@@ -11,14 +11,14 @@ import com.capstone.plasma.tiles.Tile;
 
 public class Robot extends Mob {
 	
-	public static int lowSpeed = 2;
-	public static int highSpeed = 3;
-	public static int speed = lowSpeed;
-	public static int gravityStrength = 1;
-	public static int maxGrav = 100;
-	public static int yVelocity = 0;
-	public static int jumpHeight = 20; //was 20
-	public static boolean jump=false;
+	public int lowSpeed = 2;
+	public int highSpeed = 3;
+	public int speed = lowSpeed;
+	public int gravityStrength = 1;
+	public int maxGrav = 100;
+	public int yVelocity = 0;
+	public int jumpHeight = 20; //was 20
+	public boolean jump=false;
 	public long startTime = 10;
 	public long endTime;
 	public boolean seeking = false;
@@ -26,7 +26,9 @@ public class Robot extends Mob {
 	public int action = 30;
 	public boolean onGround = false;
 	public int hp = 300;
-	public int size = Tile.size+10;
+	public int size = Tile.size;
+	public int paintSize = size+10;
+	public boolean aniStage = true;
 	//public int x;
 	//public int y;
 	
@@ -93,28 +95,6 @@ public class Robot extends Mob {
 	}
 	
 	
-	//draw robot in different modes.
-	public void paint(){
-		if(seeking){
-			//seeking
-			//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.pink);
-			if(faceRight){
-				GraphicsHandler.drawImage(GraphicsHandler.angryRobotRight, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
-			}else{
-				GraphicsHandler.drawImage(GraphicsHandler.angryRobotLeft, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
-			}
-		}else{
-			if(faceRight){
-				//facing right
-				GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
-				
-			}else{
-				// facing left
-				//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.GREEN);
-				GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam, size, size);
-			}
-		}
-	}
 	
 	//this basically sets up the robots field of vision and tells it to move.
 	public void seek(){
@@ -149,7 +129,7 @@ public class Robot extends Mob {
 	}
 	//left of with jumping
 	public void move(){
-		if(!(Utilities.touchBounds(x, y, speed, -1,size))){
+		if(!(Utilities.touchBounds(x, y, speed, -1,size))){// && Utilities.touchMobs(x,y, speed,-1,size)
 			x+=speed;
 		}else{
 			jump();
@@ -196,6 +176,30 @@ public class Robot extends Mob {
 			onGround=false;
 		}
 			y+=yVelocity;
+	}
+	
+	//draw robot in different modes.
+	public void paint(){
+		if(seeking){
+			//seeking
+			//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.pink);
+			if(aniStage){
+				GraphicsHandler.drawImage(GraphicsHandler.angryRobotRight, x+GameScreen.xCam, y+GameScreen.yCam+(size-paintSize), paintSize, paintSize);
+			}else{
+				GraphicsHandler.drawImage(GraphicsHandler.angryRobotLeft, x+GameScreen.xCam, y+GameScreen.yCam+(size-paintSize), paintSize, paintSize);
+			}
+			//aniStage ^= true;
+		}else{
+			if(faceRight){
+				//facing right
+				GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam+(size-paintSize), paintSize, paintSize);
+				
+			}else{
+				// facing left
+				//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.GREEN);
+				GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam+(size-paintSize), paintSize, paintSize);
+			}
+		}
 	}
 	
 	/*old grav

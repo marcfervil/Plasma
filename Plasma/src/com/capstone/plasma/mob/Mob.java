@@ -34,6 +34,11 @@ public class Mob {
 		   Thread t1 = new Thread(new Runnable() {
 		         public void run() {
 		        	 while(true){
+		        		 try {
+		 					Thread.sleep(10);
+		 				} catch (InterruptedException e) {
+		 					e.printStackTrace();
+		 				}
 		              tick();
 		        	 }
 		         }
