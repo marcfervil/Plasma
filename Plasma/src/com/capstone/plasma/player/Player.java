@@ -22,6 +22,7 @@ public class Player {
 	public static int jumpTick = 0;
 	public static int PlayerSpeed = 3;
 	public static boolean onGround = false;
+	public static int hp = 300;
 	
 	
 	public static void paint(){
@@ -33,7 +34,11 @@ public class Player {
 		return new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
 	}
 	
-	//looping
+	public static void damage(int dm){
+		hp-=dm;
+		
+	}
+	
 	
 	
 	public static boolean touchBounds(int xn,int yn){
@@ -53,51 +58,6 @@ public class Player {
 	}
 	
 	
-	/*
-	public static boolean touchBounds(int xn,int yn){
-		try{
-
-			for(int i=0;i<Chunk.chunks.size();i++){
-				Chunk chunk =Chunk.chunks.get(i);
-				if(chunk.inChunk(x+xn,y+yn)){
-					for(int j=0;j<chunk.tiles.size();j++){
-						Tile s = chunk.tiles.get(j);
-						Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
-						if(r.intersects(s.getBounds())  && (s.collide)){
-							return true;
-						}
-					}
-				}
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return false;
-	}*/
-	
-	/*
-	public static int touchBoundsNum(int xn,int yn){
-		try{
-
-			for(int i=0;i<Chunk.chunks.size();i++){
-				Chunk chunk =Chunk.chunks.get(i);
-				if(chunk.inChunk(x+xn,y+yn)){
-					for(int j=0;j<chunk.tiles.size();j++){
-						Tile s = chunk.tiles.get(j);
-						Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
-						if(r.intersects(s.getBounds())  && (s.collide)){
-							return j;
-						}
-					}
-				}
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return -1;
-	}
-	*/
-	
 	public static Tile touchBoundsTile(int xn,int yn){
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
 		//looping
@@ -109,28 +69,7 @@ public class Player {
 		}
 		return null;
 	}
-/*
-	public static Tile touchBoundsTile(int xn,int yn){
-		try{
 
-			for(int i=0;i<Chunk.chunks.size();i++){
-				Chunk chunk =Chunk.chunks.get(i);
-				if(chunk.inChunk(x+xn,y+yn)){
-					for(int j=0;j<chunk.tiles.size();j++){
-						Tile s = chunk.tiles.get(j);
-						Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
-						if(r.intersects(s.getBounds())  && (s.collide)){
-							return s;
-						}
-					}
-				}
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return null;
-	}*/
-	
 	public static void findX(int playerX,ArrayList<Tile> s){
 		int numTiles = s.size();
 		if(numTiles>1){
@@ -151,18 +90,12 @@ public class Player {
 	public static void tick(){
 		
 		if (jump && onGround){
-			//if(yVelocity>maxGrav){
 				yVelocity-=jumpHeight;
-			//}
-			
-		//	yVelocity -=jumpTick;
+
 			jump=false;
 		}
 		Tile t;
 		if(( t = touchBoundsTile(0,yVelocity))!=null){
-			//y+=yVelocity/3;
-			//System.out.println(yVelocity);
-			//System.out.println(touchBoundsNum(0,yVelocity));
 				
 			if(yVelocity>0){
 			onGround=true;
@@ -172,9 +105,7 @@ public class Player {
 			}
 			yVelocity = 0;
 		}else{
-			//if(!onGround)gravCount++;
-			
-		//	if(gravCount+4>3){
+
 			if(yVelocity<maxGrav){
 			yVelocity +=gravityStrength;}
 			onGround=false;

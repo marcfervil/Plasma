@@ -1,6 +1,7 @@
 package com.capstone.plasma.mob;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
@@ -32,13 +33,14 @@ public class Robot extends Mob {
 	//public int x;
 	//public int y;
 	
+	
 	public Robot(int x, int y) {
 		super(x, y);
-
 	}
 	
 	
 	public void tick(){
+		attack();
 		if(hp<=0){
 			ParticleHandler.createParticleStream(x, y, Color.BLACK, 10, 10, true,10);
 			
@@ -94,7 +96,12 @@ public class Robot extends Mob {
 		}
 	}
 	
-	
+	public void attack(){
+		if((x-GameScreen.xCam)>=Player.x && (x-GameScreen.xCam)<=Player.x+Tile.size){
+			System.out.println("true");
+		}
+		//if(x-GameScreen.xCam)
+	}
 	
 	//this basically sets up the robots field of vision and tells it to move.
 	public void seek(){
@@ -136,11 +143,7 @@ public class Robot extends Mob {
 		}else{
 			jump();
 		}
-		/*
-		if(checkSide(x,y)){
-			jump();
-		}
-		*/
+
 	}
 	
 	public void jump(){
@@ -153,17 +156,12 @@ public class Robot extends Mob {
 		if (jump && onGround){
 			//if(yVelocity>maxGrav){
 				yVelocity-=jumpHeight;
-			//}
-			
-		//	yVelocity -=jumpTick;g
+
 			jump=false;
 		}
 		
 		Tile t;
 		if((t = Utilities.touchBoundsTile(x,y,0, yVelocity,size)) !=null){
-			//y+=yVelocity/3;
-			//System.out.println(yVelocity);
-			//System.out.println(touchBoundsNum(0,yVelocity));
 				
 			if(yVelocity>0){
 				onGround=true;
@@ -187,7 +185,6 @@ public class Robot extends Mob {
 		}
 	}
 	
-	//draw robot in different modes.
 	public void paint(){
 		if(seeking){
 			//seeking
@@ -211,18 +208,6 @@ public class Robot extends Mob {
 		}
 	}
 	
-	/*old grav
-	public void gravity(){
-		if(!(touchBounds(x, y))){
-			//y+=yVelocity;
-			yVelocity+=gravityStrength;
-		}else{
-			yVelocity = 0;
-		}
-		
-		
-		
-		y+=yVelocity;
-	}*/
+
 	
 }

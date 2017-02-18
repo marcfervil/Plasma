@@ -58,8 +58,8 @@ public class GameScreen{
         GL11.glDisable(GL11.GL_LIGHTING);
 
         
-        Tile.mapGen();
-        //Tile.load();
+        //Tile.mapGen();
+        Tile.load();
         //Tile.createChunks();
         
         try {

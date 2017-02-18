@@ -239,6 +239,10 @@ public class Tile implements Serializable{
     	sortMap();
     	System.out.println("");
     	System.out.println("done");
+		for(int i =0; i<20; i++){
+			Mob.mobs.add(new Robot(350+i*(120),40));
+			//Mob.mobs.add(m);
+		}
     //	printAllX();
 
     }
@@ -250,11 +254,12 @@ public class Tile implements Serializable{
     }
 	
 	public static void mapGen(){
+		/*
 		for(int i =0; i<20; i++){
 			Mob.mobs.add(new Robot(350+i*(120),40));
 			//Mob.mobs.add(m);
 		}
-
+		*/
 		
 		for(int i=0;i<500;i++){
 			for(int j=0;j<20;j++){
