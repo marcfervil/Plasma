@@ -22,7 +22,7 @@ public class Robot extends Mob {
 	public long startTime = 10;
 	public long endTime;
 	public boolean seeking = false;
-	public int viewRange = 360;
+	public int viewRange = 200;
 	public int action = 30;
 	public boolean onGround = false;
 	public int hp = 300;
@@ -34,16 +34,19 @@ public class Robot extends Mob {
 	
 	public Robot(int x, int y) {
 		super(x, y);
-		//this.x=x1;
-		//this.y=y1;
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	
 	public void tick(){
 		if(hp<=0){
-			Mob.mobs.remove(mobs.indexOf(this));
 			ParticleHandler.createParticleStream(x, y, Color.BLACK, 10, 10, true,10);
+			
+		//	System.out.println(mobs.indexOf(this));
+			
+			Mob.mobs.remove(mobs.indexOf(this));
+			t1.stop();
+			
 			//deathAnimation();
 		}
 		if(faceRight){
@@ -68,9 +71,6 @@ public class Robot extends Mob {
 	
 	public void action(){
 		endTime = System.nanoTime();
-		//System.out.println(startTime-endTime);
-		//pasive movement
-		//System.out.println(action);
 		seek();
 		if(!(seeking)){
 			speed = lowSpeed;
@@ -104,7 +104,7 @@ public class Robot extends Mob {
 		}
 		
 		if(seeking){
-			if(Player.x<x+viewRange && Player.x>x){
+			if(Player.x<x+viewRange && Player.x >x){
 				faceRight = true;
 			}else if(Player.x >x-viewRange && Player.x<x){
 				faceRight = false;
@@ -116,11 +116,8 @@ public class Robot extends Mob {
 		// i know this is not effecient. I'll fix it.
 			
 		if(faceRight && ((Player.x-x))<viewRange &&Player.x>x){
-			//x+=speed;
-			//move();
 			seeking = true;
 		}else if(!(faceRight) && Math.abs((Player.x-x))<viewRange && Player.x<x){
-			//move();
 			seeking = true;
 		}else{
 			seeking = false;
@@ -129,8 +126,13 @@ public class Robot extends Mob {
 	}
 	//left of with jumping
 	public void move(){
-		if(!(Utilities.touchBounds(x, y, speed, -1,size))){// && Utilities.touchMobs(x,y, speed,-1,size)
-			x+=speed;
+		if(!(Utilities.touchBounds(x, y, speed, -1,size)) && !(Utilities.touchBoundsMobs(x, y, speed, -1,size,this))){
+			
+				
+				if( !(Player.x-Tile.size < x && Player.x+Tile.size > x) ){
+					x+=speed;
+				}
+			
 		}else{
 			jump();
 		}
@@ -164,18 +166,25 @@ public class Robot extends Mob {
 			//System.out.println(touchBoundsNum(0,yVelocity));
 				
 			if(yVelocity>0){
-			onGround=true;
+				onGround=true;
 			}
-			if(yVelocity<0){
-			y-=(y-t.y-Tile.size);
+			if(yVelocity<0 ){
+				
+				y-=(y-t.y-Tile.size);
+				
 			}
 			yVelocity = 0;
 		}else{
 			if(yVelocity<maxGrav){
-			yVelocity +=gravityStrength;}
+				yVelocity +=gravityStrength;
+			}
 			onGround=false;
 		}
+//		System.out.println("falling");
+	
+		if(!(Utilities.touchBoundsMobs(x,y,0, yVelocity,size,this))){
 			y+=yVelocity;
+		}
 	}
 	
 	//draw robot in different modes.

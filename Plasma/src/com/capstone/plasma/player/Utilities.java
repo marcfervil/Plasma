@@ -52,5 +52,22 @@ public class Utilities {
 		}
 		return false;
 	}
+	
+	public static boolean touchBoundsMobs(int x, int y,int xn,int yn,int size,Mob you){
+		try{
+			Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,size,size);
+			//looping
+	
+			for(int i=0;i<Mob.mobs.size();i++){
+				Mob m = Mob.mobs.get(i);
+				if(r.intersects(m.getBounds()) &&m!=you){
+					return true;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }

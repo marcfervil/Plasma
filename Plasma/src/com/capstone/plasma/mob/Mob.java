@@ -22,6 +22,7 @@ public class Mob {
 	public int speed;
 	public int size=Tile.size;
 	public int hp;
+	public Thread t1;
 	
 	//public Mob(int texture for texture
 	public Mob(int x, int y){
@@ -31,7 +32,7 @@ public class Mob {
 		//this.texture=texture;
 	}
 	public void run(){
-		   Thread t1 = new Thread(new Runnable() {
+		    t1 = new Thread(new Runnable() {
 		         public void run() {
 		        	 while(true){
 		        		 try {
@@ -57,8 +58,8 @@ public class Mob {
 					e.printStackTrace();
 				}
 				for(int i=0;i<mobs.size();i++){
-					Mob mob= mobs.get(i);
-					mob.tick();
+				//	Mob mob= mobs.get(i);
+			//		mob.tick();
 				
 				}
 			}
