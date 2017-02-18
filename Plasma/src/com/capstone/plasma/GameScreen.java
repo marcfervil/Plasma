@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.mob.Mob;
+import com.capstone.plasma.mob.Robot;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Chunk;
@@ -58,8 +59,12 @@ public class GameScreen{
         GL11.glDisable(GL11.GL_LIGHTING);
 
         
-        //Tile.mapGen();
-        Tile.load();
+        Tile.mapGen();
+        for(int i =0; i<20; i++){
+			Mob.mobs.add(new Robot(350+i*(120),40));
+			//Mob.mobs.add(m);
+		}
+        //Tile.load();
         //Tile.createChunks();
         
         try {
@@ -131,9 +136,6 @@ public class GameScreen{
         		height=Display.getHeight();
         	}
         	//loop
-        	
-
-        	
         	
         	if(UserInput.lastKey == "a"){
         		//Tile.paintBackground();
