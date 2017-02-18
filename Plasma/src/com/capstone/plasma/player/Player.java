@@ -30,7 +30,7 @@ public class Player {
 		
 		
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);	
-	//	GraphicsHandler.drawText("Plasma",x+GameScreen.xCam, y+GameScreen.yCam);
+		GraphicsHandler.drawText("Plasma",x+GameScreen.xCam, y-15+GameScreen.yCam);
 		//GraphicsHandler.drawRect(getBounds(0,yVelocity).x, getBounds(0,yVeloc
 	}
 	

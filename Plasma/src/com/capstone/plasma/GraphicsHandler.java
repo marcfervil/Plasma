@@ -186,17 +186,10 @@ public class GraphicsHandler {
     public static void drawText(String text,int x,int y){
     	String textMap=" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDFEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}";
   //  	System.out.println(textMap.indexOf(text.substring(0,1)));
-    	
-    	int xx=0;
-    	int yy=0;
-    	for(int i=0;i<300;i++){
-    		drawImage(fontTexture[i], x+xx, y+yy, 15, 15);
-    		xx+=10;
-    		if(xx>10*10){
-    			xx=0;
-    			yy+=10;
-    		}
-    		
+    	int xOffset=0;
+    	for(int i=0;i<text.length();i++){
+    		drawImage(fontTexture[textMap.indexOf(text.substring(i,i+1))+32], x+xOffset, y, 15, 15);
+    		xOffset+=8;
     	}
     	
     	//textMap.indexOf(text.substring(0,1))
@@ -217,8 +210,10 @@ public class GraphicsHandler {
 		
 		int textureLocation=0;
 		
-		for(int ix=0;ix<textSize;ix++){
-			for(int iy=0;iy<textSize;iy++){
+		
+		for(int iy=0;iy<textSize;iy++){
+			for(int ix=0;ix<textSize;ix++){
+			
 				
 				System.out.println("one loaded "+textureLocation);
 				
