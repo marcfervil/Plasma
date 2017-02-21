@@ -59,12 +59,12 @@ public class GameScreen{
         GL11.glDisable(GL11.GL_LIGHTING);
 
         
-        Tile.mapGen();
-        for(int i =0; i<20; i++){
-			Mob.mobs.add(new Robot(350+i*(120),40));
+        //Tile.mapGen();
+        for(int i =0; i<3; i++){
+			Mob.mobs.add(new Robot(350+i*(120),40,i));
 			//Mob.mobs.add(m);
 		}
-        //Tile.load();
+        Tile.load();
         //Tile.createChunks();
         
         try {

@@ -23,19 +23,21 @@ public class Robot extends Mob {
 	public long startTime = 10;
 	public long endTime;
 	public boolean seeking = false;
-	public int viewRange = 200;
+	public int viewRange = 250;
 	public int action = 30;
 	public boolean onGround = false;
 	public int hp = 300;
 	public int size = Tile.size;
 	public int paintSize = size+10;
 	public boolean aniStage = true;
+	int num;
 	//public int x;
 	//public int y;
 	
 	
-	public Robot(int x, int y) {
+	public Robot(int x, int y,int num) {
 		super(x, y);
+		this.num = num;
 	}
 	
 	
@@ -206,7 +208,9 @@ public class Robot extends Mob {
 				GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam+(size-paintSize), paintSize, paintSize);
 			}
 		}
+		GraphicsHandler.drawText("rob"+num, x+GameScreen.xCam, y+GameScreen.yCam);
 	}
+	
 	
 
 	
