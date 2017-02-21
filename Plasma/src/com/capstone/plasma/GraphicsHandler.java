@@ -33,6 +33,8 @@ public class GraphicsHandler {
 	
 	public static int lastTexture=0;
 	
+	public static int[] fontTexture;
+	
 	public static void loadTextures(){
 		wall=GraphicsHandler.loadTexture("images/wall.jpg");
 		floor=GraphicsHandler.loadTexture("images/floor.jpg");
@@ -50,7 +52,7 @@ public class GraphicsHandler {
 		crack2=GraphicsHandler.loadTexture("images/crack2.png");
 		crack3=GraphicsHandler.loadTexture("images/crack3.png");
 		
-
+		loadFontPack();
 
 	}
 	
@@ -180,7 +182,93 @@ public class GraphicsHandler {
     //   glColor4f(1f, 0f, 1f, 1f);
     }
 
+    
+    public static void drawText(String text,int x,int y){
+    	String textMap=" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDFEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}";
+  //  	System.out.println(textMap.indexOf(text.substring(0,1)));
+    	int xOffset=0;
+    	for(int i=0;i<text.length();i++){
+    		drawImage(fontTexture[textMap.indexOf(text.substring(i,i+1))+32], x+xOffset, y, 15, 15);
+    		xOffset+=8;
+    	}
+    	
+    	//textMap.indexOf(text.substring(0,1))
+    	
+    }
 
+    public static void loadFontPack(){
+    	//16 x 16
+    	BufferedImage image = null;
+		try {
+			image = ImageIO.read(new File("images/font.png"));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}	
+		int textSize=(image.getWidth()/16);
+		
+		fontTexture=new int[textSize*textSize];
+		
+		int textureLocation=0;
+		
+		
+		for(int iy=0;iy<textSize;iy++){
+			for(int ix=0;ix<textSize;ix++){
+			
+				
+				System.out.println("one loaded "+textureLocation);
+				
+				System.out.println(ix*textSize+","+iy*textSize);
+				
+				int[] pixels = new int[textSize * textSize];
+				
+				//for some reason it kept going out of bounds??
+				//this is like, really bad programming but it works lol
+				if(iy*textSize>=image.getHeight()||ix*textSize>=image.getWidth()){
+					
+					continue;
+				}
+				
+		        image.getRGB(ix*textSize, iy*textSize, textSize, textSize, pixels, 0, textSize);
+		
+		        ByteBuffer buffer = BufferUtils.createByteBuffer(textSize * textSize * BYTES_PER_PIXEL);
+		        
+		        for(int x = 0; x <textSize; x++){
+		        	  for(int y = 0; y < textSize; y++){
+		             
+		        	//	  System.out.println(((y+(iy*textSize)))+","+((x+(ix*textSize))));
+		        		  
+		                  int pixel = pixels[y * textSize + x];
+		                  
+		                 
+		                  
+		                  buffer.put((byte) ((pixel >> 16) & 0xFF));     // Red component
+		                  buffer.put((byte) ((pixel >> 8) & 0xFF));      // Green component
+		                  buffer.put((byte) (pixel & 0xFF));               // Blue component
+		                  buffer.put((byte) ((pixel >> 24) & 0xFF));    // Alpha component. Only for RGBA
+		              }
+		          }
+		
+		          buffer.flip();
+		          
+		          int textureID = glGenTextures(); //Generate texture ID
+		          glBindTexture(GL_TEXTURE_2D, textureID); //Bind texture ID
+		          
+		          //Setup wrap mode
+		          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
+		          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
+		
+		          //Setup texture scaling filtering
+		          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		          
+		          //Send texel data to OpenGL
+		          glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, textSize, textSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+		          
+		          textureLocation++;
+		          fontTexture[textureLocation]=textureID;
+			}
+		}
+    }
 
 	public static int loadTexture(String imagePath){
 	        
@@ -196,7 +284,7 @@ public class GraphicsHandler {
 	          ByteBuffer buffer = BufferUtils.createByteBuffer(image.getWidth() * image.getHeight() * BYTES_PER_PIXEL); //4 for RGBA, 3 for RGB
 	          
 	          for(int x = 0; x < image.getWidth(); x++){
-	          for(int y = 0; y < image.getHeight(); y++){
+	        	  for(int y = 0; y < image.getHeight(); y++){
 	             
 	                  int pixel = pixels[y * image.getWidth() + x];
 	                  buffer.put((byte) ((pixel >> 16) & 0xFF));     // Red component
