@@ -98,7 +98,7 @@ public class Robot extends Mob {
 	
 	public void attack(){
 		if((x-GameScreen.xCam)>=Player.x && (x-GameScreen.xCam)<=Player.x+Tile.size){
-			System.out.println("true");
+			
 		}
 		//if(x-GameScreen.xCam)
 	}
