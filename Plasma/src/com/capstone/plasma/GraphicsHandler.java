@@ -183,13 +183,13 @@ public class GraphicsHandler {
     }
 
     
-    public static void drawText(String text,int x,int y){
-    	String textMap=" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDFEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}";
+    public static void drawText(String text,int x,int y,int size){
+    	String textMap="! \"#$%&'()*+,-.//0123456789:;<=>?ABCDFEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}";
   //  	System.out.println(textMap.indexOf(text.substring(0,1)));
     	int xOffset=0;
     	for(int i=0;i<text.length();i++){
-    		drawImage(fontTexture[textMap.indexOf(text.substring(i,i+1))+32], x+xOffset, y, 15, 15);
-    		xOffset+=8;
+    		drawImage(fontTexture[textMap.indexOf(text.substring(i,i+1))+32], x+xOffset, y, 25, 25);
+    		xOffset+=15;
     	}
     	
     	//textMap.indexOf(text.substring(0,1))
@@ -213,18 +213,13 @@ public class GraphicsHandler {
 		
 		for(int iy=0;iy<textSize;iy++){
 			for(int ix=0;ix<textSize;ix++){
-			
-				
-				System.out.println("one loaded "+textureLocation);
-				
-				System.out.println(ix*textSize+","+iy*textSize);
-				
+
 				int[] pixels = new int[textSize * textSize];
 				
 				//for some reason it kept going out of bounds??
 				//this is like, really bad programming but it works lol
 				if(iy*textSize>=image.getHeight()||ix*textSize>=image.getWidth()){
-					
+
 					continue;
 				}
 				
