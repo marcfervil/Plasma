@@ -27,8 +27,7 @@ public class Player {
 	
 	public static void paint(){
 		
-		int fps=10;
-		GraphicsHandler.drawText("B: 0123456789",20, 20,25);
+		
 		
 		
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);	

@@ -7,6 +7,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
 import com.capstone.plasma.player.PlayerHandler;
+import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Robot;
@@ -29,6 +30,7 @@ public class GameScreen{
 	public static int width = 900;
 	public static int height = 600;
 	public static ArrayList<Chunk> chunks = new ArrayList<Chunk>();
+	static int fps=0;
 	
 	public static void initDisplay(){
 		try {
@@ -87,48 +89,48 @@ public class GameScreen{
         	Mob.mobs.get(i).run();
         }
         
-        //benchmarking
-        
-     /*
-        Player.x=950;
-        Player.y=400;
-        for(int j=0;j<10;j++){
-	        long startTime=0;
-	        long endTime = 0;
-	        long duration=0;
-	    
-	        int avg1=0;
-	        for(int i=0;i<10;i++){
-		        startTime = System.nanoTime();
-		        //System.out.println(startTime);
-		        Player.touchBounds(0, 10);
-		        endTime = System.nanoTime();
-		        duration = (endTime - startTime);
-		        avg1+=duration;
-	        }
-	        avg1=avg1/100000;
-	        System.out.println("touchBounds NEW "+avg1);
-	        
-	        int avg2=0;
-	        for(int i=0;i<100000;i++){
-		        startTime = System.nanoTime();
-		        Player.touchBoundsOG(0, 10);
-		        endTime = System.nanoTime();
-		        duration = (endTime - startTime);
-		        avg2+=duration;
-	        }
-	        avg2=avg2/100000;
-	        System.out.println("touchBounds OLD "+avg2);
-	        System.out.println("shaved "+(avg2-avg1)+" miliseconds");
-	        System.out.println("");
-        }*/
-        
+ 
+        Thread t1 = new Thread(new Runnable() {
+	         public void run() {
+	        	 while(true){
+	        		 try {
+	 					Thread.sleep(500);
+	 				} catch (InterruptedException e) {
+	 					e.printStackTrace();
+	 				}
+	        		Robot r=  new Robot(Utilities.randInt(0, 500),40,4);
+	        		 Mob.mobs.add(r);
+	        		r.run();
+	        	 }
+	         }
+	   });
+	   t1.start();
     }
    
     
     public static void run(){
 
+    	long lastTime = System.nanoTime();
+    	double delta = 0.0;
+    	double ns = 1000000000.0 / 60.0;
+    	long timer = System.currentTimeMillis();
+    	int updates = 0;
+    	int frames = 0;
+    	
+    	
         while(!Display.isCloseRequested()) {
+        	
+        	//double lastTime = System.currentTimeMillis();
+        	//int nbFrames = 0;
+    		long now = System.nanoTime();
+    		delta += (now - lastTime) / ns;
+    		lastTime = now;
+    		if (delta >= 1.0) {
+    		//	update();
+    			updates++;
+    			delta--;
+    		}
+   	 
         	glClear(GL_COLOR_BUFFER_BIT );
         	if (Display.wasResized()){
         		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
@@ -163,12 +165,39 @@ public class GameScreen{
         	Mob.paintMobs();
         	Inventory.paint();
     
-        	UserInput.get();  
         	
+        	GraphicsHandler.drawText("fps:"+fps,20, 20,25);
+        	
+        	
+        	/*
+        	fps=1000/frameTime;
+        	
+        	GraphicsHandler.drawText("fps:"+fps,20, 20,25);
+    		
+        	int thisFrameTime = (int) ((thisLoop=System.currentTimeMillis()) - lastLoop);
+    		frameTime+= (thisFrameTime - frameTime) / filterStrength;
+    	 	lastLoop = thisLoop;*/
+    	
+    		
+        	UserInput.get();  
+        
         	Display.update();
+        	
+        	
+        	
         	Display.sync(60);
   
-	
+      
+        	frames++;
+    		if (System.currentTimeMillis() - timer > 1000) {
+    			timer += 1000;
+    			//System.out.println(updates + " ups, " + frames + " fps");
+    			fps=frames;
+    			updates = 0;
+    			frames = 0;
+    		}
+         
+        	
         }
         try{
         	Display.destroy();

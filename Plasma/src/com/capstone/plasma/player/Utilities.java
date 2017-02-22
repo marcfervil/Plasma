@@ -1,6 +1,7 @@
 package com.capstone.plasma.player;
 
 import java.awt.Rectangle;
+import java.util.Random;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.mob.Mob;
@@ -8,6 +9,9 @@ import com.capstone.plasma.tiles.Tile;
 
 public class Utilities {
 	
+	public static int randInt(int min, int max) {
+		return (new Random()).nextInt((max - min) + 1) + min;
+	}
 	
 	public static Tile touchBoundsTile(int x, int y,int xn,int yn, int size){
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,size,size);
