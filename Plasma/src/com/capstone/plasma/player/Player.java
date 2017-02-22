@@ -27,10 +27,14 @@ public class Player {
 	
 	public static void paint(){
 		
+		int fps=10;
+		GraphicsHandler.drawText("B: 0123456789",20, 20,25);
 		
 		
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);	
-		GraphicsHandler.drawText("Plasma",x+GameScreen.xCam, y-15+GameScreen.yCam);
+		
+		
+		
 		//GraphicsHandler.drawRect(getBounds(0,yVelocity).x, getBounds(0,yVeloc
 	}
 	
@@ -42,8 +46,7 @@ public class Player {
 		hp-=dm;
 		
 	}
-	
-	
+
 	
 	public static boolean touchBounds(int xn,int yn){
 		try{
