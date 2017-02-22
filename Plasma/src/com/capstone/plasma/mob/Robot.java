@@ -139,11 +139,14 @@ public class Robot extends Mob {
 	}
 	//left of with jumping
 	public void move(){
-		if(!(Utilities.touchBounds(x, y, speed, -1,size)) && !(Utilities.touchBoundsMobs(x, y, speed, -1,size,this))){
+		if(!(Utilities.touchBounds(x, y, speed, -1,size))){
+			if(Utilities.touchBoundsMobs(x, y, speed, -1,size,this)){
+				x-=speed;
+				jump();
+			}
 			
-				
-				if( !(Player.x-Tile.size < x && Player.x+Tile.size > x) ){
-					x+=speed;
+			if( !(Player.x-Tile.size < x && Player.x+Tile.size > x) ){
+				x+=speed;
 				}
 			
 		}else{
@@ -154,6 +157,7 @@ public class Robot extends Mob {
 	
 	public void jump(){
 		if(onGround){
+			System.out.println("jump");
 			yVelocity-=jumpHeight;
 		}
 		//System.out.println("jump!");
