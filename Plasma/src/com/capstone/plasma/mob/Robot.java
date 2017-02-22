@@ -212,7 +212,7 @@ public class Robot extends Mob {
 				GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam+(size-paintSize), paintSize, paintSize);
 			}
 		}
-			GraphicsHandler.drawText("rob"+num, x+GameScreen.xCam, y+GameScreen.yCam);
+			//GraphicsHandler.drawText("rob"+num, x+GameScreen.xCam, y+GameScreen.yCam);
 		
 	}
 	
