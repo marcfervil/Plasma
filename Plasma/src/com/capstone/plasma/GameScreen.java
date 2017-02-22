@@ -89,7 +89,7 @@ public class GameScreen{
         	Mob.mobs.get(i).run();
         }
         
- 
+ /*
         Thread t1 = new Thread(new Runnable() {
 	         public void run() {
 	        	 while(true){
@@ -104,7 +104,7 @@ public class GameScreen{
 	        	 }
 	         }
 	   });
-	   t1.start();
+	   t1.start();*/
     }
    
     

@@ -78,6 +78,7 @@ public class Robot extends Mob {
 	}
 	
 	public void action(){
+	//	y-=10;
 		endTime = System.nanoTime();
 		seek();
 		if(!(seeking)){
@@ -140,6 +141,7 @@ public class Robot extends Mob {
 	//left of with jumping
 	public void move(){
 		if(!(Utilities.touchBounds(x, y, speed, -1,size))){
+			
 			if(Utilities.touchBoundsMobs(x, y, speed, -1,size,this)){
 				x-=speed;
 				jump();
@@ -163,17 +165,11 @@ public class Robot extends Mob {
 		//System.out.println("jump!");
 	}
 	public void gravity(){
-		if (jump && onGround){
-			//if(yVelocity>maxGrav){
-				yVelocity-=jumpHeight;
-
-			jump=false;
-		}
-		
+	
 		Tile t;
 		if((t = Utilities.touchBoundsTile(x,y,0, yVelocity,size)) !=null){
 				
-			if(yVelocity>0){
+			if(yVelocity==0){
 				onGround=true;
 			}
 			if(yVelocity<0 ){
