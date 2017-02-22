@@ -60,8 +60,12 @@ public class GameScreen{
 
         
         //Tile.mapGen();
-        for(int i =0; i<3; i++){
-			Mob.mobs.add(new Robot(350+i*(120),40,i));
+        for(int i =-30; i<30; i++){
+			Mob.mobs.add(new Robot(350+i*(30),40,i));
+			//Mob.mobs.add(m);
+		}
+        for(int i =-30; i<30; i++){
+			Mob.mobs.add(new Robot(350+i*(30),10,i));
 			//Mob.mobs.add(m);
 		}
         Tile.load();
@@ -81,8 +85,8 @@ public class GameScreen{
         ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
         pt.start();
         
-        //Mob.MobTickManager mm = new Mob.MobTickManager();
-        //mm.start();
+  //      Mob.MobTickManager mm = new Mob.MobTickManager();
+//        mm.start();
         for(int i =0; i<Mob.mobs.size();i ++){
         	Mob.mobs.get(i).run();
         }

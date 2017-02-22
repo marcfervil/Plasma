@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Tile;
 //import com.sun.prism.paint.Color;
 import java.awt.Color;
@@ -51,17 +52,24 @@ public class Mob {
 
 	public static class MobTickManager extends Thread{
 		public void run(){
+			int i = 0;
 			while(true){
 				try {
 					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				for(int i=0;i<mobs.size();i++){
+				Mob.mobs.add(new Robot(Player.x, Player.y));
+				System.out.println("loaded");
+		        while(Mob.mobs.size()>i){
+		        	i++;
+		        	Mob.mobs.get(i).run();
+		        }
+				//for(int i=0;i<mobs.size();i++){
 				//	Mob mob= mobs.get(i);
 			//		mob.tick();
 				
-				}
+				//}
 			}
 		}
 	}
