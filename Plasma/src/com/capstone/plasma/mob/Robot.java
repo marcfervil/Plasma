@@ -31,6 +31,9 @@ public class Robot extends Mob {
 	public int paintSize = size+10;
 	public boolean aniStage = true;
 	int num=1;
+	int count = 0;
+	public int hit = 100;
+	public int knockBack = 60;
 	//public int x;
 	//public int y;
 	
@@ -104,8 +107,14 @@ public class Robot extends Mob {
 	}
 	
 	public void attack(){
-		if((x-GameScreen.xCam)>=Player.x && (x-GameScreen.xCam)<=Player.x+Tile.size){
-			//System.out.println("true");
+		if(Utilities.touchPlayer(x, y, size)){
+			System.out.println("collided!");
+			Player.damage(hit);
+			if(faceRight){
+				Player.x+=knockBack;
+			}else{
+				Player.x-=knockBack;
+			}
 		}
 		//if(x-GameScreen.xCam)
 	}
@@ -159,10 +168,9 @@ public class Robot extends Mob {
 	
 	public void jump(){
 		if(onGround){
-			System.out.println("jump");
 			yVelocity-=jumpHeight;
 		}
-		//System.out.println("jump!");
+		
 	}
 	public void gravity(){
 	

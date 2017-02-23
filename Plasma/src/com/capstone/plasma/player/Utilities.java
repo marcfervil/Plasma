@@ -27,7 +27,7 @@ public class Utilities {
 	
 	public static boolean touchMobs(int x, int y,int xn,int yn,int size){
 		try{
-			Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,size,size);
+			Rectangle r=  new Rectangle(x+xn,y+yn,size,size);
 			//looping
 			for(int i=0;i<Mob.mobs.size();i++){
 				Tile s = Tile.tiles.get(i);
@@ -37,6 +37,17 @@ public class Utilities {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static boolean touchPlayer(int x, int y, int size){
+		//System.out.println("robx range"+(x)+" "+Player.x);
+		Rectangle r = new Rectangle(x,y,size,size);
+		//if((x)>Player.x && (x)<(Player.x+Tile.size)){
+		Rectangle pl = new Rectangle(Player.x,Player.y,Player.size, Player.size);
+		if(r.intersects(pl)){
+			return true;
 		}
 		return false;
 	}

@@ -23,17 +23,11 @@ public class Player {
 	public static int PlayerSpeed = 3;
 	public static boolean onGround = false;
 	public static int hp = 300;
+	public static int size = Tile.size;
 	
 	
 	public static void paint(){
-		
-		
-		
-		
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);	
-		
-		
-		
 		//GraphicsHandler.drawRect(getBounds(0,yVelocity).x, getBounds(0,yVeloc
 	}
 	
@@ -45,7 +39,10 @@ public class Player {
 		hp-=dm;
 		
 	}
-
+	
+	public static void throwBack(int knock){
+		
+	}
 	
 	public static boolean touchBounds(int xn,int yn){
 		try{
@@ -101,6 +98,7 @@ public class Player {
 			jump=false;
 		}
 		Tile t;
+
 		if(( t = touchBoundsTile(0,yVelocity))!=null){
 				
 			if(yVelocity>0){
