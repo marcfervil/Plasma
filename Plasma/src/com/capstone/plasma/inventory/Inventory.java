@@ -23,7 +23,8 @@ public class Inventory {
 		for(int i=0;i<activeItems.length;i++){
 			Item item= activeItems[i];
 			int holderX=30+(i*(60+Tile.size/2));
-			int holderY=GameScreen.height-90;
+			//int holderY=GameScreen.height-90;
+			int holderY=GameScreen.orgHeight-80;
 			GraphicsHandler.drawImage(GraphicsHandler.itemHolder, holderX,holderY, 60, 60);
 			if(item!=null){
 				item.paint(holderX+(30/2), holderY+(30/2));

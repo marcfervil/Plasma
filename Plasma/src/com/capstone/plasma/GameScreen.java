@@ -29,6 +29,7 @@ public class GameScreen{
 	public static int yCam=0;
 	public static int width = 900;
 	public static int height = 600;
+	public static int orgHeight = height;
 	public static ArrayList<Chunk> chunks = new ArrayList<Chunk>();
 	static int fps=0;
 	
