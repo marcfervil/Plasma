@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import com.capstone.plasma.*;
 import com.capstone.plasma.inventory.PlasmaPistol;
+import com.capstone.plasma.inventory.TNT;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Robot;
 import com.capstone.plasma.particle.Dropable;
@@ -272,6 +273,8 @@ public class Tile implements Serializable{
 						if(randInt(0,100)>95){
 							//ParticleHandler.createParticle(i*Tile.size, (j*Tile.size)-Tile.size, color);
 							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-(Tile.size+20),new PlasmaPistol()));
+						}else if(randInt(0,100)>95){
+							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-(Tile.size+20),new TNT()));
 						}
 						
 						tiles.add(new GlowTile(i*Tile.size,j*Tile.size));

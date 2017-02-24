@@ -6,6 +6,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.inventory.PlasmaPistol;
+import com.capstone.plasma.inventory.TNT;
 import com.capstone.plasma.particle.Projectile;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
@@ -110,7 +111,7 @@ public class UserInput {
 							break;
 							
 						case Keyboard.KEY_J:
-							Inventory.activeItems[0] = new PlasmaPistol();
+							//Inventory.activeItems[0] = new TNT();
 							if(Inventory.activeItems[0] !=null &&shotTick>=shotTickSpeed){
 								shotTick = 0;
 								Inventory.activeItems[0].action();

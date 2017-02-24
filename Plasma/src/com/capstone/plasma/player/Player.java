@@ -94,7 +94,7 @@ public class Player {
 		
 		if (jump && onGround){
 				yVelocity-=jumpHeight;
-
+				
 			jump=false;
 		}
 		Tile t;
@@ -114,13 +114,14 @@ public class Player {
 		}else{
 
 			if(yVelocity<maxGrav){
-			yVelocity +=gravityStrength;}
+			yVelocity +=gravityStrength;
+			}
 			onGround=false;
 		//	}
 		}
 		//if(yVelocity<maxGrav){
 			y+=yVelocity;
-			
+			//GameScreen.yCam-=yVelocity;
 			if(y>GameScreen.height-100){
 				GameScreen.yCam-=yVelocity;
 			}

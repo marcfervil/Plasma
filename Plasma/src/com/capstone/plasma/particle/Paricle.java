@@ -19,6 +19,8 @@ class Particle{
 	
 	int tickCount=0;
 	int onTick=1;
+	
+	boolean backgroundTick=false;
 			
 	public Particle(int x, int y,Color color){
 		this.x=x+Tile.randInt(-30, 30);

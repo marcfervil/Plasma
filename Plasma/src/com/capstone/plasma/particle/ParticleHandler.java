@@ -42,7 +42,7 @@ public class ParticleHandler {
 					Particle p=particles.get(i);
 					
 					if((!(p==null)) ){
-						if(p.alpha>-1 && p.x+GameScreen.xCam<900 && p.x+GameScreen.xCam>-60){
+						if(p.alpha>-1 && p.x+GameScreen.xCam<900 && p.x+GameScreen.xCam>-60 || p.backgroundTick){
 							if(p.tickCount==p.onTick){
 								p.tick();
 								p.tickCount=0;
@@ -171,6 +171,7 @@ public class ParticleHandler {
 			this.dy=dy;
 			this.distance=distance;
 			this.angle=angle;
+			backgroundTick=true;
 		}
 
 		public void tick(){
