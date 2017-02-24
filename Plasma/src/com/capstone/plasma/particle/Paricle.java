@@ -61,4 +61,8 @@ class Particle{
 			return;
 		}
 	}
+	
+	public void remove(){
+		remove=true;
+	}
 }

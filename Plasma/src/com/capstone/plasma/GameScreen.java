@@ -62,12 +62,12 @@ public class GameScreen{
         GL11.glDisable(GL11.GL_LIGHTING);
 
         
-        //Tile.mapGen();
+        Tile.mapGen();
         for(int i =0; i<4; i++){
-			Mob.mobs.add(new Robot(350+i*(30),40,i));
+		//	Mob.mobs.add(new Robot(350+i*(30),40,i));
 			//Mob.mobs.add(m);
 		}
-        Tile.load();
+      //  Tile.load();
         //Tile.createChunks();
         
         try {
@@ -192,7 +192,6 @@ public class GameScreen{
         	frames++;
     		if (System.currentTimeMillis() - timer > 1000) {
     			timer += 1000;
-    			//System.out.println(updates + " ups, " + frames + " fps");
     			fps=frames;
     			updates = 0;
     			frames = 0;

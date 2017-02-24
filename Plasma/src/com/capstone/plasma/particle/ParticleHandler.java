@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import com.capstone.plasma.GameScreen;
+import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.player.Utilities;
+import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.Tile;
 
 public class ParticleHandler {
@@ -148,25 +151,49 @@ public class ParticleHandler {
 		}
 	}
 	
+	public static void createExplosion(int x, int y,int distance,Color color){
+		
+		for(int i=0;i<distance;i++){
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),1,1,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),0,1,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),1,0,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),-1,-1,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),0,-1,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),-1,0,distance,color));
+		}
+		
+		
+	}
 	
-	static class EarthParticle extends Particle{
+	static class DebrisParticle extends Particle{
 
-		public EarthParticle(int x, int y,Color color){
+		public int dx,dy,distance,distanceTraveled;
+		
+		public DebrisParticle(int x, int y,int dx,int dy,int distance,Color color){
 			super(x,y,color);
+			this.dx=dx;
+			this.dy=dy;
+			this.distance=distance;
 		}
-		public void check(){
+
+		public void tick(){
 			
-			//y=x^2
-			//y = a(x – h)^2 + k 
-			y=(int) (-1*Math.pow((x-x+10),2)+y+10);
-	
+			if(Utilities.touchBoundsTile(x, y, 0, dy, 10) instanceof Floor){
+				dy=0;
+				//dx=-1;
+			}else if(Utilities.touchBoundsTile(x, y, dx, 0, 10) instanceof Floor){
+				dy=0;
+				
+			} 
 			
-		//	alpha--;
-			if(alpha==0){
-				remove=true;
-				return;
-			}
+			x+=dx;
+			y+=dy;
+			
+			distanceTraveled++;
+			alpha--;
+			
 		}
+		
 	}
 
 

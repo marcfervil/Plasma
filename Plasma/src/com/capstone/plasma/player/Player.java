@@ -105,7 +105,10 @@ public class Player {
 			onGround=true;
 			}
 			if(yVelocity<0){
-			y-=(y-t.y-Tile.size);
+				y-=(y-t.y-Tile.size);
+				
+				
+				
 			}
 			yVelocity = 0;
 		}else{
@@ -117,6 +120,10 @@ public class Player {
 		}
 		//if(yVelocity<maxGrav){
 			y+=yVelocity;
+			
+			if(y>GameScreen.height-100){
+				GameScreen.yCam-=yVelocity;
+			}
 		//}
 	}
 

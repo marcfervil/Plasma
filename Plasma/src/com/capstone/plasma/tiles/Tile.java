@@ -24,7 +24,7 @@ public class Tile implements Serializable{
 	public static ArrayList<Tile> revtiles = new ArrayList<Tile>();
 	public static ArrayList<ArrayList> chunks = new ArrayList<ArrayList>();
 	public static ArrayList<Tile> paintTiles = new ArrayList<Tile>();
-	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new longtile(0,0),};
+	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new GlowTile(0,0),};
 	public static boolean breakableSkins=true;
 	
 	public int x;
@@ -264,15 +264,13 @@ public class Tile implements Serializable{
 					backgroundTiles.add(new Wall(i*Tile.size,j*Tile.size));
 					if(randInt(0,100)>95 && j>5){
 						
-						if(randInt(0,100)>80){
-							ParticleHandler.createParticleStream(i*Tile.size, j*Tile.size,Color.yellow,100,200,true);
-						}
+						
 						if(randInt(0,100)>95){
 							//ParticleHandler.createParticle(i*Tile.size, (j*Tile.size)-Tile.size, color);
 							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-(Tile.size+20),new PlasmaPistol()));
 						}
 						
-						tiles.add(new longtile(i*Tile.size,j*Tile.size));
+						tiles.add(new GlowTile(i*Tile.size,j*Tile.size));
 			//			tiles.add(new breakable(i*Tile.size,j*Tile.size));
 					}
 				}else{
