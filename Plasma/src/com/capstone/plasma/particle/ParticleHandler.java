@@ -151,15 +151,15 @@ public class ParticleHandler {
 		}
 	}
 	
-	public static void createExplosion(int x, int y,int distance,Color color){
+	public static void createExplosion(int x, int y,int distance,int multiplier,int size,Color color){
 		
-		for(int i=0;i<distance;i++){
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),1,1,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),0,1,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),1,0,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),-1,-1,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),0,-1,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),-1,0,distance,color));
+		for(int i=0;i<size;i++){
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),multiplier,multiplier,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),0,multiplier,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),multiplier,0,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),-multiplier,-multiplier,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),0,-multiplier,distance,color));
+			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),-multiplier,0,distance,color));
 		}
 		
 		
@@ -180,7 +180,7 @@ public class ParticleHandler {
 			
 			if(Utilities.touchBoundsTile(x, y, 0, dy, 10) instanceof Floor){
 				dy=0;
-				//dx=-1;
+//				dx=-1;
 			}else if(Utilities.touchBoundsTile(x, y, dx, 0, 10) instanceof Floor){
 				dy=0;
 				
@@ -189,8 +189,25 @@ public class ParticleHandler {
 			x+=dx;
 			y+=dy;
 			
+			
+			
+			if(distanceTraveled==distance){
+				if(dx>=1){
+					dx--;
+				}else if(dx<=-1){
+					dx++;
+				}
+				if(dy>=1){
+					dy--;
+				}else if(dy<=-1){
+					dy++;
+				}
+				distanceTraveled=0;
+			}
 			distanceTraveled++;
-			alpha--;
+			if(dx==0&&dy==0){
+				remove();
+			}
 			
 		}
 		

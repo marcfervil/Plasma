@@ -101,8 +101,12 @@ public class Tile implements Serializable{
 
 		//looping but this is prolly acceptable
 	public static void paintMap(){
-		for(Tile t:tiles){
-			t.paint();
+		try{
+			for(Tile t:tiles){
+				t.paint();
+			}
+		}catch(Exception e){
+			System.out.println("some error with painting tiles");
 		}
 	}
 	
