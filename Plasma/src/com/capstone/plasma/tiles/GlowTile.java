@@ -20,7 +20,7 @@ public class GlowTile extends Tile{
 
 	public void deathAnimation(){
 		//ParticleHandler.createParticleStream(x, y, Color.YELLOW, 30, 40, true,20);
-		ParticleHandler.createExplosion(x,y,15,5,2,Color.YELLOW);
+		ParticleHandler.createExplosion(x,y,15,5,15,Color.YELLOW);
 		if(ps!=null){
 			ps.stop();
 		}

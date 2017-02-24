@@ -151,15 +151,11 @@ public class ParticleHandler {
 		}
 	}
 	
-	public static void createExplosion(int x, int y,int distance,int multiplier,int size,Color color){
+	public static void createExplosion(int x, int y,int distance,int speed,int size,Color color){
 		
 		for(int i=0;i<size;i++){
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),multiplier,multiplier,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),0,multiplier,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),multiplier,0,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),-multiplier,-multiplier,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),0,-multiplier,distance,color));
-			particles.add(new DebrisParticle(x+Utilities.randInt(-distance, distance),y+Utilities.randInt(-distance, distance),-multiplier,0,distance,color));
+			particles.add(new DebrisParticle(x,y,Utilities.randInt(0, 360),speed,speed,distance,color));
+			//particles.add(new DebrisParticle(x,y,90,speed,speed,distance,color));
 		}
 		
 		
@@ -167,45 +163,32 @@ public class ParticleHandler {
 	
 	static class DebrisParticle extends Particle{
 
-		public int dx,dy,distance,distanceTraveled;
+		public int dx,dy,distance,distanceTraveled,angle;
 		
-		public DebrisParticle(int x, int y,int dx,int dy,int distance,Color color){
+		public DebrisParticle(int x, int y,int angle,int dx,int dy,int distance,Color color){
 			super(x,y,color);
 			this.dx=dx;
 			this.dy=dy;
 			this.distance=distance;
+			this.angle=angle;
 		}
 
 		public void tick(){
 			
-			if(Utilities.touchBoundsTile(x, y, 0, dy, 10) instanceof Floor){
-				dy=0;
-//				dx=-1;
-			}else if(Utilities.touchBoundsTile(x, y, dx, 0, 10) instanceof Floor){
-				dy=0;
-				
-			} 
+			if(Utilities.touchBoundsTile(x, y, 0, 0, 10) instanceof Floor){
+		//		angle=180;
+			}
+			x += dx * Math.sin(angle);
+			y += dy * Math.cos(angle);
 			
-			x+=dx;
-			y+=dy;
-			
-			
-			
-			if(distanceTraveled==distance){
-				if(dx>=1){
-					dx--;
-				}else if(dx<=-1){
-					dx++;
-				}
-				if(dy>=1){
-					dy--;
-				}else if(dy<=-1){
-					dy++;
-				}
+			 if(distanceTraveled==distance){
+				dx--;
+				dy--;
 				distanceTraveled=0;
 			}
 			distanceTraveled++;
-			if(dx==0&&dy==0){
+			
+			if(dx==0 && dy==0){
 				remove();
 			}
 			
