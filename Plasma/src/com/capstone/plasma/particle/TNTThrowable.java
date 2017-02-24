@@ -28,7 +28,14 @@ public class TNTThrowable extends Projectile{
 		angle = 45;
 		speed=15;
 		
-		vx = (int) (speed*Math.cos(angle*(Math.PI/180.0)));
+		if(!right){
+			vx = (int) -(speed*Math.cos(angle*(Math.PI/180.0)));
+			ax=-1;
+		}else{
+			vx = (int) (speed*Math.cos(angle*(Math.PI/180.0)));
+			ax=1;
+		}
+		
 		vy = (int) (speed*Math.sin(angle*(Math.PI/180.0)));
 	}
 	public void paint(){
@@ -38,7 +45,7 @@ public class TNTThrowable extends Projectile{
 	
 	public void tick(){
 
-		if(!( Utilities.touchBoundsTile(x, y, vx, speed, Tile.size) instanceof Floor)){
+		if(!( Utilities.touchBounds(x, y, vx, speed, Tile.size) )){
 			
 			y -= vy;
 			x += vx;
