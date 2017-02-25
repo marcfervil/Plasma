@@ -22,9 +22,9 @@ public class TNTThrowable extends Projectile{
 	int vy;
 	
 	public TNTThrowable(int x, int y, int damage) {
-		super(x, y-Tile.size,damage);
+		super(x, y-(Tile.size),damage);
 		onTick=6;
-		
+		backgroundTick=true;
 		angle = 45;
 		speed=15;
 		
@@ -64,9 +64,23 @@ public class TNTThrowable extends Projectile{
 	
 	
 	public void explode(){
-		for(int i=0;i<100;i++){
-			Tile h=Utilities.touchBoundsTile(x+Utilities.randInt(-100, 100), y+Utilities.randInt(-100, 100), vx, speed, Tile.size);
+		for(int i=0;i<25;i++){
+			int xr=Utilities.randInt(-100, 100);
+			int yr=Utilities.randInt(-100, 100);
+			Tile h=Utilities.touchBoundsTile(x+xr, y+yr, vx, speed, Tile.size);
 			if(h!=null)h.damage(1000);
+			
+			Tile z=Utilities.touchBoundsTile(x+xr, (y+yr)+(Tile.size), vx, speed, Tile.size);
+			if(z!=null)z.damage(Utilities.randInt(0, 300));
+			
+			z=Utilities.touchBoundsTile(x+xr, (y+yr)-(Tile.size), vx, speed, Tile.size);
+			if(z!=null)z.damage(Utilities.randInt(0, 300));
+			
+			z=Utilities.touchBoundsTile((x+xr)-(Tile.size), (y+yr), vx, speed, Tile.size);
+			if(z!=null)z.damage(Utilities.randInt(0, 300));
+			
+			z=Utilities.touchBoundsTile((x+xr)+(Tile.size), (y+yr), vx, speed, Tile.size);
+			if(z!=null)z.damage(Utilities.randInt(0, 300));
 			
 		}
 		remove();
