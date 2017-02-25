@@ -73,10 +73,18 @@ public class TNTThrowable extends Projectile{
 			vy += ay;
 			y -= vy;
 		}else{
-			if(speed!=0)speed--;
+			if(speed>=1){
+				speed--;
+			}else if(speed<=1){
+				speed++;
+			}
 		}
 		
 		
+		if(( Utilities.touchBounds(x, y, vx, 0, Tile.size) )){
+			//vx*=-1;
+			speed*=-1;
+		}
 		
 		if(!right){
 			vx = (int) -(speed*Math.cos(angle*(Math.PI/180.0)));
