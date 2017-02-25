@@ -7,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.inventory.PlasmaPistol;
 import com.capstone.plasma.inventory.TNT;
+import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.particle.Projectile;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
@@ -31,7 +32,9 @@ public class UserInput {
 					Inventory.toggleExpand();
 				}
 		
-				
+				if(Keyboard.getEventKey()==Keyboard.KEY_SPACE){
+					ParticleHandler.particles.clear();
+				}
 				//lastKey=Keyboard.getEventKey();
 			}else{
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));

@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.inventory.Inventory;
+import com.capstone.plasma.inventory.PlasmaPistol;
 import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.Tile;
@@ -37,6 +39,8 @@ public class TNTThrowable extends Projectile{
 		}
 		
 		vy = (int) (speed*Math.sin(angle*(Math.PI/180.0)));
+		
+	
 	}
 	public void paint(){
 		GraphicsHandler.drawImage(GraphicsHandler.TNT, x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
@@ -45,6 +49,10 @@ public class TNTThrowable extends Projectile{
 	
 	public void tick(){
 
+		
+	//	Inventory.activeItems[0]=new PlasmaPistol();
+	
+		/*
 		if(!( Utilities.touchBounds(x, y, vx, speed, Tile.size) )){
 			
 			y -= vy;
@@ -56,9 +64,33 @@ public class TNTThrowable extends Projectile{
 		}else{
 			explode();
 		}
+		*/
+
+		x += vx;
+		vx += ax;
+		
+		if(!( Utilities.touchBounds(x, y, 0, -vy, Tile.size) )){
+			vy += ay;
+			y -= vy;
+		}else{
+			if(speed!=0)speed--;
+		}
 		
 		
 		
+		if(!right){
+			vx = (int) -(speed*Math.cos(angle*(Math.PI/180.0)));
+			ax=-1;
+		}else{
+			vx = (int) (speed*Math.cos(angle*(Math.PI/180.0)));
+			ax=1;
+		}
+		
+	//	vy = (int) (speed*Math.sin(angle*(Math.PI/180.0)));
+	
+		if(speed==0){
+			explode();
+		}
 		
 	}
 	
