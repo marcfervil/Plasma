@@ -105,7 +105,7 @@ public class TNTThrowable extends Projectile{
 	
 	
 	public void explode(){
-		for(int i=0;i<25;i++){
+		for(int i=0;i<10;i++){
 			int xr=Utilities.randInt(-100, 100);
 			int yr=Utilities.randInt(-100, 100);
 			Tile h=Utilities.touchBoundsTile(x+xr, y+yr, vx, speed, Tile.size);
