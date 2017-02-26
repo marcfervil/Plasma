@@ -31,7 +31,8 @@ public class GameScreen{
 	public static int height = 600;
 	public static int orgHeight = height;
 	public static ArrayList<Chunk> chunks = new ArrayList<Chunk>();
-	static int fps=0;
+	public static int fps=0;
+
 	
 	public static void initDisplay(){
 		try {
@@ -108,6 +109,31 @@ public class GameScreen{
 	   t1.start();*/
     }
    
+    public static void shakeCamera(int duration,int intensity){
+    	
+    	
+    	 Thread t1 = new Thread(new Runnable() {
+	         public void run() {
+	        	int ogXcam=xCam;
+	         	int ogYcam=yCam;
+	        	 
+	        	 int count = duration;
+	        	 while(count > 0){
+	        		 try {
+	 					Thread.sleep(10);
+	 				} catch (InterruptedException e) {
+	 					e.printStackTrace();
+	 				}
+	        	    xCam+=Utilities.randInt(-intensity, intensity);
+	        	    yCam+=Utilities.randInt(-intensity, intensity);	
+	        		 count--;
+	        	}
+	        	xCam=ogXcam;
+	 	    	yCam=ogYcam;
+	         }
+	   });
+	   t1.start();
+    }
     
     public static void run(){
 
@@ -169,15 +195,7 @@ public class GameScreen{
         	
         	GraphicsHandler.drawText("fps:"+fps,20, 20,25);
         	
-        	
-        	/*
-        	fps=1000/frameTime;
-        	
-        	GraphicsHandler.drawText("fps:"+fps,20, 20,25);
-    		
-        	int thisFrameTime = (int) ((thisLoop=System.currentTimeMillis()) - lastLoop);
-    		frameTime+= (thisFrameTime - frameTime) / filterStrength;
-    	 	lastLoop = thisLoop;*/
+        
     	
     		
         	UserInput.get();  
@@ -197,6 +215,7 @@ public class GameScreen{
     			frames = 0;
     		}
          
+    		
         	
         }
         try{

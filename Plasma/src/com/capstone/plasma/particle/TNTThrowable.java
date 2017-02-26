@@ -126,6 +126,9 @@ public class TNTThrowable extends Projectile{
 			z=Utilities.touchBoundsTile((x+xr)+(Tile.size), (y+yr), vx, speed, Tile.size);
 			if(z!=null)z.damage(Utilities.randInt(0, 300));
 			
+			
+			GameScreen.shakeCamera(15,5);
+			
 		}
 		remove();
 	}
