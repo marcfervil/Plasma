@@ -7,6 +7,7 @@ import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.inventory.PlasmaPistol;
+import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.Tile;
@@ -109,6 +110,9 @@ public class TNTThrowable extends Projectile{
 			int yr=Utilities.randInt(-100, 100);
 			Tile h=Utilities.touchBoundsTile(x+xr, y+yr, vx, speed, Tile.size);
 			if(h!=null)h.damage(1000);
+			
+			Mob p=Utilities.touchBoundReturnMobs(x+xr, y+yr, vx, speed, Tile.size,null);
+			if(p!=null)p.damage(Utilities.randInt(0, 300));
 			
 			Tile z=Utilities.touchBoundsTile(x+xr, (y+yr)+(Tile.size), vx, speed, Tile.size);
 			if(z!=null)z.damage(Utilities.randInt(0, 300));

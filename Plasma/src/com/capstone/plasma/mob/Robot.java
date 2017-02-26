@@ -26,7 +26,6 @@ public class Robot extends Mob {
 	public int viewRange = 250;
 	public int action = 30;
 	public boolean onGround = false;
-	public int hp = 300;
 	public int size = Tile.size;
 	public int paintSize = size+10;
 	public boolean aniStage = true;
@@ -41,6 +40,8 @@ public class Robot extends Mob {
 	public Robot(int x, int y,int num) {
 		super(x, y);
 		this.num = num;
+		maxHp=300;
+		hp=maxHp;
 	}
 	
 	public Robot(int x, int y) {
@@ -110,11 +111,15 @@ public class Robot extends Mob {
 		if(Utilities.touchPlayer(x, y, size)){
 			System.out.println("collided!");
 			Player.damage(hit);
+			
+			/*
+			 * the crappy knockback was pissing me off 
 			if(faceRight){
 				Player.x+=knockBack;
 			}else{
 				Player.x-=knockBack;
 			}
+			*/
 		}
 		//if(x-GameScreen.xCam)
 	}
@@ -200,6 +205,25 @@ public class Robot extends Mob {
 	}
 	
 	public void paint(){
+		
+		//maxHP
+		
+		float percent = (hp/maxHp);
+		
+		//int fill = percent;
+		
+		float fill =  (float) (40.0f*percent);
+		
+		
+		
+		//GraphicsHandler.drawText(percent+"",x+GameScreen.xCam, y+GameScreen.yCam-50,25);
+		
+		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam-20, fill, 5, 0, Color.RED);
+		
+		
+		
+		GraphicsHandler.drawEmptyRect(x+GameScreen.xCam, y+GameScreen.yCam-20, 40, 5, 0, Color.BLACK);
+		
 		if(seeking){
 			//seeking
 			//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.pink);

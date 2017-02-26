@@ -20,6 +20,8 @@ public class Inventory {
 	//activeItems 2 is quick weapon
 	
 	public static void paint(){
+		activeItems[0]=new PlasmaPistol();
+		activeItems[1]=new TNT();
 		for(int i=0;i<activeItems.length;i++){
 			Item item= activeItems[i];
 			int holderX=30+(i*(60+Tile.size/2));

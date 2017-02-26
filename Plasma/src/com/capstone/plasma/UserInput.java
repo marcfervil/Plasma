@@ -122,6 +122,15 @@ public class UserInput {
 								shotTick++;
 							}
 							break;
+						case Keyboard.KEY_K:
+							//Inventory.activeItems[0] = new TNT();
+							if(Inventory.activeItems[1] !=null &&shotTick>=shotTickSpeed){
+								shotTick = 0;
+								Inventory.activeItems[1].action();
+							}else{
+								shotTick++;
+							}
+							break;
 						
 							
 						default:

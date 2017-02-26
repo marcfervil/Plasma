@@ -63,8 +63,8 @@ public class GameScreen{
 
         
         Tile.mapGen();
-        for(int i =0; i<4; i++){
-		//	Mob.mobs.add(new Robot(350+i*(30),40,i));
+        for(int i =0; i<15; i++){
+			Mob.mobs.add(new Robot(350+i*(50),40,i));
 			//Mob.mobs.add(m);
 		}
       //  Tile.load();

@@ -66,7 +66,8 @@ public class Player {
 		//looping
 		for(int i=0;i<Tile.tiles.size();i++){
 			Tile s = Tile.tiles.get(i);
-			if((s.collide) && r.intersects(s.getBounds())){
+			
+			if(s!=null && (s.collide) && r.intersects(s.getBounds())){
 				return s;
 			}
 		}

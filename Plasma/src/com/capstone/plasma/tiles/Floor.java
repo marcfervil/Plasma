@@ -14,7 +14,7 @@ public class Floor extends Tile{
 	
 	public void deathAnimation(){
 		//ParticleHandler.createParticleStream(x, y, Color.YELLOW, 30, 40, true,20);
-		ParticleHandler.createExplosion(x,y,15,6,15,Color.LIGHT_GRAY);
+		ParticleHandler.createExplosion(x,y,15,6,10,Color.LIGHT_GRAY);
 		
 	}
 	

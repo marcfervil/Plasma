@@ -22,8 +22,9 @@ public class Mob {
 	public int viewRange = 300;
 	public int speed;
 	public int size=Tile.size;
-	public int hp;
+	public float hp;
 	public Thread t1;
+	public float maxHp;
 	
 	//public Mob(int texture for texture
 	public Mob(int x, int y){
