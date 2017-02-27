@@ -30,6 +30,7 @@ public class GameScreen{
 	public static int width = 900;
 	public static int height = 600;
 	public static int orgHeight = height;
+	public static int orgWidth = width;
 	public static ArrayList<Chunk> chunks = new ArrayList<Chunk>();
 	public static int fps=0;
 
@@ -194,6 +195,8 @@ public class GameScreen{
     
         	
         	GraphicsHandler.drawText("fps:"+fps,20, 20,25);
+        	GraphicsHandler.drawText("kills: "+Player.kills,orgWidth-200,20,25);
+        	GraphicsHandler.drawText("deaths: "+Player.deaths,orgWidth-200,40,25);
         	
         
     	

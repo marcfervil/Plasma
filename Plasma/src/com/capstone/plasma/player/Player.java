@@ -9,9 +9,11 @@ import com.capstone.plasma.tiles.Tile;
 
 
 public class Player {
-
-	public static int x=250;
-	public static int y=40;
+	
+	public static int spawnX = 250;
+	public static int spawnY = 40;
+	public static int x=spawnX;
+	public static int y=spawnY;
 
 	public static int gravityStrength = 1;
 	public static int maxGrav = 100;
@@ -22,9 +24,12 @@ public class Player {
 	public static int jumpTick = 0;
 	public static int PlayerSpeed = 3;
 	public static boolean onGround = false;
-	public static int hp = 300;
+	public static int maxHp = 300;
+	public static int hp = maxHp;
 	public static int size = Tile.size;
-	
+	public static int lowest = 1000;
+	public static int deaths = 0;
+	public static int kills = 0;
 	
 	public static void paint(){
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);	
@@ -88,11 +93,25 @@ public class Player {
 	}
 
 
-
+	public static void respawn(){
+		x=spawnX;
+		y=spawnY;
+		hp = maxHp;
+		GameScreen.xCam = 0;
+		GameScreen.yCam = 0;
+		GameScreen.backCam = 0;
+		deaths++;
+	}
 
 	
 	public static void tick(){
-		
+		if(hp<=0){
+			respawn();
+		}
+		if(y>lowest){
+			respawn();
+		}
+		//System.out.println(y);
 		if (jump && onGround){
 				yVelocity-=jumpHeight;
 				

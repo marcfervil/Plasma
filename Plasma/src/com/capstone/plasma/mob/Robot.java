@@ -48,18 +48,26 @@ public class Robot extends Mob {
 		super(x, y);
 	}
 	
+	public void death(){
+		Player.kills++;
+		ParticleHandler.createParticleStream(x, y, Color.BLACK, 10, 10, true,10);
+		
+	//	System.out.println(mobs.indexOf(this));
+		
+		Mob.mobs.remove(mobs.indexOf(this));
+		t1.stop();
+		
+		//deathAnimation();
+		
+	}
 	
 	public void tick(){
 		attack();
 		if(hp<=0){
-			ParticleHandler.createParticleStream(x, y, Color.BLACK, 10, 10, true,10);
-			
-		//	System.out.println(mobs.indexOf(this));
-			
-			Mob.mobs.remove(mobs.indexOf(this));
-			t1.stop();
-			
-			//deathAnimation();
+			death();
+		}
+		if(y>Player.lowest){
+			death();
 		}
 		if(faceRight){
 			speed = Math.abs(speed);
