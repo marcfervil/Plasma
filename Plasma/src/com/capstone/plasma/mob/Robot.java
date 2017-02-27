@@ -66,7 +66,7 @@ public class Robot extends Mob {
 		if(hp<=0){
 			death();
 		}
-		if(y>Player.lowest){
+		if(y>GameScreen.map.lowest){
 			death();
 		}
 		if(faceRight){

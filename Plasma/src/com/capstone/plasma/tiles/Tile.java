@@ -20,11 +20,11 @@ public class Tile implements Serializable{
 	public static int chunkSize = 10;
 	public static int ychunks;
 	public static int xchunks;
-	public static ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
-	public static ArrayList<Tile> tiles= new ArrayList<Tile>();
-	public static ArrayList<Tile> revtiles = new ArrayList<Tile>();
-	public static ArrayList<ArrayList> chunks = new ArrayList<ArrayList>();
-	public static ArrayList<Tile> paintTiles = new ArrayList<Tile>();
+	//public static ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
+	//public static ArrayList<Tile> tiles= new ArrayList<Tile>();
+	//public static ArrayList<Tile> revtiles = new ArrayList<Tile>();
+	//public static ArrayList<ArrayList> chunks = new ArrayList<ArrayList>();
+	//public static ArrayList<Tile> paintTiles = new ArrayList<Tile>();
 	public static Tile[] tileIds = {new Floor(0,0),new Wall(0,0),new GlowTile(0,0),};
 	public static boolean breakableSkins=true;
 	
@@ -45,7 +45,7 @@ public class Tile implements Serializable{
 	public void damage(int damage){
 		hp-=damage;
 		if(hp<1){
-			tiles.remove(tiles.indexOf(this));
+			GameScreen.map.tiles.remove(GameScreen.map.tiles.indexOf(this));
 			deathAnimation();
 		}
 	}
@@ -99,79 +99,8 @@ public class Tile implements Serializable{
 		}
 	}
 	
-
-		//looping but this is prolly acceptable
-	public static void paintMap(){
-		try{
-			for(Tile t:tiles){
-				t.paint();
-			}
-		}catch(Exception e){
-			System.out.println("some error with painting tiles");
-		}
-	}
 	
-	public static void paintMap2(){
-		for(int i =Tile.tiles.size()-1; i>0; i--){
-			Tile.tiles.get(i).paint();
-		}
-	}//i noticed i am in the tile class so i don't need to do Tile.tiles but I am 2 lazy to change
-	
-	public static void paintBackground(){
-		for(Tile t: Tile.backgroundTiles){
-			t.paint();
-		}
-	}
-	
-	public static void paintbackground2(){
-		for(int i = Tile.backgroundTiles.size()-1;i>0;i--){
-			Tile.backgroundTiles.get(i).paint();
-		}
-	}
-	
-	public static int randInt(int min, int max) {
-		return (new Random()).nextInt((max - min) + 1) + min;
-	}
-	
-	
-	public static ArrayList<Tile> sortY(ArrayList<Tile> t){
-		ArrayList<Tile> sorted = new ArrayList<Tile>();
-		sorted.add(0,tiles.get(0));
-		//System.out.println("FIRST "+tiles.get(0).x);
-		for(int i=1;i<tiles.size();i++){
-			Tile ct=tiles.get(i);
-			for(int j=0;j<sorted.size();j++){
-				if(ct.x >= sorted.get(j).x){
-					//System.out.println(ct.x);
-					sorted.add(j,ct);
-					break;
-				}
-			}
-		
-		}
-		return sorted;
-	}
-
-	public static void sortMap(){
-		ArrayList<Tile> sorted = new ArrayList<Tile>();
-		sorted.add(0,tiles.get(0));
-		//System.out.println("FIRST "+tiles.get(0).x);
-		for(int i=1;i<tiles.size();i++){
-			Tile ct=tiles.get(i);
-			for(int j=0;j<sorted.size();j++){
-				if(ct.x >= sorted.get(j).x){
-					//System.out.println(ct.x);
-					sorted.add(j,ct);
-					break;
-				}
-			}
-		
-		}
-		
-		tiles = sorted;
-	}
-	
-	
+	/*
 	public static void createChunks(){		
 		//Gained 300ish tiles somewhere????		
 		//reading 3,541 tiles worst case
@@ -207,8 +136,8 @@ public class Tile implements Serializable{
 		}
 		
 	//	System.out.println(Chunk.chunks.size());
-	}
-	
+	}*/
+	/*
 	public static void sortTextures(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
 		sorted.add(0,tiles.get(0));
@@ -223,79 +152,7 @@ public class Tile implements Serializable{
 		}
 		tiles = sorted;
 	}
+	*/
 	
-	
-	public static void findSpot(Tile t1, Tile t2){
-		
-	}
-	
-    public static void load(){
-    	try{
-        FileInputStream fis = new FileInputStream("map1.ser");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-       //world = (ArrayList) ois.readObject();
-        tiles = (ArrayList<Tile>) ois.readObject();
-        ois.close();
-        fis.close();
-    	}catch (Exception e){
-    		
-    	}
-   // 	printAllX();
-    	sortMap();
-    	System.out.println("");
-    	System.out.println("done");
-		
-    //	printAllX();
-
-    }
-    public static void printAllTexture(){
-    	for(int i =0; i<tiles.size();i++){
-    		System.out.print(tiles.get(i).texture);
-    	}
-    	System.out.println();
-    }
-	
-	public static void mapGen(){
-		/*
-		for(int i =0; i<20; i++){
-			Mob.mobs.add(new Robot(350+i*(120),40));
-			//Mob.mobs.add(m);
-		}
-		*/
-		
-		for(int i=0;i<500;i++){
-			for(int j=0;j<20;j++){
-				if(j<=13){
-					backgroundTiles.add(new Wall(i*Tile.size,j*Tile.size));
-					if(randInt(0,100)>95 && j>5){
-						
-						
-						if(randInt(0,100)>95){
-							//ParticleHandler.createParticle(i*Tile.size, (j*Tile.size)-Tile.size, color);
-							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-(Tile.size+20),new PlasmaPistol()));
-						}else if(randInt(0,100)>95){
-							ParticleHandler.particles.add(new Dropable(i*Tile.size, (j*Tile.size)-(Tile.size+20),new TNT()));
-						}
-						
-						tiles.add(new GlowTile(i*Tile.size,j*Tile.size));
-			//			tiles.add(new breakable(i*Tile.size,j*Tile.size));
-					}
-				}else{
-					tiles.add(new Floor(i*Tile.size,j*Tile.size));//used to be floor
-				}
-			}
-		}
-		
-		
-		
-    	//printAllX();
-		revtiles.addAll(tiles);
-    	sortMap();
-    //	System.out.println("");
-    	//System.out.println("done");
-    	//printAllX();
-    	
-	
-	}
 	
 }

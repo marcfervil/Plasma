@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Tile;
 
 class Particle{
@@ -23,7 +24,7 @@ class Particle{
 	boolean backgroundTick=false;
 			
 	public Particle(int x, int y,Color color){
-		this.x=x+Tile.randInt(-30, 30);
+		this.x=x+Utilities.randInt(-30, 30);
 		this.y=y;
 		
 		//randomize basic particle color?

@@ -11,6 +11,7 @@ import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Robot;
+import com.capstone.plasma.mapmaker.Map;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Chunk;
@@ -33,6 +34,7 @@ public class GameScreen{
 	public static int orgWidth = width;
 	public static ArrayList<Chunk> chunks = new ArrayList<Chunk>();
 	public static int fps=0;
+	public static Map map; 
 
 	
 	public static void initDisplay(){
@@ -62,10 +64,10 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-
         
-        Tile.mapGen();
-        for(int i =0; i<15; i++){
+        //map = new Map("map1.ser");
+        map = new Map();
+        for(int i =0; i<40; i++){
 			Mob.mobs.add(new Robot(350+i*(50),40,i));
 			//Mob.mobs.add(m);
 		}
@@ -169,20 +171,20 @@ public class GameScreen{
         	
         	if(UserInput.lastKey == "a"){
         		//Tile.paintBackground();
-            	for(int i=Tile.backgroundTiles.size()-1;i>0;i--){
-            		Tile b = Tile.backgroundTiles.get(i);
+            	for(int i=map.backgroundTiles.size()-1;i>0;i--){
+            		Tile b = map.backgroundTiles.get(i);
             		b.paint();
             		
             	}
-        		Tile.paintMap();
+        		map.paintMap();
         	}else{
         		//Tile.paintbackground2();
-            	for(int i=0;i< Tile.backgroundTiles.size();i++){
-            		Tile b = Tile.backgroundTiles.get(i);
+            	for(int i=0;i< map.backgroundTiles.size();i++){
+            		Tile b = map.backgroundTiles.get(i);
             		b.paint();
             		
             	}
-        		Tile.paintMap2();
+        		map.paintMap2();
         	}
         	//Tile.paintMap();
         	

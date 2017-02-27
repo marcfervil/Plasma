@@ -4,6 +4,7 @@ import java.awt.Color;
 import com.capstone.plasma.*;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.particle.ParticleHandler.ParticleStream;
+import com.capstone.plasma.player.Utilities;
 public class GlowTile extends Tile{
 
 	ParticleStream ps;
@@ -13,7 +14,7 @@ public class GlowTile extends Tile{
 		super(GraphicsHandler.longtile,x,y);
 		breakable=true;
 		//20% chance of GlowTile glowing 
-		if(randInt(0,100)>80){
+		if(Utilities.randInt(0,100)>80){
 			ps=ParticleHandler.createParticleStream(x, y,Color.yellow,100,200,true);
 		}
 	}

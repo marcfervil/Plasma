@@ -85,7 +85,7 @@ public class MapMaker {
     
         
         GraphicsHandler.loadTextures();
-        Tile.mapGen();
+        GameScreen.map.mapGen();
        
        
   //      UserInput.startKeyManager();

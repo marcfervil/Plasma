@@ -95,8 +95,8 @@ public class Mob {
 		try{
 			Rectangle r=  new Rectangle(xn,yn,Tile.size,Tile.size);
 			//looping
-			for(int i=0;i<Tile.tiles.size();i++){
-				Tile s = Tile.tiles.get(i);
+			for(int i=0;i<GameScreen.map.tiles.size();i++){
+				Tile s = GameScreen.map.tiles.get(i);
 				if(r.intersects(s.getBounds())  && (s.collide)){
 					return true;
 				}
@@ -108,8 +108,8 @@ public class Mob {
 	}
 	
 	public static boolean checkSide(int xn, int yn){
-		for(int i =0; i<Tile.tiles.size(); i++){
-			if(Tile.tiles.get(i).x>xn && Tile.tiles.get(i).x<xn+Tile.size &&Tile.tiles.get(i).y>yn && Tile.tiles.get(i).y<(yn+Tile.size)){
+		for(int i =0; i<GameScreen.map.tiles.size(); i++){
+			if(GameScreen.map.tiles.get(i).x>xn && GameScreen.map.tiles.get(i).x<xn+Tile.size &&GameScreen.map.tiles.get(i).y>yn && GameScreen.map.tiles.get(i).y<(yn+Tile.size)){
 				return true;				
 			}
 		}
@@ -119,7 +119,7 @@ public class Mob {
 	
 	/*
 	public static boolean checkCollide(int xn, int yn){
-		for(int i = 0; i<Tile.tiles.size(); i++){
+		for(int i = 0; i<GameScreen.map.tiles.size(); i++){
 			if()
 		}
 		

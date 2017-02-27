@@ -96,7 +96,7 @@ public class ParticleHandler {
 		public void run() {
 		    	while(running){
 		    		try {
-		    			Thread.sleep(Tile.randInt(minSpeed, maxSpeed));
+		    			Thread.sleep(Utilities.randInt(minSpeed, maxSpeed));
 		    		} catch (InterruptedException e) {
 		    			e.printStackTrace();
 		    		}

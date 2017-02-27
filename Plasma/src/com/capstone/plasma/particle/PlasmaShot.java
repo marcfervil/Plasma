@@ -45,10 +45,10 @@ public class PlasmaShot extends Projectile{
 			remove=true;
 		}
 		//looping
-		for(int i=0;i<Tile.tiles.size();i++){
-			Tile t=Tile.tiles.get(i);
+		for(int i=0;i<GameScreen.map.tiles.size();i++){
+			Tile t=GameScreen.map.tiles.get(i);
 			if(t.breakable && new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10).intersects(t.getBounds())){
-				Tile.tiles.get(i).damage(damage);
+				GameScreen.map.tiles.get(i).damage(damage);
 				remove=true;
 			}
 			
@@ -57,7 +57,7 @@ public class PlasmaShot extends Projectile{
 		for(int i=0;i<Mob.mobs.size();i++){
 			Mob t=Mob.mobs.get(i);
 			if(new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10).intersects(t.getBounds())){
-				//Tile.tiles.get(i).damage(damage);
+				//GameScreen.map.tiles.get(i).damage(damage);
 				t.damage(damage);
 				remove=true;
 				

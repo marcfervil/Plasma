@@ -27,7 +27,6 @@ public class Player {
 	public static int maxHp = 300;
 	public static int hp = maxHp;
 	public static int size = Tile.size;
-	public static int lowest = 1000;
 	public static int deaths = 0;
 	public static int kills = 0;
 	
@@ -53,8 +52,8 @@ public class Player {
 		try{
 			Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
 			//looping
-			for(int i=0;i<Tile.tiles.size();i++){
-				Tile s = Tile.tiles.get(i);
+			for(int i=0;i<GameScreen.map.tiles.size();i++){
+				Tile s = GameScreen.map.tiles.get(i);
 				if(r.intersects(s.getBounds())  && (s.collide)){
 					return true;
 				}
@@ -69,8 +68,8 @@ public class Player {
 	public static Tile touchBoundsTile(int xn,int yn){
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,Tile.size,Tile.size);
 		//looping
-		for(int i=0;i<Tile.tiles.size();i++){
-			Tile s = Tile.tiles.get(i);
+		for(int i=0;i<GameScreen.map.tiles.size();i++){
+			Tile s = GameScreen.map.tiles.get(i);
 			
 			if(s!=null && (s.collide) && r.intersects(s.getBounds())){
 				return s;
@@ -108,7 +107,7 @@ public class Player {
 		if(hp<=0){
 			respawn();
 		}
-		if(y>lowest){
+		if(y>GameScreen.map.lowest){
 			respawn();
 		}
 		//System.out.println(y);
