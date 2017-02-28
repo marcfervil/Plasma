@@ -68,7 +68,7 @@ public class GameScreen{
         //map = new Map("map1.ser");
         map = new Map();
         for(int i =0; i<40; i++){
-			Mob.mobs.add(new Robot(350+i*(50),40,i));
+			//Mob.mobs.add(new Robot(350+i*(50),40,i));
 			//Mob.mobs.add(m);
 		}
       //  Tile.load();
@@ -129,7 +129,7 @@ public class GameScreen{
 	 				}
 	        	    xCam+=Utilities.randInt(-intensity, intensity);
 	        	    yCam+=Utilities.randInt(-intensity, intensity);	
-	        		 count--;
+	        		count--;
 	        	}
 	        	xCam=ogXcam;
 	 	    	yCam=ogYcam;

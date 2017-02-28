@@ -44,6 +44,7 @@ public class TNTThrowable extends Projectile{
 	
 	}
 	public void paint(){
+		GraphicsHandler.drawText(vy+"", x+GameScreen.xCam, y+GameScreen.yCam, 25);
 		GraphicsHandler.drawImage(GraphicsHandler.TNT, x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10, 0, Color.CYAN);
 	}
@@ -51,29 +52,32 @@ public class TNTThrowable extends Projectile{
 	public void tick(){
 
 		
-	//	Inventory.activeItems[0]=new PlasmaPistol();
-	
-		/*
-		if(!( Utilities.touchBounds(x, y, vx, speed, Tile.size) )){
-			
-			y -= vy;
-			x += vx;
-			
-			vy += ay;
-			vx += ax;
-			
-		}else{
-			explode();
-		}
-		*/
+
 
 		x += vx;
 		vx += ax;
 		
-		if(!( Utilities.touchBounds(x, y, 0, -vy, Tile.size) )){
+		if(( Utilities.touchBounds(x, y, vx, -Tile.size/2, Tile.size) )){
+			//vx*=-1;
+			speed*=-1;
+		}
+		
+		
+		if(vy<-Tile.size){
+			vy=-30;
+		}
+		
+		Tile t;
+		if(!( (t=Utilities.touchBoundsTile(x, y, 0, -vy, Tile.size))!=null )){
 			vy += ay;
+			
+			
 			y -= vy;
 		}else{
+			
+			y=t.y-Tile.size;
+			
+			
 			if(speed>=1){
 				speed--;
 			}else if(speed<=1){
@@ -82,10 +86,7 @@ public class TNTThrowable extends Projectile{
 		}
 		
 		
-		if(( Utilities.touchBounds(x, y, vx, 0, Tile.size) )){
-			//vx*=-1;
-			speed*=-1;
-		}
+		
 		
 		if(!right){
 			vx = (int) -(speed*Math.cos(angle*(Math.PI/180.0)));
