@@ -32,6 +32,8 @@ public class Player {
 	
 	public static void paint(){
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);	
+		///GraphicsHandler.drawEmptyRect((x+5)+GameScreen.xCam, y+GameScreen.yCam, Tile.size-10, Tile.size, 0, Color.BLACK);	
+		
 		//GraphicsHandler.drawRect(getBounds(0,yVelocity).x, getBounds(0,yVeloc
 	}
 	
@@ -118,8 +120,10 @@ public class Player {
 		}
 		Tile t;
 
-		if(( t = touchBoundsTile(0,yVelocity))!=null){
-				
+		//if(( t = touchBoundsTile(0,yVelocity))!=null){
+		
+		if(( t = Utilities.touchBoundsTile(x+2,y,0,yVelocity,size-4,size))!=null){	
+		
 			if(yVelocity>0){
 			onGround=true;
 			}

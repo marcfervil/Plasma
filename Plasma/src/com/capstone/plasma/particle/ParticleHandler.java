@@ -82,6 +82,7 @@ public class ParticleHandler {
 			this.minSpeed=minSpeed; 
 			this.maxSpeed=maxSpeed;
 			this.rendering=running;
+			this.setName("Misc Particle");
 		}
 		public ParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed,boolean running,int duration){
 			this.x=x;

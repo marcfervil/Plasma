@@ -84,6 +84,7 @@ public class UserInput {
 						case Keyboard.KEY_D:
 							lastKey = "d";
 							//Player.findX(Player.x, Tile.tiles);
+							Tile t;
 							if(!Player.touchBounds(Player.PlayerSpeed, -1)){
 								Player.x+=Player.PlayerSpeed;
 								if(Player.x+GameScreen.xCam>=400){
@@ -92,6 +93,8 @@ public class UserInput {
 								}
 							}else{
 								//ParticleHandler.createParticleStream(Player.x, Player.y, 5,Color.CYAN);
+								//System.out.println("hitting");
+								//Player.x=
 							}
 							break;
 						case Keyboard.KEY_A:

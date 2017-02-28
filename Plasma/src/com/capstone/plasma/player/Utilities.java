@@ -25,6 +25,19 @@ public class Utilities {
 		return null;
 	}
 	
+	public static Tile touchBoundsTile(int x, int y,int xn,int yn, int sizeX,int sizeY){
+		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,sizeX,sizeY);
+		//looping
+		for(int i=0;i<GameScreen.map.tiles.size();i++){
+			Tile s = GameScreen.map.tiles.get(i);
+			if((s.collide) && r.intersects(s.getBounds())){
+				return s;
+			}
+		}
+		return null;
+	}
+	
+	
 	public static boolean touchMobs(int x, int y,int xn,int yn,int size){
 		try{
 			Rectangle r=  new Rectangle(x+xn,y+yn,size,size);

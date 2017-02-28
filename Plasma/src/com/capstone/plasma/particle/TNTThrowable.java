@@ -28,7 +28,6 @@ public class TNTThrowable extends Projectile{
 		super(x, y-(Tile.size),damage);
 		onTick=6;
 		backgroundTick=true;
-		angle = 45;
 		speed=15;
 		
 		if(!right){
@@ -44,7 +43,7 @@ public class TNTThrowable extends Projectile{
 	
 	}
 	public void paint(){
-		GraphicsHandler.drawText(vy+"", x+GameScreen.xCam, y+GameScreen.yCam, 25);
+	//	GraphicsHandler.drawText(vy+"", x+GameScreen.xCam, y+GameScreen.yCam, 25);
 		GraphicsHandler.drawImage(GraphicsHandler.TNT, x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10, 0, Color.CYAN);
 	}
