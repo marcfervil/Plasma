@@ -17,7 +17,6 @@ public class MapInput {
 	
 	static ArrayList<Integer> keysDown = new ArrayList<Integer>();
 	
-	
 	public static void get(){
 		//System.out.println("get ran");
 		while(Keyboard.next()){
@@ -102,32 +101,16 @@ public class MapInput {
 							if(save){
 								save = false;
 								MapMaker.save();
-								System.out.println("saved");
+								
 							}
 							break;
 						case Keyboard.KEY_L:
 							if(load){
 								load = false;
 								MapMaker.load();
-								System.out.println("loaded");
 							}
 							break;
-							/*
-						case Keyboard.KEY_R://this is to place multiple blocks
-							if(r){
-								System.out.println("r");
-								r = false;
-								if(MapMaker.color =="red"){
-									MapMaker.layer(true);
-									MapMaker.color = "blue";
-								}else{
-									MapMaker.color = "red";
-									MapMaker.layer(false);
-								}
-								
-							}
-							break;
-							*/
+							
 						default:
 							save = true;
 							load = true;

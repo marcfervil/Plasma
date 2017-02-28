@@ -260,24 +260,30 @@ public class MapMaker {
 		  FileOutputStream fileOut =new FileOutputStream("map1.ser");
 		  ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		 // String s = "test";
-		  out.writeObject(GameScreen.map);
+		  Map m = new Map(tiles);
+		  out.writeObject(m);
+		  System.out.println("saved1");
 		//a  out.writeObject()
 		  out.close();
 		  fileOut.close();
     	}catch (Exception e){
-			  
+			  e.printStackTrace();
 		  }
 
     }
     
+    
     public static void load(){
     	try{
-        FileInputStream fis = new FileInputStream("map1.ser");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-       //world = (ArrayList) ois.readObject();
-        GameScreen.map = (Map) ois.readObject();
-        ois.close();
-        fis.close();
+    		FileInputStream fis = new FileInputStream("map1.ser");
+    		ObjectInputStream ois = new ObjectInputStream(fis);
+    		//world = (ArrayList) ois.readObject();
+    		GameScreen.map = (Map) ois.readObject();
+    		tiles = GameScreen.map.tiles;
+    		
+        	System.out.println("loaded");
+        	ois.close();
+        	fis.close();
     	}catch (Exception e){
     		
     	}
@@ -295,8 +301,8 @@ public class MapMaker {
     	
     	m.startKeyManager();
     	m.get();   
-    	*/
-    	MapInput.startKeyManager();
-    	run(); 	
+    	*/ 
+    	MapInput.startKeyManager();	
+    	run();
     }
 }

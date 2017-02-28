@@ -2,6 +2,7 @@ package com.capstone.plasma.mapmaker;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,7 +16,7 @@ import com.capstone.plasma.tiles.GlowTile;
 import com.capstone.plasma.tiles.Tile;
 import com.capstone.plasma.tiles.Wall;
 
-public class Map {
+public class Map implements Serializable{
 	public ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public ArrayList<Tile> tiles= new ArrayList<Tile>();
 	public ArrayList<Tile> revtiles = new ArrayList<Tile>();
@@ -26,13 +27,19 @@ public class Map {
 		backgroundTiles = b;
 		
 	}
+	//load
 	public Map(String action){
 		load(action);
 	}
-
+	//random
 	public Map(){
 		mapGen();
 	}
+	
+	public Map(ArrayList<Tile> t){
+		tiles = t;
+	}
+	
 	
 	public void sortMap(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
@@ -108,20 +115,22 @@ public class Map {
 		}
 	}
 	
-    public static void load(String level){
+    public static Map load(String level){
+    	Map m = null;
     	try{
         FileInputStream fis = new FileInputStream(level);
         ObjectInputStream ois = new ObjectInputStream(fis);
-        //tiles = (ArrayList<Tile>) ois.readObject();
-        GameScreen.map = (Map) ois.readObject();
-        GameScreen.map.sortMap();
+        m = (Map) ois.readObject();
+        System.out.println("loaded game from map");
+        System.out.println(GameScreen.map.tiles);
         ois.close();
         fis.close();
     	}catch (Exception e){
-    		
+    		e.printStackTrace();    		
     	}
     	System.out.println("");
     	System.out.println("Map sorted");
+    	return m;
 
     }
 
