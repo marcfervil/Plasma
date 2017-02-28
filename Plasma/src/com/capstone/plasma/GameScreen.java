@@ -27,7 +27,7 @@ public class GameScreen{
 	
 	public static int xCam=0;
 	public static int backCam=0;
-	public static int yCam=0;
+	public static int yCam=250;
 	public static int width = 900;
 	public static int height = 600;
 	public static int orgHeight = height;
@@ -41,7 +41,7 @@ public class GameScreen{
 		try {
 	        Display.setDisplayMode(new DisplayMode(width,height));
 	        Display.setTitle("Plasma Demo");
-	        Display.setVSyncEnabled(false);
+	        Display.setVSyncEnabled(true);
 	        Display.setSwapInterval(1);
 	        Display.setResizable(true);
 	        Display.create();
@@ -170,7 +170,7 @@ public class GameScreen{
         	
         	if(UserInput.lastKey == "a"){
         		//Tile.paintBackground();
-            	for(int i=map.backgroundTiles.size()-1;i>0;i--){
+            	for(int i=map.backgroundTiles.size();i>0;i--){
             		Tile b = map.backgroundTiles.get(i);
             		b.paint();
             		

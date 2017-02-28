@@ -145,9 +145,9 @@ public class Player {
 		//if(yVelocity<maxGrav){
 			y+=yVelocity;
 			//GameScreen.yCam-=yVelocity;
-			if(y>GameScreen.height-100){
+			//if(y<GameScreen.map.spawnY|| y>GameScreen.map.spawnY+200){
 				GameScreen.yCam-=yVelocity;
-			}
+			//}
 		//}
 	}
 

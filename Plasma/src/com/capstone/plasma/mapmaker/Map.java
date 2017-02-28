@@ -21,6 +21,8 @@ public class Map implements Serializable{
 	public ArrayList<Tile> tiles= new ArrayList<Tile>();
 	public ArrayList<Tile> revtiles = new ArrayList<Tile>();
 	public int lowest = 1000;
+	public static int spawnX = 250;
+	public static int spawnY = 40;
 	
 	public Map(ArrayList<Tile> t, ArrayList<Tile> b){
 		tiles = t;
@@ -98,7 +100,7 @@ public class Map implements Serializable{
 	}
 
 	public void paintMap2(){
-		for(int i =tiles.size()-1; i>0; i--){
+		for(int i =tiles.size()-1; i>=0; i--){
 			tiles.get(i).paint();
 		}
 	}//i noticed i am in the tile class so i don't need to do Tile.tiles but I am 2 lazy to change
@@ -122,7 +124,6 @@ public class Map implements Serializable{
         ObjectInputStream ois = new ObjectInputStream(fis);
         m = (Map) ois.readObject();
         System.out.println("loaded game from map");
-        System.out.println(GameScreen.map.tiles);
         ois.close();
         fis.close();
     	}catch (Exception e){

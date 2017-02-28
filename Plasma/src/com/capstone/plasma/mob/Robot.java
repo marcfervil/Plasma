@@ -240,7 +240,7 @@ public class Robot extends Mob {
 			}else{
 				GraphicsHandler.drawImage(GraphicsHandler.angryRobotLeft, x+GameScreen.xCam, y+GameScreen.yCam+(size-paintSize), paintSize, paintSize);
 			}
-			aniStage ^= true;
+			//aniStage ^= true;
 		}else{
 			if(faceRight){
 				//facing right
