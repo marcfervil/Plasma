@@ -64,10 +64,10 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-        map=Map.load("map1.ser");
-        //map = new Map();
+        //map=Map.load("map1.ser");
+        map = new Map();
         for(int i =0; i<40; i++){
-			Mob.mobs.add(new Robot(350+i*(50),40,i));
+			//Mob.mobs.add(new Robot(350+i*(50),40,i));
 			//Mob.mobs.add(map);
 		}
       //  Tile.load();
@@ -111,6 +111,7 @@ public class GameScreen{
 	   t1.start();*/
     }
    
+    /*
     public static void shakeCamera(int duration,int intensity){
     	
     	
@@ -136,6 +137,46 @@ public class GameScreen{
 	   });
 	   t1.start();
     }
+    */
+    
+    public static void shakeCamera(int duration,int intensity){
+    	
+    	
+   	 Thread t1 = new Thread(new Runnable() {
+	         public void run() {
+	        //	int ogXcam=xCam;
+	        // 	int ogYcam=yCam;
+	        	 
+	        	 int count = duration;
+	        	 while(count > 0){
+	        		 
+	        		 int xOffset=Utilities.randInt(-intensity, intensity);
+		        	 int yOffset=Utilities.randInt(-intensity, intensity);	
+		        	    
+		        	 xCam+=xOffset;
+		        	 yCam+=yOffset;
+	        		 
+		       // 	 backCam+=xOffset;
+		        	 
+	        		 try {
+	 					Thread.sleep(10);
+	 				} catch (InterruptedException e) {
+	 					e.printStackTrace();
+	 				}
+	        		 
+	        		 xCam-=xOffset;
+		        	 yCam-=yOffset;
+	        	    
+		     //   	 backCam-=xOffset;
+		        	 
+	        		count--;
+	        	}
+	       // 	xCam=ogXcam;
+	 	   // 	yCam=ogYcam;
+	         }
+	   });
+	   t1.start();
+   }
     
     public static void run(){
 
