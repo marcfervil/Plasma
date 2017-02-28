@@ -85,7 +85,7 @@ public class MapMaker {
     
         
         GraphicsHandler.loadTextures();
-        GameScreen.map.mapGen();
+        //GameScreen.map.mapGen(); idk why this started to error after implementing the map object
        
        
   //      UserInput.startKeyManager();
@@ -260,7 +260,7 @@ public class MapMaker {
 		  FileOutputStream fileOut =new FileOutputStream("map1.ser");
 		  ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		 // String s = "test";
-		  out.writeObject(tiles);
+		  out.writeObject(GameScreen.map);
 		//a  out.writeObject()
 		  out.close();
 		  fileOut.close();
@@ -275,7 +275,7 @@ public class MapMaker {
         FileInputStream fis = new FileInputStream("map1.ser");
         ObjectInputStream ois = new ObjectInputStream(fis);
        //world = (ArrayList) ois.readObject();
-        tiles = (ArrayList) ois.readObject();
+        GameScreen.map = (Map) ois.readObject();
         ois.close();
         fis.close();
     	}catch (Exception e){

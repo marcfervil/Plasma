@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.inventory.PlasmaPistol;
 import com.capstone.plasma.inventory.TNT;
 import com.capstone.plasma.particle.Dropable;
@@ -112,8 +113,8 @@ public class Map {
         FileInputStream fis = new FileInputStream(level);
         ObjectInputStream ois = new ObjectInputStream(fis);
         //tiles = (ArrayList<Tile>) ois.readObject();
-        Map m = (Map) ois.readObject();
-        m.sortMap();
+        GameScreen.map = (Map) ois.readObject();
+        GameScreen.map.sortMap();
         ois.close();
         fis.close();
     	}catch (Exception e){
