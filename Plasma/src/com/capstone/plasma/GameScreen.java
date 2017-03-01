@@ -157,7 +157,7 @@ public class GameScreen{
 		        	 yCam+=yOffset;
 	        		 
 		       // 	 backCam+=xOffset;
-		        	 
+		        	
 	        		 try {
 	 					Thread.sleep(10);
 	 				} catch (InterruptedException e) {
@@ -211,7 +211,7 @@ public class GameScreen{
         	
         	if(UserInput.lastKey == "a"){
         		//Tile.paintBackground();
-            	for(int i=map.backgroundTiles.size();i>0;i--){
+            	for(int i=map.backgroundTiles.size()-1;i>=0;i--){
             		Tile b = map.backgroundTiles.get(i);
             		b.paint();
             		

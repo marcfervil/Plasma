@@ -31,6 +31,8 @@ public class GraphicsHandler {
 	public static int angryRobotRight;
 	public static int angryRobotLeft;
 	
+	public static int chair;
+	
 	public static int TNT;
 	
 	public static int lastTexture=0;
@@ -55,6 +57,7 @@ public class GraphicsHandler {
 		crack3=GraphicsHandler.loadTexture("images/crack3.png");
 		
 		TNT = GraphicsHandler.loadTexture("images/TNT.png");
+		chair = GraphicsHandler.loadTexture("images/chair.png");
 		
 		loadFontPack();
 

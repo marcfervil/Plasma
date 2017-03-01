@@ -26,6 +26,7 @@ public class Utilities {
 	}
 	
 	public static Tile touchBoundsTile(int x, int y,int xn,int yn, int sizeX,int sizeY){
+		try{
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,sizeX,sizeY);
 		//looping
 		for(int i=0;i<GameScreen.map.tiles.size();i++){
@@ -33,6 +34,10 @@ public class Utilities {
 			if((s.collide) && r.intersects(s.getBounds())){
 				return s;
 			}
+		}
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Touch bounds error");
 		}
 		return null;
 	}
