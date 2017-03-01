@@ -27,7 +27,7 @@ public class GameScreen{
 	
 	public static int xCam=0;
 	public static int backCam=0;
-	public static int yCam=250;
+	public static int yCam=105;
 	public static int width = 900;
 	public static int height = 600;
 	public static int orgHeight = height;
@@ -211,19 +211,21 @@ public class GameScreen{
         	
         	if(UserInput.lastKey == "a"){
         		//Tile.paintBackground();
+        		/*
             	for(int i=map.backgroundTiles.size()-1;i>=0;i--){
             		Tile b = map.backgroundTiles.get(i);
             		b.paint();
             		
-            	}
+            	}*/
         		map.paintMap();
         	}else{
         		//Tile.paintbackground2();
+        		/*
             	for(int i=0;i< map.backgroundTiles.size();i++){
             		Tile b = map.backgroundTiles.get(i);
             		b.paint();
             		
-            	}
+            	}*/
         		map.paintMap2();
         	}
         	//Tile.paintMap();

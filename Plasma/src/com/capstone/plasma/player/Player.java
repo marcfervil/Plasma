@@ -145,10 +145,9 @@ public class Player {
 		//if(yVelocity<maxGrav){
 			y+=yVelocity;
 			//GameScreen.yCam-=yVelocity;
-			//if(y<GameScreen.map.spawnY|| y>GameScreen.map.spawnY+200){
-				GameScreen.yCam-=yVelocity;
-			//}
-		//}
+			//System.out.println(y+GameScreen.yCam);//316, //116
+			if(y+GameScreen.yCam>416 || y+GameScreen.yCam<86){
+				GameScreen.yCam-=yVelocity;//-390 top, 180 bot -105 mid
+			}//15 lower -225
 	}
-
 }
