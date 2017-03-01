@@ -99,7 +99,7 @@ public class Player {
 		y=spawnY;
 		hp = maxHp;
 		GameScreen.xCam = 0;
-		GameScreen.yCam = 0;
+		GameScreen.yCam = 105;
 		GameScreen.backCam = 0;
 		deaths++;
 	}

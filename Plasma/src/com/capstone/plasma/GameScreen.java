@@ -67,7 +67,7 @@ public class GameScreen{
         //map=Map.load("map1.ser");
         map = new Map();
         for(int i =0; i<40; i++){
-			//Mob.mobs.add(new Robot(350+i*(50),40,i));
+			Mob.mobs.add(new Robot(350+i*(50),40,i));
 			//Mob.mobs.add(map);
 		}
       //  Tile.load();
