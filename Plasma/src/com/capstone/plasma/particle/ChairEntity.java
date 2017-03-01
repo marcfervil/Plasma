@@ -12,6 +12,7 @@ public class ChairEntity extends Throwable{
 
 	ParticleStream ps;
 	boolean fireworks=false;
+	String chairText="introducing";
 	
 	public ChairEntity(int x, int y, int damage) {
 		super(x,y,damage);
@@ -21,7 +22,7 @@ public class ChairEntity extends Throwable{
 	
 	public void paint(){
 		if(fireworks){
-			GraphicsHandler.drawText("chair", x+GameScreen.xCam, y+GameScreen.yCam-Tile.size, 25);
+			GraphicsHandler.drawText(chairText, x+GameScreen.xCam, y+GameScreen.yCam-Tile.size, 25);
 		}
 		GraphicsHandler.drawImage(GraphicsHandler.chair, x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 	}
@@ -31,7 +32,7 @@ public class ChairEntity extends Throwable{
 		
 		 Thread t1 = new Thread(new Runnable() {
 	         public void run() {
-		
+	        	 
 				for(int i=0;i<Utilities.randInt(5, 15);i++){
 					ParticleHandler.createExplosion(x+Utilities.randInt(5, 7),y,15,6,15,Color.RED);
 					ParticleHandler.createExplosion(x,y+Utilities.randInt(5, 9),40,6,15,Color.BLUE);
@@ -51,12 +52,44 @@ public class ChairEntity extends Throwable{
 					e.printStackTrace();
 				}
 				fireworks=true;
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				chairText="chairs";
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				chairText="by marc fervil";
+				ParticleHandler.createExplosion(x+Utilities.randInt(5, 40),y,40,6,15,Color.GREEN);
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				chairText="copyright 2017";
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				chairText="patent pending";
+				try {
+					Thread.sleep(4000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				chairText="";
+				ParticleHandler.createExplosion(x+Utilities.randInt(5, 40),y,15,6,15,Color.RED);
 				//calledStop=true;
 	         }
         
    });
    t1.start();
-		
+		t1.setName("Dedicated Chair Thread #"+Math.random());
 	}
 	
 }
