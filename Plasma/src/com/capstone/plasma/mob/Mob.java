@@ -109,7 +109,8 @@ public class Mob {
 	
 	public static boolean checkSide(int xn, int yn){
 		for(int i =0; i<GameScreen.map.tiles.size(); i++){
-			if(GameScreen.map.tiles.get(i).x>xn && GameScreen.map.tiles.get(i).x<xn+Tile.size &&GameScreen.map.tiles.get(i).y>yn && GameScreen.map.tiles.get(i).y<(yn+Tile.size)){
+			if(GameScreen.map.tiles.get(i).x>xn && GameScreen.map.tiles.get(i).x<xn+Tile.size &&GameScreen.map.tiles.get(i).y>yn && 
+					GameScreen.map.tiles.get(i).y<(yn+Tile.size)){
 				return true;				
 			}
 		}

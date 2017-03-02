@@ -16,7 +16,7 @@ import com.capstone.plasma.particle.ParticleHandler;
 
 public class Tile implements Serializable{
 	
-	public static int size=30;
+	public static int size=24;
 	public static int chunkSize = 10;
 	public static int ychunks;
 	public static int xchunks;

@@ -70,11 +70,8 @@ public class UserInput {
 							}
 							break;
 						case Keyboard.KEY_LEFT:
-							Player.x-=3;
-							if(Player.x+GameScreen.xCam<=100){
-								GameScreen.xCam+=3;
-								GameScreen.backCam+=2;
-							}
+							Player.move();
+							Player.faceRight = false;
 							break;
 						case Keyboard.KEY_UP:
 							if(Player.onGround){
@@ -83,19 +80,9 @@ public class UserInput {
 							break;
 						case Keyboard.KEY_D:
 							lastKey = "d";
+							Player.faceRight = true;
 							//Player.findX(Player.x, Tile.tiles);
-							Tile t;
-							if(!Player.touchBounds(Player.PlayerSpeed, -1)){
-								Player.x+=Player.PlayerSpeed;
-								if(Player.x+GameScreen.xCam>=400){
-									GameScreen.xCam-=Player.PlayerSpeed;
-									GameScreen.backCam-=Player.PlayerSpeed-(Player.PlayerSpeed/3);
-								}
-							}else{
-								//ParticleHandler.createParticleStream(Player.x, Player.y, 5,Color.CYAN);
-								//System.out.println("hitting");
-								//Player.x=
-							}
+							Player.move();
 							break;
 						case Keyboard.KEY_A:
 							lastKey = "a";
@@ -111,9 +98,12 @@ public class UserInput {
 						case Keyboard.KEY_W:
 					//		System.out.println(Player.jumpTick);
 							Player.jumpTick++;
+							//Player.jump();
+							
 							if(Player.onGround){
 								Player.jump=true;
 							}
+							
 							break;
 							
 						case Keyboard.KEY_J:

@@ -29,6 +29,9 @@ public class Player {
 	public static int size = Tile.size;
 	public static int deaths = 0;
 	public static int kills = 0;
+	public static boolean stun = false;
+	public static boolean faceRight = true;
+	//public static Thread t1;
 	
 	public static void paint(){
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);	
@@ -46,7 +49,47 @@ public class Player {
 		
 	}
 	
-	public static void throwBack(int knock){
+	public static void move(){
+		Tile t;
+		if(!stun){
+		if(!touchBounds(PlayerSpeed, -1)){
+			if(faceRight = true){
+				x+=PlayerSpeed;
+				if(Player.x+GameScreen.xCam>=400){
+					GameScreen.xCam-=PlayerSpeed;
+					GameScreen.backCam-=PlayerSpeed-(PlayerSpeed/3);
+				}
+			}else{
+				Player.x-=3;
+				if(Player.x+GameScreen.xCam<=100){
+					GameScreen.xCam+=3;
+					GameScreen.backCam+=2;
+				}
+			}
+		}
+		}
+	}
+	
+	public static void throwBack(int knock, boolean imRight){
+		Thread t1 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				int vx = knock;
+				int vy = knock;
+				System.out.println("throw");
+				stun = true;
+				if(imRight){
+					//vx = (int) -(speed*Math.cos(angle*(Math.PI/180.0)));
+				}else{
+					x-=knock;
+				}
+				
+				stun = false;
+				
+				
+			}
+		});
+		t1.start();
 		
 	}
 	

@@ -33,7 +33,8 @@ public class Robot extends Mob {
 	int count = 0;
 	public int hit = 100;
 	public int knockBack = 60;
-	//public int x;
+	public boolean dead = false;
+	//public int x; 
 	//public int y;
 	
 	
@@ -49,6 +50,7 @@ public class Robot extends Mob {
 	}
 	
 	public void death(){
+		dead = true;
 		Player.kills++;
 		ParticleHandler.createParticleStream(x, y, Color.BLACK, 10, 10, true,10);
 		
@@ -118,16 +120,15 @@ public class Robot extends Mob {
 	public void attack(){
 		if(Utilities.touchPlayer(x, y, size)){
 			System.out.println("collided!");
-			Player.damage(hit);
+			//Player.damage(hit);
 			
-			/*
-			 * the crappy knockback was pissing me off 
+			
 			if(faceRight){
-				Player.x+=knockBack;
+				Player.throwBack(knockBack, false);
 			}else{
-				Player.x-=knockBack;
+				Player.throwBack(knockBack, true);
 			}
-			*/
+			
 		}
 		//if(x-GameScreen.xCam)
 	}
@@ -215,6 +216,7 @@ public class Robot extends Mob {
 	public void paint(){
 		
 		//maxHP
+		if(!dead){
 		
 		float percent = (hp/maxHp);
 		
@@ -251,7 +253,9 @@ public class Robot extends Mob {
 				//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size, 0, Color.GREEN);
 				GraphicsHandler.drawImage(GraphicsHandler.robotRight, x+GameScreen.xCam, y+GameScreen.yCam+(size-paintSize), paintSize, paintSize);
 			}
+			
 		}
+	}
 			//GraphicsHandler.drawText("rob"+num, x+GameScreen.xCam, y+GameScreen.yCam);
 		
 	}
