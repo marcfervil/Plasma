@@ -56,8 +56,8 @@ public class Player {
 			if(faceRight = true){
 				x+=PlayerSpeed;
 				if(Player.x+GameScreen.xCam>=400){
-					GameScreen.xCam-=PlayerSpeed;
-					GameScreen.backCam-=PlayerSpeed-(PlayerSpeed/3);
+					GameScreen.xCam-=3;
+					GameScreen.backCam-=2;
 				}
 			}else{
 				Player.x-=3;
@@ -74,18 +74,22 @@ public class Player {
 		Thread t1 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				int vx = knock;
-				int vy = knock;
+				int xVelocity = knock;
 				System.out.println("throw");
 				stun = true;
-				if(imRight){
-					//vx = (int) -(speed*Math.cos(angle*(Math.PI/180.0)));
-				}else{
-					x-=knock;
+				if(true){
+					while(Math.abs(xVelocity) > 0){
+						x+=xVelocity;
+						xVelocity-=1;
+				        try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
 				}
 				
 				stun = false;
-				
 				
 			}
 		});

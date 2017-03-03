@@ -12,6 +12,7 @@ import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Robot;
 import com.capstone.plasma.mapmaker.Map;
+import com.capstone.plasma.mapmaker.MapHandler;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Chunk;
@@ -81,6 +82,8 @@ public class GameScreen{
         
         PlayerHandler ph = new PlayerHandler();
         ph.start();
+        MapHandler mh = new MapHandler();
+        mh.start();
         
         UserInput.startKeyManager();
         

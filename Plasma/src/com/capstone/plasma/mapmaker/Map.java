@@ -11,6 +11,7 @@ import com.capstone.plasma.inventory.PlasmaPistol;
 import com.capstone.plasma.inventory.TNT;
 import com.capstone.plasma.particle.Dropable;
 import com.capstone.plasma.particle.ParticleHandler;
+import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.GlowTile;
 import com.capstone.plasma.tiles.Tile;
@@ -41,7 +42,6 @@ public class Map implements Serializable{
 	public Map(ArrayList<Tile> t){
 		tiles = t;
 	}
-	
 	
 	public void sortMap(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
@@ -157,6 +157,18 @@ public class Map implements Serializable{
 		}
 		revtiles.addAll(tiles);
     	sortMap();
+	}
+	
+	public void tick() {
+		//System.out.println("maphand?");
+		//System.out.println(Player.x +" "+ GameScreen.xCam+" "+Player.x+GameScreen.xCam);
+		//System.out.println("test");
+		
+		if(Player.x+GameScreen.xCam>=400){
+			//GameScreen.xCam-=3;
+			//GameScreen.backCam-=2;
+		}
+		
 	}
 
 }
