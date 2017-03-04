@@ -28,12 +28,13 @@ import org.lwjgl.opengl.DisplayMode;
 
 import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.UserInput;
+import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.Tile;
 import com.capstone.plasma.tiles.Wall;
-import com.capstone.plasma.tiles.breakable;
+//import com.capstone.plasma.tiles.breakable;
 //import com.sun.java.util.jar.pack.Package.Class.Field;
 import com.capstone.plasma.tiles.GlowTile;
 import com.capstone.plasma.GameScreen;
@@ -102,6 +103,8 @@ public class MapMaker {
     			t.paint();
     			
     		}
+        	MapInventory.paint();
+        	selectedTile = MapInput.active;
         	//System.out.println(round(,Tile.size));
         	
         	crosshairX = Mouse.getX()-(Tile.size/2);
@@ -184,31 +187,31 @@ public class MapMaker {
     		totalDistanceX= mouseX-Mouse.getX();
     		if(Math.abs(totalDistanceX)>=Math.abs(totalDistanceY)){//this is for horizontal
     		if(totalDistanceX>0){
-	    		for(int i =1; i<=(totalDistanceX/30); i++){
-	    			tiles.add(getTileFromId(mouseX-(30*i), mouseY,selectedTile));
+	    		for(int i =1; i<=(totalDistanceX/Tile.size); i++){
+	    			tiles.add(getTileFromId(mouseX-(Tile.size*i), mouseY,selectedTile));
 	    		}
     		}
     		//I (Marc) wrote everything in this else statement, going right didn't work w/o it
     		else if(totalDistanceX<0){
-    			for(int i =Math.abs(totalDistanceX/30); i>=1; i--){
+    			for(int i =Math.abs(totalDistanceX/Tile.size); i>=1; i--){
     				int v=i*-1;
-	    			tiles.add(getTileFromId(mouseX-(30*v), mouseY,selectedTile));
+	    			tiles.add(getTileFromId(mouseX-(Tile.size*v), mouseY,selectedTile));
 	    		}
     		}
     	}else{//this is for verticle
     		System.out.println(totalDistanceY);
     		if(totalDistanceY>60){
     			System.out.println("dis");
-	    		for(int i =1; i<=(totalDistanceY/30); i++){
-	    			tiles.add(getTileFromId(mouseX, mouseY-(30*i),selectedTile));
+	    		for(int i =1; i<=(totalDistanceY/Tile.size); i++){
+	    			tiles.add(getTileFromId(mouseX, mouseY-(Tile.size*i),selectedTile));
 	    		}
     		}
     		
-    		else if(totalDistanceY<30){
+    		else if(totalDistanceY<Tile.size){
     			System.out.println("dis2");
-    			for(int i =Math.abs(totalDistanceY/30); i>=1; i--){
+    			for(int i =Math.abs(totalDistanceY/Tile.size); i>=1; i--){
     				int v=i*-1;
-	    			tiles.add(getTileFromId(mouseX, mouseY-(30*v),selectedTile));
+	    			tiles.add(getTileFromId(mouseX, mouseY-(Tile.size*v),selectedTile));
 	    		}
     		}
     	}
@@ -244,9 +247,9 @@ public class MapMaker {
     	case 0:
     		return new Floor(x,height-y);
     	case 1:
-    		return new Wall(x,height-y);
-    	case 2:
     		return new GlowTile(x,height-y);
+    	case 2:
+    		return new Wall(x,height-y);
     	case 3:
     		return null;
     	default:

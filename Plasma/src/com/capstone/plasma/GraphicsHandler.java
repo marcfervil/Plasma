@@ -17,9 +17,11 @@ public class GraphicsHandler {
 	private static final int BYTES_PER_PIXEL = 4;
 	public static int wall;
 	public static int floor;
-	public static int longtile;
+	public static int longtile; //gotta remove this
+	public static int GlowTile;
 	public static int breakable;
 	public static int itemHolder;
+	public static int selecteditemHolder;
 	public static int plasmaPistol;
 	public static int InventoryBackground;
 	
@@ -42,9 +44,11 @@ public class GraphicsHandler {
 	public static void loadTextures(){
 		wall=GraphicsHandler.loadTexture("images/wall.jpg");
 		floor=GraphicsHandler.loadTexture("images/floor.jpg");
-		longtile=GraphicsHandler.loadTexture("images/longtile.jpg");
+		longtile=GraphicsHandler.loadTexture("images/longtile.jpg");//we gotta remove this and rename everything.
+		GlowTile=GraphicsHandler.loadTexture("images/longtile.jpg");
 		breakable=GraphicsHandler.loadTexture("images/breakable.png");
 		itemHolder=GraphicsHandler.loadTexture("images/itemHolder.png");
+		selecteditemHolder=GraphicsHandler.loadTexture("images/selecteditemHolder.png");
 		plasmaPistol=GraphicsHandler.loadTexture("images/PlasmaPistol.png");
 		InventoryBackground=GraphicsHandler.loadTexture("images/InventoryBackground.png");
 		

@@ -13,6 +13,7 @@ public class MapInput {
 	public static boolean save = true;
 	public static boolean load = true;
 	public static boolean r = true;
+	public static int active = 0;
 
 	
 	static ArrayList<Integer> keysDown = new ArrayList<Integer>();
@@ -108,6 +109,16 @@ public class MapInput {
 							if(load){
 								load = false;
 								MapMaker.load();
+							}
+							break;
+						case Keyboard.KEY_1:
+							if(load){
+								active = 0;
+							}
+							break;
+						case Keyboard.KEY_2:
+							if(load){
+								active = 1;
 							}
 							break;
 							

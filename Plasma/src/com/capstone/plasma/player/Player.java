@@ -83,7 +83,7 @@ public class Player {
 				if(!imRight){
 					while(Math.abs(xVelocity) > 0){
 						x+=xVelocity;
-						if(!touchBounds(xVelocity,-1)){
+						if(touchBounds(xVelocity,-1)){
 						x-=2*xVelocity;
 						}
 						if(Player.x+GameScreen.xCam>=400){
@@ -99,7 +99,7 @@ public class Player {
 				}else{
 					while(Math.abs(xVelocity) > 0){
 						x-=xVelocity;
-						if(!touchBounds(xVelocity,-1)){
+						if(touchBounds(xVelocity,-1)){
 						x+=2*xVelocity;
 						}
 						if(Player.x+GameScreen.xCam<=400){

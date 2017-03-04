@@ -78,6 +78,7 @@ public class Tile implements Serializable{
 			
 		}
 	}
+
 	
 	
 	public void paintOp(){
