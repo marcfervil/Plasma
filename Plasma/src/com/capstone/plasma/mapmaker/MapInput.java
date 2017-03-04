@@ -121,6 +121,10 @@ public class MapInput {
 								active = 1;
 							}
 							break;
+						case Keyboard.KEY_3:
+							if(load){
+								active =2;
+							}
 							
 						default:
 							save = true;
