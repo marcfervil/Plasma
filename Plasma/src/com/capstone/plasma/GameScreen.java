@@ -66,9 +66,10 @@ public class GameScreen{
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
         map=Map.load("map1.ser");
+        //map=new Map();
         //map = new Map();
         for(int i =0; i<3; i++){
-			Mob.mobs.add(new Robot(350+i*(50),40,i));
+			Mob.mobs.add(new Robot(900+i*(50),40,i));
 		}
       //  Tile.load();
         //Tile.createChunks();
@@ -216,16 +217,17 @@ public class GameScreen{
         		/*
             	for(int i=map.backgroundTiles.size()-1;i>=0;i--){
             		Tile b = map.backgroundTiles.get(i);
-            		b.paint();
+            		//b.paint();
             		
             	}*/
         		map.paintMap();
         	}else{
         		//Tile.paintbackground2();
+        		
         		/*
             	for(int i=0;i< map.backgroundTiles.size();i++){
             		Tile b = map.backgroundTiles.get(i);
-            		b.paint();
+            		//b.paint();
             		
             	}*/
         		map.paintMap2();

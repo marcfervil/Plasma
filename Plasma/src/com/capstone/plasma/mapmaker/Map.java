@@ -138,7 +138,7 @@ public class Map implements Serializable{
 	public void mapGen(){
 		
 		for(int i=0;i<500;i++){
-			for(int j=0;j<20;j++){
+			for(int j=0;j<35;j++){
 				if(j<=13){
 					backgroundTiles.add(new Wall(i*Tile.size,j*Tile.size));
 					if(randInt(0,100)>95 && j>5){

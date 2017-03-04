@@ -10,7 +10,7 @@ public class Throwable  extends Projectile{
 	int ay = -2;
 	int ax = 1;
 	int angle = 45;
-	int speed=60;
+	int speed=Tile.size*2;
 	int vx;
 	int vy;
 	boolean calledStop=false;
@@ -49,7 +49,7 @@ public class Throwable  extends Projectile{
 		
 		
 		if(vy<-Tile.size){
-			vy=-30;
+			vy=-Tile.size;
 		}
 		
 		Tile t;

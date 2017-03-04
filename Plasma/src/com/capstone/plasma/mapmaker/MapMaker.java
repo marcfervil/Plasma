@@ -248,7 +248,7 @@ public class MapMaker {
     	case 2:
     		return new GlowTile(x,height-y);
     	case 3:
-    		return new breakable(x,height-y);
+    		return null;
     	default:
     		return null;
     		

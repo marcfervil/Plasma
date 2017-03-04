@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import com.capstone.plasma.*;
+import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.tiles.Chunk;
 import com.capstone.plasma.tiles.Tile;
 
@@ -82,6 +83,9 @@ public class Player {
 				if(!imRight){
 					while(Math.abs(xVelocity) > 0){
 						x+=xVelocity;
+						if(!touchBounds(xVelocity,-1)){
+						x-=2*xVelocity;
+						}
 						if(Player.x+GameScreen.xCam>=400){
 						GameScreen.xCam-=xVelocity;
 						}
@@ -95,6 +99,9 @@ public class Player {
 				}else{
 					while(Math.abs(xVelocity) > 0){
 						x-=xVelocity;
+						if(!touchBounds(xVelocity,-1)){
+						x+=2*xVelocity;
+						}
 						if(Player.x+GameScreen.xCam<=400){
 						GameScreen.xCam+=xVelocity;
 						}
@@ -167,6 +174,11 @@ public class Player {
 		GameScreen.xCam = 0;
 		GameScreen.yCam = 105;
 		GameScreen.backCam = 0;
+		
+		
+		ParticleHandler.createExplosion(x,y,15,6,15,Color.RED);
+		
+
 		deaths++;
 	}
 
