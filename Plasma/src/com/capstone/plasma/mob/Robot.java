@@ -32,7 +32,7 @@ public class Robot extends Mob {
 	int num=1;
 	int count = 0;
 	public int hit = 100;
-	public int knockBack = 60;
+	public int knockBack = 20;
 	public boolean dead = false;
 	//public int x; 
 	//public int y;
@@ -119,17 +119,21 @@ public class Robot extends Mob {
 	
 	public void attack(){
 		if(Utilities.touchPlayer(x, y, size)){
-			System.out.println("collided!");
-			//Player.damage(hit);
-			
-			
-			if(faceRight){
-				Player.throwBack(knockBack, false);
-			}else{
-				Player.throwBack(knockBack, true);
+			boolean throwUp = false;
+			for(int i = 0; i<mobs.size(); i++){
+				if(Math.abs(x-mobs.get(i).x)<=100 && mobs.get(i)!=this){
+					throwUp = true;
+					Player.throwBack(0, knockBack-(knockBack/2), true);
+					break;
+				}
 			}
-			
+			if(faceRight && !throwUp){
+				Player.throwBack(knockBack,knockBack-(knockBack/2), false);
+			}else if(!throwUp){
+				Player.throwBack(knockBack,knockBack-(knockBack/2), true);
+			}
 		}
+			//Player.damage(hit);
 		//if(x-GameScreen.xCam)
 	}
 	
@@ -139,11 +143,10 @@ public class Robot extends Mob {
 			Thread.sleep(10);
 		} catch (InterruptedException e) {
 		}
-		
 		if(seeking){
-			if(Player.x<x+viewRange && Player.x >x){
+			if(Player.x<=x+viewRange && Player.x >=x){
 				faceRight = true;
-			}else if(Player.x >x-viewRange && Player.x<x){
+			}else if(Player.x >=x-viewRange && Player.x<=x){
 				faceRight = false;
 			}else{
 				seeking = false;

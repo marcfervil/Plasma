@@ -58,7 +58,8 @@ public class Player {
 				if(Player.x+GameScreen.xCam>=400){
 					GameScreen.xCam-=3;
 					GameScreen.backCam-=2;
-				}
+			
+			}
 			}else{
 				Player.x-=3;
 				if(Player.x+GameScreen.xCam<=100){
@@ -70,23 +71,41 @@ public class Player {
 		}
 	}
 	
-	public static void throwBack(int knock, boolean imRight){
+	public static void throwBack(int knock,int knockup, boolean imRight){
+		if(!stun){
 		Thread t1 = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				int xVelocity = knock;
-				System.out.println("throw");
+				yVelocity -= knockup;
 				stun = true;
-				if(true){
+				if(!imRight){
 					while(Math.abs(xVelocity) > 0){
 						x+=xVelocity;
+						if(Player.x+GameScreen.xCam>=400){
+						GameScreen.xCam-=xVelocity;
+						}
 						xVelocity-=1;
 				        try {
-							Thread.sleep(100);
+							Thread.sleep(20);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
 					}
+				}else{
+					while(Math.abs(xVelocity) > 0){
+						x-=xVelocity;
+						if(Player.x+GameScreen.xCam<=400){
+						GameScreen.xCam+=xVelocity;
+						}
+						xVelocity-=1;
+				        try {
+							Thread.sleep(20);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+					
 				}
 				
 				stun = false;
@@ -94,7 +113,7 @@ public class Player {
 			}
 		});
 		t1.start();
-		
+		}
 	}
 	
 	public static boolean touchBounds(int xn,int yn){
@@ -153,6 +172,12 @@ public class Player {
 
 	
 	public static void tick(){
+		/*
+		if(yVelocity>10){ //fall damage code
+			damage(yVelocity-20);
+			System.out.println(yVelocity-20);
+		}
+		*/
 		if(hp<=0){
 			respawn();
 		}
@@ -189,6 +214,7 @@ public class Player {
 			onGround=false;
 		//	}
 		}
+		//System.out.println(yVelocity);
 		//if(yVelocity<maxGrav){
 			y+=yVelocity;
 			//GameScreen.yCam-=yVelocity;

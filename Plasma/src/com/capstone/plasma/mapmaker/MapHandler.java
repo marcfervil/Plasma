@@ -12,7 +12,8 @@ public class MapHandler extends Thread {
 			while(true){
 				try{
 				Thread.sleep(10);
-				GameScreen.map.tick();
+				
+				//GameScreen.map.tick();
 				}catch(InterruptedException e){
 					
 				}

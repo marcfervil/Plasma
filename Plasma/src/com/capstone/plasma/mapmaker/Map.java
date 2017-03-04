@@ -165,8 +165,8 @@ public class Map implements Serializable{
 		//System.out.println("test");
 		
 		if(Player.x+GameScreen.xCam>=400){
-			//GameScreen.xCam-=3;
-			//GameScreen.backCam-=2;
+			GameScreen.xCam-=Player.x+GameScreen.xCam-400;
+			GameScreen.backCam-=2;
 		}
 		
 	}
