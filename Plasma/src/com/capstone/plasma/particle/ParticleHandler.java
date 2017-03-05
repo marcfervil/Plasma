@@ -34,11 +34,10 @@ public class ParticleHandler {
 			DebrisParticle.DebrisParticleTick f = new DebrisParticle.DebrisParticleTick();
 			f.start();
 			while(true){
+				
 				try {
 					Thread.sleep(5);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+			
 				
 				for(int i=0;i<particles.size();i++){
 					Particle p=particles.get(i);
@@ -66,7 +65,9 @@ public class ParticleHandler {
 					}
 				}
 				
-				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

@@ -15,7 +15,7 @@ public class GlowTile extends Tile{
 		breakable=true;
 		//20% chance of GlowTile glowing 
 		if(Utilities.randInt(0,100)>80){
-			ps=ParticleHandler.createParticleStream(x, y,Color.yellow,100,200,true);
+	//		ps=ParticleHandler.createParticleStream(x, y,Color.yellow,100,200,true);
 		}
 	}
 
