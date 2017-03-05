@@ -13,7 +13,9 @@ import com.capstone.plasma.tiles.Tile;
 
 public class Turret extends Mob{
 
-	ShotTick st;
+	public ShotTick st;
+	public boolean open=false;
+	public int range = 150;
 	
 	public Turret(int x, int y) {
 		super(x, y);
@@ -24,12 +26,33 @@ public class Turret extends Mob{
 	
 	public void paint(){
 		paintHealthBar();
-		GraphicsHandler.drawImage(GraphicsHandler.turret, x+GameScreen.xCam, y+GameScreen.yCam, size,size);
+		if(open){
+			GraphicsHandler.drawImage(GraphicsHandler.turret, x+GameScreen.xCam, y+GameScreen.yCam, size,size);
+		}else{
+			GraphicsHandler.drawImage(GraphicsHandler.turretClosed, x+GameScreen.xCam, y+GameScreen.yCam, size,size);
+		}
 	}
 	
 	public void tick(){
+		if(Math.abs(x-Player.x)<=range){
+			open=true;
+		}else{
+			open=false;
+		}
 		gravity();
 
+	}
+	
+	public void damage(int dm){
+		if(open){
+			hp-=dm;
+			if(hp<=0){
+				death();
+			}
+			if(y>GameScreen.map.lowest){
+				death();
+			}
+		}
 	}
 
 	//this is stupid but I couldn't think of away to get 'this' inside of a thread w/o refferencing the thread
@@ -46,7 +69,7 @@ public class Turret extends Mob{
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				
+				if(open){
 				int shotX=x;
 				int shotY=y;
 				
@@ -57,6 +80,7 @@ public class Turret extends Mob{
 				final double deltaX = (playerX - shotX);
 				final double result = Math.toDegrees(Math.atan2(deltaY, deltaX)); 
 				ParticleHandler.particles.add(new PlasmaShot(shotX,shotY,15,(int) result,getThis()));
+				}
 			}
 		}
 	}

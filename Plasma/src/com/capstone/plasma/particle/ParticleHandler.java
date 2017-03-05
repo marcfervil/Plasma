@@ -31,6 +31,8 @@ public class ParticleHandler {
 	
 	public static class ParticleTick extends Thread{ 
 		public void run(){
+			DebrisParticle.DebrisParticleTick f = new DebrisParticle.DebrisParticleTick();
+			f.start();
 			while(true){
 				try {
 					Thread.sleep(5);
@@ -41,7 +43,7 @@ public class ParticleHandler {
 				for(int i=0;i<particles.size();i++){
 					Particle p=particles.get(i);
 					
-					if((!(p==null)) ){
+					if((!(p==null)) && !(p instanceof DebrisParticle)){
 						if(p.alpha>-1 && p.x+GameScreen.xCam<900 && p.x+GameScreen.xCam>-60 || p.backgroundTick){
 							if(p.tickCount==p.onTick){
 								p.tick();

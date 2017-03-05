@@ -34,6 +34,7 @@ public class GraphicsHandler {
 	public static int angryRobotLeft;
 	
 	public static int turret;
+	public static int turretClosed;
 	
 	public static int chair;
 	
@@ -66,6 +67,7 @@ public class GraphicsHandler {
 		player2 = GraphicsHandler.loadTexture("images/guy2.png");
 
 		turret = GraphicsHandler.loadTexture("images/turret.png");
+		turretClosed = GraphicsHandler.loadTexture("images/turretClosed.png");
 
 		
 		crack1=GraphicsHandler.loadTexture("images/crack1.png");
