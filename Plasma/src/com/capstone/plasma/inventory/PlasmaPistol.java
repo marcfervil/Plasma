@@ -12,13 +12,16 @@ import com.capstone.plasma.tiles.Tile;
 public class PlasmaPistol extends Weapon{
 	
 	public int damage=100;
+	public int energy = 5;
 	
 	public PlasmaPistol(){
 		super(GraphicsHandler.plasmaPistol);
 	}
 
 	public void action(){
-		
+		if(Player.plasma>0){
+		Player.plasma -=energy;
+		//System.out.println(Player.plasma);
 		if(UserInput.keysDown.contains(Keyboard.KEY_S)){
 			System.out.println("down");
 			ParticleHandler.particles.add(new PlasmaShot(Player.x,Player.y,damage,-270,null));
@@ -30,6 +33,7 @@ public class PlasmaPistol extends Weapon{
 		}else{
 			ParticleHandler.particles.add(new PlasmaShot(Player.x+(Tile.size/2),Player.y+(Tile.size/2),damage,180,null));
 		}
+	}
 	}
 	
 }
