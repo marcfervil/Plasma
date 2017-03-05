@@ -95,6 +95,8 @@ public class Throwable  extends Projectile{
 		
 	}
 	
+	
+	//*old explode method
 	public void explode(){
 		for(int i=0;i<10;i++){
 			int xr=Utilities.randInt(-100, 100);
@@ -123,6 +125,6 @@ public class Throwable  extends Projectile{
 		}
 		remove();
 	}
-	
+	//*/
 	
 }

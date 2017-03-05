@@ -19,6 +19,7 @@ public class PlasmaShot extends Projectile{
 	public int height = 20;
 	public int angle = 0;
 	public Object creator;
+
 	
 	public PlasmaShot(int x, int y, int damage,int angle,Object creator) {
 		super(x, y,damage);

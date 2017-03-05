@@ -8,6 +8,7 @@ import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Tile;
 
 public class TNT extends Weapon{
+	public int energy = 100;
 
 	public TNT(){
 		super(GraphicsHandler.TNT);
@@ -15,6 +16,9 @@ public class TNT extends Weapon{
 	
 	
 	public void action(){
+		if(Player.plasma>=energy){
+		Player.plasma -=energy;
 		ParticleHandler.particles.add(new TNTThrowable(Player.x+Tile.size,Player.y,100));
+		}
 	}
 }

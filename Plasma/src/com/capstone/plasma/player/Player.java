@@ -35,6 +35,10 @@ public class Player {
 	public static int kills = 0;
 	public static boolean stun = false;
 	public static boolean faceRight = true;
+	public static float maxPlasma = 1000;
+	public static float plasma = maxPlasma;
+	public static int rechargeRate = 1;
+	public static int recharge = rechargeRate;
 	//public static Thread t1;
 	
 	public static void paint(){
@@ -44,6 +48,19 @@ public class Player {
 		}else{
 			GraphicsHandler.drawImage(GraphicsHandler.player2,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		}
+		
+		//health bar doesn't work well
+		float percent = ((float)hp/maxHp);
+		float fill =  (float) (40.0f*percent);
+		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam-20, fill, 5, 0, Color.RED);
+		GraphicsHandler.drawEmptyRect(x+GameScreen.xCam, y+GameScreen.yCam-20, 40, 5, 0, Color.BLACK);
+		
+		//energy system
+		float percentPlasma = (plasma/maxPlasma);
+		float fillPlasma = (float) (200*percentPlasma);
+		GraphicsHandler.drawRect(60, 300, 30, fillPlasma, 180, new Color(205, 0, 255));
+		GraphicsHandler.drawEmptyRect(30,100,30,200,0,Color.BLUE);
+		
 		///GraphicsHandler.drawEmptyRect((x+5)+GameScreen.xCam, y+GameScreen.yCam, Tile.size-10, Tile.size, 0, Color.BLACK);	
 		
 		//GraphicsHandler.drawRect(getBounds(0,yVelocity).x, getBounds(0,yVeloc
@@ -189,9 +206,21 @@ public class Player {
 
 		deaths++;
 	}
+	
+	public static void recharge(){
+		//recharge -=1;
+		//System.out.println(recharge);
+		if(plasma<maxPlasma){
+			//recharge = System.nanoTime();
+			plasma+=1;
+			//System.out.println("plasma"+plasma);
+		}
+		
+	}
 
 	
 	public static void tick(){
+		recharge();
 		/*
 		if(yVelocity>10){ //fall damage code
 			damage(yVelocity-20);
