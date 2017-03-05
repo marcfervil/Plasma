@@ -19,7 +19,7 @@ public class PlasmaPistol extends Weapon{
 	}
 
 	public void action(){
-		if(Player.plasma>0){
+		if(Player.plasma>=energy){
 		Player.plasma -=energy;
 		//System.out.println(Player.plasma);
 		if(UserInput.keysDown.contains(Keyboard.KEY_S)){

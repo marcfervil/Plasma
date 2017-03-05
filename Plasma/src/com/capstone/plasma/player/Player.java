@@ -58,7 +58,7 @@ public class Player {
 		//energy system
 		float percentPlasma = (plasma/maxPlasma);
 		float fillPlasma = (float) (200*percentPlasma);
-		GraphicsHandler.drawRect(60, 300, 30, fillPlasma, 180, Color.CYAN);
+		GraphicsHandler.drawRect(60, 300, 30, fillPlasma, 180, new Color(205, 0, 255));
 		GraphicsHandler.drawEmptyRect(30,100,30,200,0,Color.BLUE);
 		
 		///GraphicsHandler.drawEmptyRect((x+5)+GameScreen.xCam, y+GameScreen.yCam, Tile.size-10, Tile.size, 0, Color.BLACK);	

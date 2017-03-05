@@ -16,7 +16,7 @@ public class TNT extends Weapon{
 	
 	
 	public void action(){
-		if(Player.plasma>0){
+		if(Player.plasma>=energy){
 		Player.plasma -=energy;
 		ParticleHandler.particles.add(new TNTThrowable(Player.x+Tile.size,Player.y,100));
 		}
