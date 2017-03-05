@@ -65,8 +65,8 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-        map=Map.load("map1.ser");
-        //map=new Map();
+        //map=Map.load("map1.ser");
+        map=new Map();
         //map = new Map();
         for(int i =0; i<3; i++){
 			Mob.mobs.add(new Robot(900+i*(50),40,i));

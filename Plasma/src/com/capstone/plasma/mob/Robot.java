@@ -132,7 +132,7 @@ public class Robot extends Mob {
 			}else if(!throwUp){
 				Player.throwBack(knockBack,knockBack-(knockBack/2), true);
 			}
-			//Player.damage(hit);
+			Player.damage(hit);
 		}
 			
 		//if(x-GameScreen.xCam)

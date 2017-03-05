@@ -27,7 +27,7 @@ public class PlasmaShot extends Projectile{
 	
 	public void paint(){
 		//GraphicsHandler.drawImage(item.texture, x+GameScreen.xCam, y+GameScreen.yCam+up, Tile.size, Tile.size);
-		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10, 0, Color.CYAN);
+		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 15, 5, 0, Color.CYAN);
 	}
 	
 	

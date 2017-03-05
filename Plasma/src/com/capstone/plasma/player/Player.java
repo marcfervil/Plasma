@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.capstone.plasma.*;
 import com.capstone.plasma.particle.ParticleHandler;
+import com.capstone.plasma.particle.Projectile;
 import com.capstone.plasma.tiles.Chunk;
 import com.capstone.plasma.tiles.Tile;
 
@@ -35,7 +36,12 @@ public class Player {
 	//public static Thread t1;
 	
 	public static void paint(){
-		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);	
+		//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);
+		if(UserInput.lastKey =="d"){
+			GraphicsHandler.drawImage(GraphicsHandler.player,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size+5, Tile.size);
+		}else{
+			GraphicsHandler.drawImage(GraphicsHandler.player2,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size+5, Tile.size);
+		}
 		///GraphicsHandler.drawEmptyRect((x+5)+GameScreen.xCam, y+GameScreen.yCam, Tile.size-10, Tile.size, 0, Color.BLACK);	
 		
 		//GraphicsHandler.drawRect(getBounds(0,yVelocity).x, getBounds(0,yVeloc

@@ -35,6 +35,9 @@ public class GraphicsHandler {
 	
 	public static int chair;
 	
+	public static int player;
+	public static int player2;
+	
 	public static int TNT;
 	
 	public static int lastTexture=0;
@@ -55,6 +58,9 @@ public class GraphicsHandler {
 		robotRight = GraphicsHandler.loadTexture("images/robocalm.png");
 		angryRobotRight = GraphicsHandler.loadTexture("images/roboangry2.png");
 		angryRobotLeft = GraphicsHandler.loadTexture("images/roboangry1.png");
+		
+		player = GraphicsHandler.loadTexture("images/guy.png");
+		player2 = GraphicsHandler.loadTexture("images/guy2.png");
 		
 		crack1=GraphicsHandler.loadTexture("images/crack1.png");
 		crack2=GraphicsHandler.loadTexture("images/crack2.png");
