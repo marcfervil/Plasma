@@ -27,8 +27,10 @@ public class Robot extends Mob {
 	int num=1;
 	int count = 0;
 	public int hit = 100;
-	public int knockBack = 20;
+	public int knockBack =15;
 	public boolean dead = false;
+	public boolean attack = true;
+	public int attackTick = 10;
 	//public int x; 
 	//public int y;
 	
@@ -67,6 +69,12 @@ public class Robot extends Mob {
 
 	
 	public void action(){
+		if(attackTick >0 &&!attack){
+			attackTick-=1;
+		}else{
+			attackTick = 10;
+			attack = true;
+		}
 	//	y-=10;
 		endTime = System.nanoTime();
 		seek();
@@ -107,7 +115,10 @@ public class Robot extends Mob {
 			}else if(!throwUp){
 				Player.throwBack(knockBack,knockBack-(knockBack/2), true);
 			}
-			Player.damage(hit);
+			if(attack){
+				attack = false;
+				Player.damage(hit);
+			}
 		}
 			
 		//if(x-GameScreen.xCam)
@@ -167,7 +178,7 @@ public class Robot extends Mob {
 	}
 
 	public void paint(){
-		System.out.println("ddd");
+		
 		//maxHP
 	//	if(!dead){
 		

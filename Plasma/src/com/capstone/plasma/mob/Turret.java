@@ -15,7 +15,7 @@ public class Turret extends Mob{
 
 	public ShotTick st;
 	public boolean open=false;
-	public int range = 150;
+	public int range = 10*Tile.size;
 	
 	public Turret(int x, int y) {
 		super(x, y);

@@ -107,6 +107,12 @@ public class Throwable  extends Projectile{
 			Mob p=Utilities.touchBoundReturnMobs(x+xr, y+yr, vx, speed, Tile.size,null);
 			if(p!=null)p.damage(Utilities.randInt(0, 300));
 			
+			p=Utilities.touchBoundReturnMobs(x-xr, y-yr, vx, speed, Tile.size,null);
+			if(p!=null)p.damage(Utilities.randInt(0, 300));
+			
+			p=Utilities.touchBoundReturnMobs(x-xr, y, vx, speed, Tile.size,null);
+			if(p!=null)p.damage(Utilities.randInt(0, 300));
+			
 			Tile z=Utilities.touchBoundsTile(x+xr, (y+yr)+(Tile.size), vx, speed, Tile.size);
 			if(z!=null)z.damage(Utilities.randInt(0, 300));
 			

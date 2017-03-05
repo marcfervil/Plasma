@@ -69,8 +69,9 @@ public class GameScreen{
         //map=Map.load("map1.ser");
         map=new Map();
         //map = new Map();
-        for(int i =0; i<2; i++){
-			Mob.mobs.add(new Turret(350+i*(50),40));
+        for(int i =0; i<50; i++){
+			Mob.mobs.add(new Turret(500+i*(500),40));
+			Mob.mobs.add(new Robot(550+i*(500),40));
 		}
       //  Tile.load();
         //Tile.createChunks();
