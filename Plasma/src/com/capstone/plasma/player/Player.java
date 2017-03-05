@@ -40,9 +40,9 @@ public class Player {
 	public static void paint(){
 		//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);
 		if(UserInput.lastKey =="d"){
-			GraphicsHandler.drawImage(GraphicsHandler.player,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size+5, Tile.size);
+			GraphicsHandler.drawImage(GraphicsHandler.player,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		}else{
-			GraphicsHandler.drawImage(GraphicsHandler.player2,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size+5, Tile.size);
+			GraphicsHandler.drawImage(GraphicsHandler.player2,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		}
 		///GraphicsHandler.drawEmptyRect((x+5)+GameScreen.xCam, y+GameScreen.yCam, Tile.size-10, Tile.size, 0, Color.BLACK);	
 		

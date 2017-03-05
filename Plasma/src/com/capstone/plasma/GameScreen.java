@@ -144,7 +144,7 @@ public class GameScreen{
     */
     
     public static void shakeCamera(int duration,int intensity){
-    	
+    	///TEMPERARILY DISABLING CAMERA SHAKING
     	
    	 Thread t1 = new Thread(new Runnable() {
 	         public void run() {
@@ -157,14 +157,10 @@ public class GameScreen{
 	        		 int xOffset=Utilities.randInt(-intensity, intensity);
 		        	 int yOffset=Utilities.randInt(-intensity, intensity);	
 		        	   
-		        	 if(xOffset<=0){
-		        		 UserInput.lastKey="d";
-		        	 }else{
-		        		 UserInput.lastKey="a";
-		        	 }
+		        	
 		        	 
-		        	 xCam+=xOffset;
-		        	 yCam+=yOffset;
+		        //	 xCam+=xOffset;
+		        //	 yCam+=yOffset;
 	        		 
 		        	 
 		        	 
@@ -175,17 +171,10 @@ public class GameScreen{
 	 				} catch (InterruptedException e) {
 	 					e.printStackTrace();
 	 				}
-	        		 if(xOffset>=0){
-	        			 UserInput.lastKey="a";
-		        	 }else{
-		        		 UserInput.lastKey="d";
-		        		
-		        	 }
-		        	 
+	        	
 	        		 
-	        		 
-	        		 xCam-=xOffset;
-		        	 yCam-=yOffset;
+	        	//	 xCam-=xOffset;
+		        //	 yCam-=yOffset;
 	        	    
 		     //   	 backCam-=xOffset;
 		        	 
