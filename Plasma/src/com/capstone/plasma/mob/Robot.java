@@ -1,11 +1,7 @@
 package com.capstone.plasma.mob;
 
-import java.awt.Color;
-import java.awt.Rectangle;
-
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
-import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Tile;
@@ -15,9 +11,8 @@ public class Robot extends Mob {
 	public int lowSpeed = 2;
 	public int highSpeed = 3;
 	public int speed = lowSpeed;
-	public int gravityStrength = 1;
-	public int maxGrav = 100;
-	public int yVelocity = 0;
+	
+	
 	public int jumpHeight = 20; //was 20
 	public boolean jump=false;
 	public long startTime = 10;
@@ -25,7 +20,7 @@ public class Robot extends Mob {
 	public boolean seeking = false;
 	public int viewRange = 250;
 	public int action = 30;
-	public boolean onGround = false;
+	
 	public int size = Tile.size;
 	public int paintSize = size+10;
 	public boolean aniStage = true;
@@ -49,28 +44,10 @@ public class Robot extends Mob {
 		super(x, y);
 	}
 	
-	public void death(){
-		dead = true;
-		Player.kills++;
-		ParticleHandler.createParticleStream(x, y, Color.BLACK, 10, 10, true,10);
-		
-	//	System.out.println(mobs.indexOf(this));
-		
-		Mob.mobs.remove(mobs.indexOf(this));
-		t1.stop();
-		
-		//deathAnimation();
-		
-	}
-	
+
 	public void tick(){
 		attack();
-		if(hp<=0){
-			death();
-		}
-		if(y>GameScreen.map.lowest){
-			death();
-		}
+		
 		if(faceRight){
 			speed = Math.abs(speed);
 			lowSpeed = Math.abs(lowSpeed);
@@ -87,9 +64,7 @@ public class Robot extends Mob {
 		//startTime = System.nanoTime();
 	}
 	
-	public void damage(int dm){
-		hp-=dm;
-	}
+
 	
 	public void action(){
 	//	y-=10;
@@ -190,53 +165,13 @@ public class Robot extends Mob {
 		}
 		
 	}
-	public void gravity(){
-	
-		Tile t;
-		if((t = Utilities.touchBoundsTile(x,y,0, yVelocity,size)) !=null){
-				
-			if(yVelocity==0){
-				onGround=true;
-			}
-			if(yVelocity<0 ){
-				
-				y-=(y-t.y-Tile.size);
-				
-			}
-			yVelocity = 0;
-		}else{
-			if(yVelocity<maxGrav){
-				yVelocity +=gravityStrength;
-			}
-			onGround=false;
-		}
-//		System.out.println("falling");
-	
-		if(!(Utilities.touchBoundsMobs(x,y,0, yVelocity,size,this))){
-			y+=yVelocity;
-		}
-	}
-	
+
 	public void paint(){
-		
+		System.out.println("ddd");
 		//maxHP
-		if(!dead){
+	//	if(!dead){
 		
-		float percent = (hp/maxHp);
-		
-		//int fill = percent;
-		
-		float fill =  (float) (40.0f*percent);
-		
-		
-		
-		//GraphicsHandler.drawText(percent+"",x+GameScreen.xCam, y+GameScreen.yCam-50,25);
-		
-		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam-20, fill, 5, 0, Color.RED);
-		
-		
-		
-		GraphicsHandler.drawEmptyRect(x+GameScreen.xCam, y+GameScreen.yCam-20, 40, 5, 0, Color.BLACK);
+		paintHealthBar();
 		
 		if(seeking){
 			//seeking
@@ -262,7 +197,7 @@ public class Robot extends Mob {
 	}
 			//GraphicsHandler.drawText("rob"+num, x+GameScreen.xCam, y+GameScreen.yCam);
 		
-	}
+//	}
 	
 	
 

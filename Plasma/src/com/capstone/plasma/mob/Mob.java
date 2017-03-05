@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
+import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Tile;
 //import com.sun.prism.paint.Color;
 import java.awt.Color;
@@ -22,9 +24,13 @@ public class Mob {
 	public int viewRange = 300;
 	public int speed;
 	public int size=Tile.size;
-	public float hp;
+	public float hp=300;
 	public Thread t1;
-	public float maxHp;
+	public float maxHp=300;
+	public boolean onGround = false;
+	public int yVelocity = 0;
+	public int gravityStrength = 1;
+	public int maxGrav = 100;
 	
 	//public Mob(int texture for texture
 	public Mob(int x, int y){
@@ -50,6 +56,13 @@ public class Mob {
 	}
 	
 
+	public void death(){
+		Player.kills++;
+		ParticleHandler.createParticleStream(x, y, Color.RED, 10, 10, true,10);
+		Mob.mobs.remove(mobs.indexOf(this));
+		t1.stop();
+	}
+	
 
 	public static class MobTickManager extends Thread{
 		public void run(){
@@ -88,7 +101,12 @@ public class Mob {
 	
 	public void damage(int dm){
 		hp-=dm;
-		System.out.println(hp);
+		if(hp<=0){
+			death();
+		}
+		if(y>GameScreen.map.lowest){
+			death();
+		}
 	}
 	
 	public static boolean touchBounds(int xn,int yn){
@@ -117,6 +135,41 @@ public class Mob {
 		
 		return false;
 	}
+	
+	public void paintHealthBar(){
+		float percent = (hp/maxHp);
+		float fill =  (float) (40.0f*percent);
+		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam-20, fill, 5, 0, Color.RED);
+		GraphicsHandler.drawEmptyRect(x+GameScreen.xCam, y+GameScreen.yCam-20, 40, 5, 0, Color.BLACK);
+	}
+	
+	public void gravity(){
+		
+		Tile t;
+		if((t = Utilities.touchBoundsTile(x,y,0, yVelocity,size)) !=null){
+				
+			if(yVelocity==0){
+				onGround=true;
+			}
+			if(yVelocity<0 ){
+				
+				y-=(y-t.y-size);
+				
+			}
+			yVelocity = 0;
+		}else{
+			if(yVelocity<maxGrav){
+				yVelocity +=gravityStrength;
+			}
+			onGround=false;
+		}
+//		System.out.println("falling");
+	
+		if(!(Utilities.touchBoundsMobs(x,y,0, yVelocity,size,this))){
+			y+=yVelocity;
+		}
+	}
+	
 	
 	/*
 	public static boolean checkCollide(int xn, int yn){

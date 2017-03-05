@@ -5,20 +5,16 @@ import java.util.ArrayList;
 import org.lwjgl.input.Keyboard;
 
 import com.capstone.plasma.inventory.Inventory;
-import com.capstone.plasma.inventory.PlasmaPistol;
-import com.capstone.plasma.inventory.TNT;
 import com.capstone.plasma.particle.ParticleHandler;
-import com.capstone.plasma.particle.Projectile;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
-import com.capstone.plasma.tiles.Tile;
 
 public class UserInput {
 	public static String lastKey;
 	public static int shotTickSpeed = 20;
 	public static int shotTick = shotTickSpeed;
 	
-	static ArrayList<Integer> keysDown = new ArrayList<Integer>();
+	public static ArrayList<Integer> keysDown = new ArrayList<Integer>();
 	
 	
 	public static void get(){
@@ -104,6 +100,10 @@ public class UserInput {
 								Player.jump=true;
 							}
 							
+							break;
+							
+						case Keyboard.KEY_S:
+						//	continue;
 							break;
 							
 						case Keyboard.KEY_J:

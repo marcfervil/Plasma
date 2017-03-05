@@ -11,6 +11,7 @@ import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Robot;
+import com.capstone.plasma.mob.Turret;
 import com.capstone.plasma.mapmaker.Map;
 import com.capstone.plasma.mapmaker.MapHandler;
 import com.capstone.plasma.particle.ParticleHandler;
@@ -68,8 +69,8 @@ public class GameScreen{
         //map=Map.load("map1.ser");
         map=new Map();
         //map = new Map();
-        for(int i =0; i<3; i++){
-			Mob.mobs.add(new Robot(900+i*(50),40,i));
+        for(int i =0; i<2; i++){
+			Mob.mobs.add(new Turret(350+i*(50),40));
 		}
       //  Tile.load();
         //Tile.createChunks();

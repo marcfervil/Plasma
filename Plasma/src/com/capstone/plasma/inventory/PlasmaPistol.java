@@ -1,6 +1,6 @@
 package com.capstone.plasma.inventory;
 
-import java.util.concurrent.TimeUnit;
+import org.lwjgl.input.Keyboard;
 
 import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.UserInput;
@@ -18,10 +18,17 @@ public class PlasmaPistol extends Weapon{
 	}
 
 	public void action(){
+		
+		if(UserInput.keysDown.contains(Keyboard.KEY_S)){
+			System.out.println("down");
+			ParticleHandler.particles.add(new PlasmaShot(Player.x,Player.y,damage,-270,null));
+			return;
+		}
+		
 		if(UserInput.lastKey =="d"){
-			ParticleHandler.particles.add(new PlasmaShot(Player.x+Tile.size,Player.y,damage));
+			ParticleHandler.particles.add(new PlasmaShot(Player.x+(Tile.size),Player.y,damage,0,null));
 		}else{
-			ParticleHandler.particles.add(new PlasmaShot(Player.x-Tile.size,Player.y,damage));
+			ParticleHandler.particles.add(new PlasmaShot(Player.x+(Tile.size/2),Player.y+(Tile.size/2),damage,180,null));
 		}
 	}
 	

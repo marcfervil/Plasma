@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import com.capstone.plasma.*;
 import com.capstone.plasma.particle.ParticleHandler;
+
 import com.capstone.plasma.particle.Projectile;
 import com.capstone.plasma.tiles.Chunk;
+
 import com.capstone.plasma.tiles.Tile;
 
 
@@ -57,7 +59,7 @@ public class Player {
 	}
 	
 	public static void move(){
-		Tile t;
+
 		if(!stun){
 		if(!touchBounds(PlayerSpeed, -1)){
 			if(faceRight = true){
