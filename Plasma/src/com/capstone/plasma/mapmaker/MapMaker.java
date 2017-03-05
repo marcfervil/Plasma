@@ -159,7 +159,6 @@ public class MapMaker {
 
     		for(int i =0; i<tiles.size(); i++){
     			if(tiles.get(i).x == crosshairX-GameScreen.xCam &&tiles.get(i).y == height-(crosshairY+GameScreen.yCam)){
-    			//if(tiles.get(i).x == mouseX-GameScreen.xCam+(GameScreen.xCam%Tile.size) &&tiles.get(i).y == mouseY+GameScreen.yCam-(GameScreen.yCam%Tile.size)){
     				tiles.remove(i);
     				System.out.println("it removed");
     			}
