@@ -8,7 +8,7 @@ import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Tile;
 
 public class TNT extends Weapon{
-	public int energy = 100;
+	public int energy = 200;
 
 	public TNT(){
 		super(GraphicsHandler.TNT);

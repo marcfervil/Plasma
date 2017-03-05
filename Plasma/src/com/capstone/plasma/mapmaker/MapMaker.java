@@ -176,7 +176,7 @@ public class MapMaker {
     		mouseX=round(mouseX,Tile.size);
     		mouseY=round(mouseY,Tile.size);
     		
-    		tiles.add(getTileFromId(mouseX, mouseY,selectedTile));
+    		placeBlock(mouseX, mouseY,selectedTile);
     		return;
     	}
     	
@@ -188,14 +188,14 @@ public class MapMaker {
     		if(Math.abs(totalDistanceX)>=Math.abs(totalDistanceY)){//this is for horizontal
     		if(totalDistanceX>0){
 	    		for(int i =1; i<=(totalDistanceX/Tile.size); i++){
-	    			tiles.add(getTileFromId(mouseX-(Tile.size*i), mouseY,selectedTile));
+	    			placeBlock(mouseX-(Tile.size*i), mouseY,selectedTile);
 	    		}
     		}
     		//I (Marc) wrote everything in this else statement, going right didn't work w/o it
     		else if(totalDistanceX<0){
     			for(int i =Math.abs(totalDistanceX/Tile.size); i>=1; i--){
     				int v=i*-1;
-	    			tiles.add(getTileFromId(mouseX-(Tile.size*v), mouseY,selectedTile));
+	    			placeBlock(mouseX-(Tile.size*v), mouseY,selectedTile);
 	    		}
     		}
     	}else{//this is for verticle
@@ -203,7 +203,7 @@ public class MapMaker {
     		if(totalDistanceY>60){
     			System.out.println("dis");
 	    		for(int i =1; i<=(totalDistanceY/Tile.size); i++){
-	    			tiles.add(getTileFromId(mouseX, mouseY-(Tile.size*i),selectedTile));
+	    			placeBlock(mouseX, mouseY-(Tile.size*i),selectedTile);
 	    		}
     		}
     		
@@ -211,7 +211,7 @@ public class MapMaker {
     			System.out.println("dis2");
     			for(int i =Math.abs(totalDistanceY/Tile.size); i>=1; i--){
     				int v=i*-1;
-	    			tiles.add(getTileFromId(mouseX, mouseY-(Tile.size*v),selectedTile));
+	    			placeBlock(mouseX, mouseY-(Tile.size*v),selectedTile);
 	    		}
     		}
     	}
@@ -231,13 +231,30 @@ public class MapMaker {
     		System.out.println("second");
     		for(int i = 0; i<(Math.abs(layerX-mouseX));i+=Tile.size){
     			for(int j = 0; j<(Math.abs(layerY-mouseY)); j+=Tile.size){
-    				tiles.add(getTileFromId(layerX+i, layerY+j,selectedTile));
+    				placeBlock(layerX+i, layerY+j,selectedTile);
     			}
     		}
     	}
     	
     }
     
+    public static void placeBlock(int x, int y, int Id){
+    	x = x-GameScreen.xCam+(GameScreen.xCam%Tile.size);
+    	y = y+GameScreen.yCam-(GameScreen.yCam%Tile.size);
+    	System.out.println(Id);
+    	switch(Id){
+    	case 0:
+    		tiles.add(new Floor(x,height-y));
+    	case 1:
+    		tiles.add(new GlowTile(x,height-y));
+    	case 2:
+    		tiles.add(new breakable(x,height-y));
+    		
+    	default:
+    		//System.out.println("none");
+    		
+    	}
+    }
     
     public static Tile getTileFromId(int x, int y, int Id){
     	//x = x-GameScreen.xCam;
@@ -250,9 +267,6 @@ public class MapMaker {
     		return new GlowTile(x,height-y);
     	case 2:
     		return new breakable(x,height-y);
-    		
-    	case 3:
-    		return new Wall(x,height-y);
     	default:
     		return null;
     		
