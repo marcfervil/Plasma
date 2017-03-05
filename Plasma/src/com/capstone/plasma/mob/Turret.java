@@ -79,7 +79,7 @@ public class Turret extends Mob{
 				final double deltaY = (playerY - shotY);
 				final double deltaX = (playerX - shotX);
 				final double result = Math.toDegrees(Math.atan2(deltaY, deltaX)); 
-				ParticleHandler.particles.add(new PlasmaShot(shotX,shotY,15,(int) result,getThis()));
+				ParticleHandler.particles.add(new PlasmaShot(shotX,shotY,15,(int) result,getThis(),new Color(255, 100, 205)));
 				}
 			}
 		}

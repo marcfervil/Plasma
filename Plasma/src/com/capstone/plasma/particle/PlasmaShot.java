@@ -19,12 +19,14 @@ public class PlasmaShot extends Projectile{
 	public int height = 20;
 	public int angle = 0;
 	public Object creator;
+	public Color color;
 
 	
-	public PlasmaShot(int x, int y, int damage,int angle,Object creator) {
+	public PlasmaShot(int x, int y, int damage,int angle,Object creator,Color color) {
 		super(x, y,damage);
 		this.angle=angle;
 		this.creator=creator;
+		this.color=color;
 		onTick=3;
 		initX=x;
 	}
@@ -32,7 +34,7 @@ public class PlasmaShot extends Projectile{
 	public void paint(){
 		//GraphicsHandler.drawImage(item.texture, x+GameScreen.xCam, y+GameScreen.yCam+up, Tile.size, Tile.size);
 
-		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 20, 5, angle, Color.CYAN);
+		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 20, 5, angle, color);
 
 	}
 	
