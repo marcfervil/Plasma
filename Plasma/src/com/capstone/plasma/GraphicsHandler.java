@@ -82,10 +82,11 @@ public class GraphicsHandler {
 	}
 	
 	public static void drawImage(int texture,float x, float y, float width, float height){
-
+		
 		//KEEP HERE TO SET COLOR TO WHITE SO RECTANGLE DOES NOT TINT TEXTURE
 		glColor4f(1f, 1f, 1f, 1f);
 		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 		glEnable(GL_TEXTURE_2D); 
 		glPushMatrix();
 		glTranslatef(x, y, 0); 

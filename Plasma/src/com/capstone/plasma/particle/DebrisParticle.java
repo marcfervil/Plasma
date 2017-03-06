@@ -41,9 +41,7 @@ class DebrisParticle extends Particle{
 			while(true){
 				try {
 					Thread.sleep(5);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+			
 				
 				for(int i=0;i<ParticleHandler.particles.size();i++){
 					Particle p=ParticleHandler.particles.get(i);
@@ -71,8 +69,11 @@ class DebrisParticle extends Particle{
 					}
 				}
 				
-				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+				
 		}
 	}
 	

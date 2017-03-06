@@ -145,29 +145,32 @@ public class Mob implements Serializable {
 	}
 	
 	public void gravity(){
+		try{
+			Tile t;
+			if((t = Utilities.touchBoundsTile(x,y,0, yVelocity,size)) !=null){
+					
+				if(yVelocity==0){
+					onGround=true;
+				}
+				if(yVelocity<0 ){
+					
+					y-=(y-t.y-size);
+					
+				}
+				yVelocity = 0;
+			}else{
+				if(yVelocity<maxGrav){
+					yVelocity +=gravityStrength;
+				}
+				onGround=false;
+			}
+	//		System.out.println("falling");
 		
-		Tile t;
-		if((t = Utilities.touchBoundsTile(x,y,0, yVelocity,size)) !=null){
-				
-			if(yVelocity==0){
-				onGround=true;
+			if(!(Utilities.touchBoundsMobs(x,y,0, yVelocity,size,this))){
+				y+=yVelocity;
 			}
-			if(yVelocity<0 ){
-				
-				y-=(y-t.y-size);
-				
-			}
-			yVelocity = 0;
-		}else{
-			if(yVelocity<maxGrav){
-				yVelocity +=gravityStrength;
-			}
-			onGround=false;
-		}
-//		System.out.println("falling");
-	
-		if(!(Utilities.touchBoundsMobs(x,y,0, yVelocity,size,this))){
-			y+=yVelocity;
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	
