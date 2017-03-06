@@ -12,10 +12,11 @@ import com.capstone.plasma.tiles.Tile;
 //import com.sun.prism.paint.Color;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
-public class Mob {
+public class Mob implements Serializable {
 
-	public static ArrayList<Mob> mobs = new ArrayList<Mob>();
+	//public static ArrayList<Mob> mobs = new ArrayList<Mob>();
 	
 	public int x;
 	public int y;
@@ -59,7 +60,7 @@ public class Mob {
 	public void death(){
 		Player.kills++;
 		ParticleHandler.createParticleStream(x, y, Color.RED, 10, 10, true,10);
-		Mob.mobs.remove(mobs.indexOf(this));
+		GameScreen.map.mobs.remove(GameScreen.map.mobs.indexOf(this));
 		t1.stop();
 	}
 	
@@ -73,11 +74,11 @@ public class Mob {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				Mob.mobs.add(new Robot(Player.x, Player.y));
+				GameScreen.map.mobs.add(new Robot(Player.x, Player.y));
 				System.out.println("loaded");
-		        while(Mob.mobs.size()>i){
+		        while(GameScreen.map.mobs.size()>i){
 		        	i++;
-		        	Mob.mobs.get(i).run();
+		        	GameScreen.map.mobs.get(i).run();
 		        }
 				//for(int i=0;i<mobs.size();i++){
 				//	Mob mob= mobs.get(i);
@@ -93,8 +94,8 @@ public class Mob {
 	}
 	
 	public static void paintMobs(){
-		for(int i=0;i<mobs.size();i++){
-			Mob mob= mobs.get(i);
+		for(int i=0;i<GameScreen.map.mobs.size();i++){
+			Mob mob= GameScreen.map.mobs.get(i);
 			mob.paint();
 		}
 	}

@@ -66,12 +66,12 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-        //map=Map.load("map1.ser");
-        map=new Map();
+        map=Map.load("map1.ser");
+        //map=new Map();
         //map = new Map();
         for(int i =0; i<50; i++){
-			Mob.mobs.add(new Turret(500+i*(500),40));
-			Mob.mobs.add(new Robot(550+i*(500),40));
+			//Mob.mobs.add(new Turret(500+i*(500),40));
+			//Mob.mobs.add(new Robot(550+i*(500),40));
 		}
       //  Tile.load();
         //Tile.createChunks();
@@ -94,8 +94,8 @@ public class GameScreen{
         
   //      Mob.MobTickManager mm = new Mob.MobTickManager();
 //        mm.start();
-        for(int i =0; i<Mob.mobs.size();i ++){
-        	Mob.mobs.get(i).run();
+        for(int i =0; i<GameScreen.map.mobs.size();i ++){
+        	GameScreen.map.mobs.get(i).run();
         }
         
  /*

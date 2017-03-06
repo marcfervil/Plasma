@@ -77,6 +77,7 @@ public class MapInput {
 						case Keyboard.KEY_D:
 							//mapScreen.xCam+=1;
 							MapScreen.moveCam(scrollSpeed, 0);
+							//System.out.println("d pressed");
 							break;
 						case Keyboard.KEY_A:
 							MapScreen.moveCam(-scrollSpeed, 0);
@@ -102,7 +103,6 @@ public class MapInput {
 							if(save){
 								save = false;
 								MapMaker.save();
-								
 							}
 							break;
 						case Keyboard.KEY_L:
@@ -112,19 +112,20 @@ public class MapInput {
 							}
 							break;
 						case Keyboard.KEY_1:
-							if(load){
-								active = 0;
-							}
+							active = 0;
 							break;
 						case Keyboard.KEY_2:
-							if(load){
-								active = 1;
-							}
+							active = 1;
 							break;
 						case Keyboard.KEY_3:
-							if(load){
-								active =2;
-							}
+							active =2;
+							break;
+						case Keyboard.KEY_4:
+							active=3;
+							break;
+						case Keyboard.KEY_5:
+							active =4;
+							break;
 							
 						default:
 							save = true;

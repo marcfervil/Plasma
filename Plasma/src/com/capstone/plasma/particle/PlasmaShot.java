@@ -79,8 +79,8 @@ public class PlasmaShot extends Projectile{
 			
 		}
 		
-		for(int i=0;i<Mob.mobs.size();i++){
-			Mob t=Mob.mobs.get(i);
+		for(int i=0;i<GameScreen.map.mobs.size();i++){
+			Mob t=GameScreen.map.mobs.get(i);
 		//	System.out.println(t + "===" + creator);
 			if(t!=creator){
 				if(new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10).intersects(t.getBounds())){

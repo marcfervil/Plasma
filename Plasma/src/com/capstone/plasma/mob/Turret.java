@@ -3,6 +3,7 @@ package com.capstone.plasma.mob;
 
 
 import java.awt.Color;
+import java.io.Serializable;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
@@ -16,6 +17,7 @@ public class Turret extends Mob{
 	public ShotTick st;
 	public boolean open=false;
 	public int range = 10*Tile.size;
+	public boolean first = true;//plz find a better way to do this
 	
 	public Turret(int x, int y) {
 		super(x, y);
@@ -34,6 +36,12 @@ public class Turret extends Mob{
 	}
 	
 	public void tick(){
+		if(first){
+			st= new ShotTick();
+			st.start();
+			first = false;
+			//System.out.println("printed?");
+		}
 		if(Math.abs(x-Player.x)<=range){
 			open=true;
 		}else{
@@ -61,7 +69,7 @@ public class Turret extends Mob{
 	}
 	
 	
-	class ShotTick extends Thread{
+	class ShotTick extends Thread implements Serializable{
 		public void run(){
 			while(true){
 				try {
@@ -88,7 +96,7 @@ public class Turret extends Mob{
 	public void death(){
 		Player.kills++;
 		ParticleHandler.createParticleStream(x, y, Color.RED, 10, 10, true,10);
-		Mob.mobs.remove(mobs.indexOf(this));
+		GameScreen.map.mobs.remove(GameScreen.map.mobs.indexOf(this));
 		t1.stop();
 		st.stop();
 	}

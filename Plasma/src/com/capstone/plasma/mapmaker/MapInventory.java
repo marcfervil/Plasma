@@ -16,7 +16,7 @@ import com.capstone.plasma.tiles.Tile;
 
 public class MapInventory {
 	public static ArrayList<Item> items = new ArrayList<Item>();
-	public static Integer[] activeItems = new Integer[3];
+	public static Integer[] activeItems = new Integer[5];
 	public static boolean isInventoryExpanded=false;
 	//public static int active = 0;
 	//public static boolean 
@@ -24,7 +24,9 @@ public class MapInventory {
 	public static void paint(){
 		activeItems[0]=0;//floor
 		activeItems[1]=1;//glowtile change later
-		activeItems[2]=2;
+		activeItems[2]=2;//breakable
+		activeItems[3]=3;//robot
+		activeItems[4]=4;//turret
 		//activeItems[2]=new Chair(); //breakable was removed D: yell at marco later
 		for(int i=0;i<activeItems.length;i++){
 			int item= activeItems[i];
@@ -42,8 +44,12 @@ public class MapInventory {
 					GraphicsHandler.drawImage(GraphicsHandler.floor,holderX+(30/2),holderY+(30/2),Tile.size,Tile.size);
 				}else if(activeItems[i] ==1){
 					GraphicsHandler.drawImage(GraphicsHandler.GlowTile,holderX+(30/2),holderY+(30/2),Tile.size,Tile.size);
-				}else{
+				}else if(activeItems[i] ==2){
 					GraphicsHandler.drawImage(GraphicsHandler.breakable,holderX+(30/2),holderY+(30/2),Tile.size,Tile.size);
+				}else if(activeItems[i] ==3){
+					GraphicsHandler.drawImage(GraphicsHandler.robotRight, holderX+(30/2),holderY+(30/2),Tile.size,Tile.size);
+				}else{
+					GraphicsHandler.drawImage(GraphicsHandler.turret,holderX+(30/2),holderY+(30/2),Tile.size,Tile.size);
 				}
 			}
 		}

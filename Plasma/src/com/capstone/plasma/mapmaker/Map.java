@@ -9,6 +9,7 @@ import java.util.Random;
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.inventory.PlasmaPistol;
 import com.capstone.plasma.inventory.TNT;
+import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.particle.Dropable;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
@@ -21,15 +22,18 @@ public class Map implements Serializable{
 	public ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public ArrayList<Tile> tiles= new ArrayList<Tile>();
 	public ArrayList<Tile> revtiles = new ArrayList<Tile>();
+	public ArrayList<Mob> mobs = new ArrayList<Mob>();
 	public int lowest = 1000;
 	public static int spawnX = 250;
 	public static int spawnY = 40;
 	
+	/*
 	public Map(ArrayList<Tile> t, ArrayList<Tile> b){
 		tiles = t;
 		backgroundTiles = b;
 		
 	}
+	*/
 	//load
 	public Map(String action){
 		load(action);
@@ -39,8 +43,9 @@ public class Map implements Serializable{
 		mapGen();
 	}
 	
-	public Map(ArrayList<Tile> t){
+	public Map(ArrayList<Tile> t,ArrayList<Mob> m){
 		tiles = t;
+		mobs = m;
 	}
 	
 	public void sortMap(){

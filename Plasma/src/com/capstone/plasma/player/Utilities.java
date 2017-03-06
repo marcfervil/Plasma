@@ -47,7 +47,7 @@ public class Utilities {
 		try{
 			Rectangle r=  new Rectangle(x+xn,y+yn,size,size);
 			//looping
-			for(int i=0;i<Mob.mobs.size();i++){
+			for(int i=0;i<GameScreen.map.mobs.size();i++){
 				Tile s = GameScreen.map.tiles.get(i);
 				if(r.intersects(s.getBounds())  && (s.collide)){
 					return true;
@@ -93,8 +93,8 @@ public class Utilities {
 			Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,size,size);
 			//looping
 	
-			for(int i=0;i<Mob.mobs.size();i++){
-				Mob m = Mob.mobs.get(i);
+			for(int i=0;i<GameScreen.map.mobs.size();i++){
+				Mob m = GameScreen.map.mobs.get(i);
 				if(r.intersects(m.getBounds()) &&m!=you){
 					return true;
 				}
@@ -110,8 +110,8 @@ public class Utilities {
 			Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,size,size);
 			//looping
 	
-			for(int i=0;i<Mob.mobs.size();i++){
-				Mob m = Mob.mobs.get(i);
+			for(int i=0;i<GameScreen.map.mobs.size();i++){
+				Mob m = GameScreen.map.mobs.get(i);
 				if(r.intersects(m.getBounds()) &&m!=you){
 					return m;
 				}

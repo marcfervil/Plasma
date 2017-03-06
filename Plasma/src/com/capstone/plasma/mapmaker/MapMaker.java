@@ -29,6 +29,9 @@ import org.lwjgl.opengl.DisplayMode;
 import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.UserInput;
 import com.capstone.plasma.inventory.Inventory;
+import com.capstone.plasma.mob.Mob;
+import com.capstone.plasma.mob.Robot;
+import com.capstone.plasma.mob.Turret;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.tiles.Floor;
@@ -48,6 +51,7 @@ public class MapMaker {
 	public static int backCam=0;
 	public static int yCam=0;
 	public static ArrayList<Tile> tiles = new ArrayList<Tile> ();
+	public static ArrayList<Mob> mobs = new ArrayList<Mob>();
 	public static boolean released = true;
 	public static int PlaceMode = 2; //1 is the default
 	//ArrayList<ArrayList<Integer>> PastActions = new ArrayList<ArrayList<Integer>>();
@@ -104,6 +108,9 @@ public class MapMaker {
     			t.paint();
     			
     		}
+        	for(Mob m:mobs){
+        		m.paint();
+        	}
         	MapInventory.paint();
         	selectedTile = MapInput.active;
         	//System.out.println(round(,Tile.size));
@@ -241,16 +248,29 @@ public class MapMaker {
     public static void placeBlock(int x, int y, int Id){
     	x = x-GameScreen.xCam+(GameScreen.xCam%Tile.size);
     	y = y+GameScreen.yCam-(GameScreen.yCam%Tile.size);
-    	System.out.println(Id);
+    	//System.out.println(Id);
     	switch(Id){
     	case 0:
     		tiles.add(new Floor(x,height-y));
+    		//System.out.println("floor");
+    		break;
     	case 1:
     		tiles.add(new GlowTile(x,height-y));
+    		break;
     	case 2:
     		tiles.add(new breakable(x,height-y));
+    		break;
+    	case 3:
+    		mobs.add(new Robot(x,height-y));
+    		break;
+    	case 4:
+    		mobs.add(new Turret(x,height-y));
+    		break;
+    	//case 3;
     		
-    	default:
+    		
+ //   	default:
+    		
     		//System.out.println("none");
     		
     	}
@@ -278,7 +298,7 @@ public class MapMaker {
 		  FileOutputStream fileOut =new FileOutputStream("map1.ser");
 		  ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		 // String s = "test";
-		  Map m = new Map(tiles);
+		  Map m = new Map(tiles,mobs);
 		  out.writeObject(m);
 		  System.out.println("saved1");
 		//a  out.writeObject()
@@ -298,6 +318,7 @@ public class MapMaker {
     		//world = (ArrayList) ois.readObject();
     		GameScreen.map = (Map) ois.readObject();
     		tiles = GameScreen.map.tiles;
+    		mobs = GameScreen.map.mobs;
     		
         	System.out.println("loaded");
         	ois.close();

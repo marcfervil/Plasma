@@ -103,8 +103,8 @@ public class Robot extends Mob {
 	public void attack(){
 		if(Utilities.touchPlayer(x, y, size)){
 			boolean throwUp = false;
-			for(int i = 0; i<mobs.size(); i++){
-				if(Math.abs(x-mobs.get(i).x)<=100 && mobs.get(i)!=this){
+			for(int i = 0; i<GameScreen.map.mobs.size(); i++){
+				if(Math.abs(x-GameScreen.map.mobs.get(i).x)<=100 && GameScreen.map.mobs.get(i)!=this){
 					throwUp = true;
 					Player.throwBack(0, knockBack-(knockBack/2), true);
 					break;
