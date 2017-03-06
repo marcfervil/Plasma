@@ -2,6 +2,7 @@ package com.capstone.plasma.player;
 
 import java.awt.Color;
 
+import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.particle.ParticleHandler;
 
 public class PlayerHandler extends Thread{
@@ -12,6 +13,9 @@ public class PlayerHandler extends Thread{
 
 		playerTrail= ParticleHandler.createParticleStream(Player.x, Player.y,Color.RED,5,10,false);
 		try {
+			Player.x=GameScreen.map.spawnX;
+			Player.y=GameScreen.map.spawnY;
+			
 			while(true){
 				Thread.sleep(20);
 				Player.tick();

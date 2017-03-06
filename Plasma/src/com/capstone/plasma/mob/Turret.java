@@ -37,6 +37,7 @@ public class Turret extends Mob{
 	
 	public void tick(){
 		if(first){
+			//System.out.println("tick?");
 			st= new ShotTick();
 			st.start();
 			first = false;

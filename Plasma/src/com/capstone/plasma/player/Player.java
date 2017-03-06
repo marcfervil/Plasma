@@ -14,10 +14,10 @@ import com.capstone.plasma.tiles.Tile;
 
 public class Player {
 	
-	public static int spawnX = 250;
-	public static int spawnY = 40;
-	public static int x=spawnX;
-	public static int y=spawnY;
+	//public static int spawnX = 250;
+	//public static int spawnY = 40;
+	public static int x=GameScreen.map.spawnX;
+	public static int y=GameScreen.map.spawnY;
 
 	public static int gravityStrength = 1;
 	public static int maxGrav = 100;
@@ -193,8 +193,8 @@ public class Player {
 
 
 	public static void respawn(){
-		x=spawnX;
-		y=spawnY;
+		x=GameScreen.map.spawnX;
+		y=GameScreen.map.spawnY;
 		hp = maxHp;
 		GameScreen.xCam = 0;
 		GameScreen.yCam = 105;

@@ -43,9 +43,11 @@ public class Map implements Serializable{
 		mapGen();
 	}
 	
-	public Map(ArrayList<Tile> t,ArrayList<Mob> m){
+	public Map(ArrayList<Tile> t,ArrayList<Mob> m,int x,int y){
 		tiles = t;
 		mobs = m;
+		spawnX =x;
+		spawnY =y;
 	}
 	
 	public void sortMap(){

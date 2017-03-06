@@ -2,6 +2,7 @@ package com.capstone.plasma.mapmaker;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.awt.Color;
 
 import org.lwjgl.input.Mouse;
 
@@ -16,7 +17,7 @@ import com.capstone.plasma.tiles.Tile;
 
 public class MapInventory {
 	public static ArrayList<Item> items = new ArrayList<Item>();
-	public static Integer[] activeItems = new Integer[5];
+	public static Integer[] activeItems = new Integer[6];
 	public static boolean isInventoryExpanded=false;
 	//public static int active = 0;
 	//public static boolean 
@@ -27,6 +28,7 @@ public class MapInventory {
 		activeItems[2]=2;//breakable
 		activeItems[3]=3;//robot
 		activeItems[4]=4;//turret
+		activeItems[5]=5;//player
 		//activeItems[2]=new Chair(); //breakable was removed D: yell at marco later
 		for(int i=0;i<activeItems.length;i++){
 			int item= activeItems[i];
@@ -48,8 +50,10 @@ public class MapInventory {
 					GraphicsHandler.drawImage(GraphicsHandler.breakable,holderX+(30/2),holderY+(30/2),Tile.size,Tile.size);
 				}else if(activeItems[i] ==3){
 					GraphicsHandler.drawImage(GraphicsHandler.robotRight, holderX+(30/2),holderY+(30/2),Tile.size,Tile.size);
-				}else{
+				}else if(activeItems[i]==4){
 					GraphicsHandler.drawImage(GraphicsHandler.turret,holderX+(30/2),holderY+(30/2),Tile.size,Tile.size);
+				}else{
+					GraphicsHandler.drawRect(holderX+(30/2),holderY+(30/2),Tile.size,Tile.size, 0, Color.RED);
 				}
 			}
 		}

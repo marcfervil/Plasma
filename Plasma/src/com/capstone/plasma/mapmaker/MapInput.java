@@ -126,6 +126,9 @@ public class MapInput {
 						case Keyboard.KEY_5:
 							active =4;
 							break;
+						case Keyboard.KEY_6:
+							active=5;
+							break;
 							
 						default:
 							save = true;

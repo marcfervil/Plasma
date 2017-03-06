@@ -66,6 +66,8 @@ public class MapMaker {
 	public static String color = "red";
 	public static int layerX=0;
 	public static int layerY=0;
+	public static int spawnX;
+	public static int spawnY;
 	
 	 public static void initDisplay(){
 	        try {
@@ -111,6 +113,7 @@ public class MapMaker {
         	for(Mob m:mobs){
         		m.paint();
         	}
+        	GraphicsHandler.drawRect(spawnX+GameScreen.xCam,spawnY+GameScreen.yCam,Tile.size,Tile.size, 0, Color.RED);
         	MapInventory.paint();
         	selectedTile = MapInput.active;
         	//System.out.println(round(,Tile.size));
@@ -266,6 +269,9 @@ public class MapMaker {
     	case 4:
     		mobs.add(new Turret(x,height-y));
     		break;
+    	case 5:
+    		spawnX = x;
+    		spawnY=height-y;
     	//case 3;
     		
     		
@@ -298,9 +304,10 @@ public class MapMaker {
 		  FileOutputStream fileOut =new FileOutputStream("map1.ser");
 		  ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		 // String s = "test";
-		  Map m = new Map(tiles,mobs);
+		  Map m = new Map(tiles,mobs,spawnX,spawnY);
 		  out.writeObject(m);
 		  System.out.println("saved1");
+		  System.out.println(spawnX);
 		//a  out.writeObject()
 		  out.close();
 		  fileOut.close();
@@ -319,6 +326,9 @@ public class MapMaker {
     		GameScreen.map = (Map) ois.readObject();
     		tiles = GameScreen.map.tiles;
     		mobs = GameScreen.map.mobs;
+    		spawnX=GameScreen.map.spawnX;
+    		spawnY=GameScreen.map.spawnY;
+    		System.out.println(spawnX);
     		
         	System.out.println("loaded");
         	ois.close();
