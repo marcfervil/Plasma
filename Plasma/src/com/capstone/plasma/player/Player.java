@@ -212,7 +212,7 @@ public class Player {
 		//System.out.println(recharge);
 		if(plasma<maxPlasma){
 			//recharge = System.nanoTime();
-			plasma+=.25;
+			plasma+=.5;
 			//System.out.println("plasma"+plasma);
 		}
 		

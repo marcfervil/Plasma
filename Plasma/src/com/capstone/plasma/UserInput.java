@@ -13,6 +13,7 @@ public class UserInput {
 	public static String lastKey;
 	public static int shotTickSpeed = 20;
 	public static int shotTick = shotTickSpeed;
+	public static boolean input1 = true;
 	
 	public static ArrayList<Integer> keysDown = new ArrayList<Integer>();
 	
@@ -52,28 +53,13 @@ public class UserInput {
 				//for(int key:keysDown){
 				if(keysDown.size()==0){
 					Player.jumpTick = 0;
+					shotTick =shotTickSpeed;
 				}
 				for(int i=0;i<keysDown.size();i++){
 					int key=keysDown.get(i);
 			//		System.out.println(Player.x);
+					if(input1){
 					switch(key){
-						
-						case Keyboard.KEY_RIGHT:
-							Player.x+=3;
-							if(Player.x+GameScreen.xCam<=100){
-								GameScreen.xCam+=3;
-								GameScreen.backCam+=2;
-							}
-							break;
-						case Keyboard.KEY_LEFT:
-							Player.move();
-							Player.faceRight = false;
-							break;
-						case Keyboard.KEY_UP:
-							if(Player.onGround){
-								//Player.jump();
-							}
-							break;
 						case Keyboard.KEY_D:
 							lastKey = "d";
 							Player.faceRight = true;
@@ -136,10 +122,81 @@ public class UserInput {
 						
 							
 						default:
-							shotTick =shotTickSpeed;
+							//shotTick =shotTickSpeed;
 						
 							
 				
+					}
+					}
+					//else{
+						switch(key){
+						case Keyboard.KEY_RIGHT:
+							lastKey = "d";
+							Player.faceRight = true;
+							//Player.findX(Player.x, Tile.tiles);
+							Player.move();
+							break;
+						case Keyboard.KEY_LEFT:
+							lastKey = "a";
+							if(!Player.touchBounds(-Player.PlayerSpeed, -1)){
+								Player.x-=Player.PlayerSpeed;
+								if(Player.x+GameScreen.xCam<=300){ //was 100 i think?
+									GameScreen.xCam+=Player.PlayerSpeed;
+									GameScreen.backCam+=Player.PlayerSpeed-(Player.PlayerSpeed/3);
+									
+								}
+							}
+							break;
+						case Keyboard.KEY_UP:
+					//		System.out.println(Player.jumpTick);
+							Player.jumpTick++;
+							//Player.jump();
+							
+							if(Player.onGround){
+								Player.jump=true;
+							}
+							
+							break;
+							
+						case Keyboard.KEY_DOWN:
+						//	continue;
+							break;
+							
+						case Keyboard.KEY_Z:
+							//Inventory.activeItems[0] = new TNT();
+							if(Inventory.activeItems[0] !=null &&shotTick>=shotTickSpeed){
+								shotTick = 0;
+								Inventory.activeItems[0].action();
+							}else{
+								shotTick++;
+							}
+							break;
+						case Keyboard.KEY_X:
+							//Inventory.activeItems[0] = new TNT();
+							if(Inventory.activeItems[1] !=null &&shotTick>=shotTickSpeed){
+								shotTick = 0;
+								Inventory.activeItems[1].action();
+							}else{
+								shotTick++;
+							}
+							break;
+						case Keyboard.KEY_C:
+							//Inventory.activeItems[0] = new TNT();
+							if(Inventory.activeItems[2] !=null &&shotTick>=shotTickSpeed){
+								shotTick = 0;
+								Inventory.activeItems[2].action();
+							}else{
+								shotTick++;
+							}
+							break;
+						
+							
+						default:
+							//shotTick =shotTickSpeed;
+						
+							
+				
+					//}
 					}
 				}
 				//System.out.println(keysDown.size());
