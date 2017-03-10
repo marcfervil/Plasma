@@ -63,7 +63,7 @@ public class GraphicsHandler {
 		angryRobotLeft = GraphicsHandler.loadTexture("images/roboangry1.png");
 		
 
-		player = GraphicsHandler.loadTexture("images/guy.png");
+		player = GraphicsHandler.loadTexture("images/guyProfile2.png");
 		player2 = GraphicsHandler.loadTexture("images/guy2.png");
 
 		turret = GraphicsHandler.loadTexture("images/turret.png");
@@ -262,8 +262,8 @@ public class GraphicsHandler {
 		                  
 		                 
 		                  
-		                  buffer.put((byte) ((pixel >> 16) & 0xFF));     // Red component
-		                  buffer.put((byte) ((pixel >> 8) & 0xFF));      // Green component
+		                  buffer.put((byte) ((pixel >> 0) & 0xFF));     // Red component
+		                  buffer.put((byte) ((pixel >> 0) & 0xFF));      // Green component
 		                  buffer.put((byte) (pixel & 0xFF));               // Blue component
 		                  buffer.put((byte) ((pixel >> 24) & 0xFF));    // Alpha component. Only for RGBA
 		              }
