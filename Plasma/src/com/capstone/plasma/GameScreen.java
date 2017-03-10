@@ -67,6 +67,7 @@ public class GameScreen{
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
         map=Map.load("map1.ser");
+        //map=Map.load("level1.ser");
         //map=new Map();
         //map = new Map();
         for(int i =0; i<50; i++){
@@ -75,7 +76,6 @@ public class GameScreen{
 		}
       //  Tile.load();
         //Tile.createChunks();
-        
         try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {

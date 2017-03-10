@@ -54,6 +54,10 @@ public class Tile implements Serializable{
 		
 	}
 	
+	public String toString(ArrayList<Tile> t){
+		return "hi";
+	}
+	
 	public Rectangle getBounds(){
 		return new Rectangle(x+GameScreen.xCam,y+GameScreen.yCam,size,size);
 	}

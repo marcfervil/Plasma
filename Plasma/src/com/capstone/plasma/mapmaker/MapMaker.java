@@ -298,16 +298,52 @@ public class MapMaker {
     		
     	}
     }
+    /*
+	public static void sortMap(){
+		ArrayList<Tile> sorted = new ArrayList<Tile>();
+		sorted.add(0,tiles.get(0));
+		for(int i=1;i<tiles.size();i++){
+			Tile ct=tiles.get(i);
+			for(int j=0;j<sorted.size();j++){
+				if(ct.x >= sorted.get(j).x){
+					sorted.add(j,ct);
+					break;
+					}
+				}
+			}
+			
+			tiles = sorted;
+			System.out.println(tiles);
+		
+		}
+    */
+    
+    
+    public static void sortMap(){
+    	ArrayList<Tile> sorted = new ArrayList<Tile>();
+    	sorted.add(0,tiles.get(0));
+    	for(int i=1; i<tiles.size();i++){
+    		Tile ct=tiles.get(i);
+    		for(int j =0; j<sorted.size();j++){
+    			if(ct.x>=sorted.get(j).x){
+    				sorted.add(j,ct);
+    				break;
+    			}
+    		}
+    	}
+    	tiles = sorted;
+    	System.out.println(tiles);
+    }
     
     public static void save(){
     	try{
 		  FileOutputStream fileOut =new FileOutputStream("map1.ser");
 		  ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		 // String s = "test";
+		  sortMap();
 		  Map m = new Map(tiles,mobs,spawnX,spawnY);
 		  out.writeObject(m);
-		  System.out.println("saved1");
-		  System.out.println(spawnX);
+		  System.out.println("saved");
 		//a  out.writeObject()
 		  out.close();
 		  fileOut.close();

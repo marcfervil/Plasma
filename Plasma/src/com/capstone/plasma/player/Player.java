@@ -23,6 +23,7 @@ public class Player {
 	public static int maxGrav = 100;
 	public static int yVelocity = 0;
 	public static int jumpHeight = 20; //was 20
+	public static int maxJump = 20;
 	public static boolean jump=false;
 	public static int gravCount = 0;
 	public static int jumpTick = 0;
@@ -212,7 +213,7 @@ public class Player {
 		//System.out.println(recharge);
 		if(plasma<maxPlasma){
 			//recharge = System.nanoTime();
-			plasma+=.25;
+			plasma+=.75;
 			//System.out.println("plasma"+plasma);
 		}
 		
@@ -233,10 +234,11 @@ public class Player {
 		if(y>GameScreen.map.lowest){
 			respawn();
 		}
-		//System.out.println(y);
+		//jumping
 		if (jump && onGround){
-				yVelocity-=jumpHeight;
-				
+			yVelocity-=jumpHeight;
+			//yVelocity-=jumpTick;
+			//if()
 			jump=false;
 		}
 		Tile t;

@@ -130,6 +130,7 @@ public class Map implements Serializable{
         FileInputStream fis = new FileInputStream(level);
         ObjectInputStream ois = new ObjectInputStream(fis);
         m = (Map) ois.readObject();
+        //sortMap();
         System.out.println("loaded game from map");
         ois.close();
         fis.close();
