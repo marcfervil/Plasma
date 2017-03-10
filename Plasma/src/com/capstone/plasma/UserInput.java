@@ -34,6 +34,9 @@ public class UserInput {
 				}
 				//lastKey=Keyboard.getEventKey();
 			}else{
+				if(Keyboard.getEventKey() == 17){
+					Player.jumpTick = 0;
+				}
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
 		    }
 		}
@@ -52,7 +55,7 @@ public class UserInput {
 				}
 				//for(int key:keysDown){
 				if(keysDown.size()==0){
-					Player.jumpTick = 0;
+					//Player.jumpTick = 0;
 					shotTick =shotTickSpeed;
 				}
 				for(int i=0;i<keysDown.size();i++){
@@ -78,10 +81,13 @@ public class UserInput {
 							}
 							break;
 						case Keyboard.KEY_W:
-					//		System.out.println(Player.jumpTick);
-							Player.jumpTick++;
+							//	System.out.println(Player.jumpTick);
 							//Player.jump();
-							
+							if(Player.jumpTick<8){
+								//Player.jumpTick++;
+								//Player.yVelocity-=3;
+							}
+
 							if(Player.onGround){
 								Player.jump=true;
 							}
