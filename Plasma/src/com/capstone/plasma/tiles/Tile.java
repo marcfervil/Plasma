@@ -54,8 +54,10 @@ public class Tile implements Serializable{
 		
 	}
 	
-	public String toString(ArrayList<Tile> t){
-		return "hi";
+	public static void toString(ArrayList<Tile> t){
+		for(int i =0; i<t.size();i++){
+			System.out.print("("+t.get(i).x+ " "+ t.get(i).y+") ");
+		}
 	}
 	
 	public Rectangle getBounds(){

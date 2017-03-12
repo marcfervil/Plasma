@@ -55,6 +55,7 @@ public class UserInput {
 				}
 				//for(int key:keysDown){
 				if(keysDown.size()==0){
+					//if no keys down
 					//Player.jumpTick = 0;
 					shotTick =shotTickSpeed;
 				}
