@@ -24,7 +24,7 @@ class Particle{
 	boolean backgroundTick=false;
 			
 	public Particle(int x, int y,Color color){
-		this.x=x+Utilities.randInt(-30, 30);
+		this.x=x;
 		this.y=y;
 		
 		//randomize basic particle color?

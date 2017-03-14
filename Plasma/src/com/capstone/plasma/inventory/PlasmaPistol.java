@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import org.lwjgl.input.Keyboard;
 
+import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.UserInput;
 import com.capstone.plasma.particle.ParticleHandler;
@@ -26,12 +27,14 @@ public class PlasmaPistol extends Weapon{
 		//System.out.println(Player.plasma);
 		if(UserInput.keysDown.contains(Keyboard.KEY_S)){
 			System.out.println("down");
-			ParticleHandler.particles.add(new PlasmaShot(Player.x,Player.y,damage,-270,null,Color.CYAN));
+			ParticleHandler.particles.add(new PlasmaShot(Player.x+(Tile.size/2),Player.y,damage,-270,null,Color.CYAN));
 			return;
 		}
 		
 		if(UserInput.lastKey =="d"){
-			ParticleHandler.particles.add(new PlasmaShot(Player.x+(Tile.size),Player.y,damage,0,null,Color.CYAN));
+			//ParticleHandler.particles.add(new PlasmaShot(Player.x+(Tile.size),Player.y,damage,0,null,Color.CYAN));
+			ParticleHandler.particles.add(new PlasmaShot(Player.x+Tile.size,Player.y,damage,0,null,Color.CYAN));
+			
 		}else{
 			ParticleHandler.particles.add(new PlasmaShot(Player.x+(Tile.size/2),Player.y+(Tile.size/2),damage,180,null,Color.CYAN));
 		}

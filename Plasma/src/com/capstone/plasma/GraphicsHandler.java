@@ -63,7 +63,7 @@ public class GraphicsHandler {
 		angryRobotLeft = GraphicsHandler.loadTexture("images/roboangry1.png");
 		
 
-		player = GraphicsHandler.loadTexture("images/guyProfile2.png");
+		player = GraphicsHandler.loadTexture("images/GuyProfile2.png");
 		player2 = GraphicsHandler.loadTexture("images/guy2.png");
 
 		turret = GraphicsHandler.loadTexture("images/turret.png");
