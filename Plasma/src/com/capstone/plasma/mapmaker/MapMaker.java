@@ -218,7 +218,6 @@ public class MapMaker {
     		}
     		
     		else if(totalDistanceY<Tile.size){
-    			System.out.println("dis2");
     			for(int i =Math.abs(totalDistanceY/Tile.size); i>=1; i--){
     				int v=i*-1;
 	    			placeBlock(mouseX, mouseY-(Tile.size*v),selectedTile);
@@ -322,6 +321,7 @@ public class MapMaker {
     public static void sortMap(){
     	ArrayList<Tile> sorted = new ArrayList<Tile>();
     	sorted.add(0,tiles.get(0));
+    	
     	for(int i=1; i<tiles.size();i++){
     		Tile ct=tiles.get(i);
     		for(int j =0; j<sorted.size();j++){
@@ -329,10 +329,13 @@ public class MapMaker {
     				sorted.add(j,ct);
     				break;
     			}
+    			//continue;
     		}
+    		sorted.add(ct);
     	}
+
     	tiles = sorted;
-    	System.out.println(tiles);
+    	
     }
     
     public static void save(){

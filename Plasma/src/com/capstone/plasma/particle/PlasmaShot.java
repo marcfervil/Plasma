@@ -20,6 +20,7 @@ public class PlasmaShot extends Projectile{
 	public int angle = 0;
 	public Object creator;
 	public Color color;
+	public boolean first = true;
 
 	
 	public PlasmaShot(int x, int y, int damage,int angle,Object creator,Color color) {
@@ -35,6 +36,13 @@ public class PlasmaShot extends Projectile{
 		//GraphicsHandler.drawImage(item.texture, x+GameScreen.xCam, y+GameScreen.yCam+up, Tile.size, Tile.size);
 
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 20, 5, angle, color);
+		if(first){
+			System.out.println("x "+x);
+			System.out.println("GameScreen.xCam "+GameScreen.xCam);
+			System.out.println(x+GameScreen.xCam);
+			System.out.println(" ");
+		first = false;
+		}
 
 	}
 	

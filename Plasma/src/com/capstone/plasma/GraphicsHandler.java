@@ -74,8 +74,13 @@ public class GraphicsHandler {
 		angryRobotLeft = loadTexture("images/roboangry1.png");
 		
 
+<<<<<<< HEAD
 		player = loadTexture("images/guyProfile2.png");
 		player2 = loadTexture("images/guy2.png");
+=======
+		player = GraphicsHandler.loadTexture("images/GuyProfile2.png");
+		player2 = GraphicsHandler.loadTexture("images/guy2.png");
+>>>>>>> origin/master
 
 		turret = loadTexture("images/turret.png");
 		turretClosed = loadTexture("images/turretClosed.png");
@@ -189,6 +194,7 @@ public class GraphicsHandler {
        glPopMatrix();
     //   glColor4f(1f, 0f, 1f, 1f);
     }
+    
     
     
     public static void drawEmptyRect(float x, float y, float width, float height, float rot,Color color){

@@ -56,6 +56,13 @@ public class MapInput {
 				} catch (InterruptedException e) {
 				}
 				//for(int key:keysDown){
+				if(keysDown.size()==0){
+					//if no keys down
+					save = true;
+					load = true;
+					r = true;
+					
+				}
 				for(int i=0;i<keysDown.size();i++){
 					int key=keysDown.get(i);
 			//		System.out.println(Player.x);

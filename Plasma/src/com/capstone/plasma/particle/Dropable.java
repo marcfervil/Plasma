@@ -24,6 +24,13 @@ public class Dropable extends Particle{
 		onTick=5;
 	}
 	
+	public void action(){
+		if(new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam+up, Tile.size, Tile.size).intersects(Player.getBounds(0, 0))){
+			remove=true;
+			Inventory.items.add(item);
+		}
+	}
+	
 	public void paint(){
 		GraphicsHandler.drawImage(item.texture, x+GameScreen.xCam, y+GameScreen.yCam+up, Tile.size, Tile.size);
 	}
@@ -40,10 +47,8 @@ public class Dropable extends Particle{
 				rise=true;
 			}
 		}
-		if(new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam+up, Tile.size, Tile.size).intersects(Player.getBounds(0, 0))){
-			remove=true;
-			Inventory.items.add(item);
-		}
+		
+		action();
 	}
 
 }
