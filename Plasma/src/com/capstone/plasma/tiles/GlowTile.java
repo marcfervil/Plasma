@@ -11,7 +11,7 @@ public class GlowTile extends Tile{
 	
 	
 	public GlowTile(int x,int y){
-		super(GraphicsHandler.longtile,x,y);
+		super(GraphicsHandler.GlowTile,x,y);
 		breakable=true;
 		//20% chance of GlowTile glowing 
 		if(Utilities.randInt(0,100)>80){
