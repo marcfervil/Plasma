@@ -44,11 +44,15 @@ public class Player {
 	
 	public static void paint(){
 		//GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size, 0, Color.RED);
+	
+		/*
 		if(UserInput.lastKey =="d"){
 			GraphicsHandler.drawImage(GraphicsHandler.player,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		}else{
 			GraphicsHandler.drawImage(GraphicsHandler.player2,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		}
+		*/
+		GraphicsHandler.playerSheet.paint(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		
 		//health bar doesn't work well
 		float percent = ((float)hp/maxHp);

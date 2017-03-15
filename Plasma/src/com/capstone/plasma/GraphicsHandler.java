@@ -41,41 +41,54 @@ public class GraphicsHandler {
 	public static int player;
 	public static int player2;
 	
+	public static int PlasmaTitleLogo;
+	
 	public static int TNT;
 	
 	public static int lastTexture=0;
 	
 	public static int[] fontTexture;
 	
+	public static SpriteSheet playerSheet;
+	
 	public static void loadTextures(){
-		wall=GraphicsHandler.loadTexture("images/wall.jpg");
-		floor=GraphicsHandler.loadTexture("images/floor.jpg");
-		longtile=GraphicsHandler.loadTexture("images/longtile.jpg");//we gotta remove this and rename everything.
-		GlowTile=GraphicsHandler.loadTexture("images/longtile.jpg");
-		breakable=GraphicsHandler.loadTexture("images/breakable.png");
-		itemHolder=GraphicsHandler.loadTexture("images/itemHolder.png");
-		selecteditemHolder=GraphicsHandler.loadTexture("images/selecteditemHolder.png");
-		plasmaPistol=GraphicsHandler.loadTexture("images/PlasmaPistol.png");
-		InventoryBackground=GraphicsHandler.loadTexture("images/InventoryBackground.png");
 		
-		robotRight = GraphicsHandler.loadTexture("images/robocalm.png");
-		angryRobotRight = GraphicsHandler.loadTexture("images/roboangry2.png");
-		angryRobotLeft = GraphicsHandler.loadTexture("images/roboangry1.png");
+		SpriteSheet.AnimateSheet animation = new SpriteSheet.AnimateSheet();
+		animation.start();
+		
+		playerSheet = new SpriteSheet("images/PlayerSpriteSheet.png",new int[]{10},4);
+		
+		PlasmaTitleLogo = loadTexture("images/Plasma Title Logo new new.png");
+		
+		wall=loadTexture("images/wall.jpg");
+		floor=loadTexture("images/floor.jpg");
+		GlowTile=loadTexture("images/longtile.jpg");
+		breakable=loadTexture("images/breakable.png");
+		itemHolder=loadTexture("images/itemHolder.png");
+		selecteditemHolder=loadTexture("images/selecteditemHolder.png");
+		plasmaPistol=loadTexture("images/PlasmaPistol.png");
+		InventoryBackground=loadTexture("images/InventoryBackground.png");
+		
+		robotRight = loadTexture("images/robocalm.png");
+		angryRobotRight = loadTexture("images/roboangry2.png");
+		angryRobotLeft = loadTexture("images/roboangry1.png");
 		
 
-		player = GraphicsHandler.loadTexture("images/guyProfile2.png");
-		player2 = GraphicsHandler.loadTexture("images/guy2.png");
+		player = loadTexture("images/guyProfile2.png");
+		player2 = loadTexture("images/guy2.png");
 
-		turret = GraphicsHandler.loadTexture("images/turret.png");
-		turretClosed = GraphicsHandler.loadTexture("images/turretClosed.png");
+		turret = loadTexture("images/turret.png");
+		turretClosed = loadTexture("images/turretClosed.png");
 
 		
-		crack1=GraphicsHandler.loadTexture("images/crack1.png");
-		crack2=GraphicsHandler.loadTexture("images/crack2.png");
-		crack3=GraphicsHandler.loadTexture("images/crack3.png");
+		crack1=loadTexture("images/crack1.png");
+		crack2=loadTexture("images/crack2.png");
+		crack3=loadTexture("images/crack3.png");
 		
-		TNT = GraphicsHandler.loadTexture("images/TNT.png");
-		chair = GraphicsHandler.loadTexture("images/chair.png");
+		TNT = loadTexture("images/TNT.png");
+		chair = loadTexture("images/chair.png");
+		
+		
 		
 		loadFontPack();
 
@@ -262,8 +275,8 @@ public class GraphicsHandler {
 		                  
 		                 
 		                  
-		                  buffer.put((byte) ((pixel >> 0) & 0xFF));     // Red component
-		                  buffer.put((byte) ((pixel >> 0) & 0xFF));      // Green component
+		                  buffer.put((byte) ((pixel >> 16) & 0xFF));     // Red component
+		                  buffer.put((byte) ((pixel >> 8) & 0xFF));      // Green component
 		                  buffer.put((byte) (pixel & 0xFF));               // Blue component
 		                  buffer.put((byte) ((pixel >> 24) & 0xFF));    // Alpha component. Only for RGBA
 		              }

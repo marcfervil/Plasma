@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -26,14 +27,17 @@ import org.lwjgl.opengl.GL12;
 
 public class SpriteSheet {
 	
+	public static ArrayList<SpriteSheet> animationList = new ArrayList<SpriteSheet>();
+	
 	public int[] sprites;
 	public int[] imageCycle;
 	public int currentSprite=0;
-	public int pixelsPerImage=0;
+	public int spriteCount=0;
+	public int spritesPerRow=0;
 	public String path;
 
 	public SpriteSheet(String path, int[] imageCycle,int pixelsPerImage){
-		this.pixelsPerImage=pixelsPerImage;
+		this.spritesPerRow=pixelsPerImage;
 		this.path=path;
 		this.imageCycle=imageCycle;
 		BufferedImage image = null;
@@ -43,7 +47,7 @@ public class SpriteSheet {
 			e.printStackTrace();
 		}	
 		int textSize=(image.getWidth()/pixelsPerImage);
-		
+		//System.out.println(textSize);
 		sprites=new int[textSize*textSize];
 		
 		int textureLocation=0;
@@ -64,8 +68,8 @@ public class SpriteSheet {
 		        for(int x = 0; x <textSize; x++){
 		        	  for(int y = 0; y < textSize; y++){  
 		                  int pixel = pixels[y * textSize + x];
-		                  buffer.put((byte) ((pixel >> 0) & 0xFF));     // Red component
-		                  buffer.put((byte) ((pixel >> 0) & 0xFF));      // Green component
+		                  buffer.put((byte) ((pixel >> 16) & 0xFF));     // Red component
+		                  buffer.put((byte) ((pixel >> 8) & 0xFF));      // Green component
 		                  buffer.put((byte) (pixel & 0xFF));               // Blue component
 		                  buffer.put((byte) ((pixel >> 24) & 0xFF));    // Alpha component. Only for RGBA
 		              }
@@ -87,10 +91,33 @@ public class SpriteSheet {
 		          //Send texel data to OpenGL
 		          glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, textSize, textSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
 		          
-		          textureLocation++;
+		          
 		          sprites[textureLocation]=textureID;
+		          textureLocation++;
 			}
 		}
+		animationList.add(this);
+	}
+	
+	public static class AnimateSheet extends Thread{
+		public void run(){
+			while(true){
+				try{
+					Thread.sleep(100);
+					
+					for(SpriteSheet sprite:animationList){
+						sprite.advanceFrame();
+					}
+				
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void setCycle(int[] newImageCycle){
+		imageCycle=newImageCycle;
 	}
 	
 	public void paint(int x,int y,int width,int height){
@@ -98,7 +125,9 @@ public class SpriteSheet {
 	}
 	
 	public void advanceFrame(){
-		
+		if(spriteCount>=imageCycle.length)spriteCount=0;
+		currentSprite = imageCycle[spriteCount];
+		spriteCount++;
 	}
 	
 }

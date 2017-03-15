@@ -68,6 +68,7 @@ public class UserInput {
 							Player.faceRight = true;
 							//Player.findX(Player.x, Tile.tiles);
 							Player.move();
+							GraphicsHandler.playerSheet.setCycle(new int[]{1,2,3,4});
 							break;
 						case Keyboard.KEY_A:
 							lastKey = "a";
