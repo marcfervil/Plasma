@@ -188,6 +188,13 @@ public class Mob implements Serializable {
 		
 	}
 	
+	public boolean collide(){
+		if(Utilities.touchPlayer(x, y, size)){
+			return true;
+		}
+		return false;
+	}
+	
 	public void seek(){
 		/*
 		if(faceRight && (Player.x-x)<viewRange &&Player.x>x){

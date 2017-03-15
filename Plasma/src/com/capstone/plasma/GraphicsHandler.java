@@ -178,6 +178,7 @@ public class GraphicsHandler {
     }
     
     
+    
     public static void drawEmptyRect(float x, float y, float width, float height, float rot,Color color){
     	glDisable(GL_TEXTURE_2D);
     	glEnable( GL_BLEND );
