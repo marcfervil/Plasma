@@ -129,7 +129,7 @@ public class TitleScreen {
 	        	GraphicsHandler.drawImage(GraphicsHandler.PlasmaTitleLogo, 0, 0, width, height);
 	        	
 	        	
-	        	UserInput.get();  
+	        	getInput();  
 	        	Display.update();        	
 	        	Display.sync(60);
 
@@ -141,6 +141,11 @@ public class TitleScreen {
 	        }
 	        System.exit(0);
 	    }   
+	    
+	    
+	    public static void getInput(){
+	    	
+	    }
 	    
 
 	    public static void main(String[] args){

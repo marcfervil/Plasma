@@ -56,9 +56,9 @@ public class GraphicsHandler {
 		SpriteSheet.AnimateSheet animation = new SpriteSheet.AnimateSheet();
 		animation.start();
 		
-		playerSheet = new SpriteSheet("images/PlayerSpriteSheet.png",new int[]{10},4);
 		
-		PlasmaTitleLogo = loadTexture("images/Plasma Title Logo new new.png");
+		
+		
 		
 		wall=loadTexture("images/wall.jpg");
 		floor=loadTexture("images/floor.jpg");
@@ -90,6 +90,8 @@ public class GraphicsHandler {
 		chair = loadTexture("images/chair.png");
 		
 		
+		PlasmaTitleLogo = loadTexture("images/Plasma Title Logo new new.png");
+		playerSheet = new SpriteSheet("images/PlayerSpriteSheet.png",new int[]{10},4);
 		
 		loadFontPack();
 
