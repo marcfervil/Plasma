@@ -4,7 +4,9 @@ import java.awt.Color;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.GraphicsHandler;
+import com.capstone.plasma.Settings;
 import com.capstone.plasma.mapmaker.Map;
+import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.Utilities;
 
 public class Teleporter extends Mob {
@@ -22,7 +24,13 @@ public class Teleporter extends Mob {
 	public void tick(){
 		if(Utilities.touchPlayer(x, y, size)){
 			System.out.println("teleporter away!");
-			GameScreen.map=Map.load("level1.ser");
+			//GameScreen.map=Map.load("map1.ser");
+			Player.level++;
+			String map = Settings.world+"/level"+Player.level;
+			//System.out.println()
+			GameScreen.map=Map.load(map+".ser");
+			Player.x = GameScreen.map.spawnX;
+			Player.y = GameScreen.map.spawnY;
 		}
 	}
 

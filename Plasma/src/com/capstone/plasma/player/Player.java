@@ -41,6 +41,7 @@ public class Player {
 	public static float plasma = maxPlasma;
 	public static int rechargeRate = 1;
 	public static int recharge = rechargeRate;
+	public static int level = 1;
 	//public static Thread t1;
 	
 	public static void paint(){

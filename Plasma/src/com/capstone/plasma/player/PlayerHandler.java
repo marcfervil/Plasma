@@ -16,8 +16,8 @@ public class PlayerHandler extends Thread{
 		
 		playerTrail= ParticleHandler.createParticleStream(Player.x, Player.y,Color.RED,5,10,false);
 		try {
-			//Player.x=GameScreen.map.spawnX;
-			//Player.y=GameScreen.map.spawnY;
+			Player.x=GameScreen.map.spawnX;
+			Player.y=GameScreen.map.spawnY;
 			
 			while(true){
 				Thread.sleep(20);
