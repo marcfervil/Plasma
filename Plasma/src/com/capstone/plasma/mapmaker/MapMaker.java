@@ -211,7 +211,6 @@ public class MapMaker {
     	}else{//this is for verticle
     		System.out.println(totalDistanceY);
     		if(totalDistanceY>60){
-    			System.out.println("dis");
 	    		for(int i =1; i<=(totalDistanceY/Tile.size); i++){
 	    			placeBlock(mouseX, mouseY-(Tile.size*i),selectedTile);
 	    		}
@@ -233,11 +232,9 @@ public class MapMaker {
     	
     public static void layer(boolean first){
     	if(first){
-    		System.out.println("first");
     		layerX=mouseX;    		
     		layerY=mouseY;
     	}else{
-    		System.out.println("second");
     		for(int i = 0; i<(Math.abs(layerX-mouseX));i+=Tile.size){
     			for(int j = 0; j<(Math.abs(layerY-mouseY)); j+=Tile.size){
     				placeBlock(layerX+i, layerY+j,selectedTile);
@@ -271,12 +268,13 @@ public class MapMaker {
     	case 5:
     		spawnX = x;
     		spawnY=height-y;
+    		System.out.println("spawnx: "+spawnX+" spawnY: "+spawnY);
     	//case 3;
     		
     		
  //   	default:
     		
-    		//System.out.println("none");
+
     		
     	}
     }
@@ -367,7 +365,7 @@ public class MapMaker {
     		mobs = GameScreen.map.mobs;
     		spawnX=GameScreen.map.spawnX;
     		spawnY=GameScreen.map.spawnY;
-    		System.out.println(spawnX);
+    		System.out.println("loaded spawnx: "+spawnX+" spawnY: "+spawnY);
     		
         	System.out.println("loaded");
         	ois.close();

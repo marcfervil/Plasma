@@ -66,9 +66,10 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-        //map=Map.load("map1.ser");
+        map=Map.load("map1.ser");
         //map=Map.load("level1.ser");
-        map=new Map();
+        //map=new Map();
+        System.out.println(map.spawnX);
         //map = new Map();
         for(int i =0; i<50; i++){
 			//Mob.mobs.add(new Turret(500+i*(500),40));
@@ -220,23 +221,8 @@ public class GameScreen{
         	//loop
         	
         	if(UserInput.lastKey == "a"){
-        		//Tile.paintBackground();
-        		/*
-            	for(int i=map.backgroundTiles.size()-1;i>=0;i--){
-            		Tile b = map.backgroundTiles.get(i);
-            		//b.paint();
-            		
-            	}*/
         		map.paintMap();
         	}else{
-        		//Tile.paintbackground2();
-        		
-        		/*
-            	for(int i=0;i< map.backgroundTiles.size();i++){
-            		Tile b = map.backgroundTiles.get(i);
-            		//b.paint();
-            		
-            	}*/
         		map.paintMap2();
         	}
         	//Tile.paintMap();

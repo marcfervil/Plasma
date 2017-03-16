@@ -16,9 +16,10 @@ public class Player {
 	
 	//public static int spawnX = 250;
 	//public static int spawnY = 40;
-	public static int x=GameScreen.map.spawnX;
-	public static int y=GameScreen.map.spawnY;
-
+	//public static int x=GameScreen.map.spawnX;
+	//public static int y=GameScreen.map.spawnY;
+	public static int x=250;
+	public static int y = 40;
 	public static int gravityStrength = 1;
 	public static int maxGrav = 100;
 	public static int yVelocity = 0;

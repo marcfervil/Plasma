@@ -26,8 +26,8 @@ public class Map implements Serializable{
 	public ArrayList<Tile> revtiles = new ArrayList<Tile>();
 	public ArrayList<Mob> mobs = new ArrayList<Mob>();
 	public int lowest = 1000;
-	public static int spawnX = 250;
-	public static int spawnY = 40;
+	public int spawnX = 250;
+	public int spawnY = 40;
 	
 	/*
 	public Map(ArrayList<Tile> t, ArrayList<Tile> b){
@@ -134,13 +134,15 @@ public class Map implements Serializable{
         m = (Map) ois.readObject();
         //sortMap();
         System.out.println("loaded game from map");
+        //Player.x = m.spawnX;
+        //Player.y = m.spawnY;
+        System.out.println("loaded spawnx: "+m.spawnX+" spawnY: "+m.spawnY);
         ois.close();
         fis.close();
     	}catch (Exception e){
     		e.printStackTrace();    		
     	}
     	System.out.println("");
-    	System.out.println("Map sorted");
     	return m;
 
     }

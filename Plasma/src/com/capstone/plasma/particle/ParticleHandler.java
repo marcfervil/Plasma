@@ -105,7 +105,7 @@ public class ParticleHandler {
 		    			e.printStackTrace();
 		    		}
 		    		if(x+GameScreen.xCam<900 && x+GameScreen.xCam>-60){
-		    			if(rendering)particles.add(new Particle(x,y,color));
+		    			if(rendering)particles.add(new Particle(x+Utilities.randInt(-30, 30),y,color));
 		    			if(duration!=-1){
 		    				durationCount++;
 		    				if(durationCount==duration){
