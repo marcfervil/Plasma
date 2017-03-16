@@ -44,6 +44,7 @@ public class Tile implements Serializable{
 	
 	public void damage(int damage){
 		hp-=damage;
+		
 		if(hp<1){
 			GameScreen.map.tiles.remove(GameScreen.map.tiles.indexOf(this));
 			deathAnimation();

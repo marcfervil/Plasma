@@ -21,7 +21,6 @@ public class PlasmaShot extends Projectile{
 	public Object creator;
 	public Color color;
 	public boolean first = true;
-
 	
 	public PlasmaShot(int x, int y, int damage,int angle,Object creator,Color color) {
 		super(x, y,damage);
@@ -37,10 +36,6 @@ public class PlasmaShot extends Projectile{
 
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, 20, 5, angle, color);
 		if(first){
-			System.out.println("x "+x);
-			System.out.println("GameScreen.xCam "+GameScreen.xCam);
-			System.out.println(x+GameScreen.xCam);
-			System.out.println(" ");
 		first = false;
 		}
 
@@ -52,12 +47,6 @@ public class PlasmaShot extends Projectile{
 		//Tile.backgroundTiles
 		if(Math.abs(x-initX)<maxRange){
 			
-			/*
-			if(right){
-				x+=speed;
-			}else{
-				x-=speed;
-			}*/
 			x += (int) (speed*Math.cos(angle*(Math.PI/180.0)));
 			y += (int) (speed*Math.sin(angle*(Math.PI/180.0)));
 			
@@ -80,6 +69,8 @@ public class PlasmaShot extends Projectile{
 			Tile t=GameScreen.map.tiles.get(i);
 			if(new Rectangle(x+GameScreen.xCam, y+GameScreen.yCam, 20, 10).intersects(t.getBounds())){
 				if(t.breakable){
+					//System.out.println("attacked "+i);
+					//attacked = true;
 					GameScreen.map.tiles.get(i).damage(damage);
 				}
 				remove=true;

@@ -1,6 +1,7 @@
 package com.capstone.plasma.player;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.capstone.plasma.GameScreen;
@@ -23,6 +24,11 @@ public class Utilities {
 			}
 		}
 		return null;
+	}
+	public static void toString(ArrayList<Tile> t){
+		for(int i =0; i<t.size();i++){
+			System.out.print("("+t.get(i).x+ " "+ t.get(i).y+") ");
+		}
 	}
 	
 	public static Tile touchBoundsTile(int x, int y,int xn,int yn, int sizeX,int sizeY){

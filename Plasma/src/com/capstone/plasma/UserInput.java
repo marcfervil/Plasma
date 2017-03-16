@@ -170,7 +170,7 @@ public class UserInput {
 						//	continue;
 							break;
 							
-						case Keyboard.KEY_Z:
+						case Keyboard.KEY_C:
 							//Inventory.activeItems[0] = new TNT();
 							if(Inventory.activeItems[0] !=null &&shotTick>=shotTickSpeed){
 								shotTick = 0;
@@ -188,7 +188,7 @@ public class UserInput {
 								shotTick++;
 							}
 							break;
-						case Keyboard.KEY_C:
+						case Keyboard.KEY_Z:
 							//Inventory.activeItems[0] = new TNT();
 							if(Inventory.activeItems[2] !=null &&shotTick>=shotTickSpeed){
 								shotTick = 0;
