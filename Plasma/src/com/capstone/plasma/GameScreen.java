@@ -67,8 +67,8 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-        //map=Map.load("map1.ser");
-        map=Map.load("world1/level1.ser");
+        map=Map.load("map1.ser");
+        //map=Map.load("world1/level1.ser");
         map.mobs.add(new Teleporter(390,140));
         //map=new Map();
         System.out.println(map.spawnX);

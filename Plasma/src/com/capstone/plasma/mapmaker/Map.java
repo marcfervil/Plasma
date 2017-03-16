@@ -152,7 +152,7 @@ public class Map implements Serializable{
 	public void mapGen(){
 		//ParticleHandler.particles.add(new Dropable(390, 140, new PlasmaPistol()));
 		//ParticleHandler.particles.add(new Teleporter(390, 140));
-		mobs.add(new Teleporter(390,140));
+		mobs.add(new Teleporter(390,240));
 		//mobs.add(new Robot(360,140));
 		
 		for(int i=0;i<500;i++){

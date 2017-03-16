@@ -17,9 +17,8 @@ public class Teleporter extends Mob {
 	
 	public void paint(){
 		GraphicsHandler.drawRect(x+GameScreen.xCam, y+GameScreen.yCam, size, size*2, 0, Color.PINK);
+		//GraphicsHandler.drawRect(x, y, size, size*2, 0, Color.PINK);
 	}
-	
-	
 	
 	public void tick(){
 		if(Utilities.touchPlayer(x, y, size)){
@@ -33,5 +32,4 @@ public class Teleporter extends Mob {
 			Player.y = GameScreen.map.spawnY;
 		}
 	}
-
 }
