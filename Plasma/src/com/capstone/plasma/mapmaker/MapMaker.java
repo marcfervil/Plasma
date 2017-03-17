@@ -31,9 +31,11 @@ import com.capstone.plasma.UserInput;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Robot;
+import com.capstone.plasma.mob.Teleporter;
 import com.capstone.plasma.mob.Turret;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
+import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.Tile;
 import com.capstone.plasma.tiles.Wall;
@@ -68,6 +70,7 @@ public class MapMaker {
 	public static int layerY=0;
 	public static int spawnX;
 	public static int spawnY;
+	public static String name = "map1";
 	
 	 public static void initDisplay(){
 	        try {
@@ -147,10 +150,11 @@ public class MapMaker {
     	new Thread( new Runnable() {
     	    public void run() {
     	    	while(true){
-    	    		System.out.println("What tile would you like to select? ");
+    	    		System.out.println("what would you like this world to be called?");
     	    		Scanner s = new Scanner(System.in);
     	    		String tileCode=s.next();
-    	    		selectedTile=Integer.parseInt(tileCode);
+    	    		name = tileCode;
+    	    		//selectedTile=Integer.parseInt(tileCode);
     	    	}
     	    }
     	}).start();
@@ -268,7 +272,9 @@ public class MapMaker {
     	case 5:
     		spawnX = x;
     		spawnY=height-y;
-    		System.out.println("spawnx: "+spawnX+" spawnY: "+spawnY);
+    		break;
+    	case 6:
+    		mobs.add(new Teleporter(x,height-y));
     	//case 3;
     		
     		
@@ -319,18 +325,26 @@ public class MapMaker {
     public static void sortMap(){
     	ArrayList<Tile> sorted = new ArrayList<Tile>();
     	sorted.add(0,tiles.get(0));
-    	
+    	boolean smallest = true;
     	for(int i=1; i<tiles.size();i++){
+    		smallest = true;
     		Tile ct=tiles.get(i);
     		for(int j =0; j<sorted.size();j++){
     			if(ct.x>=sorted.get(j).x){
+    				smallest =false;
     				sorted.add(j,ct);
+    			//	System.out.println("before the break");
     				break;
     			}
     			//continue;
     		}
-    		sorted.add(ct);
+    		if(smallest){
+    			sorted.add(ct);
+    		}
+    		//System.out.println("outer loop");
+    		//sorted.add(ct);
     	}
+
 
     	tiles = sorted;
     	
@@ -338,11 +352,20 @@ public class MapMaker {
     
     public static void save(){
     	try{
-		  FileOutputStream fileOut =new FileOutputStream("map1.ser");
+		  FileOutputStream fileOut =new FileOutputStream(name+".ser");
 		  ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		 // String s = "test";
+		  //System.out.println("before sort "+tiles.size());
 		  sortMap();
+		  //System.out.println("after sort "+tiles.size());
 		  Map m = new Map(tiles,mobs,spawnX,spawnY);
+		  for(int i =0; i<m.tiles.size();i++){
+			  for(int j=0; i<m.tiles.size();i++){
+				  if(m.tiles.get(i) == m.tiles.get(j)){
+					 // System.out.println("match");
+				  }
+			  }
+		  }
 		  out.writeObject(m);
 		  System.out.println("saved");
 		//a  out.writeObject()
@@ -357,7 +380,7 @@ public class MapMaker {
     
     public static void load(){
     	try{
-    		FileInputStream fis = new FileInputStream("map1.ser");
+    		FileInputStream fis = new FileInputStream(name+".ser");
     		ObjectInputStream ois = new ObjectInputStream(fis);
     		//world = (ArrayList) ois.readObject();
     		GameScreen.map = (Map) ois.readObject();

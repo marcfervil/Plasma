@@ -281,7 +281,6 @@ public class GraphicsHandler {
 		        for(int x = 0; x <textSize; x++){
 		        	  for(int y = 0; y < textSize; y++){
 		             
-		        	//	  System.out.println(((y+(iy*textSize)))+","+((x+(ix*textSize))));
 		        		  
 		                  int pixel = pixels[y * textSize + x];
 		                  

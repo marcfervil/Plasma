@@ -75,6 +75,12 @@ public class UserInput {
 							Player.move();
 							GraphicsHandler.playerSheet.setCycle(new int[]{1,2,3,4});
 							break;
+						case Keyboard.KEY_Q:
+					    	for(int  b=0; b<GameScreen.map.mobs.size();b++){
+					    		GameScreen.map.mobs.get(b).death();
+					    		//Player.kills--;
+					    	}
+					    	break;
 						case Keyboard.KEY_A:
 							lastKey = "a";
 							if(!Player.touchBounds(-Player.PlayerSpeed, -1)){
@@ -174,7 +180,7 @@ public class UserInput {
 						//	continue;
 							break;
 							
-						case Keyboard.KEY_Z:
+						case Keyboard.KEY_C:
 							//Inventory.activeItems[0] = new TNT();
 							if(Inventory.activeItems[0] !=null &&shotTick>=shotTickSpeed){
 								shotTick = 0;
@@ -192,7 +198,7 @@ public class UserInput {
 								shotTick++;
 							}
 							break;
-						case Keyboard.KEY_C:
+						case Keyboard.KEY_Z:
 							//Inventory.activeItems[0] = new TNT();
 							if(Inventory.activeItems[2] !=null &&shotTick>=shotTickSpeed){
 								shotTick = 0;

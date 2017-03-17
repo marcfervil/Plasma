@@ -25,8 +25,7 @@ public class PlasmaPistol extends Weapon{
 		if(Player.plasma>=energy){
 		Player.plasma -=energy;
 		//System.out.println(Player.plasma);
-		if(UserInput.keysDown.contains(Keyboard.KEY_S)){
-			System.out.println("down");
+		if(UserInput.keysDown.contains(Keyboard.KEY_S) || UserInput.keysDown.contains(Keyboard.KEY_DOWN)){
 			ParticleHandler.particles.add(new PlasmaShot(Player.x+(Tile.size/2),Player.y,damage,-270,null,Color.CYAN));
 			return;
 		}

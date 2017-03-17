@@ -15,6 +15,7 @@ import com.capstone.plasma.mob.Teleporter;
 import com.capstone.plasma.particle.Dropable;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
+import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.GlowTile;
 import com.capstone.plasma.tiles.Tile;
@@ -127,6 +128,7 @@ public class Map implements Serializable{
 	}
 	
     public static Map load(String level){
+    	
     	Map m = null;
     	try{
         FileInputStream fis = new FileInputStream(level);
@@ -136,23 +138,45 @@ public class Map implements Serializable{
         System.out.println("loaded game from map");
         //Player.x = m.spawnX;
         //Player.y = m.spawnY;
-        System.out.println("loaded spawnx: "+m.spawnX+" spawnY: "+m.spawnY);
         ois.close();
         fis.close();
     	}catch (Exception e){
     		e.printStackTrace();    		
     	}
-    	System.out.println("");
+    	//return new Map(m.tiles, m.mobs,m.spawnX,m.spawnY);
     	return m;
-
     }
-    
+    /*
+    public static Map loadNew(String level){
+    	for(int  b=0; b<GameScreen.map.mobs.size();b++){
+    		GameScreen.map.mobs.get(b).death();
+    		//Player.kills--;
+    	}
+    	
+    	Map m = null;
+    	try{
+        FileInputStream fis = new FileInputStream(level);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        m = (Map) ois.readObject();
+        //sortMap();
+        System.out.println("loaded game from map");
+        //Player.x = m.spawnX;
+        //Player.y = m.spawnY;
+        ois.close();
+        fis.close();
+    	}catch (Exception e){
+    		e.printStackTrace();    		
+    	}
+    	System.out.println("tiles");
+    	Utilities.toString(m.tiles);
+    	//return new Map(m.tiles, m.mobs,m.spawnX,m.spawnY);
+    	return m;
+    }
+    */
     
 
 	public void mapGen(){
-		//ParticleHandler.particles.add(new Dropable(390, 140, new PlasmaPistol()));
-		//ParticleHandler.particles.add(new Teleporter(390, 140));
-		mobs.add(new Teleporter(390,240));
+		//mobs.add(new Teleporter(390,240));
 		//mobs.add(new Robot(360,140));
 		
 		for(int i=0;i<500;i++){

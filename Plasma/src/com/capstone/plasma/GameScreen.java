@@ -69,6 +69,7 @@ public class GameScreen{
         GL11.glDisable(GL11.GL_LIGHTING);
        // map=Map.load("map1.ser");
         //map=Map.load("world1/level1.ser");
+
       //  map.mobs.add(new Teleporter(390,140));
         map=new Map();
         System.out.println(map.spawnX);
@@ -79,6 +80,12 @@ public class GameScreen{
 		}
       //  Tile.load();
         //Tile.createChunks();
+
+        //map=new Map();
+        //map = new Map();
+      map.mobs.add(new Teleporter(390,140));
+
+
         try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -241,10 +248,10 @@ public class GameScreen{
         	GraphicsHandler.drawText("kills: "+Player.kills,orgWidth-200,20,25);
         	GraphicsHandler.drawText("deaths: "+Player.deaths,orgWidth-200,40,25);
         	
-        
+
         	Display.update();
         	
-    		
+
         	UserInput.get();  
         
         
@@ -252,7 +259,6 @@ public class GameScreen{
         	
         	Display.sync(60);
   
-      
         	frames++;
     		if (System.currentTimeMillis() - timer > 1000) {
     			timer += 1000;
