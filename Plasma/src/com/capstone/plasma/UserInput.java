@@ -19,6 +19,7 @@ public class UserInput {
 	
 	
 	public static void get(){
+		try{
 		while(Keyboard.next()){
 			if(Keyboard.getEventKeyState()){
 				if(!keysDown.contains(Keyboard.getEventKey()))keysDown.add(Keyboard.getEventKey());
@@ -39,6 +40,9 @@ public class UserInput {
 				}
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
 		    }
+		}
+		}catch(Exception e){
+			System.out.println("keyboard error");
 		}
 	}
 	

@@ -21,6 +21,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
+import com.capstone.plasma.mapmaker.MapMaker;
+import com.capstone.plasma.player.PlayerHandler;
 import com.capstone.plasma.player.Utilities;
 
 
@@ -29,13 +31,15 @@ public class TitleScreen {
 	public static int width = 900;
 	public static int height = 600;
 	public static ArrayList<Star> stars= new ArrayList<Star>();
-	
-	
+	public static int[] crosshairChords = new int[]{ 250, 310, 390,450,530};
+	public static int selected =0 ;
+	public static int drift=0;
+	public static boolean goingIn=true;
 	
 	public static void initDisplay(){
 		try {
 	        Display.setDisplayMode(new DisplayMode(width,height));
-	        Display.setTitle("Plasma Demo");
+	        Display.setTitle("Plasma Demo Tile");
 	        Display.setVSyncEnabled(true);
 	        Display.setSwapInterval(1);
 	        Display.setResizable(true);
@@ -80,16 +84,16 @@ public class TitleScreen {
 	        class StarThread extends Thread{
 	        	
 		         public void run() {
-		        	 while(true){
+		        	 for(int i=0;i<50;i++){
 		        		 try {
 		 					Thread.sleep(100);
 		 				} catch (InterruptedException e) {
 		 					e.printStackTrace();
 		 				}
-		        		if(Utilities.randInt(0, 100)>30){
-		        			stars.add( new Star(5,Utilities.randInt(-50, height),2,5)) ;
+		        		if(Utilities.randInt(0, 100)>40){
+		        			stars.add( new Star(5,Utilities.randInt(0, height),2,5)) ;
 		        		}else{
-		        			stars.add( new Star(5,Utilities.randInt(-50, height),5,5)) ;
+		        			stars.add( new Star(5,Utilities.randInt(0, height),5,5)) ;
 		        		}
 		        	 }
 		         }
@@ -118,7 +122,9 @@ public class TitleScreen {
 		        			s.x+=2;
 		        		}
 		        		if(s.x>width){
-		        			stars.remove(stars.indexOf(s));
+		        			//stars.remove(stars.indexOf(s));
+		        			s.x=-10;
+		        			s.y=Utilities.randInt(0, height);
 		        		}
 		        	}
 	        	}catch(Exception e){
@@ -128,6 +134,30 @@ public class TitleScreen {
 	        	
 	        	GraphicsHandler.drawImage(GraphicsHandler.PlasmaTitleLogo, 0, 0, width, height);
 	        	
+
+	        	GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairRight, 250+drift, crosshairChords[selected], 50, 50);
+	        	GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairLeft, 670-drift, crosshairChords[selected], 50, 50);
+	        	
+	        	//GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairRight, 250, 310, 50, 50);
+	        	//GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairLeft, 670, 310, 50, 50);
+	        	
+	        	
+	        	
+	        	
+	        	
+	        	if(drift==30){
+	        		goingIn=false;
+	        	}
+	        	
+	        	if(drift==0){
+	        		goingIn=true;
+	        	}
+	        	
+	        	if(goingIn){
+	        		drift++;
+	        	}else{
+	        		drift--;
+	        	}
 	        	
 	        	getInput();  
 	        	Display.update();        	
@@ -144,7 +174,49 @@ public class TitleScreen {
 	    
 	    
 	    public static void getInput(){
-	    	
+	    	while(Keyboard.next()){
+				if(Keyboard.getEventKeyState()){
+					if(Keyboard.getEventKey()==Keyboard.KEY_S || Keyboard.getEventKey()==Keyboard.KEY_DOWN){
+						selected++;
+						if(selected >= crosshairChords.length){
+							selected=0;
+						}
+					}
+					if(Keyboard.getEventKey()==Keyboard.KEY_W || Keyboard.getEventKey()==Keyboard.KEY_UP){
+						selected--;
+						if(selected == -1){
+							selected=crosshairChords.length-1;
+						}
+					}
+					
+					if(Keyboard.getEventKey()==Keyboard.KEY_J ||
+						Keyboard.getEventKey()==Keyboard.KEY_K ||
+						Keyboard.getEventKey()==Keyboard.KEY_L ||
+						Keyboard.getEventKey()==Keyboard.KEY_RETURN||
+						Keyboard.getEventKey()==Keyboard.KEY_SPACE){
+						menuSelect();
+					}
+				}
+	    	}
+	    }
+	    
+	    public static void menuSelect(){
+	    	switch(selected){
+	    		case 0:
+	    			Display.destroy();
+	    			//GameScreen.initDisplay();
+	    			new GameScreen().start();
+	    			break;
+	    		case 1:
+	    			Display.destroy();
+	    			//GameScreen.initDisplay();
+	    			new GameScreen().start();
+	    			break;
+	    		case 2:
+	    			Display.destroy();
+	    			(new MapMaker()).start();
+	    			break;
+	    	}
 	    }
 	    
 

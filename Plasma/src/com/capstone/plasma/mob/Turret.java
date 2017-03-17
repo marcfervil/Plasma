@@ -79,16 +79,16 @@ public class Turret extends Mob{
 					e.printStackTrace();
 				}
 				if(open){
-				int shotX=x;
-				int shotY=y;
-				
-				int playerX=Player.x;
-				int playerY=Player.y+(Tile.size/2);
-				
-				final double deltaY = (playerY - shotY);
-				final double deltaX = (playerX - shotX);
-				final double result = Math.toDegrees(Math.atan2(deltaY, deltaX)); 
-				ParticleHandler.particles.add(new PlasmaShot(shotX,shotY,15,(int) result,getThis(),new Color(255, 100, 205)));
+					int shotX=x;
+					int shotY=y;
+					
+					int playerX=Player.x;
+					int playerY=Player.y+(Tile.size/2);
+					
+					final double deltaY = (playerY - shotY);
+					final double deltaX = (playerX - shotX);
+					final double result = Math.toDegrees(Math.atan2(deltaY, deltaX)); 
+					ParticleHandler.particles.add(new PlasmaShot(shotX,shotY,15,(int) result,getThis(),new Color(255, 100, 205)));
 				}
 			}
 		}
@@ -98,8 +98,9 @@ public class Turret extends Mob{
 		Player.kills++;
 		ParticleHandler.createParticleStream(x, y, Color.RED, 10, 10, true,10);
 		GameScreen.map.mobs.remove(GameScreen.map.mobs.indexOf(this));
-		t1.stop();
 		st.stop();
+		t1.stop();
+		System.out.println("stopped");
 	}
 	
 }
