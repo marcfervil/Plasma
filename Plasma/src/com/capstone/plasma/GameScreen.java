@@ -38,7 +38,7 @@ public class GameScreen{
 	public static ArrayList<Chunk> chunks = new ArrayList<Chunk>();
 	public static int fps=0;
 	public static Map map; 
-
+	public static int gameMode=0;
 	
 	public static void initDisplay(){
 		try {
@@ -48,7 +48,7 @@ public class GameScreen{
 	        Display.setSwapInterval(1);
 	        Display.setResizable(true);
 	        Display.create();
-
+	        TitleScreen.startStarThread();
 	    }catch (LWJGLException e){
 	    	e.printStackTrace();
 	    }
@@ -67,63 +67,7 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-       // map=Map.load("map1.ser");
-        //map=Map.load("world1/level1.ser");
 
-      //  map.mobs.add(new Teleporter(390,140));
-        map=new Map();
-        System.out.println(map.spawnX);
-       // map = new Map();
-        for(int i =0; i<50; i++){
-			map.mobs.add(new Turret(500+i*(500),40));
-			//Mob.mobs.add(new Robot(550+i*(500),40));
-		}
-      //  Tile.load();
-        //Tile.createChunks();
-
-        //map=new Map();
-        //map = new Map();
-        //map.mobs.add(new Teleporter(390,140));
-
-
-        try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-        
-        PlayerHandler ph = new PlayerHandler();
-        ph.start();
-        MapHandler mh = new MapHandler();
-        mh.start();
-        
-        UserInput.startKeyManager();
-        
-        ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
-        pt.start();
-        
-  //      Mob.MobTickManager mm = new Mob.MobTickManager();
-//        mm.start();
-        for(int i =0; i<GameScreen.map.mobs.size();i ++){
-        	GameScreen.map.mobs.get(i).run();
-        }
-        
- /*
-        Thread t1 = new Thread(new Runnable() {
-	         public void run() {
-	        	 while(true){
-	        		 try {
-	 					Thread.sleep(500);
-	 				} catch (InterruptedException e) {
-	 					e.printStackTrace();
-	 				}
-	        		Robot r=  new Robot(Utilities.randInt(0, 500),40,4);
-	        		 Mob.mobs.add(r);
-	        		r.run();
-	        	 }
-	         }
-	   });
-	   t1.start();*/
     }
    
     /*
@@ -153,6 +97,28 @@ public class GameScreen{
 	   t1.start();
     }
     */
+    
+    public static void startGame(){
+    	map=new Map();
+        for(int i =0; i<50; i++){
+			map.mobs.add(new Turret(500+i*(500),40));
+		}
+
+        PlayerHandler ph = new PlayerHandler();
+        ph.start();
+        MapHandler mh = new MapHandler();
+        mh.start();
+        
+        UserInput.startKeyManager();
+        
+        ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
+        pt.start();
+        
+
+        for(int i =0; i<GameScreen.map.mobs.size();i ++){
+        	GameScreen.map.mobs.get(i).run();
+        }
+    }
     
     public static void shakeCamera(int duration,int intensity){
     	///TEMPERARILY DISABLING CAMERA SHAKING
@@ -198,26 +164,40 @@ public class GameScreen{
 	   t1.start();
    }
     
+    public static void paint(){
+    	if(UserInput.lastKey == "a"){
+    		map.paintMap();
+    	}else{
+    		map.paintMap2();
+    	}
+    	Player.paint();
+    	Mob.paintMobs();
+    	ParticleHandler.paint();
+    	Mob.paintMobs();
+    	Inventory.paint();
+    	
+    	GraphicsHandler.drawText("fps:"+fps,20, 20,25);
+    	GraphicsHandler.drawText("kills: "+Player.kills,orgWidth-200,20,25);
+    	GraphicsHandler.drawText("deaths: "+Player.deaths,orgWidth-200,40,25);
+    	
+    	UserInput.get();  
+    	
+    }
+    
     public static void run(){
 
     	long lastTime = System.nanoTime();
     	double delta = 0.0;
     	double ns = 1000000000.0 / 60.0;
     	long timer = System.currentTimeMillis();
-    	int updates = 0;
     	int frames = 0;
     	
     	
         while(!Display.isCloseRequested()) {
-        	
-        	//double lastTime = System.currentTimeMillis();
-        	//int nbFrames = 0;
     		long now = System.nanoTime();
     		delta += (now - lastTime) / ns;
     		lastTime = now;
     		if (delta >= 1.0) {
-    		//	update();
-    			updates++;
     			delta--;
     		}
    	 
@@ -227,48 +207,28 @@ public class GameScreen{
         		width=Display.getWidth();
         		height=Display.getHeight();
         	}
-        	//loop
-        	
-        	if(UserInput.lastKey == "a"){
-        		map.paintMap();
-        	}else{
-        		map.paintMap2();
+
+        	switch(gameMode){
+        		case 0:
+        			TitleScreen.paint();
+        			break;
+        		case 1:
+        			paint();
+        			break;
         	}
-        	//Tile.paintMap();
-        	
-        
-        	Player.paint();
-        	Mob.paintMobs();
-        	ParticleHandler.paint();
-        	Mob.paintMobs();
-        	Inventory.paint();
-    
-        	
-        	GraphicsHandler.drawText("fps:"+fps,20, 20,25);
-        	GraphicsHandler.drawText("kills: "+Player.kills,orgWidth-200,20,25);
-        	GraphicsHandler.drawText("deaths: "+Player.deaths,orgWidth-200,40,25);
         	
 
-        	Display.update();
         	
-
-        	UserInput.get();  
-        
-        
-        	
-        	
+        	Display.update();        	
         	Display.sync(60);
   
         	frames++;
     		if (System.currentTimeMillis() - timer > 1000) {
     			timer += 1000;
     			fps=frames;
-    			updates = 0;
     			frames = 0;
     		}
-         
-    		
-        	
+
         }
         try{
         	Display.destroy();

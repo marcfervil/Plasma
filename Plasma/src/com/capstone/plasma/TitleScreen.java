@@ -15,14 +15,10 @@ import static org.lwjgl.opengl.GL11.glOrtho;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
-import com.capstone.plasma.mapmaker.MapMaker;
-import com.capstone.plasma.player.PlayerHandler;
+
 import com.capstone.plasma.player.Utilities;
 
 
@@ -36,20 +32,6 @@ public class TitleScreen {
 	public static int drift=0;
 	public static boolean goingIn=true;
 	
-	public static void initDisplay(){
-		try {
-	        Display.setDisplayMode(new DisplayMode(width,height));
-	        Display.setTitle("Plasma Demo Tile");
-	        Display.setVSyncEnabled(true);
-	        Display.setSwapInterval(1);
-	        Display.setResizable(true);
-	        Display.create();
-
-	    }catch (LWJGLException e){
-	    	e.printStackTrace();
-	    }
-	    Display.update();
-	 }
 	
 	static class Star {
 		  public int x;
@@ -64,6 +46,8 @@ public class TitleScreen {
 			  this.size=size;
 		  }
 	}
+	
+	
 	
 	 
 	  public static void initGL(){
@@ -81,7 +65,11 @@ public class TitleScreen {
 	        
 	        
 	        
-	        class StarThread extends Thread{
+	        
+	  }
+	  
+	  public static void startStarThread(){
+		  class StarThread extends Thread{
 	        	
 		         public void run() {
 		        	 for(int i=0;i<50;i++){
@@ -101,78 +89,51 @@ public class TitleScreen {
 		   (new StarThread()).start();
 	  }
 	  
+	  public static void paint(){
+      	try{
+        	for(int i=0;i<stars.size();i++){
+        		Star s= stars.get(i);
+        		GraphicsHandler.drawRect(s.x, s.y, s.size, s.size, 0, Color.WHITE);
+        		if(s.size==2){
+        			s.x+=5;
+        		}else if(s.size==5){
+        			s.x+=2;
+        		}
+        		if(s.x>width){
+        			//stars.remove(stars.indexOf(s));
+        			s.x=-10;
+        			s.y=Utilities.randInt(0, height);
+        		}
+        	}
+    	}catch(Exception e){
+    		//e.printStackTrace();
+    		//continue;
+    	}
+    	
+    	GraphicsHandler.drawImage(GraphicsHandler.PlasmaTitleLogo, 0, 0, width, height);
+    	
+
+    	GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairRight, 250+drift, crosshairChords[selected], 50, 50);
+    	GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairLeft, 670-drift, crosshairChords[selected], 50, 50);
+    	
+    	if(drift==30){
+    		goingIn=false;
+    	}
+    	
+    	if(drift==0){
+    		goingIn=true;
+    	}
+    	
+    	if(goingIn){
+    		drift++;
+    	}else{
+    		drift--;
+    	}
+    	
+    	getInput(); 
+	  }
+
 	  
-
-	    public static void run(){   	
-	        while(!Display.isCloseRequested()) {
-
-	        	glClear(GL_COLOR_BUFFER_BIT );
-	        	if (Display.wasResized()){
-	        		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
-	        	}
-	        	
-	        	
-	        	try{
-		        	for(int i=0;i<stars.size();i++){
-		        		Star s= stars.get(i);
-		        		GraphicsHandler.drawRect(s.x, s.y, s.size, s.size, 0, Color.WHITE);
-		        		if(s.size==2){
-		        			s.x+=5;
-		        		}else if(s.size==5){
-		        			s.x+=2;
-		        		}
-		        		if(s.x>width){
-		        			//stars.remove(stars.indexOf(s));
-		        			s.x=-10;
-		        			s.y=Utilities.randInt(0, height);
-		        		}
-		        	}
-	        	}catch(Exception e){
-	        		//e.printStackTrace();
-	        		continue;
-	        	}
-	        	
-	        	GraphicsHandler.drawImage(GraphicsHandler.PlasmaTitleLogo, 0, 0, width, height);
-	        	
-
-	        	GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairRight, 250+drift, crosshairChords[selected], 50, 50);
-	        	GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairLeft, 670-drift, crosshairChords[selected], 50, 50);
-	        	
-	        	//GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairRight, 250, 310, 50, 50);
-	        	//GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairLeft, 670, 310, 50, 50);
-	        	
-	        	
-	        	
-	        	
-	        	
-	        	if(drift==30){
-	        		goingIn=false;
-	        	}
-	        	
-	        	if(drift==0){
-	        		goingIn=true;
-	        	}
-	        	
-	        	if(goingIn){
-	        		drift++;
-	        	}else{
-	        		drift--;
-	        	}
-	        	
-	        	getInput();  
-	        	Display.update();        	
-	        	Display.sync(60);
-
-	        }
-	        try{
-	        	Display.destroy();
-	        }catch(Exception e){
-	        	System.out.println("error thing");
-	        }
-	        System.exit(0);
-	    }   
-	    
-	    
 	    public static void getInput(){
 	    	while(Keyboard.next()){
 				if(Keyboard.getEventKeyState()){
@@ -203,27 +164,18 @@ public class TitleScreen {
 	    public static void menuSelect(){
 	    	switch(selected){
 	    		case 0:
-	    			Display.destroy();
-	    			//GameScreen.initDisplay();
-	    			new GameScreen().start();
+	    			GameScreen.gameMode=1;
+	    			GameScreen.startGame();
 	    			break;
 	    		case 1:
-	    			Display.destroy();
-	    			//GameScreen.initDisplay();
-	    			new GameScreen().start();
+	    			
 	    			break;
 	    		case 2:
-	    			Display.destroy();
-	    			(new MapMaker()).start();
+	    			
 	    			break;
 	    	}
 	    }
 	    
 
-	    public static void main(String[] args){
-	    	initDisplay();
-	    	initGL();
-	    	run();
-	    }
 	
 }

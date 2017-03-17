@@ -21,6 +21,7 @@ public class Turret extends Mob{
 	
 	public Turret(int x, int y) {
 		super(x, y);
+		System.out.println("turret "+x+","+y);
 		size=Tile.size;
 		st= new ShotTick();
 		st.start();
@@ -36,13 +37,15 @@ public class Turret extends Mob{
 	}
 	
 	public void tick(){
+		/* idk but this might have been needed
 		if(first){
 			//System.out.println("tick?");
 			st= new ShotTick();
 			st.start();
 			first = false;
 			//System.out.println("printed?");
-		}
+		}*/
+		
 		if(Math.abs(x-Player.x)<=range){
 			open=true;
 		}else{
@@ -72,6 +75,7 @@ public class Turret extends Mob{
 	
 	class ShotTick extends Thread implements Serializable{
 		public void run(){
+			
 			while(true){
 				try {
 					Thread.sleep(1000);
@@ -100,7 +104,7 @@ public class Turret extends Mob{
 		GameScreen.map.mobs.remove(GameScreen.map.mobs.indexOf(this));
 		st.stop();
 		t1.stop();
-		System.out.println("stopped");
+		
 	}
 	
 }
