@@ -67,14 +67,14 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-        map=Map.load("map1.ser");
+       // map=Map.load("map1.ser");
         //map=Map.load("world1/level1.ser");
-        map.mobs.add(new Teleporter(390,140));
-        //map=new Map();
+      //  map.mobs.add(new Teleporter(390,140));
+        map=new Map();
         System.out.println(map.spawnX);
-        //map = new Map();
+       // map = new Map();
         for(int i =0; i<50; i++){
-			//Mob.mobs.add(new Turret(500+i*(500),40));
+			map.mobs.add(new Turret(500+i*(500),40));
 			//Mob.mobs.add(new Robot(550+i*(500),40));
 		}
       //  Tile.load();
@@ -242,12 +242,12 @@ public class GameScreen{
         	GraphicsHandler.drawText("deaths: "+Player.deaths,orgWidth-200,40,25);
         	
         
-    	
+        	Display.update();
+        	
     		
         	UserInput.get();  
         
-        	Display.update();
-        	
+        
         	
         	
         	Display.sync(60);
@@ -271,11 +271,14 @@ public class GameScreen{
         }
         System.exit(0);
     }   
-    
 
-    public static void main(String[] args){
+    public static void start(){
     	initDisplay();
     	initGL();
     	run();
+    }
+
+    public static void main(String[] args){
+    	start();
     }
 }

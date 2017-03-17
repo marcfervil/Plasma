@@ -375,8 +375,7 @@ public class MapMaker {
     	}
     }
     
-    
-    public static void main(String[] args){
+    public static void start(){
     	//save();
     	//load();
     	initDisplay();
@@ -390,5 +389,9 @@ public class MapMaker {
     	*/ 
     	MapInput.startKeyManager();	
     	run();
+    }
+    
+    public static void main(String[] args){
+    	start();
     }
 }

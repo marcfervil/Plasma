@@ -51,6 +51,8 @@ public class GraphicsHandler {
 	
 	public static SpriteSheet playerSheet;
 	
+	public static int SelectionCrosshairLeft,SelectionCrosshairRight;
+	
 	public static void loadTextures(){
 		
 		SpriteSheet.AnimateSheet animation = new SpriteSheet.AnimateSheet();
@@ -93,8 +95,14 @@ public class GraphicsHandler {
 		PlasmaTitleLogo = loadTexture("images/Plasma Title Logo new new.png");
 		playerSheet = new SpriteSheet("images/PlayerSpriteSheet.png",new int[]{10},4);
 		
+		
+		PlasmaTitleLogo = loadTexture("images/Plasma Title Logo new new.png");
+		
 		loadFontPack();
 
+		SelectionCrosshairLeft = loadTexture("images/Selection Crosshair Left.png");
+		SelectionCrosshairRight = loadTexture("images/Selection Crosshair Right.png");
+		
 	}
 	
 	public static void drawImage(int texture,float x, float y, float width, float height){
