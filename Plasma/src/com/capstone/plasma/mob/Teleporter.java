@@ -30,6 +30,8 @@ public class Teleporter extends Mob {
 			GameScreen.map=Map.load(map+".ser");
 			Player.x = GameScreen.map.spawnX;
 			Player.y = GameScreen.map.spawnY;
+			GameScreen.xCam = 0;
+			GameScreen.yCam = 105;
 	        for(int i =0; i<GameScreen.map.mobs.size();i ++){
 	        	GameScreen.map.mobs.get(i).run();
 	        }

@@ -71,7 +71,7 @@ public class GameScreen{
         //map=Map.load("world1/level1.ser");
         //map=new Map();
         //map = new Map();
-      map.mobs.add(new Teleporter(390,140));
+        //map.mobs.add(new Teleporter(390,140));
 
         try {
 			Thread.sleep(100);
