@@ -71,6 +71,12 @@ public class UserInput {
 							Player.move();
 							GraphicsHandler.playerSheet.setCycle(new int[]{1,2,3,4});
 							break;
+						case Keyboard.KEY_Q:
+					    	for(int  b=0; b<GameScreen.map.mobs.size();b++){
+					    		GameScreen.map.mobs.get(b).death();
+					    		//Player.kills--;
+					    	}
+					    	break;
 						case Keyboard.KEY_A:
 							lastKey = "a";
 							if(!Player.touchBounds(-Player.PlayerSpeed, -1)){

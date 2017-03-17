@@ -128,6 +128,31 @@ public class Map implements Serializable{
 	}
 	
     public static Map load(String level){
+    	
+    	Map m = null;
+    	try{
+        FileInputStream fis = new FileInputStream(level);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        m = (Map) ois.readObject();
+        //sortMap();
+        System.out.println("loaded game from map");
+        //Player.x = m.spawnX;
+        //Player.y = m.spawnY;
+        ois.close();
+        fis.close();
+    	}catch (Exception e){
+    		e.printStackTrace();    		
+    	}
+    	//return new Map(m.tiles, m.mobs,m.spawnX,m.spawnY);
+    	return m;
+    }
+    /*
+    public static Map loadNew(String level){
+    	for(int  b=0; b<GameScreen.map.mobs.size();b++){
+    		GameScreen.map.mobs.get(b).death();
+    		//Player.kills--;
+    	}
+    	
     	Map m = null;
     	try{
         FileInputStream fis = new FileInputStream(level);
@@ -144,10 +169,10 @@ public class Map implements Serializable{
     	}
     	System.out.println("tiles");
     	Utilities.toString(m.tiles);
-    	return new Map(m.tiles, m.mobs,m.spawnX,m.spawnY);
-
+    	//return new Map(m.tiles, m.mobs,m.spawnX,m.spawnY);
+    	return m;
     }
-    
+    */
     
 
 	public void mapGen(){

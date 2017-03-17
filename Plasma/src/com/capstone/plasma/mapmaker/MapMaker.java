@@ -31,6 +31,7 @@ import com.capstone.plasma.UserInput;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Robot;
+import com.capstone.plasma.mob.Teleporter;
 import com.capstone.plasma.mob.Turret;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.PlayerHandler;
@@ -271,7 +272,9 @@ public class MapMaker {
     	case 5:
     		spawnX = x;
     		spawnY=height-y;
-    		System.out.println("spawnx: "+spawnX+" spawnY: "+spawnY);
+    		break;
+    	case 6:
+    		mobs.add(new Teleporter(x,height-y));
     	//case 3;
     		
     		

@@ -206,6 +206,7 @@ public class Player {
 		GameScreen.xCam = 0;
 		GameScreen.yCam = 105;
 		GameScreen.backCam = 0;
+		plasma = maxPlasma;
 		
 		
 		ParticleHandler.createExplosion(x,y,15,6,15,Color.RED);
