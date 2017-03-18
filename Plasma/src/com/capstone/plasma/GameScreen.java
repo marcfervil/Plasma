@@ -13,6 +13,7 @@ import com.capstone.plasma.mob.Turret;
 import com.capstone.plasma.mapmaker.Map;
 import com.capstone.plasma.mapmaker.MapHandler;
 import com.capstone.plasma.particle.ParticleHandler;
+import com.capstone.plasma.particle.Teleporter;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Chunk;
 
@@ -88,7 +89,7 @@ public class GameScreen{
         
         ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
         pt.start();
-        
+        Teleporter t = new Teleporter(390,240);
 
         for(int i =0; i<GameScreen.map.mobs.size();i ++){
         	GameScreen.map.mobs.get(i).run();
