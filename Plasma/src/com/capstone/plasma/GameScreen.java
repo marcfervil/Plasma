@@ -12,6 +12,7 @@ import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Turret;
 import com.capstone.plasma.mapmaker.Map;
 import com.capstone.plasma.mapmaker.MapHandler;
+import com.capstone.plasma.mapmaker.MapMaker;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.particle.Teleporter;
 import com.capstone.plasma.player.Player;
@@ -36,6 +37,10 @@ public class GameScreen{
 	public static int fps=0;
 	public static Map map; 
 	public static int gameMode=0;
+	public static  PlayerHandler ph;
+	public static MapHandler mh;
+
+    public static ParticleHandler.ParticleTick pt;
 	
 	public static void initDisplay(){
 		try {
@@ -75,19 +80,15 @@ public class GameScreen{
     }
    
     public static void startGame(){
-    	//map=new Map();
-        for(int i =0; i<50; i++){
-		//	map.mobs.add(new Turret(500+i*(500),40));
-		}
-        map= Map.load("map1.ser");
-        PlayerHandler ph = new PlayerHandler();
+    	
+        ph = new PlayerHandler();
         ph.start();
-        MapHandler mh = new MapHandler();
+        mh = new MapHandler();
         mh.start();
         
         UserInput.startKeyManager();
         
-        ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
+        pt = new ParticleHandler.ParticleTick();
         pt.start();
         Teleporter t = new Teleporter(390,240);
 
@@ -160,6 +161,14 @@ public class GameScreen{
     	
     }
     
+    public static void stopAll(){
+    	  ph = new PlayerHandler();
+          mh = new MapHandler();
+          pt = new ParticleHandler.ParticleTick();
+          map.mobs.clear();
+          
+    }
+    
     public static void run(){
 
     	long lastTime = System.nanoTime();
@@ -191,6 +200,9 @@ public class GameScreen{
         		case 1:
         			paint();
         			break;
+        		case 2:
+        			MapMaker.paint();
+        			break;
         	}
 
         	Display.update();        	
@@ -202,7 +214,7 @@ public class GameScreen{
     			fps=frames;
     			frames = 0;
     		}
-
+    		UserInput.globalKeyPress();
         }
         try{
         	Display.destroy();

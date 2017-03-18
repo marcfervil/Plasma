@@ -73,9 +73,7 @@ public class Turret extends Mob{
 	
 	
 	class ShotTick extends Thread implements Serializable{
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 
 		public void run(){

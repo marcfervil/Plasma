@@ -72,36 +72,41 @@ public class MapMaker {
 	public static int spawnY;
 	public static String name = "map1";
 	
-	 public static void initDisplay(){
-	        try {
-	            Display.setDisplayMode(new DisplayMode(width,height));
-	            Display.setTitle("Plasma Map Maker");
-	            Display.create();
-	        }catch (LWJGLException e){
-	            e.printStackTrace();
-	        }
-	        Display.update();
-	 }
-	 
+    public static void paint(){
 
-	
-    public static void initGL(){
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(0, width, height, 0, 1, -1);
-        glMatrixMode(GL_MODELVIEW);
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-        glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-        Keyboard.enableRepeatEvents(true);
-    
-        
-        GraphicsHandler.loadTextures();
-        //GameScreen.map.mapGen(); idk why this started to error after implementing the map object
-       
-       
-  //      UserInput.startKeyManager();
+    	for(Tile t:tiles){
+			t.paint();
+			
+		}
+    	for(Mob m:mobs){
+    		m.paint();
+    	}
+    	GraphicsHandler.drawRect(spawnX+GameScreen.xCam,spawnY+GameScreen.yCam,Tile.size,Tile.size, 0, Color.RED);
+    	MapInventory.paint();
+    	selectedTile = MapInput.active;
+    	//System.out.println(round(,Tile.size));
+    	
+    	crosshairX = Mouse.getX()-(Tile.size/2);
+    	crosshairY = Mouse.getY()+(Tile.size/2);
+		
+    	
+		//this locks it to grid
+		crosshairX=round(crosshairX,Tile.size);
+		crosshairY=round(crosshairY,Tile.size);
+		
+		crosshairX = crosshairX + GameScreen.xCam%Tile.size;
+		crosshairY = crosshairY - GameScreen.yCam%Tile.size;
+		if(color =="red"){
+			GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
+		}else{
+			GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size, Tile.size, 0, Color.CYAN);
+		}
+
+    	getMouseEvents();   
+    	
+    	MapInput.get();  
     }
-    
+   
     
     public static void run() {
     	
@@ -398,23 +403,6 @@ public class MapMaker {
     	}
     }
     
-    public static void start(){
-    	//save();
-    	//load();
-    	initDisplay();
-    	initGL();
-    	getInput();/*
-    	MapInput m = new MapInput();
-    	m.startKeyManager();
-    	
-    	m.startKeyManager();
-    	m.get();   
-    	*/ 
-    	MapInput.startKeyManager();	
-    	run();
-    }
-    
-    public static void main(String[] args){
-    	start();
-    }
+   
+   
 }

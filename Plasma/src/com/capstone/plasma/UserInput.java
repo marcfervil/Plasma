@@ -17,6 +17,18 @@ public class UserInput {
 	
 	public static ArrayList<Integer> keysDown = new ArrayList<Integer>();
 	
+	public static void globalKeyPress(){
+	//	while(Keyboard.next()){
+			if(Keyboard.getEventKeyState()){
+				switch(Keyboard.getEventKey()){
+					case Keyboard.KEY_T:
+						GameScreen.gameMode=0;
+						GameScreen.stopAll();
+						break;
+				}
+			}
+	//	}
+	}
 	
 	public static void get(){
 		try{

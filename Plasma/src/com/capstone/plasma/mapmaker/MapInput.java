@@ -33,6 +33,7 @@ public class MapInput {
 					}
 				}
 			}else{
+				if(keysDown.indexOf(Keyboard.getEventKey())!=-1)
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
 		    }
 			

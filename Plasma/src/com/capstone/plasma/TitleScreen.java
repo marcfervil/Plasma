@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 
-
-
+import com.capstone.plasma.mapmaker.Map;
+import com.capstone.plasma.mapmaker.MapInput;
 import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Tile;
 
@@ -160,6 +160,8 @@ public class TitleScreen {
 						Keyboard.getEventKey()==Keyboard.KEY_SPACE){
 						menuSelect();
 					}
+					
+				
 				}
 	    	}
 	    }
@@ -167,15 +169,20 @@ public class TitleScreen {
 	    public static void menuSelect(){
 	    	switch(selected){
 	    		case 0:
+	    			GameScreen.map= Map.load("map1.ser");
 	    			GameScreen.gameMode=1;
 	    			GameScreen.startGame();
 	    			
 	    			break;
 	    		case 1:
-	    			
+	    			//I will change this later 
+	    			GameScreen.map= new Map();
+	    			GameScreen.gameMode=1;
+	    			GameScreen.startGame();
 	    			break;
 	    		case 2:
-	    			
+	    			MapInput.startKeyManager();	
+	    			GameScreen.gameMode=2;
 	    			break;
 	    		case 3:
 	    			
