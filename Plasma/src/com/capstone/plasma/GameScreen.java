@@ -68,6 +68,64 @@ public class GameScreen{
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
 
+        map=Map.load("map1.ser");
+        //map=Map.load("world1/level1.ser");
+
+      //  map.mobs.add(new Teleporter(390,140));
+        //map=new Map();
+        System.out.println(map.spawnX);
+       // map = new Map();
+        for(int i =0; i<50; i++){
+			map.mobs.add(new Turret(500+i*(500),40));
+			//Mob.mobs.add(new Robot(550+i*(500),40));
+		}
+      //  Tile.load();
+        //Tile.createChunks();
+
+        //map=new Map();
+        //map = new Map();
+        //map.mobs.add(new Teleporter(390,140));
+
+
+        try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+        
+        PlayerHandler ph = new PlayerHandler();
+        ph.start();
+        MapHandler mh = new MapHandler();
+        mh.start();
+        
+        UserInput.startKeyManager();
+        
+        ParticleHandler.ParticleTick pt = new ParticleHandler.ParticleTick();
+        pt.start();
+        
+  //      Mob.MobTickManager mm = new Mob.MobTickManager();
+//        mm.start();
+        for(int i =0; i<GameScreen.map.mobs.size();i ++){
+        	GameScreen.map.mobs.get(i).run();
+        }
+        
+ /*
+        Thread t1 = new Thread(new Runnable() {
+	         public void run() {
+	        	 while(true){
+	        		 try {
+	 					Thread.sleep(500);
+	 				} catch (InterruptedException e) {
+	 					e.printStackTrace();
+	 				}
+	        		Robot r=  new Robot(Utilities.randInt(0, 500),40,4);
+	        		 Mob.mobs.add(r);
+	        		r.run();
+	        	 }
+	         }
+	   });
+	   t1.start();*/
+
     }
    
     /*
