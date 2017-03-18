@@ -136,6 +136,39 @@ public class GraphicsHandler {
 		//gluBuild2DMipmaps(GL_TEXTURE_2D);
 	}
 	
+	public static void drawImage(int texture,float x, float y, float width, float height,float rot){
+		
+		//KEEP HERE TO SET COLOR TO WHITE SO RECTANGLE DOES NOT TINT TEXTURE
+		glColor4f(1f, 1f, 1f, 1f);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+		glEnable(GL_TEXTURE_2D); 
+		glPushMatrix();
+		glTranslatef(x, y, 0);
+		glTranslatef(x, y, 0); 
+		glRotatef(rot, 0, 0, 1);
+		//glBindTexture(GL_TEXTURE_2D, texture);
+		setTexture(texture);
+		glBegin(GL_QUADS);
+		{
+			
+          glTexCoord2f(0, 0);
+          glVertex2f(0, 0);
+          
+          glTexCoord2f(1, 0);
+          glVertex2f(0, height);
+          
+          glTexCoord2f(1, 1);
+          glVertex2f(width, height);
+          
+          glTexCoord2f(0, 1);
+          glVertex2f(width, 0);
+		}
+		glEnd();
+		glPopMatrix();
+		//gluBuild2DMipmaps(GL_TEXTURE_2D);
+	}
+	
 	public static void setTexture(int texture){
 		if(lastTexture == texture)return;
 		lastTexture=texture; 
@@ -242,9 +275,18 @@ public class GraphicsHandler {
     		drawImage(fontTexture[textMap.indexOf(text.substring(i,i+1))+32], x+xOffset, y, 25, 25);
     		xOffset+=15;
     	}
-    	
-    	//textMap.indexOf(text.substring(0,1))
-    	
+
+    }
+    
+    public static void drawText(String text,int x,int y,int size,int rot){
+    	String textMap="! \"#$%&'()*+,-.//0123456789:;<=>?ABCDFEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}";
+  //  	System.out.println(textMap.indexOf(text.substring(0,1)));
+    	int xOffset=0;
+    	for(int i=0;i<text.length();i++){
+    		drawImage(fontTexture[textMap.indexOf(text.substring(i,i+1))+32], x+xOffset, y, 25, 25);
+    		xOffset+=15;
+    	}
+
     }
 
     public static void loadFontPack(){

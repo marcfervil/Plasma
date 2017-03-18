@@ -21,7 +21,6 @@ public class Turret extends Mob{
 	
 	public Turret(int x, int y) {
 		super(x, y);
-		System.out.println("turret "+x+","+y);
 		size=Tile.size;
 		st= new ShotTick();
 		st.start();
@@ -74,6 +73,11 @@ public class Turret extends Mob{
 	
 	
 	class ShotTick extends Thread implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public void run(){
 			
 			while(true){

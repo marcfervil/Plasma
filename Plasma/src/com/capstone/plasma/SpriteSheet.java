@@ -124,6 +124,10 @@ public class SpriteSheet {
 		GraphicsHandler.drawImage(sprites[currentSprite], x, y, width, height);
 	}
 	
+	public void paint(int x,int y,int width,int height,int rot){
+		GraphicsHandler.drawImage(sprites[currentSprite], x, y, width, height,rot);
+	}
+	
 	public void advanceFrame(){
 		if(spriteCount>=imageCycle.length)spriteCount=0;
 		currentSprite = imageCycle[spriteCount];

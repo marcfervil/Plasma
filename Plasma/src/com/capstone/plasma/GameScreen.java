@@ -7,18 +7,14 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
 import com.capstone.plasma.player.PlayerHandler;
-import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.mob.Mob;
-import com.capstone.plasma.mob.Robot;
-import com.capstone.plasma.mob.Teleporter;
 import com.capstone.plasma.mob.Turret;
 import com.capstone.plasma.mapmaker.Map;
 import com.capstone.plasma.mapmaker.MapHandler;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Chunk;
-import com.capstone.plasma.tiles.Tile;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -47,8 +43,16 @@ public class GameScreen{
 	        Display.setVSyncEnabled(true);
 	        Display.setSwapInterval(1);
 	        Display.setResizable(true);
+	       
 	        Display.create();
+	        
+	        //AudioHandler ah = new AudioHandler();
+	        //ah.setListenerValues();
+	        //ah.loadALData();
+	     //   ah.execute();
+	       // Display.setFullscreen(true);
 	        TitleScreen.startStarThread();
+	        TitleScreen.init();
 	    }catch (LWJGLException e){
 	    	e.printStackTrace();
 	    }
@@ -157,11 +161,11 @@ public class GameScreen{
     */
     
     public static void startGame(){
-    	map=new Map();
+    	//map=new Map();
         for(int i =0; i<50; i++){
-			map.mobs.add(new Turret(500+i*(500),40));
+		//	map.mobs.add(new Turret(500+i*(500),40));
 		}
-
+        map= Map.load("map1.ser");
         PlayerHandler ph = new PlayerHandler();
         ph.start();
         MapHandler mh = new MapHandler();
@@ -189,8 +193,8 @@ public class GameScreen{
 	        	 int count = duration;
 	        	 while(count > 0){
 	        		 
-	        		 int xOffset=Utilities.randInt(-intensity, intensity);
-		        	 int yOffset=Utilities.randInt(-intensity, intensity);	
+	        	//	 int xOffset=Utilities.randInt(-intensity, intensity);
+		        //	 int yOffset=Utilities.randInt(-intensity, intensity);	
 		        	   
 		        	
 		        	 
@@ -259,7 +263,7 @@ public class GameScreen{
     			delta--;
     		}
    	 
-        	glClear(GL_COLOR_BUFFER_BIT );
+        	glClear(GL_COLOR_BUFFER_BIT);
         	if (Display.wasResized()){
         		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
         		width=Display.getWidth();
@@ -274,9 +278,7 @@ public class GameScreen{
         			paint();
         			break;
         	}
-        	
 
-        	
         	Display.update();        	
         	Display.sync(60);
   

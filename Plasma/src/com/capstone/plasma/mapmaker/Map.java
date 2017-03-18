@@ -111,7 +111,9 @@ public class Map implements Serializable{
 
 	public void paintMap2(){
 		for(int i =tiles.size()-1; i>=0; i--){
-			tiles.get(i).paint();
+			Tile p=tiles.get(i);
+			p.paint();
+			
 		}
 	}//i noticed i am in the tile class so i don't need to do Tile.tiles but I am 2 lazy to change
 

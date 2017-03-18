@@ -1,25 +1,14 @@
 package com.capstone.plasma;
 
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_LINE_SMOOTH_HINT;
-import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
-import static org.lwjgl.opengl.GL11.GL_NICEST;
-import static org.lwjgl.opengl.GL11.GL_PERSPECTIVE_CORRECTION_HINT;
-import static org.lwjgl.opengl.GL11.GL_PROJECTION;
-import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.glHint;
-import static org.lwjgl.opengl.GL11.glLoadIdentity;
-import static org.lwjgl.opengl.GL11.glMatrixMode;
-import static org.lwjgl.opengl.GL11.glOrtho;
-
 import java.awt.Color;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
+
 
 
 import com.capstone.plasma.player.Utilities;
+import com.capstone.plasma.tiles.Tile;
 
 
 public class TitleScreen {
@@ -31,7 +20,8 @@ public class TitleScreen {
 	public static int selected =0 ;
 	public static int drift=0;
 	public static boolean goingIn=true;
-	
+	public static int playerX,playerY,playerRot,playerAngle,vx,vy;
+	public static boolean playerVisible=false;
 	
 	static class Star {
 		  public int x;
@@ -47,45 +37,51 @@ public class TitleScreen {
 		  }
 	}
 	
+	public static void init(){
+		Thread t1 = new Thread(new Runnable() {
+	         public void run() {
+	        	 while(true){
+	        		 try {
+						//Thread.sleep(Utilities.randInt(10000, 15000));
+	        			 Thread.sleep(Utilities.randInt(1000, 1500));
+	        		 }catch (InterruptedException e) {
+						e.printStackTrace();
+	        		 }
+	        		 
+	        		 if(!playerVisible){
+	        		///	 System.out.println("NEW DUDDE");
+	        			 playerX=0;
+	        			 playerY=Utilities.randInt(0, height);
+	        			 vx=Utilities.randInt(0, 1);
+	        			 vy=Utilities.randInt(-1, 1);
+	        			 if(vy==0)vy=2;
+	        			 playerVisible=true;
+	        		 }
+	        		 
+	        	 }
+	         }
+		});
+		t1.start();
+	}
 	
-	
-	 
-	  public static void initGL(){
-	        glMatrixMode(GL_PROJECTION);
-	        glLoadIdentity();
-	        
-	        glOrtho(0, width, height, 0, 1, -1);
-	        glMatrixMode(GL_MODELVIEW);
-	        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-	        glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-	        Keyboard.enableRepeatEvents(true);
-	        
-	        GL11.glDisable(GL11.GL_LIGHTING);
-	        GraphicsHandler.loadTextures();
-	        
-	        
-	        
-	        
-	  }
+	  static class StarThread extends Thread{
+	         public void run() {
+	        	 for(int i=0;i<50;i++){
+	        		 try {
+	 					Thread.sleep(100);
+	 				} catch (InterruptedException e) {
+	 					e.printStackTrace();
+	 				}
+	        		if(Utilities.randInt(0, 100)>40){
+	        			stars.add(new Star(5,Utilities.randInt(0, height),2,5));
+	        		}else{
+	        			stars.add(new Star(5,Utilities.randInt(0, height),5,5));
+	        		}
+	        	 }
+	         }
+     }
 	  
-	  public static void startStarThread(){
-		  class StarThread extends Thread{
-	        	
-		         public void run() {
-		        	 for(int i=0;i<50;i++){
-		        		 try {
-		 					Thread.sleep(100);
-		 				} catch (InterruptedException e) {
-		 					e.printStackTrace();
-		 				}
-		        		if(Utilities.randInt(0, 100)>40){
-		        			stars.add( new Star(5,Utilities.randInt(0, height),2,5)) ;
-		        		}else{
-		        			stars.add( new Star(5,Utilities.randInt(0, height),5,5)) ;
-		        		}
-		        	 }
-		         }
-	        }
+	  public static void startStarThread(){ 
 		   (new StarThread()).start();
 	  }
 	  
@@ -106,13 +102,20 @@ public class TitleScreen {
         		}
         	}
     	}catch(Exception e){
-    		//e.printStackTrace();
-    		//continue;
+ 
     	}
     	
+      	if(playerVisible){
+      		playerRot++;
+      		GraphicsHandler.playerSheet.paint(playerX, playerY, Tile.size, Tile.size,playerRot);
+      		playerX+=vx;
+      		playerY+=vy;
+      	}
+      	if(playerY>height+Tile.size || playerX>width+Tile.size ||playerX<-Tile.size || playerY<-Tile.size){
+			 playerVisible=false;
+		 }
+      	
     	GraphicsHandler.drawImage(GraphicsHandler.PlasmaTitleLogo, 0, 0, width, height);
-    	
-
     	GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairRight, 250+drift, crosshairChords[selected], 50, 50);
     	GraphicsHandler.drawImage(GraphicsHandler.SelectionCrosshairLeft, 670-drift, crosshairChords[selected], 50, 50);
     	
@@ -166,12 +169,19 @@ public class TitleScreen {
 	    		case 0:
 	    			GameScreen.gameMode=1;
 	    			GameScreen.startGame();
+	    			
 	    			break;
 	    		case 1:
 	    			
 	    			break;
 	    		case 2:
 	    			
+	    			break;
+	    		case 3:
+	    			
+	    			break;
+	    		case 4:
+	    			System.exit(0);
 	    			break;
 	    	}
 	    }
