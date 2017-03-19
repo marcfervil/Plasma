@@ -17,13 +17,16 @@ public class UserInput {
 	
 	public static ArrayList<Integer> keysDown = new ArrayList<Integer>();
 	
+	public static KeyManager km;
+	
 	public static void globalKeyPress(){
 	//	while(Keyboard.next()){
 			if(Keyboard.getEventKeyState()){
 				switch(Keyboard.getEventKey()){
-					case Keyboard.KEY_T:
-						GameScreen.gameMode=0;
+					case Keyboard.KEY_ESCAPE:
 						GameScreen.stopAll();
+						GameScreen.gameMode=0;
+						TitleScreen.init();
 						break;
 				}
 			}
@@ -59,12 +62,22 @@ public class UserInput {
 	}
 	
 	public static void startKeyManager(){
-		new KeyManager().start();
+		
+		(km = new KeyManager()).start();
+		km.setName("Game Input names");
+	}
+	
+	public static void stopKeyManager(){
+		km.kill();
 	}
 	
 	static class KeyManager extends Thread{
+		private volatile boolean isRunning = true;
+		public void kill(){
+			isRunning = false;
+		}
 		public void run(){
-			while(true){
+			while(isRunning){
 				try {
 					Thread.sleep(10);
 				} catch (InterruptedException e) {

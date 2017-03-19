@@ -9,17 +9,17 @@ import com.capstone.plasma.particle.ParticleHandler;
 public class PlayerHandler extends Thread{
 	
 	public static ParticleHandler.ParticleStream playerTrail;
-	
+	private volatile boolean isRunning = true;
 	
 	
 	public void run(){
-		
+		this.setName("Player Handler");
 		playerTrail= ParticleHandler.createParticleStream(Player.x, Player.y,Color.RED,5,10,false);
 		try {
 			Player.x=GameScreen.map.spawnX;
 			Player.y=GameScreen.map.spawnY;
 			
-			while(true){
+			 while (isRunning) {
 				Thread.sleep(20);
 				Player.tick();
 				playerTrail.x=Player.x;
@@ -31,4 +31,8 @@ public class PlayerHandler extends Thread{
 		}
 	}
 
+	public void kill(){
+		isRunning = false;
+	}
+	
 }

@@ -41,6 +41,7 @@ public class Mob implements Serializable {
 		//this.texture=texture;
 	}
 	public void run(){
+			onCreate();
 		    t1 = new Thread(new Runnable() {
 		         public void run() {
 		        	 while(true){
@@ -53,9 +54,13 @@ public class Mob implements Serializable {
 		        	 }
 		         }
 		   });
+		   t1.setName("Misc Mob Thread");
 		   t1.start();
 	}
 	
+	public void onCreate(){
+		
+	}
 
 	public void death(){
 		Player.kills++;

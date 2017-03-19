@@ -7,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.capstone.plasma.mapmaker.Map;
 import com.capstone.plasma.mapmaker.MapInput;
+import com.capstone.plasma.player.Player;
 import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.tiles.Tile;
 
@@ -38,6 +39,7 @@ public class TitleScreen {
 	}
 	
 	public static void init(){
+		stars.clear();
 		Thread t1 = new Thread(new Runnable() {
 	         public void run() {
 	        	 while(true){
@@ -172,13 +174,14 @@ public class TitleScreen {
 	    			GameScreen.map= Map.load("map1.ser");
 	    			GameScreen.gameMode=1;
 	    			GameScreen.startGame();
-	    			
+	    			Player.respawn();
 	    			break;
 	    		case 1:
 	    			//I will change this later 
 	    			GameScreen.map= new Map();
 	    			GameScreen.gameMode=1;
 	    			GameScreen.startGame();
+	    			Player.respawn();
 	    			break;
 	    		case 2:
 	    			MapInput.startKeyManager();	

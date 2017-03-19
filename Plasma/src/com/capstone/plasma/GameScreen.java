@@ -14,7 +14,7 @@ import com.capstone.plasma.mapmaker.Map;
 import com.capstone.plasma.mapmaker.MapHandler;
 import com.capstone.plasma.mapmaker.MapMaker;
 import com.capstone.plasma.particle.ParticleHandler;
-import com.capstone.plasma.particle.Teleporter;
+//import com.capstone.plasma.particle.Teleporter;
 import com.capstone.plasma.player.Player;
 import com.capstone.plasma.tiles.Chunk;
 
@@ -52,11 +52,7 @@ public class GameScreen{
 	       
 	        Display.create();
 	        
-	        //AudioHandler ah = new AudioHandler();
-	        //ah.setListenerValues();
-	        //ah.loadALData();
-	     //   ah.execute();
-	       // Display.setFullscreen(true);
+
 	        TitleScreen.startStarThread();
 	        TitleScreen.init();
 	    }catch (LWJGLException e){
@@ -90,7 +86,6 @@ public class GameScreen{
         
         pt = new ParticleHandler.ParticleTick();
         pt.start();
-        Teleporter t = new Teleporter(390,240);
 
         for(int i =0; i<GameScreen.map.mobs.size();i ++){
         	GameScreen.map.mobs.get(i).run();
@@ -162,10 +157,19 @@ public class GameScreen{
     }
     
     public static void stopAll(){
-    	  ph = new PlayerHandler();
-          mh = new MapHandler();
-          pt = new ParticleHandler.ParticleTick();
-          map.mobs.clear();
+    	
+    	//ph.stop();
+    	//mh.stop();
+    	//pt.stop();
+    	
+    	ph.kill();
+    	pt.kill();
+    	
+    	//ph = new PlayerHandler();
+        mh = new MapHandler();
+        pt = new ParticleHandler.ParticleTick();
+        UserInput.stopKeyManager();
+        map.mobs.clear();
           
     }
     

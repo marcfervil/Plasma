@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import com.capstone.plasma.GameScreen;
-import com.capstone.plasma.GraphicsHandler;
 import com.capstone.plasma.player.Utilities;
-import com.capstone.plasma.tiles.Floor;
-import com.capstone.plasma.tiles.Tile;
 
 public class ParticleHandler {
 
@@ -30,10 +27,15 @@ public class ParticleHandler {
 	}
 	
 	public static class ParticleTick extends Thread{ 
+		private volatile boolean isRunning = true;
+		public void kill(){
+			isRunning=false;
+		}
 		public void run(){
+			this.setName("particle tick");
 			DebrisParticle.DebrisParticleTick f = new DebrisParticle.DebrisParticleTick();
 			f.start();
-			while(true){
+			while(isRunning){
 				
 				try {
 					Thread.sleep(5);

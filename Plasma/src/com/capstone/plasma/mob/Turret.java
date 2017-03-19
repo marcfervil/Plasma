@@ -21,6 +21,10 @@ public class Turret extends Mob{
 	
 	public Turret(int x, int y) {
 		super(x, y);
+	//	onCreate();
+	}
+	
+	public void onCreate(){
 		size=Tile.size;
 		st= new ShotTick();
 		st.start();
