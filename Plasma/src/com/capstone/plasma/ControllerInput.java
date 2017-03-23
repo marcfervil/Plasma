@@ -82,6 +82,11 @@ public class ControllerInput {
 	            		    	UserInput.keysDown.remove(UserInput.keysDown.indexOf(Keyboard.KEY_K));
 				            }
 			            	
+			            	if(controller.isButtonPressed(3)){
+			            		GameScreen.gameMode=0;
+			            		GameScreen.stopAll();
+			            	}
+			            	
 			            	if(controller.getXAxisValue()>=0.7){
 			            		robot.keyPress(KeyEvent.VK_D);
 					        }

@@ -81,8 +81,7 @@ public class UserInput {
 			while(isRunning){
 				try {
 					Thread.sleep(10);
-				} catch (InterruptedException e) {
-				}
+				
 				//for(int key:keysDown){
 				if(keysDown.size()==0){
 					//if no keys down
@@ -109,6 +108,7 @@ public class UserInput {
 					    	break;
 						case Keyboard.KEY_A:
 							lastKey = "a";
+							GraphicsHandler.playerSheet.setCycle(new int[]{5,6,7,8});
 							if(!Player.touchBounds(-Player.PlayerSpeed, -1)){
 								Player.x-=Player.PlayerSpeed;
 								if(Player.x+GameScreen.xCam<=300){ //was 100 i think?
@@ -242,11 +242,15 @@ public class UserInput {
 				
 					//}
 					}
+				
 				}
 				//System.out.println(keysDown.size());
 				if(keysDown.size()==0 && shotTick !=shotTickSpeed){
 					//System.out.println("ran");
 					shotTick = shotTickSpeed;
+				}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		}
