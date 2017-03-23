@@ -116,7 +116,7 @@ public class MapInput {
 						case Keyboard.KEY_I:
 							if(save){
 								save = false;
-								MapDataManager.saveMap("map1.json", MapMaker.getMap());
+								//rrMapDataManager.saveMap("map1.json", MapMaker.getMap());
 							}
 							break;	
 						

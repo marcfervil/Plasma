@@ -21,14 +21,14 @@ import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.GlowTile;
 import com.capstone.plasma.tiles.Tile;
 import com.capstone.plasma.tiles.Wall;
-import com.google.gson.annotations.Expose;
+//import com.google.gson.annotations.Expose;
 
 public  class Map implements Serializable{
 	public ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public ArrayList<Tile> tiles= new ArrayList<Tile>();
 	public ArrayList<Tile> revtiles = new ArrayList<Tile>();
 	public ArrayList<Mob> mobs = new ArrayList<Mob>();
-	public int lowest = 1000;
+	public int lowest = 10000;
 	public int spawnX = 250;
 	public int spawnY = 40;
 	
@@ -39,6 +39,7 @@ public  class Map implements Serializable{
 		
 	}
 	*/
+	
 	//load
 	public Map(String action){
 		load(action);
@@ -49,13 +50,13 @@ public  class Map implements Serializable{
 	}
 	
 	
-	
 	public Map(ArrayList<Tile> t,ArrayList<Mob> m,int x,int y){
 		tiles = t;
 		mobs = m;
 		spawnX =x;
 		spawnY =y;
 	}
+	
 	
 	public void sortMap(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
