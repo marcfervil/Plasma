@@ -49,7 +49,7 @@ public class Turret extends Mob{
 			//System.out.println("printed?");
 		}*/
 		
-		if(Math.abs(x-Player.x)<=range){
+		if(Math.abs(x-Player.x)<=range && Math.abs(y-Player.y)<=range){
 			open=true;
 		}else{
 			open=false;

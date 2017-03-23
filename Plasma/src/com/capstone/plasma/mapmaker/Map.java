@@ -21,8 +21,9 @@ import com.capstone.plasma.tiles.Floor;
 import com.capstone.plasma.tiles.GlowTile;
 import com.capstone.plasma.tiles.Tile;
 import com.capstone.plasma.tiles.Wall;
+import com.google.gson.annotations.Expose;
 
-public class Map implements Serializable{
+public  class Map implements Serializable{
 	public ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
 	public ArrayList<Tile> tiles= new ArrayList<Tile>();
 	public ArrayList<Tile> revtiles = new ArrayList<Tile>();
@@ -46,6 +47,8 @@ public class Map implements Serializable{
 	public Map(){
 		mapGen();
 	}
+	
+	
 	
 	public Map(ArrayList<Tile> t,ArrayList<Mob> m,int x,int y){
 		tiles = t;
@@ -130,7 +133,8 @@ public class Map implements Serializable{
 		}
 	}
 	
-    public static Map load(String level){
+
+	 public static  Map load(String level){
     	
     	Map m = null;
     	try{
@@ -148,6 +152,7 @@ public class Map implements Serializable{
     	}
     	//return new Map(m.tiles, m.mobs,m.spawnX,m.spawnY);
     	return m;
+   
     }
     /*
     public static Map loadNew(String level){

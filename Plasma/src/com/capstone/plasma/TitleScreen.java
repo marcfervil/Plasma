@@ -154,6 +154,11 @@ public class TitleScreen {
 							selected=crosshairChords.length-1;
 						}
 					}
+					if(Keyboard.getEventKey()==Keyboard.KEY_BACK){
+						ControllerInput.init();
+					}
+					
+				
 					
 					if(Keyboard.getEventKey()==Keyboard.KEY_J ||
 						Keyboard.getEventKey()==Keyboard.KEY_K ||

@@ -20,7 +20,7 @@ public class UserInput {
 	public static KeyManager km;
 	
 	public static void globalKeyPress(){
-	//	while(Keyboard.next()){
+		//Keyboard.next();
 			if(Keyboard.getEventKeyState()){
 				switch(Keyboard.getEventKey()){
 					case Keyboard.KEY_ESCAPE:
@@ -28,9 +28,10 @@ public class UserInput {
 						GameScreen.gameMode=0;
 						TitleScreen.init();
 						break;
+					
 				}
 			}
-	//	}
+		//}
 	}
 	
 	public static void get(){
@@ -80,8 +81,7 @@ public class UserInput {
 			while(isRunning){
 				try {
 					Thread.sleep(10);
-				} catch (InterruptedException e) {
-				}
+				
 				//for(int key:keysDown){
 				if(keysDown.size()==0){
 					//if no keys down
@@ -108,6 +108,7 @@ public class UserInput {
 					    	break;
 						case Keyboard.KEY_A:
 							lastKey = "a";
+							GraphicsHandler.playerSheet.setCycle(new int[]{5,6,7,8});
 							if(!Player.touchBounds(-Player.PlayerSpeed, -1)){
 								Player.x-=Player.PlayerSpeed;
 								if(Player.x+GameScreen.xCam<=300){ //was 100 i think?
@@ -241,11 +242,15 @@ public class UserInput {
 				
 					//}
 					}
+				
 				}
 				//System.out.println(keysDown.size());
 				if(keysDown.size()==0 && shotTick !=shotTickSpeed){
 					//System.out.println("ran");
 					shotTick = shotTickSpeed;
+				}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		}

@@ -113,6 +113,13 @@ public class MapInput {
 								MapMaker.save();
 							}
 							break;
+						case Keyboard.KEY_I:
+							if(save){
+								save = false;
+								MapDataManager.saveMap("map1.json", MapMaker.getMap());
+							}
+							break;	
+						
 						case Keyboard.KEY_L:
 							if(load){
 								load = false;

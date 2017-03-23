@@ -73,6 +73,7 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
+      //  ControllerInput.init();
     }
    
     public static void startGame(){
@@ -90,6 +91,9 @@ public class GameScreen{
         for(int i =0; i<GameScreen.map.mobs.size();i ++){
         	GameScreen.map.mobs.get(i).run();
         }
+        
+        //should prob bind this to a key, but it's easier
+       
     }
     
     public static void shakeCamera(int duration,int intensity){
