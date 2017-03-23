@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import org.lwjgl.input.Controller;
 import org.lwjgl.input.Controllers;
+import org.lwjgl.input.Keyboard;
 
 
 
@@ -62,12 +63,23 @@ public class ControllerInput {
 			            }
 			            if(GameScreen.gameMode==1){
 			            	if(controller.isButtonPressed(11)){
-				            	pressKey(KeyEvent.VK_J);
+				            	//pressKey(KeyEvent.VK_J);
+			            		UserInput.keysDown.add(Keyboard.KEY_J);
+	            		    	try {
+									Thread.sleep(100);
+								} catch (Exception e){
+								}
+	            		    	UserInput.keysDown.remove(UserInput.keysDown.indexOf(Keyboard.KEY_J));
 				            }
 			            
 			            	
 			            	if(controller.isButtonPressed(9)){
-				            	pressKey(KeyEvent.VK_K);
+			            		UserInput.keysDown.add(Keyboard.KEY_K);
+	            		    	try {
+									Thread.sleep(100);
+								} catch (Exception e){
+								}
+	            		    	UserInput.keysDown.remove(UserInput.keysDown.indexOf(Keyboard.KEY_K));
 				            }
 			            	
 			            	if(controller.getXAxisValue()>=0.7){
@@ -80,7 +92,19 @@ public class ControllerInput {
 					        }
 			            	
 			            	if(controller.isButtonPressed(14)){
-				            	pressKey(KeyEvent.VK_W);
+				            	//pressKey(KeyEvent.VK_W);
+			            		
+			            		Thread stupidThread = new Thread() {
+			            		    public void run(){
+			            		    	UserInput.keysDown.add(Keyboard.KEY_W);
+			            		    	try {
+											Thread.sleep(100);
+										} catch (Exception e){
+										}
+			            		    	UserInput.keysDown.remove(UserInput.keysDown.indexOf(Keyboard.KEY_W));
+			            		    }
+			            		};
+			            		stupidThread.start();
 				            }
 			            	
 			            	
