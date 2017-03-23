@@ -12,6 +12,7 @@ import com.capstone.plasma.inventory.TNT;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Robot;
 import com.capstone.plasma.mob.Teleporter;
+import com.capstone.plasma.mob.Turret;
 import com.capstone.plasma.particle.Dropable;
 import com.capstone.plasma.particle.ParticleHandler;
 import com.capstone.plasma.player.Player;
@@ -180,6 +181,9 @@ public class Map implements Serializable{
 	public void mapGen(){
 		//mobs.add(new Teleporter(390,240));
 		//mobs.add(new Robot(360,140));
+		for(int i =0; i<300; i+=30){
+			mobs.add(new Turret(360+i,140));
+		}
 		
 		for(int i=0;i<500;i++){
 			for(int j=0;j<35;j++){

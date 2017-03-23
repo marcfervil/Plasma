@@ -69,6 +69,13 @@ public class Mob implements Serializable {
 		t1.stop();
 	}
 	
+	public static void killAll(){
+    	for(int  b=0; b<GameScreen.map.mobs.size();b++){
+    		GameScreen.map.mobs.get(b).death();
+    		//Player.kills--;
+    	}
+	}
+	
 
 	public static class MobTickManager extends Thread{
 		public void run(){
