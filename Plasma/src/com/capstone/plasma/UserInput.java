@@ -20,7 +20,7 @@ public class UserInput {
 	public static KeyManager km;
 	
 	public static void globalKeyPress(){
-	//	while(Keyboard.next()){
+		//Keyboard.next();
 			if(Keyboard.getEventKeyState()){
 				switch(Keyboard.getEventKey()){
 					case Keyboard.KEY_ESCAPE:
@@ -28,9 +28,10 @@ public class UserInput {
 						GameScreen.gameMode=0;
 						TitleScreen.init();
 						break;
+					
 				}
 			}
-	//	}
+		//}
 	}
 	
 	public static void get(){

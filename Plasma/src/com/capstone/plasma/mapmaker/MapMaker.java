@@ -355,6 +355,10 @@ public class MapMaker {
     	
     }
     
+    public static Map getMap(){
+    	return new Map(tiles,mobs,spawnX,spawnY);
+    }
+    
     public static void save(){
     	try{
 		  FileOutputStream fileOut =new FileOutputStream(name+".ser");
