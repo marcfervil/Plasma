@@ -20,7 +20,15 @@ public class Teleporter extends Mob {
 		//GraphicsHandler.drawRect(x, y, size, size*2, 0, Color.PINK);
 	}
 	
+	public void kill(){
+		
+	}
+	
 	public void tick(){
+    	for(int  b=0; b<GameScreen.map.mobs.size();b++){
+    		//GameScreen.map.mobs.get(b).death();
+    		//Player.kills--;
+    	}
 		if(Utilities.touchPlayer(x, y, size)){
 			System.out.println("teleporter away!");
 			//GameScreen.map=Map.load("map1.ser");

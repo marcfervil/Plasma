@@ -216,7 +216,7 @@ public class Player {
 		y=GameScreen.map.spawnY;
 		hp = maxHp;
 		GameScreen.xCam = 300-x;
-		GameScreen.yCam = 105-y;
+		GameScreen.yCam = 250-y;
 		yVelocity = 0;
 		//GameScreen.xCam = x+(GameScreen.width/2);
 		//GameScreen.yCam = (y+(GameScreen.height/2))-100;

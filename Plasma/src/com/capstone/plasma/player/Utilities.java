@@ -4,6 +4,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.tiles.Tile;
@@ -30,6 +33,12 @@ public class Utilities {
 			System.out.print("("+t.get(i).x+ " "+ t.get(i).y+") ");
 		}
 	}
+    public static String getInputPop(String message){
+    	JFrame frame = new JFrame();
+        String result = JOptionPane.showInputDialog(frame, message);
+        return result;
+        //System.out.println(result);
+    }
 	
 	public static Tile touchBoundsTile(int x, int y,int xn,int yn, int sizeX,int sizeY){
 		try{

@@ -45,6 +45,8 @@ import com.capstone.plasma.tiles.breakable;
 import com.capstone.plasma.tiles.GlowTile;
 import com.capstone.plasma.ControllerInput;
 import com.capstone.plasma.GameScreen;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import java.util.Scanner;
 
@@ -145,6 +147,8 @@ public class MapMaker {
     		
     		crosshairX = crosshairX + GameScreen.xCam%Tile.size;
     		crosshairY = crosshairY - GameScreen.yCam%Tile.size;
+    		crosshairX=crosshairX-30;
+    		
     		if(color =="red"){
     			GraphicsHandler.drawEmptyRect(crosshairX, height-crosshairY, Tile.size,  Tile.size, 0, Color.RED);
     		}else{
@@ -173,6 +177,7 @@ public class MapMaker {
     	    }
     	}).start();
     }
+    
      
     public static int round(int val, int round){
     
@@ -429,6 +434,7 @@ public class MapMaker {
     }
     
     public static void save(){
+    	name =Utilities.getInputPop("name of the map");
     	try{
 		  FileOutputStream fileOut =new FileOutputStream(name+".ser");
 		  ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -457,6 +463,7 @@ public class MapMaker {
     
     
     public static void load(){
+    	name = Utilities.getInputPop("name of the map you want to load");
     	try{
     		FileInputStream fis = new FileInputStream(name+".ser");
     		ObjectInputStream ois = new ObjectInputStream(fis);
