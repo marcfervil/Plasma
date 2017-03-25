@@ -69,7 +69,7 @@ public class UserInput {
 	}
 	
 	public static void stopKeyManager(){
-		km.kill();
+		if(km!=null)km.kill();
 	}
 	
 	static class KeyManager extends Thread{

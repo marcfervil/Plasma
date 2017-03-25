@@ -203,8 +203,8 @@ public class Player {
 		x=GameScreen.map.spawnX;
 		y=GameScreen.map.spawnY;
 		hp = maxHp;
-		GameScreen.xCam = 0;
-		GameScreen.yCam = 105;
+		GameScreen.xCam = x+(GameScreen.width/2);
+		GameScreen.yCam = (y+(GameScreen.height/2))-100;
 		GameScreen.backCam = 0;
 		plasma = maxPlasma;
 		

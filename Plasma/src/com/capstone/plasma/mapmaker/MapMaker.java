@@ -43,6 +43,7 @@ import com.capstone.plasma.tiles.breakable;
 //import com.capstone.plasma.tiles.breakable;
 //import com.sun.java.util.jar.pack.Package.Class.Field;
 import com.capstone.plasma.tiles.GlowTile;
+import com.capstone.plasma.ControllerInput;
 import com.capstone.plasma.GameScreen;
 
 import java.util.Scanner;
@@ -63,8 +64,8 @@ public class MapMaker {
 	public static int mouseX = 0;
 	public static int mouseY = 0;
 	public static boolean line = false;
-	public static int crosshairX = Mouse.getX()-(Tile.size/2);
-	public static int crosshairY = Mouse.getY()+(Tile.size/2);
+	public static int crosshairX = getX()-(Tile.size/2);
+	public static int crosshairY = getY()+(Tile.size/2);
 	public static String color = "red";
 	public static int layerX=0;
 	public static int layerY=0;
@@ -72,12 +73,18 @@ public class MapMaker {
 	public static int spawnY;
 	public static String name = "map1";
 	
+	
+	
     public static void paint(){
 
-    	for(Tile t:tiles){
-			t.paint();
-			
-		}
+    	try{
+	    	for(Tile t:tiles){
+				t.paint();
+			}
+    	}catch(Exception e){
+    		
+    	}
+    	
     	for(Mob m:mobs){
     		m.paint();
     	}
@@ -86,8 +93,8 @@ public class MapMaker {
     	selectedTile = MapInput.active;
     	//System.out.println(round(,Tile.size));
     	
-    	crosshairX = Mouse.getX()-(Tile.size/2);
-    	crosshairY = Mouse.getY()+(Tile.size/2);
+    	crosshairX = getX()-(Tile.size/2);
+    	crosshairY = getY()+(Tile.size/2);
 		
     	
 		//this locks it to grid
@@ -126,8 +133,10 @@ public class MapMaker {
         	selectedTile = MapInput.active;
         	//System.out.println(round(,Tile.size));
         	
-        	crosshairX = Mouse.getX()-(Tile.size/2);
-        	crosshairY = Mouse.getY()+(Tile.size/2);
+        
+        	
+        	crosshairX = getX()-(Tile.size/2);
+        	crosshairY = getY()+(Tile.size/2);
     		
         	
     		//this locks it to grid
@@ -170,26 +179,63 @@ public class MapMaker {
     	    return (val+ round-1) / round * round;
     }
     
+    public static int getX(){
+    	int x=Mouse.getX();
+    	if(ControllerInput.isConnected){
+    		x=ControllerInput.mapX;
+    	}
+    	return x;
+    }
+    
+    public static int getY(){
+    	int y=Mouse.getY();
+    	if(ControllerInput.isConnected){
+    		y=ControllerInput.mapY;
+    	}
+    	return y;
+    }
+    
+    public static void removeTile(){
+    	for(int i =0; i<tiles.size(); i++){
+			if(tiles.get(i).x == crosshairX-GameScreen.xCam &&tiles.get(i).y == height-(crosshairY+GameScreen.yCam)){
+				tiles.remove(i);
+			}
+		}
+    	for(int i =0; i<mobs.size(); i++){
+			if(mobs.get(i).x == crosshairX-GameScreen.xCam &&mobs.get(i).y == height-(crosshairY+GameScreen.yCam)){
+				mobs.remove(i);
+			}
+		}
+    }
+    
+    public static void placeBlock(){
+
+    	mouseX = getX()-(Tile.size/2); //centers the mouse on the red cross
+		mouseY = getY()+(Tile.size/2);
+		
+		//this locks it to grid
+		mouseX=round(mouseX,Tile.size);
+		mouseY=round(mouseY,Tile.size);
+    	//System.out.println(crosshairX);
+    	placeBlock(mouseX, mouseY,selectedTile);
+    	//placeBlock(crosshairX, crosshairY+(Tile.size/2),selectedTile);
+    }
+    
     //will pass on the mouse chords and what mouse was clicked to actions.
     public static void getMouseEvents(){
     	
     	//delete thing
     	if(Mouse.isButtonDown(1)){
 
-    		for(int i =0; i<tiles.size(); i++){
-    			if(tiles.get(i).x == crosshairX-GameScreen.xCam &&tiles.get(i).y == height-(crosshairY+GameScreen.yCam)){
-    				tiles.remove(i);
-    				System.out.println("it removed");
-    			}
-    		}
+    		removeTile();
     	}
     	
     	int totalDistanceX = 0;
     	int totalDistanceY = 0;
     	if(Mouse.isButtonDown(0) && released){
     		released = false;
-    		mouseX = Mouse.getX()-(Tile.size/2); //centers the mouse on the red cross
-    		mouseY = Mouse.getY()+(Tile.size/2);
+    		mouseX = getX()-(Tile.size/2); //centers the mouse on the red cross
+    		mouseY = getY()+(Tile.size/2);
     		
     		//this locks it to grid
     		mouseX=round(mouseX,Tile.size);
@@ -202,8 +248,8 @@ public class MapMaker {
     	if(Mouse.isButtonDown(0) && !released){
     		line = true;
     	}else if(!Mouse.isButtonDown(0) && released &&line){
-    		totalDistanceY= mouseY-Mouse.getY();
-    		totalDistanceX= mouseX-Mouse.getX();
+    		totalDistanceY= mouseY-getY();
+    		totalDistanceX= mouseX-getX();
     		if(Math.abs(totalDistanceX)>=Math.abs(totalDistanceY)){//this is for horizontal
     		if(totalDistanceX>0){
 	    		for(int i =1; i<=(totalDistanceX/Tile.size); i++){
@@ -254,6 +300,17 @@ public class MapMaker {
     }
     
     public static void placeBlock(int x, int y, int Id){
+    	
+    	for(int i =0; i<tiles.size(); i++){
+			if(tiles.get(i).x == crosshairX-GameScreen.xCam &&tiles.get(i).y == height-(crosshairY+GameScreen.yCam)){
+				return;
+			}
+		}
+    	for(int i =0; i<mobs.size(); i++){
+			if(mobs.get(i).x == crosshairX-GameScreen.xCam &&mobs.get(i).y == height-(crosshairY+GameScreen.yCam)){
+				return;
+			}
+		}
     	x = x-GameScreen.xCam+(GameScreen.xCam%Tile.size);
     	y = y+GameScreen.yCam-(GameScreen.yCam%Tile.size);
     	//System.out.println(Id);
@@ -357,6 +414,18 @@ public class MapMaker {
     
     public static Map getMap(){
     	return new Map(tiles,mobs,spawnX,spawnY);
+    }
+    
+    public static void testMap(){
+    	GameScreen.loadGame(MapMaker.getCompiledMap());
+    }
+    
+    public static Map getCompiledMap(){
+    	 sortMap();
+		  //System.out.println("after sort "+tiles.size());
+		  Map m = new Map(tiles,mobs,spawnX,spawnY);
+		
+		  return m;
     }
     
     public static void save(){

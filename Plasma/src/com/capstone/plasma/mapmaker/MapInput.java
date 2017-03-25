@@ -32,6 +32,10 @@ public class MapInput {
 						MapMaker.layer(false);
 					}
 				}
+				
+				if(Keyboard.getEventKey() == Keyboard.KEY_T){
+					MapMaker.testMap();
+				}
 			}else{
 				if(keysDown.indexOf(Keyboard.getEventKey())!=-1)
 				keysDown.remove(keysDown.indexOf(Keyboard.getEventKey()));
@@ -68,8 +72,7 @@ public class MapInput {
 					int key=keysDown.get(i);
 			//		System.out.println(Player.x);
 					switch(key){
-						
-						case Keyboard.KEY_RIGHT:
+												case Keyboard.KEY_RIGHT:
 							//mapScreen.xCam+=1;
 							MapScreen.moveCam(scrollSpeed, 0);
 							break;

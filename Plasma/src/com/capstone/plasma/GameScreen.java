@@ -55,6 +55,8 @@ public class GameScreen{
 
 	        TitleScreen.startStarThread();
 	        TitleScreen.init();
+	        
+	        
 	    }catch (LWJGLException e){
 	    	e.printStackTrace();
 	    }
@@ -65,7 +67,6 @@ public class GameScreen{
     public static void initGL(){
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-       //map.lowest = 10000;
         glOrtho(0, width, height, 0, 1, -1);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -73,7 +74,11 @@ public class GameScreen{
         Keyboard.enableRepeatEvents(true);
         GraphicsHandler.loadTextures();
         GL11.glDisable(GL11.GL_LIGHTING);
-      //  ControllerInput.init();
+          
+        if(ControllerInput.isControllerConnected()){
+        	System.out.println("Controller detected!");
+        	ControllerInput.init();
+        }
     }
    
     public static void startGame(){
@@ -92,7 +97,6 @@ public class GameScreen{
         	GameScreen.map.mobs.get(i).run();
         }
         
-        //should prob bind this to a key, but it's easier
        
     }
     
@@ -166,15 +170,22 @@ public class GameScreen{
     	//mh.stop();
     	//pt.stop();
     	
-    	ph.kill();
-    	pt.kill();
+    	if(ph!=null)ph.kill();
+    	if(pt!=null)pt.kill();
     	
     	//ph = new PlayerHandler();
         mh = new MapHandler();
         pt = new ParticleHandler.ParticleTick();
         UserInput.stopKeyManager();
-        map.mobs.clear();
+        if(map!=null)map.mobs.clear();
           
+    }
+    
+    public static void loadGame(Map map){
+ 	   GameScreen.map= map;
+ 	   GameScreen.gameMode=1;
+ 	   GameScreen.startGame();
+ 	   Player.respawn();
     }
     
     public static void run(){
@@ -238,6 +249,8 @@ public class GameScreen{
     	run();
     }
 
+ 
+    
     public static void main(String[] args){
     	start();
     }
