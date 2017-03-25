@@ -42,6 +42,7 @@ public class Player {
 	public static int rechargeRate = 1;
 	public static int recharge = rechargeRate;
 	public static int level = 1;
+	public static boolean paint = true;
 	//public static Thread t1;
 	
 	public static void paint(){
@@ -54,6 +55,7 @@ public class Player {
 			GraphicsHandler.drawImage(GraphicsHandler.player2,x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		}
 		*/
+		if(paint){
 		GraphicsHandler.playerSheet.paint(x+GameScreen.xCam, y+GameScreen.yCam, Tile.size, Tile.size);
 		
 		//health bar doesn't work well
@@ -67,6 +69,7 @@ public class Player {
 		float fillPlasma = (float) (300*percentPlasma);
 		GraphicsHandler.drawRect(60, 400, 30, fillPlasma, 180, new Color(205, 0, 255));
 		GraphicsHandler.drawEmptyRect(30,100,30,300,0,Color.BLUE);
+		}
 		
 		///GraphicsHandler.drawEmptyRect((x+5)+GameScreen.xCam, y+GameScreen.yCam, Tile.size-10, Tile.size, 0, Color.BLACK);	
 		
@@ -200,6 +203,15 @@ public class Player {
 
 
 	public static void respawn(){
+		paint = false;
+		ParticleHandler.createExplosion(x,y,15,6,15,Color.RED);
+		
+        try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		x=GameScreen.map.spawnX;
 		y=GameScreen.map.spawnY;
 		hp = maxHp;
@@ -212,10 +224,10 @@ public class Player {
 		plasma = maxPlasma;
 		
 		
-		ParticleHandler.createExplosion(x,y,15,6,15,Color.RED);
 		
 
 		deaths++;
+		paint = true;
 	}
 	
 	public static void recharge(){
