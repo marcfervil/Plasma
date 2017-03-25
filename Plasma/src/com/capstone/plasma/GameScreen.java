@@ -7,6 +7,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
 import com.capstone.plasma.player.PlayerHandler;
+import com.capstone.plasma.player.Utilities;
 import com.capstone.plasma.inventory.Inventory;
 import com.capstone.plasma.mob.Mob;
 import com.capstone.plasma.mob.Turret;
@@ -111,13 +112,13 @@ public class GameScreen{
 	        	 int count = duration;
 	        	 while(count > 0){
 	        		 
-	        	//	 int xOffset=Utilities.randInt(-intensity, intensity);
-		        //	 int yOffset=Utilities.randInt(-intensity, intensity);	
+	        		 int xOffset=Utilities.randInt(-intensity, intensity);
+		        	 int yOffset=Utilities.randInt(-intensity, intensity);	
 		        	   
 		        	
 		        	 
-		        //	 xCam+=xOffset;
-		        //	 yCam+=yOffset;
+	        		 xCam+=xOffset;
+		        	 yCam+=yOffset;
 	        		 
 		        	 
 		        	 
@@ -130,13 +131,15 @@ public class GameScreen{
 	 				}
 	        	
 	        		 
-	        	//	 xCam-=xOffset;
-		        //	 yCam-=yOffset;
+	        		 xCam-=xOffset;
+		        	 yCam-=yOffset;
 	        	    
 		     //   	 backCam-=xOffset;
 		        	 
 	        		count--;
 	        	}
+	        	 GameScreen.xCam = 300-Player.x;
+	     		GameScreen.yCam = 250-Player.y;
 	       // 	xCam=ogXcam;
 	 	   // 	yCam=ogYcam;
 	         }

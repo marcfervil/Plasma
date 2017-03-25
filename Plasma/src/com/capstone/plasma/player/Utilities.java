@@ -2,6 +2,7 @@ package com.capstone.plasma.player;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ public class Utilities {
 	}
 	
 	public static Tile touchBoundsTile(int x, int y,int xn,int yn, int size){
+		Collections.synchronizedList(GameScreen.map.tiles);
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,size,size);
 		//looping
 		for(int i=0;i<GameScreen.map.tiles.size();i++){
@@ -41,6 +43,7 @@ public class Utilities {
     }
 	
 	public static Tile touchBoundsTile(int x, int y,int xn,int yn, int sizeX,int sizeY){
+		Collections.synchronizedList(GameScreen.map.tiles);
 		try{
 		Rectangle r=  new Rectangle(x+GameScreen.xCam+xn,y+GameScreen.yCam+yn,sizeX,sizeY);
 		//looping

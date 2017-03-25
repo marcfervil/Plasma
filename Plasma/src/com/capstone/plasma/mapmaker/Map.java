@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.inventory.PlasmaPistol;
@@ -25,7 +26,7 @@ import com.capstone.plasma.tiles.Wall;
 
 public  class Map implements Serializable{
 	public ArrayList<Tile> backgroundTiles= new ArrayList<Tile>();
-	public ArrayList<Tile> tiles= new ArrayList<Tile>();
+	public CopyOnWriteArrayList<Tile> tiles= new CopyOnWriteArrayList<Tile>();
 	public ArrayList<Tile> revtiles = new ArrayList<Tile>();
 	public ArrayList<Mob> mobs = new ArrayList<Mob>();
 	public int lowest = 10000;
@@ -50,7 +51,7 @@ public  class Map implements Serializable{
 	}
 	
 	
-	public Map(ArrayList<Tile> t,ArrayList<Mob> m,int x,int y){
+	public Map(CopyOnWriteArrayList<Tile> t,ArrayList<Mob> m,int x,int y){
 		tiles = t;
 		mobs = m;
 		spawnX =x;
@@ -59,7 +60,7 @@ public  class Map implements Serializable{
 	
 	
 	public void sortMap(){
-		ArrayList<Tile> sorted = new ArrayList<Tile>();
+		CopyOnWriteArrayList<Tile> sorted = new CopyOnWriteArrayList<Tile>();
 		sorted.add(0,tiles.get(0));
 		for(int i=1;i<tiles.size();i++){
 			Tile ct=tiles.get(i);
