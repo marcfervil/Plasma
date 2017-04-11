@@ -2,14 +2,13 @@ package com.capstone.plasma.particle;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.capstone.plasma.GameScreen;
 import com.capstone.plasma.player.Utilities;
 
 public class ParticleHandler {
 
-	public static CopyOnWriteArrayList<Particle> particles = new CopyOnWriteArrayList <Particle>();
+	public static ArrayList<Particle> particles = new ArrayList <Particle>();
 	
 	public static ParticleStream createParticleStream(int x,int y,Color color,int minSpeed,int maxSpeed,boolean running){
 		ParticleStream p= new ParticleStream(x,y,color,minSpeed,maxSpeed,running);

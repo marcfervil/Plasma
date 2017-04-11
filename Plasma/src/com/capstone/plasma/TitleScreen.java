@@ -39,7 +39,6 @@ public class TitleScreen {
 	}
 	
 	public static void init(){
-		AudioManager.startMusic();
 		stars.clear();
 		Thread t1 = new Thread(new Runnable() {
 	         public void run() {

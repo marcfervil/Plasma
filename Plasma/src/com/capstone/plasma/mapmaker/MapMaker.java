@@ -49,14 +49,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import java.util.Scanner;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MapMaker {
 	
-	//public static int xCam=0;
+	public static int xCam=0;
 	public static int backCam=0;
-//	public static int yCam=0;
-	public static CopyOnWriteArrayList<Tile> tiles = new CopyOnWriteArrayList<Tile> ();
+	public static int yCam=0;
+	public static ArrayList<Tile> tiles = new ArrayList<Tile> ();
 	public static ArrayList<Mob> mobs = new ArrayList<Mob>();
 	public static boolean released = true;
 	public static int PlaceMode = 2; //1 is the default
@@ -391,7 +390,7 @@ public class MapMaker {
     
     
     public static void sortMap(){
-    	CopyOnWriteArrayList<Tile> sorted = new CopyOnWriteArrayList<Tile>();
+    	ArrayList<Tile> sorted = new ArrayList<Tile>();
     	sorted.add(0,tiles.get(0));
     	boolean smallest = true;
     	for(int i=1; i<tiles.size();i++){
