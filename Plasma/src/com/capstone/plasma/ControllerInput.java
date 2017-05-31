@@ -9,12 +9,9 @@ import org.lwjgl.input.Controller;
 import org.lwjgl.input.Controllers;
 import org.lwjgl.input.Keyboard;
 
-
 import com.capstone.plasma.mapmaker.MapInput;
 import com.capstone.plasma.mapmaker.MapMaker;
 import com.capstone.plasma.mapmaker.MapScreen;
-
-
 
 public class ControllerInput {
 	
@@ -69,7 +66,7 @@ public class ControllerInput {
 			            Thread.sleep(10);
 			            Controllers.poll();
 		
-			       //     System.out.println(controller.getRZAxisValue()+","+controller.getRYAxisValue()+","+controller.getRXAxisValue()+","+controller.getPovY()+","+controller.getPovX()+",");
+			       //     
 			      //      net.java.games.input.Controller target = null;
 			        //    rumblers = target.getRumblers();
 			          //  System.out.println(UserInput.keysDown);
